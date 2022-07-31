@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>新規ホームページ登録(プレビュー画面)</title>
+<meta name="Keywords" content="norobot">
+<meta name="Robots" content="noindex,nofollow">
+<meta name="googlebot" content="noarchive">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="content-script-type" content="text/javascript">
+<link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
+<meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
+<link rel="stylesheet" href="./jquery.mobile-1.0a2/jquery.mobile-1.0a2.min.css" />
+<script src="./js/jquery-1.4.4.min.js"></script>
+<script src="./jquery.mobile-1.0a2/jquery.mobile-1.0a2.min.js"></script>
+<script type="text/javascript">
+function doScroll() { if (window.pageYOffset === 0) { window.scrollTo(0,1); } }
+window.onload = function() { setTimeout(doScroll, 100); }
+</script>
+</head>
+
+<body>
+<a name="top"></a>
+<!-- Start page -->
+<div data-role="page">
+
+    <!-- header -->
+    <div data-role="header"  data-theme="b">
+        <h1>新規登録(ﾌﾟﾚﾋﾞｭｰ画面)</h1>
+        <a href="<?php echo SMARTPHONE_HOME;?>" rel="external" data-icon="arrow-l" class="ui-btn-left" data-transition="slide">TOP</a>
+        <a href="search.php" data-icon="arrow-r" rel="external" class="ui-btn-right" data-transition="slide">ｻｲﾄ検索</a>
+    </div>
+    <!-- /header -->
+
+    <div data-role="content">
+
+
+<!-- Menu Bar Output -->
+<div style="text-align:center;"><?php printTopMenuLink( $text['menu_bar'] ); ?></div>
+<!-- /Menu Bar Output -->
+
+<hr align="center">
+<form action="regist.php" method="post">
+  <input type="hidden" name="mode" value="form">
+  <input type="hidden" name="Fname" value="<?php echo htmlspecialchars($_POST['Fname']); ?>">
+  <input type="hidden" name="Femail" value="<?php echo htmlspecialchars($_POST['Femail']); ?>">
+  <input type="hidden" name="Fpass" value="<?php echo htmlspecialchars($_POST['Fpass']); ?>">
+  <input type="hidden" name="Fpass2" value="<?php echo htmlspecialchars($_POST['Fpass2']); ?>">
+  <input type="hidden" name="Furl" value="<?php echo htmlspecialchars($_POST['Furl']); ?>">
+  <input type="hidden" name="Fbana_url" value="<?php echo htmlspecialchars($_POST['Fbana_url']); ?>">
+  <input type="hidden" name="Ftitle" value="<?php echo htmlspecialchars($_POST['Ftitle']); ?>">
+  <input type="hidden" name="Fsyoukai" value="<?php echo htmlspecialchars($_POST['Fsyoukai']); ?>">
+  <?php preview_category1();?>
+  <input type="hidden" name="Fkey" value="<?php echo htmlspecialchars($_POST['Fkey']); ?>">
+  <input type="hidden" name="Fsougo" value="<?php echo htmlspecialchars($_POST['Fsougo']); ?>">
+  <input type="hidden" name="Fadd_kt" value="<?php echo htmlspecialchars($_POST['Fadd_kt']); ?>">
+  <input type="hidden" name="Fto_admin" value="<?php echo htmlspecialchars($_POST['Fto_admin']); ?>">
+  <input type="submit" value="登録画面に戻る">
+</form>
+<!-- Navigation Bar Output -->
+<table width="100%" class="table_navigation_bar">
+  <tr>
+    <td><strong>新規ﾎｰﾑﾍﾟｰｼﾞ登録(ﾌﾟﾚﾋﾞｭｰ画面)</strong></td>
+  </tr>
+</table>
+<!-- /Navigation Bar Output -->
+※登録内容を確認してから下の｢<b>登録する</b>｣ﾎﾞﾀﾝを押してください<br>
+※登録内容を修正する場合には上の｢<b>登録画面に戻る</b>｣ﾎﾞﾀﾝを押してください
+  <form action="regist.php" method="post">
+    <input type="hidden" name="mode" value="act_regist">
+    <input type="hidden" name="Smode_name" value="<?php echo htmlspecialchars($_POST['Smode_name']); ?>">
+    <input type="hidden" name="changer" value="<?php echo htmlspecialchars($_POST['changer']); ?>">
+    <input type="hidden" name="pass" value="<?php echo htmlspecialchars($_POST['pass']); ?>">
+    <!-- certification_cord 2008/01/03 add -->
+    <input type="hidden" name="certification_cord" value="<?php echo htmlspecialchars($_POST['certification_cord']); ?>">
+    <input type="hidden" name="Fcertification_cord" value="<?php echo htmlspecialchars($_POST['Fcertification_cord']); ?>">
+    <!-- /certification_cord 2008/01/03 add -->
+<ol>
+  ▼項目名の横に<font color="#FF0000">☆</font>が付いている項目は記入必須項目です<br><br>
+<!--お名前-->
+  <li>【お名前】<font color="#FF0000"><?php echo $cfg_reg['Fname']; ?></font>
+    <input type="hidden" name="Fname" value="<?php echo htmlspecialchars($_POST['Fname']); ?>">
+    <ul><?php echo htmlspecialchars($_POST['Fname']); ?></ul><br>
+<!--ﾒｰﾙｱﾄﾞﾚｽ-->
+  <li>【ﾒｰﾙｱﾄﾞﾚｽ】<font color="#FF0000"><?php echo $cfg_reg['Femail']; ?></font>
+    <input type="hidden" name="Femail" value="<?php echo htmlspecialchars($_POST['Femail']); ?>">
+    <ul><?php echo htmlspecialchars($_POST['Femail']); ?></ul><br>
+<!--ﾊﾟｽﾜｰﾄﾞ-->
+  <li>【ﾊﾟｽﾜｰﾄﾞ】<font color="#FF0000">☆</font>
+    <input type="hidden" name="Fpass" value="<?php echo htmlspecialchars($_POST['Fpass']); ?>">
+    <input type="hidden" name="Fpass2" value="<?php echo htmlspecialchars($_POST['Fpass2']); ?>">
+    <ul><?php echo htmlspecialchars($_POST['Fpass']); ?></ul><br>
+<!--ﾎｰﾑﾍﾟｰｼﾞｱﾄﾞﾚｽ-->
+  <li>【ﾎｰﾑﾍﾟｰｼﾞｱﾄﾞﾚｽ】<font color="#FF0000"><?php echo $cfg_reg['Furl']; ?></font>
+    <input type="hidden" name="Furl" value="<?php echo htmlspecialchars($_POST['Furl']); ?>">
+    <ul><?php echo htmlspecialchars($_POST['Furl']); ?>　[<a href="<?php echo htmlspecialchars($_POST['Furl']); ?>" target="_blank">確認</a>]</ul><br>
+<?php
+if(@$cfg_reg['bana_url'] && @$_POST['Fbana_url']) {
+	?>
+<!--ﾀｲﾄﾙﾊﾞﾅｰのURL-->
+  <li>【ﾀｲﾄﾙﾊﾞﾅｰのURL】<font color="#FF0000"><?php echo $cfg_reg['Fbana_url']; ?></font>
+    <input type="hidden" name="Fbana_url" value="<?php echo htmlspecialchars($_POST['Fbana_url']); ?>">
+    <ul><?php echo htmlspecialchars($_POST['Fbana_url']); ?>　[<a href="<?php echo htmlspecialchars($_POST['Fbana_url']); ?>" target="_blank">確認</a>]</ul><br>
+<?php
+}
+?>
+<!--ﾎｰﾑﾍﾟｰｼﾞのﾀｲﾄﾙ-->
+  <li>【ﾎｰﾑﾍﾟｰｼﾞのﾀｲﾄﾙ】<font color="#FF0000"><?php echo $cfg_reg['Ftitle']; ?></font>
+    <input type="hidden" name="Ftitle" value="<?php echo htmlspecialchars($_POST['Ftitle']); ?>">
+    <ul><?php echo htmlspecialchars($_POST['Ftitle']); ?></ul><br>
+<!--ﾎｰﾑﾍﾟｰｼﾞの紹介文-->
+  <li>【ﾎｰﾑﾍﾟｰｼﾞの紹介文】<font color="#FF0000"><?php echo $cfg_reg['Fsyoukai']; ?></font>
+    <ul><textarea wrap="soft" name="Fsyoukai" cols="50" rows="3"><?php echo htmlspecialchars($_POST['Fsyoukai']); ?></textarea></ul><br>
+<!--登録するｶﾃｺﾞﾘ-->
+  <li>【登録するｶﾃｺﾞﾘ】<font color="#FF0000">☆</font>
+    <ul>
+<?php preview_category2();?>
+</ul><br>
+<!--ｷｰﾜｰﾄﾞ-->
+  <li>【ｷｰﾜｰﾄﾞ】<font color="#FF0000"><?php echo $cfg_reg['Fkey']; ?></font>
+    <input type="hidden" name="Fkey" value="<?php echo htmlspecialchars($_POST['Fkey']); ?>">
+    <ul><?php echo htmlspecialchars($_POST['Fkey']); ?></ul><br>
+<?php
+if(@$cfg_reg['add_kt']) {
+	?>
+<!--追加して欲しいｶﾃｺﾞﾘ-->
+  <li>【追加して欲しいｶﾃｺﾞﾘ】<font color="#FF0000"><?php echo $cfg_reg['Fadd_kt']; ?></font>
+    <input type="hidden" name="Fadd_kt" value="<?php echo htmlspecialchars($_POST['Fadd_kt']); ?>">
+    <ul><?php echo htmlspecialchars($_POST['Fadd_kt']); ?>
+    </ul><br>
+<?php
+}
+if(@$cfg_reg['to_admin']) {
+	?>
+<!--管理人へのﾒｯｾｰｼﾞ-->
+  <li>【管理人へのﾒｯｾｰｼﾞ】<font color="#FF0000"><?php echo $cfg_reg['Fto_admin']; ?></font>
+    <ul><textarea wrap="soft" name="Fto_admin" cols="50" rows="3"><?php echo htmlspecialchars($_POST['Fto_admin']); ?></textarea></ul>
+<?php
+}
+if(@$cfg_reg['sougo']) {
+	if(@$_POST['Fsougo']) {
+		$PRsougo = "相互ﾘﾝｸする";
+	} else {
+		$PRsougo = "相互ﾘﾝｸしない";
+	}
+	?>
+<!--相互ﾘﾝｸ連絡項目-->
+  <br><li>【相互ﾘﾝｸの有無】
+  <input type="hidden" name="Fsougo" value="<?php echo htmlspecialchars($_POST['Fsougo']); ?>">
+    <ul><?php echo $PRsougo; ?></ul>
+<?php
+}
+?>
+  <br><br>
+    <input type="submit" value="&nbsp; 登録する &nbsp;"> <input type="reset" value="ﾘｾｯﾄ">
+</ol></form>
+
+
+<!-- Footer Space Output -->
+<?php if(isset($text['foot_sp'])) { echo $text['foot_sp']; } ?>
+</div>
+<!-- /content -->
+
+<!-- /Footer Space Output -->
+<?php echo SMARTPHONE_FOOTER; ?>
+</body>
+</html>

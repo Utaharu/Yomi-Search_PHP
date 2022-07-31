@@ -1,0 +1,477 @@
+<?php
+// リストメニューの設定
+// カテゴリ変更(可能=0/不可=1)
+if($cfg['user_change_kt']) {
+    $Cuser_change_kt_0 = "";
+    $Cuser_change_kt_1 = " selected";
+} else {
+    $Cuser_change_kt_0 = " selected";
+    $Cuser_change_kt_1 = "";
+}
+
+// 仮登録モードに(しない=0/する=1)
+if($cfg['user_check']) {
+    $Cuser_check_0 = "";
+    $Cuser_check_1 = " selected";
+} else {
+    $Cuser_check_0 = " selected";
+    $Cuser_check_1 = "";
+}
+
+// 管理人にメールを送信(しない=0/する=1)
+if($cfg['mail_to_admin']) {
+    $Cmail_to_admin_0 = "";
+    $Cmail_to_admin_1 = " selected";
+} else {
+    $Cmail_to_admin_0 = " selected";
+    $Cmail_to_admin_1 = "";
+}
+
+// 登録者にメールを送信(しない=0/する=1)
+if($cfg['mail_to_register']) {
+    $Cmail_to_register_0 = "";
+    $Cmail_to_register_1 = " selected";
+} else {
+    $Cmail_to_register_0 = " selected";
+    $Cmail_to_register_1 = "";
+}
+
+// 新規登録完了メールを送信(しない=0/する=1)
+if($cfg['mail_new']) {
+    $Cmail_new_0 = "";
+    $Cmail_new_1 = " selected";
+} else {
+    $Cmail_new_0 = " selected";
+    $Cmail_new_1 = "";
+}
+
+// 登録内容変更完了メールを送信(しない=0/する=1)
+if($cfg['mail_ch']) {
+    $Cmail_ch_0 = "";
+    $Cmail_ch_1 = " selected";
+} else {
+    $Cmail_ch_0 = " selected";
+    $Cmail_ch_1 = "";
+}
+
+// 仮登録完了メールを送信(しない=0/する=1)
+if($cfg['mail_temp']) {
+    $Cmail_temp_0 = "";
+    $Cmail_temp_1 = " selected";
+} else {
+    $Cmail_temp_0 = " selected";
+    $Cmail_temp_1 = "";
+}
+
+// パスワード変更メールを送信(しない=0/する=1)
+if($cfg['mail_pass']) {
+    $Cmail_pass_0 = "";
+    $Cmail_pass_1 = " selected";
+} else {
+    $Cmail_pass_0 = " selected";
+    $Cmail_pass_1 = "";
+}
+
+#パスワード再発行を(しない=0/する=1)
+if($cfg['re_pass_fl']) {
+    $Cre_pass_fl_0 = "";
+    $Cre_pass_fl_1 = " selected";
+} else {
+    $Cre_pass_fl_0 = " selected";
+    $Cre_pass_fl_1 = "";
+}
+
+// 紹介文の改行(無効=0/有効=1)
+if($cfg['syoukai_br']) {
+    $Csyoukai_br_0 = "";
+    $Csyoukai_br_1 = " selected";
+} else {
+    $Csyoukai_br_0 = " selected";
+    $Csyoukai_br_1 = "";
+}
+
+// ジャンプ処理(Locationを使う=1/メタタグを使う=0)
+if($cfg['location']) {
+    $Clocation_0 = "";
+    $Clocation_1 = " selected";
+} else {
+    $Clocation_0 = " selected";
+    $Clocation_1 = "";
+}
+
+// アクセスカウンタ(使用しない=0/使用する=1)
+if($cfg['count']) {
+    $Ccount_0 = "";
+    $Ccount_1 = " selected";
+} else {
+    $Ccount_0 = " selected";
+    $Ccount_1 = "";
+}
+
+// セレクトボックスの設定
+// 標準のログ表示順(mark/id_new/id_old/time_new/time_old/ac_new/ac_old)
+switch($cfg['defo_hyouji']) {
+	case "id_new": $Sdefo_hyouji = "登録日の新しい順"; break;
+	case "id_old": $Sdefo_hyouji = "登録日の古い順"; break;
+	case "time_new": $Sdefo_hyouji = "更新日の新しい順"; break;
+	case "time_old": $Sdefo_hyouji = "更新日の古い順"; break;
+	case "ac_new": $Sdefo_hyouji = "アイウエオ順(昇順)"; break;
+	case "ac_old": $Sdefo_hyouji = "アイウエオ順(降順)"; break;
+	default: $Sdefo_hyouji = "マーク順";
+}
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<title>管理室 &gt;&gt; 環境設定</title>
+<link href="css/admin.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#2F5376" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td><a href="<?php echo $cfg['home']; ?>" target="_blank"><img src="<?php echo $cfg['img_path_url']; ?>admin/logo.gif" alt="ホームページ" width="206" height="80" border="0"></a></td>
+    <td align="right"><?php echo $text['menu_bar']; ?></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+  <form action="<?php echo $cfg['admin']; ?>" method="post" lang="ja">
+  <tr>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td class="title">管理トップ &gt;&gt; 環境設定</td>
+    <td align="right"><?php echo $admin_listbox; ?></td>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+  </form>
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td valign="top"><br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+		  <form name="form1" method="post" action="<?php echo $cfg['admin']; ?>">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td colspan="3" class="table_in_header">環境設定</td>
+                </tr>
+              <!-- メニューバーの設定 -->
+              <!-- メニューバーの設定 -->
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>サーチエンジントップのURL</strong><br>
+                  <br>
+                  [http://]から始まるアドレス(yomi.phpまでのURL)を指定します。</td>
+                <td class="table_in_rightcell"><input name="home" type="text" class="form" value="<?php echo $cfg['home']; ?>" size="50">                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>yomi.phpのファイル名</strong></td>
+                <td class="table_in_rightcell"><input name="script" type="text" class="form" value="<?php echo $cfg['script']; ?>">                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>検索用のCGIファイル名</strong></td>
+                <td class="table_in_rightcell"><input name="search" type="text" class="form" value="<?php echo $cfg['search']; ?>">                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>ランキング用のCGIファイル名</strong></td>
+                <td class="table_in_rightcell"><input name="rank" type="text" class="form" value="<?php echo $cfg['rank']; ?>">                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>管理処理用のCGIファイル名</strong></td>
+                <td class="table_in_rightcell"><input name="admin" type="text" class="form" value="<?php echo $cfg['admin']; ?>">                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>管理メニューを実行できるIPアドレス</strong><br>
+                  <br>
+                  IPアドレス又はホスト名の一部記入してください。複数指定したい場合には半角カンマ( , )で区切ってください。<br>
+                  <br>
+                  特に指定しない場合には空欄のままにしてください、指定した場合にはそれ以外のIPアドレス又はホスト名で管理室に入室することができなくなります。</td>
+                <td class="table_in_rightcell"><input name="login_ip" type="text" class="form" value="<?php echo $cfg['login_ip']; ?>" size="50">                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>ユーザ権限設定(カテゴリ変更権限)</strong><br>
+                  <br>
+                  ユーザ(登録者)自身が、自分で登録したサイトの登録カテゴリを変更できるようにする場合には[許可する]に設定してください。</td>
+                <td class="table_in_rightcell"><select name="user_change_kt" class="form">
+                  <option value="0"<?php echo $Cuser_change_kt_0; ?>>許可する</option>
+                  <option value="1"<?php echo $Cuser_change_kt_1; ?>>許可しない</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>登録審査システム</strong><br>
+                  <br>
+                  有効にした場合には、管理人が管理室から登録の可否を決定することになります。</td>
+                <td class="table_in_rightcell"><select name="user_check" class="form">
+                  <option value="0"<?php echo $Cuser_check_0; ?>>無効にする</option>
+                  <option value="1"<?php echo $Cuser_check_1; ?>>有効にする</option>
+                </select>                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>カテゴリの１ページ毎の表示ログ件数</strong><br>
+                  <br>
+                  1ページに表示するログ件数を設定します。この設定は全てのページで共通の値となります。<br>
+                  <br>
+                  バナーを表示する場合には最大でも30程度に設定することを推奨します。回線状況にもよりますが、あまり大きくしすぎると表示に時間が掛かる場合があります。</td>
+                <td class="table_in_rightcell"><input name="hyouji" type="text" class="form" value="<?php echo $cfg['hyouji']; ?>" size="5">                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>ログディレクトリ(フォルダ)のパス</strong><br>
+                  <br>
+                  登録者からのメッセージやデータベースのバックアップファイルなどを保存するディレクトリです。このディレクトリのアクセス権(パーミッション)は[707]又は[777]に設定しておく必要があります。</td>
+                <td class="table_in_rightcell"><input name="log_path" type="text" class="form" value="<?php echo $cfg['log_path']; ?>" size="40">                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>テンプレートディレクトリのパス</strong><br>
+                  <br>
+                  各種テンプレートファイルが保存されているディレクトリです。このディレクトリのアクセス権(パーミッション)は変更する必要がありません。</td>
+                <td class="table_in_rightcell"><input name="temp_path" type="text" class="form" value="<?php echo $cfg['temp_path']; ?>" size="40">                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>HTMLファイル用ディレクトリのパス</strong><br>
+                  <br>
+                  各種HTMLファイルを保存しておくディレクトリです。このディレクトリのアクセス権(パーミッション)は[707]又は[777]に設定しておく必要があります。HTMLファイルが閲覧可能なディレクトリに設定してください。</td>
+                <td class="table_in_rightcell"><input name="html_path" type="text" class="form" value="<?php echo $cfg['html_path']; ?>" size="40">                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>画像ファイルディレクトリのパス</strong><br>
+                  <br>
+画像ファイル(new.gif/renew.gif等)を保存しておくディレクトリです。画像ファイルが閲覧可能なディレクトリに設定してください。</td>
+                <td class="table_in_rightcell"><input name="img_path_url" type="text" class="form" value="<?php echo $cfg['img_path_url']; ?>" size="40"></td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>トップディレクトリのURL</strong><br>
+                  <br>
+                  スクリプト(yomi.php等)を置いているディレクトリのURLです。[http://]からはじまるURLを設定してください。(例：http://localhost/yomi/)</td>
+                <td class="table_in_rightcell"><input name="cgi_path_url" type="text" class="form" value="<?php echo $cfg['cgi_path_url']; ?>" size="40">                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>サーチエンジンの名称</strong></td>
+                <td class="table_in_rightcell"><input name="search_name" type="text" class="form" value="<?php echo stripcslashes($cfg['search_name']); ?>" size="20">                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>管理者名</strong></td>
+                <td class="table_in_rightcell"><input name="admin_name" type="text" class="form" value="<?php echo $cfg['admin_name']; ?>" size="20">                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>管理者のE-Mailアドレス</strong></td>
+                <td class="table_in_rightcell"><input name="admin_email" type="text" class="form" value="<?php echo $cfg['admin_email']; ?>" size="20">                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>管理者のホームページURL</strong></td>
+                <td class="table_in_rightcell"><input name="admin_hp" type="text" class="form" value="<?php echo $cfg['admin_hp']; ?>" size="50">                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>新着/更新の日数</strong></td>
+                <td class="table_in_rightcell"><input name="new_time" type="text" class="form" value="<?php echo $cfg['new_time']; ?>" size="5">
+                  日ごとにリセット</td>
+              </tr>
+              <tr>
+                <td rowspan="8" class="table_in_leftcell"><strong>名称&amp;説明設定</strong></td>
+                <td width="160" class="table_in_leftcell">新着</td>
+                <td class="table_in_rightcell"><input name="name_new" type="text" class="form" value="<?php echo $cfg['name_new']; ?>" size="20">
+                  <br>
+                  <input name="new_ys" type="text" class="form" value="<?php echo $cfg['new_ys']; ?>" size="60">                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">更新</td>
+                <td class="table_in_rightcell"><input name="name_renew" type="text" class="form" value="<?php echo $cfg['name_renew']; ?>" size="20">
+                  <br>
+                  <input name="renew_ys" type="text" class="form" value="<?php echo $cfg['renew_ys']; ?>" size="60">                  </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">人気ランキング</td>
+                <td class="table_in_rightcell"><input name="name_rank" type="text" class="form" value="<?php echo $cfg['name_rank']; ?>" size="20">
+                  <br>
+                  <input name="rank_ys" type="text" class="form" value="<?php echo $cfg['rank_ys']; ?>" size="60">                  </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">前回の人気ランキング</td>
+                <td class="table_in_rightcell"><input name="name_rank_bf" type="text" class="form" value="<?php echo $cfg['name_rank_bf']; ?>" size="20">
+                  <br>
+                  <input name="rank_bf" type="text" class="form" value="<?php echo $cfg['rank_bf']; ?>" size="60">                  </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">累計人気ランキング</td>
+                <td class="table_in_rightcell"><input name="name_rank_rui" type="text" class="form" value="<?php echo $cfg['name_rank_rui']; ?>" size="20">
+                  <br>
+                  <input name="rank_rui" type="text" class="form" value="<?php echo $cfg['rank_rui']; ?>" size="60">                  </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">アクセスランキング</td>
+                <td class="table_in_rightcell"><input name="name_rev" type="text" class="form" value="<?php echo $cfg['name_rev']; ?>" size="20">
+                  <br>
+                  <input name="rev" type="text" class="form" value="<?php echo $cfg['rev']; ?>" size="60">                  </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">前回のアクセスランキング</td>
+                <td class="table_in_rightcell"><input name="name_rev_bf" type="text" class="form" value="<?php echo $cfg['name_rev_bf']; ?>" size="20">
+                  <br>
+                  <input name="rev_bf" type="text" class="form" value="<?php echo $cfg['rev_bf']; ?>" size="60">                  </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">累計アクセスランキング</td>
+                <td class="table_in_rightcell"><input name="name_rev_rui" type="text" class="form" value="<?php echo $cfg['name_rev_rui']; ?>" size="20">
+                  <br>
+                  <input name="rev_rui" type="text" class="form" value="<?php echo $cfg['rev_rui']; ?>" size="60">                  </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell"><strong>メールの送信設定</strong></td>
+                <td class="table_in_leftcell">管理者へのメール</td>
+                <td class="table_in_rightcell"><select name="mail_to_admin" class="form">
+                  <option value="1"<?php echo $Cmail_to_admin_1; ?>>する</option>
+                  <option value="0"<?php echo $Cmail_to_admin_0; ?>>しない</option>
+                </select>                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">&nbsp;</td>
+                <td class="table_in_leftcell">登録者へのメール</td>
+                <td class="table_in_rightcell"><select name="mail_to_register" class="form">
+                  <option value="1"<?php echo $Cmail_to_register_1; ?>>する</option>
+                  <option value="0"<?php echo $Cmail_to_register_0; ?>>しない</option>
+                </select>                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">&nbsp;</td>
+                <td class="table_in_leftcell">新規登録完了メール</td>
+                <td class="table_in_rightcell"><select name="mail_new" class="form">
+                  <option value="1"<?php echo $Cmail_new_1; ?>>する</option>
+                  <option value="0"<?php echo $Cmail_new_0; ?>>しない</option>
+                </select>                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">&nbsp;</td>
+                <td class="table_in_leftcell">登録内容変更完了メール</td>
+                <td class="table_in_rightcell"><select name="mail_ch" class="form">
+                  <option value="1"<?php echo $Cmail_ch_1; ?>>する</option>
+                  <option value="0"<?php echo $Cmail_ch_0; ?>>しない</option>
+                </select>                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">&nbsp;</td>
+                <td class="table_in_leftcell">仮登録完了メール</td>
+                <td class="table_in_rightcell"><select name="mail_temp" class="form">
+                  <option value="1"<?php echo $Cmail_temp_1; ?>>する</option>
+                  <option value="0"<?php echo $Cmail_temp_0; ?>>しない</option>
+                </select>                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">&nbsp;</td>
+                <td class="table_in_leftcell">パスワード変更メール</td>
+                <td class="table_in_rightcell"><select name="mail_pass" class="form">
+                  <option value="1"<?php echo $Cmail_pass_1; ?>>する</option>
+                  <option value="0"<?php echo $Cmail_pass_0; ?>>しない</option>
+                </select>                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>パスワード再発行</strong><br>
+                  <br>
+                  パスワード変更メールを送信しない設定で、この設定を[する]にした場合にはWEB上でパスワードの通知が行われます。よって、パスワード変更メールを送信しない設定でこの設定を[する]にすることは推奨しません。</td>
+                <td class="table_in_rightcell"><select name="re_pass_fl" class="form">
+                  <option value="1"<?php echo $Cre_pass_fl_1; ?>>する</option>
+                  <option value="0"<?php echo $Cre_pass_fl_0; ?>>しない</option>
+                </select>                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>紹介文の改行</strong><br>
+                  <br>
+                  ログの表示を行う際に、紹介文に含まれる改行を表示に反映するかどうかの設定を行います。</td>
+                <td class="table_in_rightcell"><select name="syoukai_br" class="form">
+                  <option value="1"<?php echo $Csyoukai_br_1; ?>>有効にする</option>
+                  <option value="0"<?php echo $Csyoukai_br_0; ?>>無効にする</option>
+                </select>                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>標準のログ表示順</strong></td>
+                <td class="table_in_rightcell"><select name="defo_hyouji" class="form">
+                  <option value="<?php echo $cfg['defo_hyouji']; ?>" selected>
+                    <?php echo $Sdefo_hyouji; ?>
+                    <option value="mark">マーク順
+                    <option value="id_new">登録日の新しい順
+                    <option value="id_old">登録日の古い順
+                    <option value="time_new">更新日の新しい順
+                    <option value="time_old">更新日の古い順
+                    <option value="ac_new">アイウエオ順(昇順)
+                    <option value="ac_old">アイウエオ順(降順)
+                  </select>                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>ジャンプ処理</strong><br>
+                  <br>
+                  まず<a href="<?php echo $cfg['script']; ?>?mode=random" target="_blank">ランダムジャンプ</a>をクリックしてみてページが表示できない場合には[METAタグを使用]に設定してください。</td>
+                <td class="table_in_rightcell"><select name="location" class="form">
+                  <option value="1"<?php echo $Clocation_1; ?>>Locationを使用</option>
+                  <option value="0"<?php echo $Clocation_0; ?>>METAタグを使用</option>
+                </select>                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>アクセスカウンターのON/OFF</strong><br>
+                  <br>
+トップページにアクセスカウンターを表示する場合には[使用する]を選択してください。</td>
+                <td class="table_in_rightcell"><select name="count" class="form">
+                  <option value="1"<?php echo $Ccount_1; ?>>使用する</option>
+                  <option value="0"<?php echo $Ccount_0; ?>>使用しない</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>キーワードランキングの設定</strong></td>
+                <td class="table_in_rightcell">[管理室]-&gt;[キーワードランキングの設定]から実行してください。</td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>人気ランキングの設定</strong></td>
+                <td class="table_in_rightcell">[管理室]-&gt;[人気ランキングの設定]から実行してください。</td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell">&nbsp;</td>
+                <td class="table_in_rightcell"><input name="submit" type="submit" class="form" value="送信">
+                  <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                  <input name="mode" type="hidden" value="cfg_make"></td>
+              </tr>
+            </table></td>
+          </tr>
+		  </form>
+        </table>
+        <br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+                <tr>
+                  <td align="center" class="table_in_header"><?php
+// 著作権表示ルーチン
+cr();
+?>
+                  </td>
+                </tr>
+            </table></td>
+          </tr>
+        </table></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

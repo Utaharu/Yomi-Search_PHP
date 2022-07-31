@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<title>管理室 &gt;&gt; ログデータの交換・移動・削除</title>
+<link href="css/admin.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#2F5376" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td><a href="<?php echo $cfg['home']; ?>" target="_blank"><img src="<?php echo $cfg['img_path_url']; ?>admin/logo.gif" alt="ホームページ" width="206" height="80" border="0"></a><a href="<?php echo $cfg['home']; ?>"></a></td>
+    <td align="right"><?php echo $text['menu_bar']; ?></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+  <form action="<?php echo $cfg['admin']; ?>" method="post" lang="ja">
+  <tr>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td class="title">管理トップ &gt;&gt; ログデータの交換・移動・削除</td>
+    <td align="right"><?php echo $admin_listbox; ?></td>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+  </form>
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td valign="top">
+	  <br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+          <form method="post" action="<?php echo $cfg['admin']; ?>">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td colspan="2" class="table_in_header">ログデータの交換</td>
+                </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell">カテゴリ(1)とカテゴリ(2)のデータを入れ替え(交換)します。</td>
+                </tr>
+              <tr>
+                <td width="130" align="right" class="table_in_leftcell"><strong>カテゴリ(1)：</strong></td>
+                <td class="table_in_rightcell">
+				  <select name="change_kt1" class="form">
+                    <option value="" selected> -- 選択してください --
+                    <?php echo $PR_kt_list; ?>
+                  </select></td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>カテゴリ(2)：</strong></td>
+                <td class="table_in_rightcell">
+				  <select name="change_kt2" class="form">
+                    <option value="" selected> -- 選択してください --
+                    <?php echo $PR_kt_list; ?>
+                  </select></td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>確認チェック：</strong></td>
+                <td class="table_in_rightcell"><input name="check" type="checkbox" class="form" value="on"></td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">&nbsp;</td>
+                <td class="table_in_rightcell"><input type="submit" class="form" value="送信">
+                  <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                  <input name="mode" type="hidden" value="log_kt_change_act">
+                  <input type="hidden" name="log_mode" value="change"></td>
+              </tr>
+            </table></td>
+          </tr>
+		  </form>
+        </table>
+		<br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+          <form method="post" action="<?php echo $cfg['admin']; ?>">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td colspan="2" class="table_in_header">ログデータの移動</td>
+                </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell">指定したカテゴリのデータを移動先のカテゴリに移動します。</td>
+                </tr>
+              <tr>
+                <td width="130" align="right" class="table_in_leftcell"><strong>移動元カテゴリ：</strong></td>
+                <td class="table_in_rightcell">
+				  <select name="bf_move_kt" class="form">
+                    <option value="" selected> -- 選択してください --
+                    <?php echo $PR_kt_list; ?>
+                    </select>
+				  ※移動実行後に空のカテゴリになります。</td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>移動先カテゴリ：</strong></td>
+                <td class="table_in_rightcell">
+				  <select name="af_move_kt" class="form">
+                    <option value="" selected> -- 選択してください --
+                    <?php echo $PR_kt_list; ?>
+                    </select></td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>確認チェック：</strong></td>
+                <td class="table_in_rightcell"><input name="check" type="checkbox" class="form" id="check" value="on"></td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">&nbsp;</td>
+                <td class="table_in_rightcell"><input type="submit" class="form" value="送信">
+                  <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                  <input name="mode" type="hidden" value="log_kt_change_act">
+                  <input name="log_mode" type="hidden" value="move"></td>
+              </tr>
+            </table></td>
+          </tr>
+		  </form>
+        </table>
+		<br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+          <form method="post" action="<?php echo $cfg['admin']; ?>">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td colspan="2" class="table_in_header">ログデータの削除</td>
+                </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell">指定したカテゴリのデータを一括削除します。2つ以上に登録されているデータは削除対象でないカテゴリのデータとして残ります。</td>
+                </tr>
+              <tr>
+                <td width="130" align="right" class="table_in_leftcell"><strong>削除するカテゴリ：</strong></td>
+                <td class="table_in_rightcell"><select name="del_kt" class="form">
+                  <option value="" selected> -- 選択してください --
+                    <?php echo $PR_kt_list; ?>
+                    </select>                </td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>確認チェック：</strong></td>
+                <td class="table_in_rightcell"><input name="check" type="checkbox" class="form" id="check" value="on">                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">&nbsp;</td>
+                <td class="table_in_rightcell"><input type="submit" class="form" value="送信">
+                  <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                  <input name="mode" type="hidden" value="log_kt_change_act">
+                  <input name="log_mode" type="hidden" id="log_mode" value="del"></td>
+              </tr>
+            </table></td>
+          </tr>
+		  </form>
+        </table>
+	    <br>
+	    <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+                <tr>
+                  <td align="center" class="table_in_header"><?php
+// 著作権表示ルーチン
+cr();
+?>
+                  </td>
+                </tr>
+            </table></td>
+          </tr>
+        </table></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" href="http://www.nkbt.net/yomi/manage/temp/style.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<title>Yomi-Search(PHP)modified ver1.5.8.n - Yomi-Search(PHP)modified ver1.5.8.n</title>
+<meta name="keywords" content="Yomi-Search(PHP)modified ver1.5.8.n,検索エンジンファイル配布" />
+<meta name="description" content="Yomi-Search(PHP)modified ver1.5.8.nの検索エンジン配布のトップページ" />
+<link href="./favicon.ico" type="image/x-icon" rel="icon"/>
+
+</head>
+
+<body>
+<div id="middle">
+<div id="title"><a href="http://www.nkbt.net/yomi/">Yomi-Search(PHP)modified ver1.5.8.n</a></div>
+<div id="greeting">Yomi-Search(PHP)modified ver1.5.8をカスタマイズしたものを配布してます</div>
+
+<ul id="menu_area">
+<li id="menu_link_now"><a href="index.html">Yomi-Search(PHP)modified ver1.5.8.n</a></li>
+<li id="menu_link"><a href="./manage/autoscript/bbs.php?id=support">不具合/追加機能要望/意見/サポート掲示板</a></li>
+</ul>
+
+
+<table id="square">
+<tr>
+<td valign="top" width="0">
+	<!--SUB_MENU-->
+</td>
+<td valign="top" width="100%">
+	<h2 id="caption">Yomi-Search(PHP)modified ver1.5.8.n</h2>
+	<a href="http://yomiphp-mod.sweet82.com/modules/bulletin/" target="_blank">Yomi-Search(PHP)modified ver1.5.8</a>を使用する機会が<br />
+あり、少しだけカスタマイズしたので公開することにしました。<br />
+<h2 id="caption">Yomi-Searchとは？</h2><br />
+<a href="http://yomi.pekori.to/">WonderLink</a>で公開されている<br />
+<a href="http://yomi.pekori.to/yomi-search.shtml">Yomi-Search</a>というディレクトリ型サーチエンジンです。<br />
+こちらをPHP化したのが<br />
+<a href="http://sql.s28.xrea.com/">Yomi-Search PHP化プロジェクト</a>で<br />
+更にカスタマイズしたものが<br />
+<a href="http://yomiphp-mod.sweet82.com/">Yomi-Search(PHP)modified</a>です。<br />
+このページではYomi-Search(PHP)modifiedを更に改造したものを配布しています。<br />
+<strong>(<a href="http://yomi.pekori.to/">yomiさん</a>から許可を得ました!)</strong><br />
+<br />
+<h2 id="caption">Yomi-Search(PHP)modified ver1.5.8からの主な変更部分</h2><br />
+・本家Ver4.22の「データ修正用のページが検索エンジンにインデックスされてしまう問題」が<br />
+反映されていなかったのでnorobot等のMETAタグを適切だと思われる箇所に追加<br />
+・全体的に”を'にして微妙に高速化+使用メモリ微妙に減少<br />
+・FORMの&lt;/option&gt;を省略していたため、一部ブラウザで表示されないので追加<br />
+・db.phpのエラーをdebug_backtraceで出力するように変更(PHP4.3以上のみ)<br />
+・外部検索エンジンにbingを追加<br />
+・一部POST、GETの値を直でクエリに使用していたのをチェックするように処理追加<br />
+・HTML表示部にMETAタグ(keyword,description)追加<br />
+・mysql_list_tablesを廃止<br />
+・できるだけSELECT COUNT(*)を使わないように変更<br />
+・できるだけSELECT * FROM を使わないように変更<br />
+・functions.phpにおいてglobal変数を見直していらない所は呼ばないよう変更<br />
+・登録サイト表示時のメモリ使用量が約10KB減<br />
+・各ページに広告を表示する/ads.phpを追加(初期設定は何も広告を表示しません)<br />
+・一部echo文を連発していた部分を変数に入れて最後にまとめてechoするように変更<br />
+・パンくずリスト(ホーム＞ショッピング＞ショッピングモール）を下段にも追加<br />
+<br />
+<h2 id="caption">デモページ</h2><br />
+　<a href="http://www.nkbt.net/yomi/search/" target="_blank">こちらです(新しいウィンドウ/タブで開きます)</a><br />
+　<span style="color:#FF0000"><strong>※広告が出力されていますが、初期設定では広告は出力されません。</strong></span><br />
+<br />
+<h2 id="caption">ダウンロード</h2><br />
+■Yomi-Search(PHP)modified ver1.5.8.n1　<a href="http://www.nkbt.net/yomi/Yomi-Search_PHP_modified_ver1_5_8_n1.zip">Yomi-Search_PHP_modified_ver1_5_8_n1.zip</a><br />
+　<span style="color:#FF0000"><strong>※不具合・意見などありましたら<a href="http://www.nkbt.net/yomi/manage/autoscript/bbs.php?id=support">こちらの掲示板</a>に書き込んでください。</strong></span><br />
+<br />
+<h2 id="caption">予定は未定</h2><br />
+・iphone対応<br />
+・携帯電話対応＞<a href="./search/m/" target="_blank">今のところこんな感じ[未完成](別ウィンドウ)</a><br /><br />
+※絵文字画像は<a href="http://start.typepad.jp/typecast/" target="_blank">TypePadの絵文字アイコン画像</a>を使用しております。<br />
+<br />
+<h2 id="caption">誰の仕業？</h2><br />
+<a href="../">こんな人</a><br />
+<a href="http://twitter.com/NKBT">こんな人のTwitter</a><br />
+<br />
+<br />
+
+	<div id="dateInfo">
+		FirstUpload 10/10/15-11:57 : LastUpdate 10/10/19-02:53
+	</div>
+</td>
+</tr>
+</table>
+
+<br />
+
+<div id="copy_area">
+Copyright &copy; Yomi-Search(PHP)modified ver1.5.8.n All Rights Reserved. Script by <a href="http://cms.k-php.com/" target="_blank">Petit CMS</a> Designed by <a href="http://info-cache.com">info-cache.com</a>
+</div>
+</div>
+<script language="JavaScript">
+<!--
+ref = document.referrer;
+document.write('<img src="http://www.nkbt.net/yomi/manage/autoscript/analyze.php?p=index' + '&ref=' + escape(document.referrer) + '" style="display:none;">');
+//-->
+</script>
+<noscript><img src="http://www.nkbt.net/yomi/manage/autoscript/analyze.php?p=index" style="display:none;"></noscript>
+
+</body>
+</html>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-7842211-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>

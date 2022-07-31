@@ -1,0 +1,178 @@
+<?php
+// リストメニューの設定
+// 認証設定(無効にする=0/有効にする=1)
+if($cfg["cfg_kanri"]) {
+	$Ccfg_kanri_fl_0 = "";
+	$Ccfg_kanri_fl_1 = " selected";
+} else {
+	$Ccfg_kanri_fl_0 = " selected";
+	$Ccfg_kanri_fl_1 = "";
+}
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<title>管理室 &gt;&gt; 各種ログ変換</title>
+<link href="css/admin.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#2F5376" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td><a href="<?php echo $cfg['home']; ?>" target="_blank"><img src="<?php echo $cfg['img_path_url']; ?>admin/logo.gif" alt="ホームページ" width="206" height="80" border="0"></a><a href="<?php echo $cfg['home']; ?>"></a></td>
+    <td align="right"><?php echo $text['menu_bar']; ?></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+  <form action="<?php echo $cfg['admin']; ?>" method="post" lang="ja">
+  <tr>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td class="title">管理トップ &gt;&gt; 各種ログ変換</td>
+    <td align="right"><?php echo $admin_listbox; ?></td>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+  </form>
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td valign="top"><br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+		  <form name="form1" method="post" action="<?php echo $cfg['admin']; ?>">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td colspan="2" class="table_in_header">ログ変換</td>
+                </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell">本家Yomi-search(Perl版)Ver4形式のログファイルをデータベースに追加することができます。但し、アクセスカウントの値はリセットされます。なお、この変換は新規設置直後に実行しないとIDが重複してエラーになります。</td>
+                </tr>
+              <tr>
+                <td class="table_in_leftcell"><strong>変換前ファイル(Ver4形式のファイル名)</strong></td>
+                <td class="table_in_rightcell"><input name="bf_file" type="text" class="form" value="log/ys4.cgi">                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell"><strong>確認チェック</strong><br>
+                  <br>
+バックアップファイルの作成を実行する場合には、チェックボックスにチェックを入れてください。</td>
+                <td class="table_in_rightcell"><input name="check" type="checkbox" class="form" value="on">                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">&nbsp;</td>
+                <td class="table_in_rightcell"><input type="submit" class="form" value="送信">
+                  <input type="hidden" name="pass" value="<?php echo $_POST['pass']; ?>">
+                  <input type="hidden" name="mode" value="log_conv_act">
+                  <input type="hidden" name="log_mode" value="v4todb"></td>
+              </tr>
+            </table></td>
+          </tr>
+		  </form>
+        </table>
+    <br>
+    <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+      <form name="form1" method="post" action="<?php echo $cfg['admin']; ?>">
+        <tr>
+          <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td colspan="2" class="table_in_header">カテゴリのソート変換</td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell">現在のカテゴリ設定をアイウエオ順にソートして変換します。<br>
+                  <br>
+                  [例：<strong>01</strong>カテゴリをソート変換した場合]<br>
+                  　01/01/ かきくけこ<br>
+                  　01/03/ さしすせそ<br>
+                  　01/04/ あいうえお<br>
+                  というカテゴリがあった場合、<br>
+                  　01/01/ あいうえお<br>
+                  　01/02/ かきくけこ<br>
+                  　01/03/ たちつてと<br>
+                  というように変換されます。それぞれのログデータにも変換が反映されます。<br>
+                  <br>
+                  <span class="attention_red">※実行前に必ず[管理室]-&gt;[カテゴリ設定]内で[読みの設定]を行ってください。</span></td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell"><strong>全てのカテゴリを変換対象とする</strong><br>
+                  <br>
+                  極端にカテゴリ数が多い場合には、サーバに大きな負荷が掛かることが予想されます。負荷制限が設定されているレンタルサーバなどで運用している場合には注意してください。</td>
+                <td class="table_in_rightcell"><input name="all" type="checkbox" class="form" value="on"></td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell"><strong>個別に指定する場合</strong><br>
+                  <br>
+                  複数指定する場合には半角カンマ( , )で区切ってください。半角ハイフン記号( - )で連続したカテゴリを一気に指定することができます。<br>
+                  <br>                  
+                  数字の後ろに n を付けると、そのカテゴリは変換対象から除外されます。<br>
+                  <br>
+                  [例1]<br>
+                  01-17,19 なら 01～17 と 19 のカテゴリを指定したことになります。<br>
+                  <br>
+                  [例2]<br>
+                  [すべてのカテゴリ]にチェックして 18n と記入した場合、18 以外のカテゴリ全てが変換対象となります。<br>
+                  <br>
+                  [例3]<br>
+                  02-20,05-12n,23 なら 02～04 と 13～20 と 23 のカテゴリを指定したことになります。</td>
+                <td class="table_in_rightcell"><input name="kt_str" type="text" class="form" size="40">                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell"><strong>確認チェック</strong><br>
+                    <br>
+                  バックアップファイルの作成を実行する場合には、チェックボックスにチェックを入れてください。</td>
+                <td class="table_in_rightcell"><input name="check" type="checkbox" class="form" value="on">                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">&nbsp;</td>
+                <td class="table_in_rightcell"><input name="submit" type="submit" class="form" value="送信">
+                    <input type="hidden" name="pass" value="<?php echo $_POST['pass']; ?>">
+                  <input name="mode" type="hidden" value="log_conv_kt_sort"></td>
+              </tr>
+          </table></td>
+        </tr>
+      </form>
+    </table>
+    <br>
+    <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+      <tr>
+        <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+            <tr>
+              <td align="center" class="table_in_header"><?php
+// 著作権表示ルーチン
+cr();
+?>
+              </td>
+            </tr>
+        </table></td>
+      </tr>
+    </table></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

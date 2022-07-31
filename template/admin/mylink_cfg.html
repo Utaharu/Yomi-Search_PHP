@@ -1,0 +1,114 @@
+<?php
+// リストメニューの設定
+// マイリンク機能(使用しない=0/使用する=1)
+if($cfg["mylink_fl"]) {
+	$Cmylink_fl_0 = "";
+	$Cmylink_fl_1 = " selected";
+} else {
+	$Cmylink_fl_0 = " selected";
+	$Cmylink_fl_1 = "";
+}
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<title>管理室 &gt;&gt; マイリンクの設定</title>
+<link href="css/admin.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#2F5376" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td><a href="<?php echo $cfg['home']; ?>" target="_blank"><img src="<?php echo $cfg['img_path_url']; ?>admin/logo.gif" alt="ホームページ" width="206" height="80" border="0"></a><a href="<?php echo $cfg['home']; ?>"></a></td>
+    <td align="right"><?php echo $text['menu_bar']; ?></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+  <form action="<?php echo $cfg['admin']; ?>" method="post" lang="ja">
+  <tr>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td class="title">管理トップ &gt;&gt; マイリンクの設定</td>
+    <td align="right"><?php echo $admin_listbox; ?></td>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+  </form>
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td valign="top">
+	  <br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+		  <form name="form1" method="post" action="<?php echo $cfg['admin']; ?>">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td colspan="2" class="table_in_header">マイリンクの設定</td>
+                </tr>
+              <tr>
+                <td class="table_in_leftcell"><strong>マイリンク機能のON/OFF</strong><br>
+                  <br>
+                  マイリンクとは訪問者が検索エンジン内に自分専用のお気に入り(ブックマーク)を作成可能にする機能です。</td>
+                <td width="40%" class="table_in_rightcell">
+				  <select name="mylink_fl" class="form">
+                    <option value="0"<?php echo $Cmylink_fl_0; ?>>無効にする</option>
+                    <option value="1"<?php echo $Cmylink_fl_1; ?>>有効にする</option>
+                  </select>
+				</td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">&nbsp;</td>
+                <td class="table_in_rightcell"><input type="submit" class="form" value="送信">
+                  <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                  <input name="mode" type="hidden" value="cfg_make"></td>
+              </tr>
+            </table></td>
+          </tr>
+		  </form>
+        </table>
+        <br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+                <tr>
+                  <td align="center" class="table_in_header"><?php
+// 著作権表示ルーチン
+cr();
+?>
+                  </td>
+                </tr>
+            </table></td>
+          </tr>
+        </table></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

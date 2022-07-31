@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="Keywords" content="norobot">
+<meta name="Robots" content="noindex,nofollow">
+<meta name="googlebot" content="noarchive">
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<title>パスワード認証画面/登録データの修正・削除</title>
+<link media="screen" rel="stylesheet" href="css/main.css" type="text/css">
+<link href="./favicon.ico" type="image/x-icon" rel="icon"/>
+
+</head>
+<body>
+<a name="top"></a>
+<!-- Menu Bar Output -->
+<table width="100%" class="table_menu_bar">
+  <tr>
+    <td><?php echo $text['menu_bar']; ?></td>
+  </tr>
+</table>
+<!-- /Menu Bar Output -->
+<!-- Header Space Output -->
+<?php echo $text['head_sp']; ?>
+<!-- /Header Space Output -->
+<!-- Navigation Bar Output -->
+<table width="100%" class="table_navigation_bar">
+  <tr>
+    <td><a href="<?php echo $cfg['home']; ?>">ホーム</a>&nbsp;&gt;&nbsp;<strong>修正・削除</strong></td>
+  </tr>
+</table>
+<!-- /Navigation Bar Output -->
+<table width="80%" border="0">
+  <tr>
+    <td>
+        <table border="3" width="100%" cellpadding="20">
+          <tr>
+		    <td>
+<br>
+<div align="center"><font size="+2">【パスワード認証画面】</font></div>
+<br>
+<table border="0" cellpadding="15">
+  <tr>
+    <td valign="top">
+<form action="regist_ys.php" method="post">
+	<input type="hidden" name="mode" value="mente">
+1．登録データの修正<br><br>
+<div align="right">
+変更する人：
+<select name="changer">
+	<option value=""<?php echo $select_0; ?>>登録者</option>
+	<option value="admin"<?php echo $select_1; ?>>管理人</option>
+</select><br>
+ID:<input type="text" name="id" value="<?php echo htmlspecialchars($_REQUEST['id']); ?>" size="12"><br>
+PASS:<input type="password" name="pass" value="<?php echo $pre_pass; ?>" size="12"><br>
+<font size="-1">パスワードを記録する</font><input type="radio" name="cookie" value="on"<?php echo $cookie_1; ?>><br>
+<font size="-1">パスワードを記録しない</font><input type="radio" name="cookie" value="off"<?php echo $cookie_0; ?>><br>
+<input type="submit" value="認証">
+</div>
+</form>
+    </td>
+    <td valign="top">
+<?php
+if(isset($print_data)) {
+	echo $print_data;
+}
+?>
+    </td>
+  </tr>
+</table>
+<hr align="center">
+<table border="0" cellpadding="15">
+  <tr>
+    <td align="right">
+<form action="regist_ys.php" method="post">
+	<input type="hidden" name="mode" value="act_del">
+	<input type="hidden" name="del_mode" value="single">
+<div align="left">2．登録データの削除</div><br>
+変更する人：
+<select name="changer">
+	<option value=""<?php echo $select_0; ?>>登録者</option>
+	<option value="admin"<?php echo $select_1; ?>>管理人</option>
+</select><br>
+ID:<input type="text" name="id" value="<?php echo $_REQUEST['id']; ?>" size="12"><br>
+PASS:<input type="password" name="pass" value="<?php echo $pre_pass; ?>" size="12"><br>
+削除確認チェック→<input type="checkbox" name="del_check" value="on"><br>
+<input type="submit" value="削除">
+</form>
+    </td>
+  </tr>
+</table>
+<?php
+if($cfg["re_pass_fl"]) {
+	?>
+<hr align="center">
+<table border="0" cellpadding="15">
+<form action="regist_ys.php" method="post">
+  <tr>
+    <td align="right">
+	<input type="hidden" name="mode" value="act_repass">
+	<input type="hidden" name="repass_mode" value="repass">
+<div align="left">3．パスワードの再発行</div>
+<br>
+ID:<input type="text" name="id" value="<?php echo htmlspecialchars($_REQUEST['id']); ?>" size="12"><br>
+E-Mail:<input type="text" name="email" value="" size="20"><br>
+再発行確認チェック→<input type="checkbox" name="repass_check" value="on"><br>
+<input type="submit" value="再発行">
+    </td>
+  </tr>
+</form>
+</table>
+<?php
+	if(@$cfg['mail_pass']) {
+		echo "※新しいパスワードは登録時のメールアドレスに送信されます";
+	}
+}
+?>
+<hr align="center">
+<br>
+<div align="center"><form><input type="button" value="　戻る　" onClick="history.back()"></form></div><br>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<!-- Footer Space Output -->
+<?php if(isset($text['foot_sp'])) { echo $text['foot_sp']; } ?>
+<!-- /Footer Space Output -->
+
+<!-- Copy Right Output -->
+<div align="center"><?php cr(); ?></div>
+<!-- /Copy Right Output -->
+
+</body>
+</html>

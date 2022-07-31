@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<title>マイリンク | <?php echo $cfg['search_name']; ?></title>
+<meta name="keywords" content="マイリンク表示,検索エンジン,<?php echo $cfg['ver']; ?>" />
+<meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンのマイリンク表示です" />
+
+
+<link media="screen" rel="stylesheet" href="css/main.css" type="text/css">
+</head>
+<body>
+<a name="top"></a>
+<!-- Menu Bar Output -->
+<table width="100%" class="table_menu_bar">
+    <tr>
+        <td style="text-align:center;">
+        <?php printHeaderAd(); ?>
+        </td>
+    </tr>    
+  <tr>
+    <td><?php echo $text['menu_bar']; ?></td>
+  </tr>
+</table>
+<!-- /Menu Bar Output -->
+<!-- Header Space Output -->
+<?php echo $text['head_sp']; ?>
+<!-- /Header Space Output -->
+<!-- Navigation Bar Output -->
+<table width="100%" class="table_navigation_bar">
+  <tr>
+    <td><a href="<?php echo $cfg['home']; ?>">ホーム</a>&nbsp;&gt;&nbsp;<strong><?php echo $title; ?></strong></td>
+  </tr>
+</table>
+<!-- /Navigation Bar Output -->
+<!-- ページ中段の検索フォーム -->
+<table width="100%" class="table_searchform">
+  <form action="<?php echo $cfg['search']; ?>" method="get">
+  <tr>
+    <td align="center">
+      <input type="hidden" name="mode" value="search">
+      <input type="hidden" name="page" value="1">
+      <input type="hidden" name="sort" value="<?php echo $cfg['defo_hyouji']; ?>">
+	  <input type="hidden" name="open_type" value="0">
+	  <input type="hidden" name="hyouji" value="30">
+      <img src="<?php echo $cfg['img_path_url']; ?>search.gif" alt="検索" align="absbottom" title="検索">&nbsp;<input type="text" name="word" value="" size="20" class="form"> <input type="submit" value=" 検 索 " class="form">&nbsp;
+      <select name="method" class="form">
+        <option value="and" selected>AND</option>
+        <option value="or">OR</option>
+      </select>
+    </td>
+  </tr>
+  </form>
+</table>
+<?php
+if(isset($log_lines)) {
+	?>
+<!-- データがある場合 -->
+<div align="left">
+<form action="<?php echo $cfg['script']; ?>" method="get">
+<input type="hidden" name="mode" value="<?php echo htmlspecialchars($_GET['mode']); ?>">
+<input type="hidden" name="page" value="1">
+[現在の表示：<b>
+<?php
+	if(!$_GET['sort']) {
+		switch($cfg['defo_hyouji']) {
+			case "time_new": echo "更新日の新しい順"; break;
+			case "id_new": echo "登録日の新しい順"; break;
+			case "ac_new": echo "アイウエオ順(昇順)"; break;
+			case "ac_old": echo "アイウエオ順(降順)"; break;
+			case "id_old": echo "登録日の古い順"; break;
+			case "time_old": echo "更新日の古い順"; break;
+			default: echo "マーク順";
+		}
+	} else {
+		switch($_GET['sort']) {
+			case "time_new": echo "更新日の新しい順"; break;
+			case "id_new": echo "登録日の新しい順"; break;
+			case "ac_new": echo "アイウエオ順(昇順)"; break;
+			case "ac_old": echo "アイウエオ順(降順)"; break;
+			case "id_old": echo "登録日の古い順"; break;
+			case "time_old": echo "更新日の古い順"; break;
+			default: echo "マーク順";
+		}
+	}
+	?>
+</b>]
+	<select name="sort"type="hidden" class="form">
+		<option value="" selected>---------------</option>
+		<option value="time_new">更新日の新しい順で</option>
+		<option value="id_new">登録日の新しい順で</option>
+		<option value="mark">マーク順で</option>
+		<option value="ac_new">アイウエオ順(昇順)で</option>
+		<option value="">---------------</option>
+		<option value="ac_old">アイウエオ順(降順)で</option>
+		<option value="id_old">登録日の古い順で</option>
+		<option value="time_old">更新日の古い順で</option>
+	</select>
+	<input type="submit" value="表示" class="form">
+</form>
+</div>
+<!-- 目次表示(上) -->
+<?php echo $mokuji; ?><br><br>
+<?php
+//==================================//
+//※いらなかったら削除してください
+//右に表示する広告がある場合は表示します
+//==================================//
+if(getRightAdFlg()) {
+?>
+<table border="0">
+    <tr><td valign="top">
+<?php
+}   //←広告表示がなければこの閉じ括弧まで削除
+
+
+	foreach($log_lines as $log_data) {
+		$jump_url = $log_data['url'];
+		if($cfg['rank_fl']) {
+			$jump_url = urlencode(unhtmlentities($log_data['url']));
+			$jump_url = "{$cfg['rank']}?mode=link&id={$log_data['id']}&url={$jump_url}";
+		} else {
+			$jump_url = unhtmlentities($log_data['url']);
+		}
+		?>
+<!-- ログ表示 -->
+<table border="3" cellpadding="7" id="log">
+  <tr id="log-1">
+    <td>
+      <a href="<?php echo $jump_url; ?>" target="_blank"><?php echo $log_data['title'];?></a>
+<!-- アイコンを付加 -->
+<?php
+		put_icon();
+		?>
+      <br><br><font size="-1">更新日：<?php echo $log_data['last_time']; ?> [<a href="regist_ys.php?mode=enter&id=<?php echo $log_data['id']; ?>">修正・削除</a>]
+ [<a href="regist_ys.php?mode=no_link&id=<?php echo $log_data['id']; ?>&pre=on&title=<?php echo urlencode($log_data['title']); ?>">管理者に通知</a>]
+ [<a href="<?php echo $cfg['script']; ?>?mode=mylink&act=del&id=<?php echo $log_data['id']; ?>">マイリンクから削除</a>]
+</font>
+<?php
+		if($log_data['banner']) {
+			echo "<br><a href=\"{$jump_url}\" target=\"_blank\"><img src=\"{$log_data['banner']}\" border=\"0\" width=\"{$cfg_reg['Mbana_w']}\" height=\"{$cfg_reg['Mbana_h']}\" alt=\"{$log_data['title']}\" title=\"{$log_data['title']}\"></a>";
+		}
+		?>
+    </td>
+  </tr>
+  <tr id="log-3">
+    <td><?php echo $log_data['message']; ?>&nbsp;</td>
+  </tr>
+<?php
+		if($log_data['comment']) {
+		?>
+  <tr id="log-4">
+    <td>
+      <font id="kanri"><?php echo $log_data['comment']; ?>&nbsp;</font>
+    </td>
+  </tr>
+<?php
+		}
+	?>
+</table><br>
+<!-- /ログ表示 -->
+<?php
+	}
+//==================================//
+//※いらなかったら削除してください
+//右に表示する広告がある場合は表示
+//==================================//
+if(getRightAdFlg()) {
+    echo '</td><td valign="top" style="padding-left:5%; text-align:center;">';
+    printRightAd();
+    echo '</td></tr></table>';
+}
+//ここまで
+
+?>
+<!-- 目次表示(下) -->
+<?php echo $mokuji; ?>
+<!--/データがある場合-->
+<?php
+}
+?>
+<hr align="center">
+<!-- Footer Space Output -->
+<?php if(isset($text['foot_sp'])) { echo $text['foot_sp']; } ?>
+<!-- /Footer Space Output -->
+
+<!-- Copy Right Output -->
+<div align="center">
+<?php cr(); ?><br />
+<?php printFooterAd(); ?>
+</div>
+<!-- /Copy Right Output -->
+
+</body>
+</html>

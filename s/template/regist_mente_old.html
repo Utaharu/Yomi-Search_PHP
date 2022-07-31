@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<meta name="Keywords" content="norobot">
+<meta name="Robots" content="noindex,nofollow">
+<meta name="googlebot" content="noarchive">
+<title>登録データの修正</title>
+<link media="screen" rel="stylesheet" href="css/main.css" type="text/css">
+</head>
+<body>
+<!-- Menu Bar Output -->
+<table width="100%" class="table_menu_bar">
+  <tr>
+    <td><?php echo $text['menu_bar']; ?></td>
+  </tr>
+</table>
+<!-- /Menu Bar Output -->
+<a href="<?php echo SMARTPHONE_HOME;?>" rel="external">ホーム</a> >
+<!-- Navigation Bar Output -->
+<table width="100%" class="table_navigation_bar">
+  <tr>
+    <td id="title-bar">
+      <b>登録データの修正</b>
+    </td>
+  </tr>
+</table>
+<!-- /Navigation Bar Output -->
+<?php
+if(@$cfg['rev_fl']) {
+	?>
+<ul>
+<br>
+<font size="+1">★現在アクセスランキングを開催しています</font><br>
+以下のURLにリンクを張っていただくとランキングに集計されます。<br>
+【あなた専用のURL】<br>
+<input type="text" size="90" value="<?php echo $cfg['cgi_path_url']; ?><?php echo $cfg['rank']; ?>?mode=r_link&id=<?php echo htmlspecialchars($_POST['id']); ?>" readonly><br>
+あなたのサイトの訪問者の方が上記のURLへのリンクをクリックすると、<br>
+当サイトの<a href="<?php echo $cfg['rev_url']; ?>" target="_blank">トップページ</a>に転送され、アクセスランキングのポイントが加算されます。<br>
+※ただし、一定時間内の同じ訪問者の方からのアクセスは1ポイントとします
+<br><br>
+あなたのサイトへのアクセス数=&gt;<a href="<?php echo $cfg['rank']; ?>?mode=rank" target="_blank">現在</a>: <b><?php echo $log_data['pt0']; ?></b>pt / <a href="<?php echo $cfg['rank']; ?>?mode=rank_rui" target="_blank">累計</a>: <b><?php echo $log_data['pt1']; ?></b>pt<br>
+あなたのサイトからのアクセス数=&gt;<a href="<?php echo $cfg['rank']; ?>?mode=rev" target="_blank">現在</a>: <b><?php echo $log_data['pt2']; ?></b>pt / <a href="<?php echo $cfg['rank']; ?>?mode=rev_rui" target="_blank">累計</a>: <b><?php echo $log_data['pt3']; ?></b>pt
+<br><br>
+</ul>
+<hr align="center">
+<?php
+}
+?>
+<br>
+	<form action="regist.php" method="post">
+		<input type="hidden" name="mode" value="act_mente">
+		<input type="hidden" name="changer" value="">
+		<input type="hidden" name="id" value="<?php echo $log_data[0]; ?>">
+		<input type="hidden" name="pass" value="<?php echo $_POST['pass']; ?>">
+		<input type="hidden" name="bkt" value="<?php echo $log_data[10]; ?>">
+		<input type="hidden" name="pre_mark" value="<?php echo $log_data[3]; ?>">
+<ol>
+	※文字数の換算方法は「半角<b>2</b>文字=全角<b>1</b>文字」です<br>
+	※半角カナは文字化けの原因になりますので使用しないでください<br><br>
+	▼項目名の横に<font color="#FF0000">☆</font>が付いている項目は<font color="#FF0000">記入必須項目</font>です<br>
+	<br>
+<!--お名前-->
+	<li>【お名前】<font color="#FF0000"><?php echo $cfg_reg['Fname']; ?></font>
+		<ul>※ハンドルネームも可です<br>
+		※全角<b><?php echo $cfg_reg['Mname']; ?></b>文字以内<br>
+		<input type="text" name="Fname" value="<?php echo $log_data[8]; ?>" size="25"></ul><br>
+<!--メールアドレス-->
+	<li>【メールアドレス】<font color="#FF0000"><?php echo $cfg_reg['Femail']; ?></font>
+		<ul>※半角英数字<b><?php echo $cfg_reg['Memail']; ?></b>文字以内<br>
+		<input type="text" name="Femail" value="<?php echo $log_data[9]; ?>" size="25"></ul><br>
+<!--パスワード-->
+		<input type="hidden" name="Fpass" value="<?php echo $log_data[5]; ?>" size="10">
+		<input type="hidden" name="Fpass2" value="<?php echo $log_data[5]; ?>" size="10">
+<!--ホームページアドレス-->
+	<li>【ホームページアドレス】<font color="#FF0000"><?php echo $cfg_reg['Furl']; ?></font>
+		<ul>※半角英数字<b><?php echo $cfg_reg['Murl']; ?></b>文字以内<br>
+		<input type="text" name="Furl" value="<?php echo $log_data[2]; ?>" size="70"></ul><br>
+<?php
+if($cfg_reg["bana_url"]) {
+	?>
+<!--タイトルバナーのURL-->
+	<li>【タイトルバナーのURL】<font color="#FF0000"><?php echo $cfg_reg['Fbana_url']; ?></font>
+		<ul>※バナー(画像)のURLの最後が「.gif」「.jpg」「.png」のいずれかで終わるようにしてください。
+		<br>※表示されるサイズは 横<b><?php echo $cfg_reg['Mbana_w']; ?></b>×縦<b><?php echo $cfg_reg['Mbana_h']; ?></b>(ピクセル)</b> です。 
+		<br>※半角英数字<b><?php echo $cfg_reg['Mbana_url']; ?></b>文字以内
+		<br><input type="text" name="Fbana_url" value="<?php echo $log_data[12]; ?>" size="60">
+		</ul><br>
+<?php
+}
+?>
+<!--ホームページのタイトル-->
+	<li>【ホームページのタイトル】<font color="#FF0000"><?php echo $cfg_reg['Ftitle']; ?></font>
+		<ul>※全角<b><?php echo $cfg_reg['Mtitle']; ?></b>文字以内<br>
+		<input type="text" name="Ftitle" value="<?php echo $log_data[1]; ?>" size="25"></ul><br>
+<!--ホームページの紹介文-->
+	<li>【ホームページの紹介文】<font color="#FF0000"><?php echo $cfg_reg['Fsyoukai']; ?></font>
+		<ul>※HTMLタグは使えません<br>
+		※全角<b><?php echo $cfg_reg['Msyoukai']; ?></b>文字以内<br>
+		<textarea wrap="soft" name="Fsyoukai" cols="50" rows="3"><?php echo $log_data[6]; ?></textarea></ul><br>
+<!--登録するカテゴリ-->
+	<li>【登録するカテゴリ】<font color="#FF0000">☆</font>
+<?php
+print_category($log_data[10]);
+?>
+<!--キーワード-->
+	<li>【キーワード】<font color="#FF0000"><?php echo $cfg_reg['Fkey']; ?></font>
+		<ul>※あなたのホームページに関係が深いキーワードを入力してください<br>
+		※複数ある場合にはキーワードを半角スペースで区切ってください<br>
+		※全角<b><?php echo $cfg_reg['Mkey']; ?></b>文字以内<br>
+		<input type="text" name="Fkey" value="<?php echo $log_data[15]; ?>" size="60"></ul><br>
+<!--ここまで-->
+	<br><br>
+		<input type="submit" value="&nbsp; 変更する &nbsp;"> <input type="reset" value="リセット">
+</ol>
+	</form>
+<hr>
+<ul>
+<font size="+1">【パスワードの変更】</font>
+<form action="<?php echo $cfg['cgi_path']; ?>regist_ys.php" method="post">
+<input type="hidden" name="mode" value="act_repass">
+<input type="hidden" name="repass_mode" value="change_pass">
+<input type="hidden" name="changer" value="<?php echo htmlspecialchars($_POST['changer']); ?>">
+<input type="hidden" name="pass" value="<?php echo htmlspecialchars($_POST['pass']); ?>">
+<input type="hidden" name="id" value="<?php echo $log_data[0]; ?>">
+新しいパスワード：<input type="password" name="new_pass" size="12">
+<input type="submit" value="パスワード変更">
+</form>
+</ul>
+<hr align="center">
+
+<!-- Copy Right Output -->
+<div align="center"><?php cr(); ?></div>
+<!-- /Copy Right Output -->
+
+</body>
+</html>

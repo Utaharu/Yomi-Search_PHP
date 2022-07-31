@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<meta name="Keywords" content="norobot">
+<meta name="Robots" content="noindex,nofollow">
+<meta name="googlebot" content="noarchive">
+<title>新規登録完了</title>
+<link media="screen" rel="stylesheet" href="css/main.css" type="text/css">
+</head>
+<body>
+<!-- Menu Bar Output -->
+<table width="100%" class="table_menu_bar">
+  <tr>
+    <td><?php echo $text['menu_bar']; ?></td>
+  </tr>
+</table>
+<!-- /Menu Bar Output -->
+<!-- Navigation Bar Output -->
+<table width="100%" class="table_navigation_bar">
+  <tr>
+    <td><strong>新規登録完了</strong></td>
+  </tr>
+</table>
+<!-- /Navigation Bar Output -->
+<?php
+if(@$cfg['rev_fl']) {
+	?>
+<ul>
+<br>
+<font size="+1">★現在アクセスランキングを開催しています</font><br>
+以下のURLにリンクを張っていただくとランキングに集計されます。<br>
+【あなた専用のURL】<br>
+<input type="text" size="90" value="<?php echo $cfg['cgi_path_url'] . $cfg['rank']; ?>?mode=r_link&id=<?php echo $log_data[0]; ?>" readonly><br>
+あなたのサイトの訪問者の方が上記のURLへのリンクをクリックすると、<br>
+当サイトの<a href="<?php echo $cfg['home']; ?>" target="_blank">トップページ</a>に転送され、アクセスランキングのポイントが加算されます。<br>
+※ただし、一定時間内の同じ訪問者の方からのアクセスは1ポイントとします<br>
+※アクセス用のURLは登録内容変更画面からも確認できます
+<br><br>
+</ul>
+<hr align="center">
+<?php
+}
+?>
+<ol>
+  ▼新規登録が以下のとおり完了しましたのでご確認ください<br><br>
+<!--ID-->
+  <li>【ID】<br>
+    <ul><?php echo $log_data[0]; ?></ul><br>
+<!--お名前-->
+  <li>【お名前】<br>
+    <ul><?php echo $log_data[8]; ?></ul><br>
+<!--メールアドレス-->
+  <li>【メールアドレス】<br>
+    <ul><?php echo $log_data[9]; ?></ul><br>
+<!--パスワード-->
+  <li>【パスワード】<br>
+    <ul><?php echo $_POST['Fpass']; ?></ul><br>
+<!--ホームページアドレス-->
+  <li>【ホームページアドレス】<br>
+    <ul><?php echo $log_data[2]; ?>　[<a href="<?php echo $log_data[2]; ?>" target="_blank">確認</a>]</ul><br>
+<?php
+if(@$cfg_reg['bana_url'] && $log_data[12]) {
+	?>
+<!--タイトルバナーのURL-->
+  <li>【タイトルバナーのURL】
+    <ul><?php echo $log_data[12]; ?>　[<a href="<?php echo $log_data[12]; ?>" target="_blank">確認</a>]</ul><br>
+<?php
+}
+?>
+<!--ホームページのタイトル-->
+  <li>【ホームページのタイトル】
+    <ul><?php echo $log_data[1]; ?></ul><br>
+<!--ホームページの紹介文-->
+  <li>【ホームページの紹介文】
+    <ul><table width="100%" border="0"><tr><td><?php echo $log_data[6]; ?></td></tr></table></ul><br>
+<!--登録するカテゴリ-->
+  <li>【登録するカテゴリ】
+    <ul><?preview_category2()?></ul><br>
+<!--キーワード-->
+  <li>【キーワード】
+    <ul>
+<?php
+if(isset($log_data[15])) {
+	echo $log_data[15];
+}
+?>
+</ul><br>
+<?php
+if(!isset($_POST['in_mode'])) {
+	$_POST['in_mode'] = "";
+}
+if($cfg_reg["add_kt"] && $_POST["in_mode"] != "mente") {
+	?>
+<!--追加して欲しいカテゴリ-->
+  <li>【追加して欲しいカテゴリ】
+    <ul>
+<?php
+if(isset($_POST['Fadd_kt'])) {
+	echo htmlspecialchars($_POST['Fadd_kt']);
+}
+?>
+    </ul><br>
+<?php
+}
+if(@$cfg_reg['to_admin'] && $_POST['in_mode'] != "mente") {
+	?>
+<!--管理人へのメッセージ-->
+  <li>【管理人へのメッセージ】
+    <ul>
+	<table width="100%" border="0">
+	  <tr>
+	    <td>
+<?php
+if(isset($_POST['Fto_admin'])) {
+	echo htmlspecialchars($_POST['Fto_admin']);
+}
+?>
+        </td>
+	  </tr>
+	</table>
+	</ul>
+<?php
+}
+if(@$cfg_reg['sougo'] && $_POST['in_mode'] != "mente") {
+	if($_POST['Fsougo']) {
+		$sougo = "相互リンクする";
+	} else {
+		$sougo = "相互リンクしない";
+	}
+	?>
+<!--相互リンク連絡項目-->
+  <br><li>【相互リンクの有無】
+    <ul><?php echo $sougo; ?></ul>
+<?php
+}
+?>
+<!--ここまで-->
+<br><br>
+【　<a href="<?php echo $cfg['home']; ?>">ホームに戻る</a>　】
+</ol></form>
+<hr align="center">
+
+<!-- Copy Right Output -->
+<div align="center"><?php cr(); ?></div>
+<!-- /Copy Right Output -->
+
+</body>
+</html>

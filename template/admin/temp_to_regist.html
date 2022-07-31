@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<title>管理室 &gt;&gt; 登録待ち</title>
+<link href="css/admin.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#2F5376" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0">
+<a name="top"></a>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td><a href="<?php echo $cfg['home']; ?>" target="_blank"><img src="<?php echo $cfg['img_path_url']; ?>admin/logo.gif" alt="ホームページ" width="206" height="80" border="0"></a><a href="<?php echo $cfg['home']; ?>"></a></td>
+    <td align="right"><?php echo $text['menu_bar']; ?></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+  <form action="<?php echo $cfg['admin']; ?>" method="post" lang="ja">
+  <tr>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td class="title">管理トップ &gt;&gt; 登録待ち</td>
+    <td align="right"><?php echo $admin_listbox; ?></td>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+  </form>
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td valign="top">
+	  <br>
+	  <div align="center">
+      <form action="<?php echo $cfg['admin']; ?>" method="post">
+        <input type="hidden" name="pass" value="<?php echo $_POST['pass']; ?>">
+        <input type="hidden" name="mode" value="temp_to_regist">
+        <input type="hidden" name="pre_no" value="<?php echo $_POST['pre_no']; ?>">
+<?php
+if($_POST['pre_no'] - $Ekreg >= 0) {
+    echo "<input name=\"page\" type=\"submit\" class=\"form\" value=\"前のページ\">";
+}
+if($_POST['pre_no'] + $Ekreg <= $count_temp) {
+    echo "<input name=\"page\" type=\"submit\" class=\"form\" value=\"次のページ\">";
+}
+?>
+      </form>
+	  </div>
+<form action="<?php echo $cfg['admin']; ?>" method="post">
+<?php
+if($count_temp < 1) {
+	echo "<div align=\"center\">登録待ちのデータはありません</div>";
+} else {
+?>
+	<input type="hidden" name="pass" value="<?php echo $_POST['pass']; ?>">
+	<input type="hidden" name="mode" value="temp_to_regist_act">
+	<div align="center"><input type="submit" class="form" value="登録・削除の実行">&nbsp;&nbsp;<input type="reset" class="form" value="リセット"><br><br>
+<?php
+	$linkn = 1;
+	$link_back = "top";
+	$link_next = 2;
+	$i1 = 1;
+	foreach($rowset as $Slog) {
+		if($_POST["pre_no"] <= $i1 && $i1 < $_POST['pre_no'] + $Ekreg) {
+			$kt = explode("&", $Slog[10]);
+			list($sougo_fl, $add_kt, $to_admin) = explode("<1>", $Slog[7]);
+			$Slog[6] = str_replace("<br>", "\n", $Slog[6]);
+			$to_admin = str_replace("<br>", "\n", $to_admin);
+			if($sougo_fl) {
+				$sougo_fl = "する";
+			} else {
+				$sougo_fl = "しない";
+			}
+			?>
+		<a name="<?php echo $linkn; ?>"></a>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+			  <!-- 登録申請日表示部分 -->
+              <tr>
+                <td colspan="2" class="table_in_header">登録申請日：<?php echo $Slog[4]; ?></td>
+                </tr>
+              <tr>
+                <td width="140" align="right" class="table_in_leftcell"><strong>登録の可否：</strong></td>
+                <td class="table_in_rightcell"><select name="R[<?php echo $Slog[0]; ?>]" class="form">
+                  <option selected>保留</option>
+                  <option value="reg">登録</option>
+                  <option value="del">削除</option>
+                </select>
+                &nbsp;&lt;-&nbsp;選択してください。&nbsp;&nbsp;[&nbsp;<a href="#top">▲一番上</a>&nbsp;/&nbsp;<a href="#bottom">▼一番下</a>&nbsp;/&nbsp;<a href="#<?php echo $link_back; ?>">△上</a>&nbsp;/&nbsp;<a href="#<?php echo $link_next; ?>">▽下</a>&nbsp;]</td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>マーク：</strong></td>
+                <td class="table_in_rightcell">
+<?php
+// マーク数を増やす時は修正
+for($i=1; $i <= 10; $i++) {
+	echo "<input type=\"checkbox\" name=\"Fmark" . $i . "[" . $Slog[0] . "]\" value=\"1\" class=\"form\">" . $cfg["name_m{$i}"] . "　 ";
+}
+?>				</td>
+              </tr>
+			  <!-- 申請者名表示部分 -->
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>申請者名：</strong></td>
+                <td class="table_in_rightcell"><input name="Fname[<?php echo $Slog[0]; ?>]" type="text" class="form" value="<?php echo $Slog[8]; ?>"></td>
+              </tr>
+			  <!-- メールアドレス表示部分 -->
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>メールアドレス：</strong></td>
+                <td class="table_in_rightcell"><input name="Femail[<?php echo $Slog[0]; ?>]" type="text" class="form" value="<?php echo $Slog[9]; ?>">
+                  &nbsp;<a href="mailto:<?php echo $Slog[9]; ?>">メール作成</a></td>
+              </tr>
+			  <!-- タイトル表示部分 -->
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>タイトル：</strong></td>
+                <td class="table_in_rightcell"><input name="Ftitle[<?php echo $Slog[0]; ?>]" type="text" class="form" value="<?php echo $Slog[1]; ?>" size="<?php echo $size_url_w; ?>"></td>
+              </tr>
+			  <!-- サイトURL表示部分 -->
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>サイトURL：</strong></td>
+                <td class="table_in_rightcell"><input name="Furl[<?php echo $Slog[0]; ?>]" type="text" class="form" value="<?php echo $Slog[2]; ?>" size="<?php echo $size_url_w; ?>">
+                  &nbsp;<a href="<?php echo $Slog[2]; ?>" target="_blank">別窓で開く</a></td>
+              </tr>
+			  <!-- バナーURL表示部分 -->
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>バナーURL：</strong></td>
+                <td class="table_in_rightcell"><input name="Fbana_url[<?php echo $Slog[0]; ?>]" type="text" class="form" value="<?php echo $Slog[12]; ?>" size="<?php echo $size_url_w; ?>">
+                  &nbsp;<a href="<?php echo $Slog[12]; ?>" target="_blank">別窓で開く</a><br>
+<?php
+if($Slog[12]) {
+    echo "<br><img src=\"{$Slog[12]}\" width=\"{$cfg_reg["Mbana_w"]}\" height=\"{$cfg_reg["Mbana_h"]}\" border=\"0\">";
+}
+?>				</td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>紹介文：</strong></td>
+                <td class="table_in_rightcell"><textarea name="Fsyoukai[<?php echo $Slog[0]; ?>]" cols="<?php echo $size_syoukai_w; ?>" rows="3" class="form"><?php echo $Slog[6]; ?></textarea></td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>管理人コメント：</strong></td>
+                <td class="table_in_rightcell"><textarea name="Fkanricom[<?php echo $Slog[0]; ?>]" cols="<?php echo $size_syoukai_w; ?>" rows="3" class="form"></textarea></td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>登録するカテゴリ：</strong></td>
+                <td class="table_in_rightcell">
+<?php
+for ($i=1; $i <= $cfg_reg['kt_max']; $i++) {
+	echo "<select name=\"Fkt{$i}[$Slog[0]]\" class=\"form\">\n";
+	if (!empty($kt[$i])) {
+		echo "<option value=\"{$kt[$i]}\" selected>" . full_category($kt[$i]) . "</option>\n";
+	}
+	echo "<option value=\"\">--指定しない--</option>\n" . $PRgane_list . "</select>\n";
+}
+?>
+
+				</td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>キーワード：</strong></td>
+                <td class="table_in_rightcell"><input name="Fkey[<?php echo $Slog[0]; ?>]" type="text" class="form" value="<?php echo $Slog[15]; ?>" size="<?php echo $size_url_w; ?>"></td>
+              </tr>
+<!-- 新設希望カテゴリ -->
+<?php if($cfg_reg["add_kt"]) { ?>
+ <tr>
+  <td align="right" class="table_in_leftcell">
+   <strong>新設希望カテゴリ：</strong>
+  </td>
+  <td class="table_in_rightcell">
+   <input name="Fadd[<?php echo $Slog[0]; ?>]" type="text" class="form" value="<?php echo $add_kt; ?>" size="<?php echo $size_url_w; ?>" readonly>&nbsp;[ReadOnly]
+  </td>
+ </tr>
+<?php } ?>
+<!-- 相互リンクの有無 -->
+<?php if($cfg_reg["sougo"]) { ?>
+ <tr>
+  <td align="right" class="table_in_leftcell">
+   <strong>相互リンクの有無：</strong>
+  </td>
+  <td class="table_in_rightcell">
+   <input name="Fsougo[<?php echo $Slog[0]; ?>]" type="text" class="form" value="<?php echo $sougo_fl; ?>" readonly>&nbsp;[ReadOnly]
+  </td>
+ </tr>
+<?php } ?>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>申請者からのメッセージ：</strong></td>
+                <td class="table_in_rightcell"><textarea name="Fto_admin[<?php echo $Slog[0]; ?>]" cols="<?php echo $size_syoukai_w; ?>" rows="4" class="form"><?php echo $to_admin; ?></textarea></td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>申請者へのメッセージ：</strong></td>
+                <td class="table_in_rightcell"><textarea name="Fto_reg[<?php echo $Slog[0]; ?>]" cols="<?php echo $size_syoukai_w; ?>" rows="4" class="form"></textarea></td>
+              </tr>
+            </table></td>
+          </tr>
+        </table>
+		<br>
+<?php
+			$link_back=$linkn;
+			$linkn++;
+			$link_next++;
+		} elseif($i1 >= $_POST['pre_no'] + $Ekreg) {
+			break;
+		}
+		$i1++;
+	}
+}
+if($count_temp >= 1) {
+?>
+	<div align="center"><input type="submit" class="form" value="登録・削除の実行">&nbsp;&nbsp;<input type="reset" class="form" value="リセット"></div>
+<?php
+}
+?>
+</form>
+	<br>
+	<table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+      <tr>
+        <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+            <tr>
+              <td align="center" class="table_in_header"><?php
+// 著作権表示ルーチン
+cr();
+?>
+              </td>
+            </tr>
+        </table></td>
+      </tr>
+    </table></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

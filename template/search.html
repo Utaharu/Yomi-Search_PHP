@@ -1,0 +1,243 @@
+<?php $_GET = array_map("htmlspecialchars", $_GET); ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<title><?php echo $Stitle; ?>| <?php echo $cfg['search_name']; ?></title>
+<meta name="keywords" content="<?php echo $cfg['ver']; ?>,検索エンジン,検索画面" />
+<meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンの検索画面です" />
+<link media="screen" rel="stylesheet" href="css/main.css" type="text/css">
+</head>
+<body>
+<a name="top"></a>
+<!-- Menu Bar Output -->
+<table width="100%" class="table_menu_bar">
+    <tr>
+        <td style="text-align:center;">
+        <?php printHeaderAd(); ?>
+        </td>
+    </tr>
+  <tr>
+    <td><?php echo $text['menu_bar']; ?></td>
+  </tr>
+</table>
+<!-- /Menu Bar Output -->
+<!-- Header Space Output -->
+<?php echo $text['head_sp']; ?>
+<!-- /Header Space Output -->
+<!-- Navigation Bar Output -->
+<table width="100%" class="table_navigation_bar">
+  <tr>
+    <td><a href="<?php echo $cfg['home']; ?>">ホーム</a>&nbsp;&gt;&nbsp;<?php echo $navi; ?><strong><?php echo $Stitle; ?></strong></td>
+  </tr>
+</table>
+<!-- /Navigation Bar Output -->
+<?php echo $search_day; ?>
+<!-- ページ中段の検索フォーム -->
+<table width="100%" class="table_searchform">
+  <form action="<?php echo $cfg['search']; ?>" method="get">
+  <tr>
+    <td align="center">
+	<input type="hidden" name="mode" value="search">
+	<input type="hidden" name="page" value="1">
+	<input type="hidden" name="sort" value="<?php echo htmlspecialchars($_GET['sort']); ?>">
+	<input type="hidden" name="open_type" value="0">
+	<input type="hidden" name="hyouji" value="30">
+	<img src="<?php echo $cfg['img_path_url']; ?>search.gif" alt="検索" align="absbottom" title="検索">&nbsp;<input name="word" type="text" class="form" value="<?php echo htmlspecialchars($_GET['word']); ?>" size="20">&nbsp;<input type="submit" class="form" value="検索">&nbsp;
+	<select name="method" class="form">
+		<option value="and" selected>AND</option>
+		<option value="or">OR</option>
+	</select>
+    </td>
+  </tr>
+  </form>
+</table>
+<?php
+// カテゴリ検索結果を表示
+if(@$kt_search_list && $_GET['page'] == 1) {
+	?>
+    <hr><ul>▼以下のカテゴリと一致しました(<?php echo count($kt_search_list); ?>件)<br><br>
+    <?php
+    foreach ($kt_search_list as $kt) {
+		?><a href="<?php echo $cfg['script']; ?>?mode=dir&amp;path=<?php echo $kt; ?>"><?php echo full_category($kt); ?></a><br><br><?php
+	}
+	?></ul><?php
+}
+// ワード検索結果を表示
+if($Clog) {
+	?>
+<!-- データがある場合 -->
+<!-- 表示方法選択フォーム -->
+<form action="<?php echo $cfg['search']; ?>" method="get">
+	<input type="hidden" name="page" value="1">
+	<input type="hidden" name="word" value="<?php echo htmlspecialchars($_GET['word']); ?>">
+	<input type="hidden" name="engine" value="<?php echo htmlspecialchars($_GET['engine']); ?>">
+	<input type="hidden" name="mode" value="<?php echo htmlspecialchars($_GET['mode']); ?>">
+	<input type="hidden" name="page" value="1">
+	<input type="hidden" name="search_kt" value="<?php echo htmlspecialchars($_GET['search_kt']); ?>">
+	<input type="hidden" name="search_kt_ex" value="<?php echo htmlspecialchars($_GET['search_kt_ex']); ?>">
+	<input type="hidden" name="search_day" value="<?php echo htmlspecialchars($_GET['search_day']); ?>">
+	<input type="hidden" name="use_str" value="<?php echo htmlspecialchars($_GET['use_str']); ?>">
+	<input type="hidden" name="method" value="<?php echo htmlspecialchars($_GET['method']); ?>">
+[現在の表示：<b>
+<?php
+if(!@$_GET['sort']) {
+	switch(@$cfg['defo_hyouji']) {
+		case "time_new": echo "更新日の新しい順"; break;
+		case "id_new": echo "登録日の新しい順"; break;
+		case "ac_new": echo "アイウエオ順(昇順)"; break;
+		case "ac_old": echo "アイウエオ順(降順)"; break;
+		case "id_old": echo "登録日の古い順"; break;
+		case "time_old": echo "更新日の古い順"; break;
+		default: echo "マーク順";
+	}
+} else {
+	switch(@$_GET['sort']) {
+		case "time_new": echo "更新日の新しい順"; break;
+		case "id_new": echo "登録日の新しい順"; break;
+		case "ac_new": echo "アイウエオ順(昇順)"; break;
+		case "ac_old": echo "アイウエオ順(降順)"; break;
+		case "id_old": echo "登録日の古い順"; break;
+		case "time_old": echo "更新日の古い順"; break;
+		default: echo "マーク順";
+	}
+}
+?>
+</b>]
+	<select name="sort" class="form">
+		<option value="" selected>---------------</option>
+		<option value="time_new">更新日の新しい順で</option>
+		<option value="id_new">登録日の新しい順で</option>
+		<option value="mark">マーク順で</option>
+		<option value="ac_new">アイウエオ順(昇順)で</option>
+		<option value="">---------------</option>
+		<option value="ac_old">アイウエオ順(降順)で</option>
+		<option value="id_old">登録日の古い順で</option>
+		<option value="time_old">更新日の古い順で</option>
+	</select>
+	<input type="submit" class="form" value="表示切替">
+</form>
+<br>
+<?php
+	$word_en   = htmlspecialchars($_GET['word']);
+	$word_en   = urlencode($word_en);
+    $arg_path  = '&mode='       . $_GET['mode']
+               . '&sort='       . $_GET['sort']
+               . '&word='       . $word_en
+               . '&engine='     . $_GET['engine']
+               . '&use_str='    . $_GET['use_str']
+               . '&method='     . $_GET['method'];
+    if(isset($_GET['search_kt']) && !empty($_GET['search_kt'])) {
+        $arg_path .= '&search_kt='  . $_GET['search_kt'];
+    }
+    if(isset($_GET['search_kt_ex']) && !empty($_GET['search_kt_ex'])) {
+        $arg_path .= '&search_kt_ex=' . $_GET['search_kt_ex'];
+    }
+    if(isset($_GET['search_day']) && !empty($_GET['search_day'])) {
+        $arg_path .= '&search_day=' . $_GET['search_day'];
+    }
+	$arg = array($_GET['page'],
+                 $Clog,
+                 $cfg['hyouji'],
+                 $arg_path,
+                 $cfg['search']);
+	$PRmokuji = mokuji($arg);
+	?>
+<div align="center"><?php echo $PRmokuji; ?></div>
+<br>
+<?php
+	// &open_for_searchで得たハッシュ/@writeを元にデータを表示@log_linesに入れる
+	// $arg1=ページ番号(1～)
+	foreach($log_lines as $log_data) {
+		$jump_url = $log_data['url'];
+		if(@$cfg['rank_fl']) {
+			$jump_url = urlencode(unhtmlentities($log_data['url']));
+			$jump_url = "{$cfg['rank']}?mode=link&id={$log_data['id']}&url={$jump_url}";
+		} else {
+			$jump_url = unhtmlentities($log_data['url']);
+		}
+		?>
+<!-- ログ表示 -->
+<table border="3" cellpadding="7" id="log">
+  <tr id="log-1">
+    <td>
+	  <a href="<?php echo $jump_url; ?>" target="_blank"><?php echo $log_data['title'];?></a>&nbsp;<?php echo put_icon(); ?>
+ <br><br><font size="-1">更新日：<?php echo $log_data['last_time']; ?> [<a href="regist_ys.php?mode=enter&id=<?php echo $log_data['id']; ?>">修正・削除</a>]
+ [<a href="regist_ys.php?mode=no_link&id=<?php echo $log_data['id']; ?>&pre=on&title=<?php echo urlencode($log_data['title']); ?>">管理者に通知</a>]
+ </font>
+<?php
+		if($log_data['banner']) {
+			?>
+<br><a href="<?php echo $jump_url; ?>" target="_blank"><img src="<?php echo $log_data['banner']; ?>" width="<?php echo $cfg_reg['Mbana_w']; ?>" height="<?php echo $cfg_reg['Mbana_h']; ?>" alt="<?php echo $log_data['title'];?>" title="<?php echo $log_data['title'];?>"></a>
+<?php
+		}
+		?>
+<tr id="log-2"><td><font id="small">
+<?php
+		$kt = explode("&", $log_data["category"]);
+		foreach($kt as $tmp) {
+			$query = "SELECT title FROM {$db->db_pre}category WHERE path='{$tmp}' LIMIT 1";
+			$row = $db->single_assoc($query) or $db->error("Query failed $query".__FILE__.__LINE__);
+			if($row["title"]) {
+				?>[<a href="<?php echo $cfg['script']; ?>?mode=dir&amp;path=<?php echo $tmp; ?>"><?php
+				// echo $row[title]; // カテゴリ名を短縮カテゴリ名で表示
+				echo full_category($tmp); // カテゴリ名をフルカテゴリ名で表示
+				?></a>] <?php
+			}
+		}
+		?>
+</font></td></tr>
+</td>
+</tr>
+<tr id="log-3">
+	<td><?php echo $log_data['message']; ?></td>
+</tr>
+<?php
+		if($log_data['comment']) {
+			?>
+<tr id="log-4">
+	<td><font id="kanri"><?php echo $log_data['comment']; ?></font></td>
+</tr>
+<?php
+		}
+		?>
+</table><br>
+<!-- /ログ表示 -->
+<?php
+	}
+	?>
+<!-- Page Mokuji Output -->
+<div align="center"><?php echo $PRmokuji; ?></div>
+<!-- /Page Mokuji Output -->
+<!--/データがある場合-->
+<?php
+} else { // 外部検索エンジンへのリンクを表示
+    ?><ul>▼該当するデータは見つかりませんでした。下記の検索エンジンで再検索できます。</ul>
+    <?php
+	require $cfg['sub_path'] . 'meta_ys.php';
+	$location_list = meta('meta_page', 'on');
+	PR_meta_page($location_list);
+}
+?>
+<br>
+
+<!-- Other Category Output -->
+<?php other_category(); ?>
+<!-- /Other Category Output -->
+
+<!-- Footer Space Output -->
+<?php if(isset($text['foot_sp'])) { echo $text['foot_sp']; } ?>
+<!-- /Footer Space Output -->
+
+<!-- Copy Right Output -->
+<div align="center">
+<?php cr(); ?><br />
+<?php printFooterAd(); ?>
+</div>
+<!-- /Copy Right Output -->
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+.txt {
+	font-family: "ＭＳ ゴシック", "Osaka－等幅";
+	font-size: 12px;
+	line-height: 140%;
+	color: #666666;
+}
+.title {
+	font-family: "ＭＳ ゴシック", "Osaka－等幅";
+	font-size: 14px;
+	line-height: 140%;
+	font-weight: bold;
+	color: #666666;
+}
+.btn {
+	color: #666666;
+	background-color: #CCCCFF;
+	font-family: "ＭＳ ゴシック", "Osaka－等幅";
+	border-top-color: #666666;
+	border-right-color: #666666;
+	border-bottom-color: #666666;
+	border-left-color: #666666;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	font-size: 12px;
+}

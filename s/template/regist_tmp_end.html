@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>仮登録完了| <?php echo $cfg['search_name']; ?></title>
+<meta name="Keywords" content="norobot">
+<meta name="Robots" content="noindex,nofollow">
+<meta name="googlebot" content="noarchive">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="content-script-type" content="text/javascript">
+<link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
+<meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
+<link rel="stylesheet" href="./jquery.mobile-1.0a2/jquery.mobile-1.0a2.min.css" />
+<script src="./js/jquery-1.4.4.min.js"></script>
+<script src="./jquery.mobile-1.0a2/jquery.mobile-1.0a2.min.js"></script>
+<script type="text/javascript">
+function doScroll() { if (window.pageYOffset === 0) { window.scrollTo(0,1); } }
+window.onload = function() { setTimeout(doScroll, 100); }
+</script>
+</head>
+
+<body>
+<a name="top"></a>
+<!-- Start page -->
+<div data-role="page">
+
+    <!-- header -->
+    <div data-role="header"  data-theme="b">
+        <h1>仮登録完了</h1>
+        <a href="<?php echo SMARTPHONE_HOME;?>" rel="external" data-icon="arrow-l" class="ui-btn-left" data-transition="slide">TOP</a>
+        <a href="search.php" data-icon="arrow-r" rel="external" class="ui-btn-right" data-transition="slide">ｻｲﾄ検索</a>
+    </div>
+    <!-- /header -->
+
+    <div data-role="content">
+
+
+<!-- Menu Bar Output -->
+<table width="100%" class="table_menu_bar">
+  <tr>
+    <td><?php echo $text['menu_bar']; ?></td>
+  </tr>
+</table>
+<!-- /Menu Bar Output -->
+<!-- Navigation Bar Output -->
+<table width="100%" class="table_navigation_bar">
+  <tr>
+    <td><strong>仮登録完了</strong></td>
+  </tr>
+</table>
+<!-- /Navigation Bar Output -->
+<ol>
+  ▼仮登録が以下のとおり完了しました｡管理人が確認した後に正式登録されます｡<br><br>
+<!--お名前-->
+  <li>【お名前】<br>
+    <ul><?php echo $log_data[8]; ?></ul><br>
+<!--ﾒｰﾙｱﾄﾞﾚｽ-->
+  <li>【ﾒｰﾙｱﾄﾞﾚｽ】<br>
+    <ul><?php echo $log_data[9]; ?></ul><br>
+<!--ﾊﾟｽﾜｰﾄﾞ-->
+  <li>【ﾊﾟｽﾜｰﾄﾞ】<br>
+    <ul><?php echo htmlspecialchars($_POST['Fpass']); ?></ul><br>
+<!--ﾎｰﾑﾍﾟｰｼﾞｱﾄﾞﾚｽ-->
+  <li>【ﾎｰﾑﾍﾟｰｼﾞｱﾄﾞﾚｽ】<br>
+    <ul><?php echo $log_data[2]; ?>　[<a href="<?php echo $log_data[2]; ?>" target="_blank">確認</a>]</ul><br>
+<?php
+if(@$cfg_reg['bana_url'] && @$log_data[12]) {
+	?>
+<!--ﾀｲﾄﾙﾊﾞﾅｰのURL-->
+  <li>【ﾀｲﾄﾙﾊﾞﾅｰのURL】
+    <ul><?php echo $log_data[12]; ?>　[<a href="<?php echo $log_data[12]; ?>" target="_blank">確認</a>]</ul><br>
+<?php
+}
+?>
+<!--ﾎｰﾑﾍﾟｰｼﾞのﾀｲﾄﾙ-->
+  <li>【ﾎｰﾑﾍﾟｰｼﾞのﾀｲﾄﾙ】
+    <ul><?php echo $log_data[1]; ?></ul><br>
+<!--ﾎｰﾑﾍﾟｰｼﾞの紹介文-->
+  <li>【ﾎｰﾑﾍﾟｰｼﾞの紹介文】
+    <ul><table width="100%" border="0"><tr><td><?php echo $log_data[6]; ?></td></tr></table></ul><br>
+<!--登録するｶﾃｺﾞﾘ-->
+  <li>【登録するｶﾃｺﾞﾘ】
+    <ul><?preview_category2()?></ul><br>
+<!--ｷｰﾜｰﾄﾞ-->
+  <li>【ｷｰﾜｰﾄﾞ】
+    <ul><?php echo $log_data[15]; ?></ul><br>
+<?php
+if(!isset($_POST['in_mode'])) {
+	$_POST["in_mode"] = "";
+}
+if(@$cfg_reg['add_kt'] && $_POST['in_mode'] != "mente") {
+	?>
+<!--追加して欲しいｶﾃｺﾞﾘ-->
+  <li>【追加して欲しいｶﾃｺﾞﾘ】
+    <ul><?php echo htmlspecialchars($_POST['Fadd_kt']); ?></ul><br>
+<?php
+}
+if(@$cfg_reg['to_admin'] && $_POST['in_mode'] != "mente") {
+	?>
+<!--管理人へのﾒｯｾｰｼﾞ-->
+  <li>【管理人へのﾒｯｾｰｼﾞ】
+    <ul><table width="100%" border="0"><tr><td><?php echo htmlspecialchars($_POST['Fto_admin']); ?></td></tr></table></ul>
+<?php
+}
+if(@$cfg_reg['sougo'] && $_POST['in_mode'] !=  "mente") {
+	if(@$_POST['Fsougo']) {
+		$PRsougo="相互ﾘﾝｸする";
+	} else {
+		$PRsougo="相互ﾘﾝｸしない";
+	}
+	?>
+<!--相互ﾘﾝｸ連絡項目-->
+  <br><li>【相互ﾘﾝｸの有無】
+  <input type="hidden" name="Fsougo" value="<?php echo htmlspecialchars($_POST['Fsougo']); ?>">
+    <ul><?php echo $PRsougo; ?></ul>
+<?php
+}
+?>
+<!--ここまで-->
+  <br><br>
+【　<a href="<?php echo $cfg['home']; ?>">ﾎｰﾑに戻る</a>　】
+</ol>
+</form>
+
+
+<!-- Footer Space Output -->
+<?php if(isset($text['foot_sp'])) { echo $text['foot_sp']; } ?>
+</div>
+<!-- /content -->
+
+<!-- /Footer Space Output -->
+<?php echo SMARTPHONE_FOOTER; ?>
+</body>
+</html>

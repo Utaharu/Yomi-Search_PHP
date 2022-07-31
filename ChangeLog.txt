@@ -1,0 +1,51 @@
+----------------------------------------------------------------------
+                                                   2009 年 05 月 24 日
+
+                   Yomi-Search(PHP)modified Ver1.5.8
+
+                            ChangeLog.txt                            
+
+----------------------------------------------------------------------
+
+このファイルにはバージョンアップに伴い変更が生じたファイル名を収録して
+います。ご自身で改造されたYomi-Search(PHP)modifiedをアップデートする際
+にご活用ください。
+
+
+ver1.5.7 -> ver1.5.8
+====================
+php/no_link.php
+rss/rss.php
+setup/top.html
+template/admin/temp_to_regist.html
+template/search.html
+admin.php
+functions_reg.php
+regist_ys.php
+
+
+
+ver1.5.6 -> ver1.5.7
+====================
+php/act_del.php
+php/act_mente.php
+php/act_regist.php
+php/act_repass.php
+php/category.php
+php/enter.php
+php/keyrank.php
+php/no_link.php
+php/random.php
+php/rank.php
+php/regist_new.php
+php/regist_new_admin.php
+php/search.php
+php/search_ex.php
+php/search_meta.php
+php/top.php
+template/admin/temp_to_regist.html
+admin.php
+functions_reg.php
+
+
+----------------------------------------------------------------------

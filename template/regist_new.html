@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<title>新規ホームページ登録</title>
+<link media="screen" rel="stylesheet" href="css/main.css" type="text/css">
+</head>
+<body>
+<!-- Menu Bar Output -->
+<table width="100%" class="table_menu_bar">
+  <tr>
+    <td><?php echo $text['menu_bar']; ?></td>
+  </tr>
+</table>
+<!-- /Menu Bar Output -->
+<!-- Navigation Bar Output -->
+<table width="100%" class="table_navigation_bar">
+  <tr>
+    <td><a href="<?php echo $cfg['home']; ?>">ホーム</a>&nbsp;&gt;&nbsp;<strong>新規ホームページ登録</strong></td>
+  </tr>
+</table>
+<!-- /Navigation Bar Output -->
+<!-- ここから設定 -->
+<div align="center">
+<table border="1" width="100%">
+  <tr>
+    <td>
+	  <br>
+<div align="center">【 登録上の注意事項と利用法 】</div>
+<font id="small">
+<ol><li>以下の（１）～（８）の項目に該当するサイトは登録をご遠慮ください。
+<br>（１）アダルトサイト又は１８歳未満に好ましくないと判断されるサイト 
+<br>（２）公的秩序に反するサイト 
+<br>（３）犯罪行為に結びつくサイト 
+<br>（４）他人の著作権を侵害するサイト 
+<br>（５）他人の財産、プライバシーを侵害するサイト 
+<br>（６）その他、法律に反するサイト 
+<br>（７）他人に不利益を与えるサイト 
+<br>（８）他人を中傷するサイト
+<br><br><li><b>ホームページの紹介文</b>は、登録するサイトの内容が紹介文を見る人に
+分かりやすく伝わるように書いてみてください。
+<br><br><li>管理人が登録内容について、変更・削除する必要があると判断した場合や<br>URLのリンク先がなくなっている場合には、内容を変更・削除する場合があります。
+<br><br><li><img src="<?php echo $cfg['img_path_url']; ?>m1.gif" align="bottom"> の付いたサイトは、「<a href="<?php echo $cfg['script']; ?>?mode=m1"><?php echo $cfg['name_m1']; ?></a>」のコーナーにも表示されます。
+<br><br><li><img src="<?php echo $cfg['img_path_url']; ?>m2.gif" align="bottom">
+  の付いたサイトは、「<a href="<?php echo $cfg['script']; ?>?mode=m2"><?php echo $cfg['name_m2']; ?></a>」のコーナーにも表示されます。
+</ol>
+</font></td></tr>
+</table>
+</div>
+<br>
+	<form action="regist_ys.php" method="post">
+		<input type="hidden" name="mode" value="act_regist">
+<ol>
+	※文字数の換算方法は「半角<b>2</b>文字=全角<b>1</b>文字」です<br>
+	※半角カナは文字化けの原因になりますので使用しないでください<br><br>
+	▼項目名の横に<font color="#FF0000">☆</font>が付いている項目は<font color="#FF0000">記入必須項目</font>です<br>
+	<br>
+<!--お名前-->
+	<li>【お名前】<font color="#FF0000"><?php echo $cfg_reg['Fname']; ?></font>
+		<ul>※ハンドルネームも可です<br>
+		※全角<b><?php echo $cfg_reg['Mname']; ?></b>文字以内<br>
+<?php if(!isset($_POST['Fname'])) { $_POST['Fname'] = ""; } ?>
+		<input type="text" name="Fname" value="<?php echo htmlspecialchars($_POST['Fname']); ?>" size="25"></ul><br>
+<!--メールアドレス-->
+	<li>【メールアドレス】<font color="#FF0000"><?php echo $cfg_reg['Femail']; ?></font>
+		<ul>※半角英数字<b><?php echo $cfg_reg['Memail']; ?></b>文字以内<br>
+<?php if(!isset($_POST['Femail'])) { $_POST['Femail'] = ""; } ?>
+		<input type="text" name="Femail" value="<?php echo htmlspecialchars($_POST['Femail']); ?>" size="25"></ul><br>
+<!--パスワード-->
+	<li>【パスワード】<font color="#FF0000">☆</font>
+		<ul>※このパスワードで今後、登録内容の修正ができます<br>
+		※半角英数字<b>8</b>文字以内<br>
+<?php
+if(!isset($_POST['Fpass'])) { $_POST['Fpass'] = ""; }
+if(!isset($_POST['Fpass2'])) { $_POST['Fpass2'] = ""; }
+?>
+		<input type="password" name="Fpass" value="<?php echo htmlspecialchars($_POST['Fpass']); ?>" size="10"><br>
+		<input type="password" name="Fpass2" value="<?php echo htmlspecialchars($_POST['Fpass2']); ?>" size="10">(もう一度確認のため入力してください)
+		</ul><br>
+<!--ホームページアドレス-->
+	<li>【ホームページアドレス】<font color="#FF0000"><?php echo $cfg_reg['Furl']; ?></font>
+		<ul>※半角英数字<b><?php echo $cfg_reg['Murl']; ?></b>文字以内<br>
+<?php if(!isset($_POST['Furl'])) { $_POST['Furl'] = ""; } ?>
+		<input type="text" name="Furl" value="<?php echo htmlspecialchars($_POST['Furl']); ?>" size="70"></ul><br>
+<?php
+if(@$cfg_reg['bana_url']) {
+	?><!--タイトルバナーのURL-->
+	<li>【タイトルバナーのURL】<font color="#FF0000"><?php echo $cfg_reg['Fbana_url']; ?></font>
+		<ul>※バナー(画像)のURLの最後が「.gif」「.jpg」「.png」のいずれかで終わるようにしてください。
+		<br>※表示されるサイズは 横<b><?php echo $cfg_reg['Mbana_w']; ?></b>×縦<b><?php echo $cfg_reg['Mbana_h']; ?></b>(ピクセル)</b> です。 
+		<br>※半角英数字<b><?php echo $cfg_reg['Mbana_url']; ?></b>文字以内
+<?php if(!isset($_POST['Fbana_url'])) { $_POST['Fbana_url'] = ""; } ?>
+		<br><input type="text" name="Fbana_url" value="<?php echo htmlspecialchars($_POST['Fbana_url']); ?>" size="60">
+		</ul><br>
+<?php
+}
+?>
+<!--ホームページのタイトル-->
+	<li>【ホームページのタイトル】<font color="#FF0000"><?php echo $cfg_reg['Ftitle']; ?></font>
+		<ul>※全角<b><?php echo $cfg_reg['Mtitle']; ?></b>文字以内<br>
+<?php if(!isset($_POST['Ftitle'])) { $_POST['Ftitle'] = ""; } ?>
+		<input type="text" name="Ftitle" value="<?php echo htmlspecialchars($_POST['Ftitle']); ?>" size="25"></ul><br>
+<!--ホームページの紹介文-->
+	<li>【ホームページの紹介文】<font color="#FF0000"><?php echo $cfg_reg['Fsyoukai']; ?></font>
+		<ul>※HTMLタグは使えません<br>
+		※全角<b><?php echo $cfg_reg['Msyoukai']; ?></b>文字以内<br>
+<?php if(!isset($_POST['Fsyoukai'])) { $_POST['Fsyoukai'] = ""; } ?>
+		<textarea wrap="soft" name="Fsyoukai" cols="50" rows="3"><?php echo htmlspecialchars($_POST['Fsyoukai']); ?></textarea></ul><br>
+<!--登録するカテゴリ-->
+	<li>【登録するカテゴリ】<font color="#FF0000">☆</font>
+<?php
+print_category($category);
+?>
+<!--キーワード-->
+	<li>【キーワード】<font color="#FF0000"><?php echo $cfg_reg['Fkey']; ?></font>
+		<ul>※あなたのホームページに関係が深いキーワードを入力してください<br>
+		※複数ある場合にはキーワードを半角スペースで区切ってください<br>
+		※全角<b><?php echo $cfg_reg['Mkey']; ?></b>文字以内<br>
+<?php if(!isset($_POST['Fkey'])) { $_POST['Fkey'] = ""; } ?>
+		<input type="text" name="Fkey" value="<?php echo htmlspecialchars($_POST['Fkey']); ?>" size="60"></ul><br>
+<?php
+if(@$cfg_reg['add_kt']) {
+?>
+<!--追加して欲しいカテゴリ-->
+	<li>【追加して欲しいカテゴリ】<font color="#FF0000"><?php echo $cfg_reg['Fadd_kt']; ?></font>
+		<ul>※今後、新設した方が良いと思うカテゴリがあればご提案ください<br>
+		※全角<b><?php echo $cfg_reg['Madd_kt']; ?></b>文字以内<br>
+<?php if(!isset($_POST['Fadd_kt'])) { $_POST['Fadd_kt'] = ""; } ?>
+		<input type="text" name="Fadd_kt" value="<?php echo htmlspecialchars($_POST['Fadd_kt']); ?>" size="60">
+		</ul><br>
+<?php
+}
+if(@$cfg_reg['to_admin']) {
+	?>
+<!--管理人へのメッセージ-->
+	<li>【管理人へのメッセージ】<font color="#FF0000"><?php echo $cfg_reg['Fto_admin']; ?></font>
+		<ul>※管理人へのメッセージ等ありましたらお書きください<br>
+		※全角<b><?php echo $cfg_reg['Mto_admin']; ?></b>文字以内<br>
+<?php
+	if(!isset($_POST['Fto_admin'])) {
+		$_POST['Fto_admin'] = "";
+	}
+?>
+		<textarea wrap="soft" name="Fto_admin" cols="50" rows="3"><?php echo htmlspecialchars($_POST['Fto_admin']); ?></textarea></ul>
+<?php
+}
+?>
+<!--管理人へのメッセージ-->
+<?php
+$certification_cord = "";
+$certification_cord = substr(md5(uniqid(microtime())), 0, 8);
+?>
+	<br><li>【スパム登録対策用コード認証】<font color="#FF0000"><?php echo $cfg_reg['Fto_admin']; ?></font>
+		<ul>
+		  ※以下に表示されている8文字の文字列を入力してください<br>
+		<?php echo $certification_cord; ?><br>
+		<input type="hidden" name="certification_cord" value="<?php echo $certification_cord; ?>">
+		<input name="Fcertification_cord" type="text" value="" size="20">
+		</ul>
+<?php
+if(@$cfg_reg['sougo']) {
+	if(@$_POST['Fsougo']) {
+		$sougo_0 = "";
+		$sougo_1 = " checked";
+	} else {
+		$sougo_0 = " checked";
+		$sougo_1 = "";
+	}
+	?>
+<!--相互リンク連絡項目-->
+	<br><li>【相互リンクの有無】<font color="#FF0000"><?php echo $cfg_reg['Fto_admin']; ?></font>
+		<ul>※当サイトと相互リンクしてくださる場合には「<b>相互リンクする</b>」を選択してください<br>
+		<input type="radio" name="Fsougo" value="1"<?php echo $sougo_1; ?>>相互リンクする | <input type="radio" name="Fsougo" value="0"<?php echo $sougo_0; ?>>相互リンクしない
+		</ul><br>
+<?php
+}
+?>
+<!--ここまで-->
+	<br><br>
+		<input type="submit" value="&nbsp; 登録する &nbsp;"> <input type="reset" value="リセット"><input type="checkbox" name="preview" value="on" checked>プレビュー
+</ol>
+	</form>
+<hr align="center">
+
+<!-- Copy Right Output -->
+<div align="center"><?php cr(); ?></div>
+<!-- /Copy Right Output -->
+
+</body>
+</html>

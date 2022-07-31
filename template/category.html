@@ -1,0 +1,301 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<title><?php echo $title; ?> | <?php echo $cfg['search_name']; ?></title>
+<meta name="keywords" content="<?php echo $title; ?>,検索エンジン" />
+<meta name="description" content="<?php echo $title; ?>の検索エンジンカテゴリ表示です" />
+<link media="screen" rel="stylesheet" href="css/main.css" type="text/css">
+<link href="./favicon.ico" type="image/x-icon" rel="icon"/>
+
+</head>
+<body>
+<!-- Menu Bar Output -->
+<table width="100%" class="table_menu_bar">
+    <tr>
+        <td style="text-align:center;">
+        <?php printHeaderAd(); ?>
+        </td>
+    </tr>
+  <tr>
+    <td><?php echo $text['menu_bar']; ?></td>
+  </tr>
+</table>
+<!-- /Menu Bar Output -->
+<?php
+echo $text['head_sp'];
+
+// 下層カテゴリ
+if($_GET['path']) {
+	print_subcategory(
+		$_GET['path'],
+		'1', //← 1=登録数表示/0=登録数非表示
+		'4'  //← カテゴリの表示列数
+	);
+}
+?>
+<br>
+<!-- Navigation Bar Output -->
+<table width="100%" class="table_navigation_bar">
+  <tr>
+    <td><a href="<?php echo $cfg['home']; ?>">ホーム</a>&nbsp;&gt;&nbsp;<?php echo $navi; ?><strong><?php echo $title; ?></strong>
+<?php
+if(!empty($guide)) {
+	echo '：' . $guide;
+}
+?>
+	</td>
+	<td align="right">
+<?php
+$get_path = htmlspecialchars($_GET['path']);
+if($log_lines) {
+	if($_GET['mode'] == 'dir' && ($cfg['rank_fl'] || $cfg['rev_fl'])) {
+		if($cfg['rank_fl']) {
+			echo '<a href="'.$cfg['rank'].'?path='.$get_path.'">人気ランキング(カテゴリ別)</a>';
+		}
+		if($cfg['rank_fl'] && $cfg['rev_fl']) {
+			echo ' | ';
+		}
+		if($cfg['rev_fl']) {
+			echo '<a href="'.$cfg['rank'].'?mode=rev&path='.$get_path. '">アクセスランキング(カテゴリ別)</a>';
+		}
+	}
+}
+if(!$regist && $_GET['mode'] == 'dir' && !$cfg_reg['no_regist']) {
+	echo ' | <a href="regist_ys.php?mode=regist&path=' . $get_path . '">このカテゴリに新規登録</a>';
+}
+?>
+	</td>
+  </tr>
+</table>
+<!-- /Navigation Bar Output -->
+<!-- ページ中段の検索フォーム -->
+<table width="100%" class="table_searchform">
+  <form action="<?php echo $cfg['search']; ?>" method="get">
+  <tr>
+    <td align="center">
+      <input name="mode" type="hidden" value="search">
+      <input name="page" type="hidden" value="1">
+      <input name="sort" type="hidden" value="<?php echo $cfg['defo_hyouji']; ?>">
+	  <input name="open_type" type="hidden" value="0">
+	  <input name="hyouji" type="hidden" value="30">
+      <img src="<?php echo $cfg['img_path_url']; ?>search.gif" alt="検索" align="absbottom" title="検索"><input name="word" type="text" value="" size="20" class="form">&nbsp;<input type="submit" value=" 検 索 " class="form">&nbsp;
+<?php
+if($_GET['mode'] == 'dir') {
+?>
+      <select name="search_kt" class="form">
+        <option value="<?php echo $search_id; ?>-b_all" selected>このカテゴリ以下から検索</option>
+        <option value="<?php echo $search_id; ?>">このカテゴリから検索</option>
+        <option value="">全検索</option>
+      </select>
+<?php
+}
+?>
+      <select name="method" class="form">
+        <option value="and" selected>AND</option>
+        <option value="or">OR</option>
+      </select>
+    </td>
+  </tr>
+  </form>
+</table>
+<?php
+if($log_lines){
+?>
+<!-- データがある場合 -->
+<!-- 表示方法選択フォーム -->
+<?php
+	if($_GET['mode'] == 'dir'){
+?>
+<table border="0" cellpadding="5" cellspacing="0">
+<form action="<?php echo $cfg['script']; ?>" method="get">
+  <tr>
+    <td>
+	<input name="mode" type="hidden" value="<?php echo htmlspecialchars($_GET['mode']); ?>">
+	<input name="path" type="hidden" value="<?php echo htmlspecialchars($_GET['path']); ?>">
+	<input name="page" type="hidden" value="1">
+[現在の表示：<b>
+<?php
+		if(!@$_GET['sort']) {
+			switch($cfg['defo_hyouji']) {
+				case 'time_new': echo '更新日の新しい順'; break;
+				case 'id_new': echo '登録日の新しい順'; break;
+				case 'ac_new': echo 'アイウエオ順(昇順)'; break;
+				case 'ac_old': echo 'アイウエオ順(降順)'; break;
+				case 'id_old': echo '登録日の古い順'; break;
+				case 'time_old': echo '更新日の古い順'; break;
+				default: echo 'マーク順';
+			}
+		} else {
+			switch($_GET['sort']) {
+				case 'time_new': echo '更新日の新しい順'; break;
+				case 'id_new': echo '登録日の新しい順'; break;
+				case 'ac_new': echo 'アイウエオ順(昇順)'; break;
+				case 'ac_old': echo 'アイウエオ順(降順)'; break;
+				case 'id_old': echo '登録日の古い順'; break;
+				case 'time_old': echo '更新日の古い順'; break;
+				default: echo 'マーク順';
+			}
+		}
+		?>
+</b>]
+	<select name="sort" class="form">
+		<option value="" selected>---------------</option>
+		<option value="time_new">更新日の新しい順で</option>
+		<option value="id_new">登録日の新しい順で</option>
+		<option value="mark">マーク順で</option>
+		<option value="ac_new">アイウエオ順(昇順)で</option>
+		<option value="">---------------</option>
+		<option value="ac_old">アイウエオ順(降順)で</option>
+		<option value="id_old">登録日の古い順で</option>
+		<option value="time_old">更新日の古い順で</option>
+	</select>
+	<input type="submit" class="form" value="表示">
+    </td>
+  </tr>
+</form>
+</table>
+<?php
+	}
+?>
+<!-- マークコメント/登録数表示/目次表示(上) -->
+<br>
+<?php echo $mokuji; ?>
+<br>
+<br>
+
+<?php
+//==================================//
+//※いらなかったら削除してください
+//右に表示する広告がある場合は表示
+//==================================//
+if(getRightAdFlg()) {
+?>
+<table border="0">
+    <tr><td valign="top">
+<?php
+}   //←広告表示がなければこの閉じ括弧も削除
+
+	foreach($log_lines as $log_data) {
+		$jump_url = $log_data['url'];
+		if(@$cfg['rank_fl']) {
+			$jump_url = urlencode(unhtmlentities($log_data['url']));
+			$jump_url = $cfg['rank'].'?mode=link&id='.$log_data['id'].'&url='.$jump_url;
+		} else {
+			$jump_url = unhtmlentities($log_data['url']);
+		}
+		?>
+<!-- ログ表示 -->
+<table border="3" cellpadding="7" id="log">
+<tr id="log-1">
+	<td><a href="<?php echo $jump_url; ?>" target="_blank"><?php echo $log_data['title']; ?></a>
+<!-- アイコンを付加 -->
+<?php
+		put_icon();
+		?>
+ <br><br><font size="-1">更新日：<?php echo $log_data['last_time']; ?> [<a href="regist_ys.php?mode=enter&id=<?php echo $log_data['id']; ?>">修正・削除</a>]
+ [<a href="regist_ys.php?mode=no_link&id=<?php echo $log_data['id']; ?>&pre=on&title=<?php echo urlencode($log_data['title']); ?>">管理者に通知</a>]
+<?php
+		if(@$cfg['mylink_fl']) {
+			echo ' [<a href="'.$cfg['script'].'?mode=mylink&act=add&id='.$log_data['id'].'">マイリンクに追加</a>]';
+		}
+		?>
+</font>
+<?php
+		if(isset($log_data['banner']) && $log_data['banner'] != '') {
+			echo '<br><a href="'.$jump_url.'" target="_blank"><img src="'.$log_data['banner'].'" border="0" width="'.$cfg_reg['Mbana_w'].'" height="'.$cfg_reg['Mbana_h'].'" alt="'.$log_data['title'].'" title="'.$log_data['title'].'"></a>';
+		}
+		?>
+</td>
+</tr>
+<tr id="log-3">
+	<td><?php echo $log_data['message']; ?>&nbsp;</td>
+</tr>
+<?php
+		if($log_data['comment']) {
+			?>
+<tr id="log-4">
+	<td><font id="kanri"><?php echo $log_data['comment']; ?>&nbsp;</font></td>
+</tr>
+<?php
+		}
+		?>
+</table><br>
+<!-- /ログ表示 -->
+<?php
+        }
+    //==================================//
+    //※いらなかったら削除してください
+    //右に表示する広告がある場合は表示
+    //==================================//
+    if(getRightAdFlg()) {
+        echo '</td><td valign="top" style="padding-left:5%; text-align:center;">';
+        printRightAd();
+        echo '</td></tr></table>';
+    }
+    //ここまで
+?>
+
+
+<!-- 目次表示(下) -->
+<?php echo $mokuji; ?>
+<!--/データがある場合-->
+<?php
+}
+?>
+<br><br>
+
+<!-- Navigation Bar Output -->
+<table width="100%" class="table_navigation_bar">
+  <tr>
+    <td><a href="<?php echo $cfg['home']; ?>">ホーム</a>&nbsp;&gt;&nbsp;<?php echo $navi; ?><strong><?php echo $title; ?></strong>
+<?php
+if(!empty($guide)) {
+	echo '：' . $guide;
+}
+?>
+	</td>
+	<td align="right">
+<?php
+$get_path = htmlspecialchars($_GET['path']);
+if($log_lines) {
+	if($_GET['mode'] == 'dir' && ($cfg['rank_fl'] || $cfg['rev_fl'])) {
+		if($cfg['rank_fl']) {
+			echo '<a href="'.$cfg['rank'].'?path='.$get_path.'">人気ランキング(カテゴリ別)</a>';
+		}
+		if($cfg['rank_fl'] && $cfg['rev_fl']) {
+			echo ' | ';
+		}
+		if($cfg['rev_fl']) {
+			echo '<a href="'.$cfg['rank'].'?mode=rev&path='.$get_path. '">アクセスランキング(カテゴリ別)</a>';
+		}
+	}
+}
+if(!$regist && $_GET['mode'] == 'dir' && !$cfg_reg['no_regist']) {
+	echo ' | <a href="regist_ys.php?mode=regist&path=' . $get_path . '">このカテゴリに新規登録</a>';
+}
+?>
+	</td>
+  </tr>
+</table>
+
+<!-- Other Category Output -->
+<?php other_category(); ?>
+<!-- /Other Category Output -->
+
+<!-- Footer Space Output -->
+<?php if(isset($text['foot_sp'])) { echo $text['foot_sp']; } ?>
+<!-- /Footer Space Output -->
+
+<!-- Copy Right Output -->
+<div align="center">
+<?php cr(); ?><br />
+<?php printFooterAd(); ?>
+</div>
+<!-- /Copy Right Output -->
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<?php
+// リストメニューの設定
+// 人気ランキング(実施しない=0/実施する=1)
+if($cfg["rank_fl"]) {
+	$Crank_fl_0 = "";
+	$Crank_fl_1 = " selected";
+} else {
+	$Crank_fl_0 = " selected";
+	$Crank_fl_1 = "";
+}
+
+// アクセス(実施しない=0/実施する=1)
+if($cfg["rev_fl"]) {
+	$Crev_fl_0 = "";
+	$Crev_fl_1 = " selected";
+} else {
+	$Crev_fl_0 = " selected";
+	$Crev_fl_1 = "";
+}
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<title>管理室 &gt;&gt; 人気ランキング・アクセスランキングの設定</title>
+<link href="css/admin.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#2F5376" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td><a href="<?php echo $cfg['home']; ?>" target="_blank"><img src="<?php echo $cfg['img_path_url']; ?>admin/logo.gif" alt="ホームページ" width="206" height="80" border="0"></a><a href="<?php echo $cfg['home']; ?>"></a></td>
+    <td align="right"><?php echo $text['menu_bar']; ?></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+  <form action="<?php echo $cfg['admin']; ?>" method="post" lang="ja">
+  <tr>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td class="title">管理トップ &gt;&gt; 人気ランキング・アクセスランキングの設定</td>
+    <td align="right"><?php echo $admin_listbox; ?></td>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+  </form>
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td valign="top">
+	  <br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+		  <form name="form1" method="post" action="<?php echo $cfg['admin']; ?>">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td colspan="2" class="table_in_header">人気ランキングの設定</td>
+                </tr>
+              <tr>
+                <td class="table_in_leftcell"><strong>人気ランキングのON/OFF</strong><br>
+                  <br>
+                  人気ランキングとは<span class="attention_red">内部から外部へのアクセス数を集計</span>したランキングです。</td>
+                <td width="40%" class="table_in_rightcell"><select name="rank_fl" class="form">
+                  <option value="0"<?php echo $Crank_fl_0; ?>>実施しない</option>
+                  <option value="1"<?php echo $Crank_fl_1; ?>>実施する</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell"><strong>ランクインさせる最低アクセス数</strong></td>
+                <td class="table_in_rightcell"><input name="rank_min" type="text" class="form" value="<?php echo $cfg['rank_min']; ?>" size="3">
+                  アクセス</td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell"><strong>ランキングの集計期間</strong></td>
+                <td class="table_in_rightcell"><input name="rank_kikan" type="text" class="form" value="<?php echo $cfg['rank_kikan']; ?>" size="3">
+                  日ごとに集計</td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell"><strong>ランキングの更新頻度(時間)</strong><br>
+                  <br>
+                  何時間ごとにランキングを更新するかを決めます。この時間内に同一IPから同一データに2回以上アクセスがあっても1アクセスとして集計します。</td>
+                <td class="table_in_rightcell"><input name="rank_time" type="text" class="form" value="<?php echo $cfg['rank_time']; ?>" size="3">
+                  時間ごとに更新</td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell"><strong>ランキングデータの最大保持件数</strong><br>
+                  <br>
+                  ここで設定した保持件数を超えるものはデータベースに記録されません。</td>
+                <td class="table_in_rightcell"><input name="rank_best" type="text" class="form" value="<?php echo $cfg['rank_best']; ?>" size="4">
+                  位まで保存する</td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell"><strong>集計対象のURLの一部</strong><br>
+                  <br>
+                  外部からの不正なアクセスをランキング集計対象から取り除くための機能です。複数指定する場合には半角カンマ( , )で区切ってください。必要無い場合には未記入でも可。<br>
+                  <br>
+                  (例)<br>
+                  設置するURLが http://www.xxx.zzz/~test/yomi.php なら www.xxx.zzz/~test と記入してください。</td>
+                <td class="table_in_rightcell"><input name="rank_ref" type="text" class="form" value="<?php echo $cfg['rank_ref']; ?>" size="40"></td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">&nbsp;</td>
+                <td class="table_in_rightcell"><input name="submit" type="submit" class="form" value="送信">
+                  <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                  <input name="mode" type="hidden" value="cfg_make"></td>
+              </tr>
+            </table></td>
+          </tr>
+		  </form>
+        </table>
+        <br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+          <form name="form1" method="post" action="<?php echo $cfg['admin']; ?>">
+            <tr>
+              <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+                  <tr>
+                    <td colspan="2" class="table_in_header">アクセスランキングの設定</td>
+                  </tr>
+                  <tr>
+                    <td class="table_in_leftcell"><strong>アクセスランキングのON/OFF</strong><br>
+                        <br>
+                    アクセスランキングとは<span class="attention_red">外部から内部へのアクセス数を集計</span>したランキングです。</td>
+                    <td width="40%" class="table_in_rightcell"><select name="rev_fl" class="form">
+                      <option value="0"<?php echo $Crev_fl_0; ?>>実施しない</option>
+                      <option value="1"<?php echo $Crev_fl_1; ?>>実施する</option>
+                    </select></td>
+                  </tr>
+                  <tr>
+                    <td class="table_in_leftcell"><strong>ランクインさせる最低アクセス数</strong></td>
+                    <td class="table_in_rightcell"><input name="rev_min" type="text" class="form" value="<?php echo $cfg['rev_min']; ?>" size="3">                      
+                    アクセス</td>
+                  </tr>
+                  <tr>
+                    <td class="table_in_leftcell"><strong>ランキングの集計期間</strong></td>
+                    <td class="table_in_rightcell"><input name="rev_kikan" type="text" class="form" value="<?php echo $cfg['rev_kikan']; ?>" size="3">                      
+                    日ごとに集計</td>
+                  </tr>
+                  <tr>
+                    <td class="table_in_leftcell"><strong>ランキングの更新頻度(時間)</strong><br>
+                        <br>
+                      何時間ごとにランキングを更新するかを決めます。この時間内に同一IPから同一データに2回以上アクセスがあっても1アクセスとして集計します。<span class="attention_red">更新頻度は人気ランキングの設定と同じ設定になります。</span></td>
+                    <td class="table_in_rightcell">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td class="table_in_leftcell"><strong>ランキングデータの最大保持件数</strong><br>
+                        <br>
+                      ここで設定した保持件数を超えるものはデータベースに記録されません。</td>
+                    <td class="table_in_rightcell"><input name="rev_best" type="text" class="form" value="<?php echo $cfg['rev_best']; ?>" size="4">                      
+                    位まで保存する</td>
+                  </tr>
+                  <tr>
+                    <td class="table_in_leftcell"><strong>ランキング用URLの転送先</strong><br>
+                    <br>                      
+                    ランキング集計用URLがクリックされた場合に、訪問者を転送するページのURLを記入してください。通常はサーチエンジンのトップページを指定します。</td>
+                    <td class="table_in_rightcell"><input name="rev_url" type="text" class="form" value="<?php echo $cfg['rev_url']; ?>" size="50"></td>
+                  </tr>
+                  <tr>
+                    <td class="table_in_leftcell">&nbsp;</td>
+                    <td class="table_in_rightcell"><input name="submit2" type="submit" class="form" value="送信">
+                        <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                        <input name="mode" type="hidden" value="cfg_make"></td>
+                  </tr>
+              </table></td>
+            </tr>
+          </form>
+        </table>
+        <br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+                <tr>
+                  <td align="center" class="table_in_header"><?php
+// 著作権表示ルーチン
+cr();
+?>
+                  </td>
+                </tr>
+            </table></td>
+          </tr>
+        </table></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

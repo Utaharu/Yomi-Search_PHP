@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>マイリンク | <?php echo $cfg['search_name']; ?></title>
+<meta name="keywords" content="<?php echo $cfg['ver']; ?>,マイリンク表示" />
+<meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンのマイリンク表示" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="index,follow" name="robots" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="content-script-type" content="text/javascript">
+<link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
+<meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
+
+<link rel="stylesheet" href="./jquery.mobile-1.0a2/jquery.mobile-1.0a2.min.css" />
+<script src="./js/jquery-1.4.4.min.js"></script>
+<script src="./jquery.mobile-1.0a2/jquery.mobile-1.0a2.min.js"></script>
+
+<script type="text/javascript">
+function doScroll() { if (window.pageYOffset === 0) { window.scrollTo(0,1); } }
+window.onload = function() { setTimeout(doScroll, 100); }
+</script>
+</head>
+
+<body>
+<!-- Start page -->
+<div data-role="page">
+
+    <!-- header -->
+    <div data-role="header"  data-theme="b">
+        <h1>マイリンク表示</h1>
+        <a href="<?php echo SMARTPHONE_HOME;?>" rel="external"  data-icon="arrow-l" class="ui-btn-left" data-transition="slide">TOP</a>
+        <a href="search.php" data-icon="arrow-r"  rel="external" class="ui-btn-right" data-transition="slide">ｻｲﾄ検索</a>
+    </div>
+    <!-- /header -->
+
+   <div data-role="content">
+<!-- Menu Bar Output -->
+        <div style="text-align:center;"><?php printTopMenuLink( $text['menu_bar'] ); ?></div>
+<!-- Navigation Bar Output -->
+
+
+<a href="<?php echo SMARTPHONE_HOME; ?>" rel="external">ホーム</a>&nbsp;&gt;&nbsp;<strong><?php echo $title; ?></strong><br />
+<!-- /Navigation Bar Output -->
+<!-- ページ中段の検索フォーム -->
+<div style="text-align:center;">
+  <form action="<?php echo $cfg['search']; ?>" method="POST">
+    <input type="hidden" name="mode" value="search">
+    <input type="hidden" name="page" value="1">
+    <input type="hidden" name="sort" value="<?php echo $cfg['defo_hyouji']; ?>">
+    <input type="hidden" name="open_type" value="0">
+    <input type="hidden" name="hyouji" value="30">
+    検索：&nbsp;<input type="text" name="word" value="" size="20" class="form">
+    <select name="method" class="form">
+    <option value="and" selected>AND</option>
+    <option value="or">OR</option>
+    </select>
+    <input type="submit" value=" 検 索 " class="form">&nbsp;
+    </form>
+</div>
+
+
+<?php
+if(isset($log_lines)) {
+	?>
+<!-- データがある場合 -->
+<div align="left">
+<form action="<?php echo $cfg['script']; ?>" method="get">
+<input type="hidden" name="mode" value="<?php echo htmlspecialchars($_GET['mode']); ?>">
+<input type="hidden" name="page" value="1">
+[現在の表示：<b>
+<?php
+	if(!$_GET['sort']) {
+		switch($cfg['defo_hyouji']) {
+			case "time_new": echo "更新日の新しい順"; break;
+			case "id_new": echo "登録日の新しい順"; break;
+			case "ac_new": echo "アイウエオ順(昇順)"; break;
+			case "ac_old": echo "アイウエオ順(降順)"; break;
+			case "id_old": echo "登録日の古い順"; break;
+			case "time_old": echo "更新日の古い順"; break;
+			default: echo "マーク順";
+		}
+	} else {
+		switch($_GET['sort']) {
+			case "time_new": echo "更新日の新しい順"; break;
+			case "id_new": echo "登録日の新しい順"; break;
+			case "ac_new": echo "アイウエオ順(昇順)"; break;
+			case "ac_old": echo "アイウエオ順(降順)"; break;
+			case "id_old": echo "登録日の古い順"; break;
+			case "time_old": echo "更新日の古い順"; break;
+			default: echo "マーク順";
+		}
+	}
+	?>
+</b>]
+	<select name="sort"type="hidden" class="form">
+		<option value="" selected>---------------</option>
+		<option value="time_new">更新日の新しい順で</option>
+		<option value="id_new">登録日の新しい順で</option>
+		<option value="mark">マーク順で</option>
+		<option value="ac_new">アイウエオ順(昇順)で</option>
+		<option value="">---------------</option>
+		<option value="ac_old">アイウエオ順(降順)で</option>
+		<option value="id_old">登録日の古い順で</option>
+		<option value="time_old">更新日の古い順で</option>
+	</select>
+	<input type="submit" value="表示" class="form">
+</form>
+</div>
+<!-- 目次表示(上) -->
+<?php echo $mokuji; ?><br><br>
+<?php
+foreach($log_lines as $log_data) {
+        $jump_url = $log_data['url'];
+        if($cfg['rank_fl']) {
+                $jump_url = urlencode(unhtmlentities($log_data['url']));
+                $jump_url = "{$cfg['rank']}?mode=link&id={$log_data['id']}&url={$jump_url}";
+        } else {
+                $jump_url = unhtmlentities($log_data['url']);
+        }
+?>
+
+
+<div class="ui-bar ui-bar-b" >
+    <h3 onClick="window.open('<?php echo $jump_url; ?>','_blank');" style="cursor: pointer; width:100%; margin-left:5px; text-decoration:underline;">
+    <?php echo $log_data['title']; ?>
+    </h3>
+</div>
+<div class="ui-body ui-body-c">
+    <?php put_icon(); ?>
+    <?php if($log_data['message'] != '') echo $log_data['message'].'<br />'; ?>
+    <?php if($log_data['comment'] != '') echo $log_data['comment'].'<br />'; ?>
+    更新日：<?php echo $log_data['last_time']; ?><br />
+    <a href="regist.php?mode=enter&id=<?php echo $log_data['id']; ?>" rel="external">修正/削除</a>&nbsp;|&nbsp;<a href="regist.php?mode=no_link&id=<?php echo $log_data['id']; ?>&pre=on&title=<?php echo urlencode($log_data['title']); ?>">管理者通知</a>
+    <?php
+     if(@$cfg['mylink_fl']) {
+           echo '&nbsp;|&nbsp;<a href="'.$cfg['script'].'?mode=mylink&act=add&id='.$log_data['id'].'" rel="external">ﾏｲﾘﾝｸ追加</a>';
+     }
+    if(isset($log_data['banner']) && $log_data['banner'] != '') {
+        echo '<br><a href="'.$jump_url.'" target="_blank"><img src="'.$log_data['banner'].'" border="0" width="'.$cfg_reg['Mbana_w'].'" height="'.$cfg_reg['Mbana_h'].'" alt="'.$log_data['title'].'" title="'.$log_data['title'].'"></a>';
+    }
+    ?>
+    <br />
+    <?php
+     echo '</div>';
+	}
+}
+?>
+<!-- /ログ表示 -->
+
+
+<!-- 目次表示(下) -->
+<?php echo $mokuji; ?>
+<!--/データがある場合-->
+
+<!-- Footer Space Output -->
+<?php if(isset($text['foot_sp'])) { echo $text['foot_sp']; } ?>
+</div>
+<!-- /content -->
+
+<!-- /Footer Space Output -->
+<?php echo SMARTPHONE_FOOTER; ?>
+</body>
+</html>

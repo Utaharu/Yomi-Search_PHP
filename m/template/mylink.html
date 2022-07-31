@@ -1,0 +1,169 @@
+<?php echo '<?xml version="1.0" encoding="utf-8"?>'; ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<title>マイリンク | <?php echo $cfg['search_name']; ?></title>
+<meta name="keywords" content="マイリンク表示,検索エンジン,<?php echo $cfg['ver']; ?>" />
+<meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンのマイリンク表示です" />
+
+<style type="text/css">
+<![CDATA[
+a:link{color:<?php echo LINK_COLOR; ?>;}
+a:focus{color:<?php echo ALINK_COLOR; ?>;}
+a:visited{color:<?php echo VLINK_COLOR; ?>;}
+]]>
+</style>
+
+</head>
+<body><div style="font-size:x-small;">
+
+<a name="top"></a>
+
+<div style="background-color:<?php echo HR_COLOR; ?>;">
+<img src="./img/spacer.gif" width="1" height="1" /><br /></div>
+<div style="text-align:center; background-color:<?php echo ONE_BACK_COLOR; ?>; color:<?php echo ONE_STR_COLOR; ?>;" align="center">
+<?php echo $cfg['search_name']; ?></div>
+
+<div style="background-color:<?php echo HR_COLOR; ?>;">
+<img src="./img/spacer.gif" width="1" height="1" /><br />
+</div>
+<div style="text-align:center; background-color:<?php echo TWO_BACK_COLOR; ?>; color:<?php echo TWO_STR_COLOR; ?>;" align="center">
+    <div align="center">[<a href="index.php?mode=new">新着ｻｲﾄ</a>|<a href="index.php?mode=rank">ﾗﾝｷﾝｸﾞ</a>|ｻｲﾄ登録]</div>
+</div>
+<div style="background-color:<?php echo HR_COLOR; ?>;">
+    <img src="./img/spacer.gif" width="1" height="1" /><br />
+</div>
+
+<!-- /Menu Bar Output -->
+<!-- Navigation Bar Output -->
+<div style="text-align:center; background-color:<?php echo THREE_BACK_COLOR; ?>; <?php echo THREE_STR_COLOR; ?>" align="center">
+<a href="<?php echo $cfg['home']; ?>">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;ﾏｲﾘﾝｸ
+<!-- /Navigation Bar Output -->
+<!-- ここから設定 -->
+<div style="background-color:<?php echo HR_COLOR; ?>;">
+<img src="./img/spacer.gif" width="1" height="1" /><br />
+</div>
+</div>
+
+
+<!-- ﾍﾟｰｼﾞ中段の検索ﾌｫｰﾑ -->
+  <form action="<?php echo $cfg['search']; ?>" method="get">
+      <input type="hidden" name="mode" value="search">
+      <input type="hidden" name="page" value="1">
+      <input type="hidden" name="sort" value="<?php echo $cfg['defo_hyouji']; ?>">
+	  <input type="hidden" name="open_type" value="0">
+	  <input type="hidden" name="hyouji" value="30">
+      <img src="<?php echo $cfg['img_path_url']; ?>search.gif" alt="検索" align="absbottom" title="検索">&nbsp;<input type="text" name="word" value="" size="20" class="form"> <input type="submit" value=" 検 索 " class="form">&nbsp;
+      <select name="method" class="form">
+        <option value="and" selected>AND</option>
+        <option value="or">OR</option>
+      </select>
+  </form>
+<?php
+if(isset($log_lines)) {
+?>
+<!-- ﾃﾞｰﾀがある場合 -->
+<form action="<?php echo $cfg['script']; ?>" method="get">
+<input type="hidden" name="mode" value="<?php echo htmlspecialchars($_GET['mode']); ?>">
+<input type="hidden" name="page" value="1">
+[現在の表示：<b>
+<?php
+	if(!$_GET['sort']) {
+		switch($cfg['defo_hyouji']) {
+			case "time_new": echo "更新日の新しい順"; break;
+			case "id_new": echo "登録日の新しい順"; break;
+			case "ac_new": echo "ｱｲｳｴｵ順(昇順)"; break;
+			case "ac_old": echo "ｱｲｳｴｵ順(降順)"; break;
+			case "id_old": echo "登録日の古い順"; break;
+			case "time_old": echo "更新日の古い順"; break;
+			default: echo "ﾏｰｸ順";
+		}
+	} else {
+		switch($_GET['sort']) {
+			case "time_new": echo "更新日の新しい順"; break;
+			case "id_new": echo "登録日の新しい順"; break;
+			case "ac_new": echo "ｱｲｳｴｵ順(昇順)"; break;
+			case "ac_old": echo "ｱｲｳｴｵ順(降順)"; break;
+			case "id_old": echo "登録日の古い順"; break;
+			case "time_old": echo "更新日の古い順"; break;
+			default: echo "ﾏｰｸ順";
+		}
+	}
+	?>
+</b>]
+	<select name="sort"type="hidden" class="form">
+		<option value="" selected>---------------</option>
+		<option value="time_new">更新日の新しい順で</option>
+		<option value="id_new">登録日の新しい順で</option>
+		<option value="mark">ﾏｰｸ順で</option>
+		<option value="ac_new">ｱｲｳｴｵ順(昇順)で</option>
+		<option value="">---------------</option>
+		<option value="ac_old">ｱｲｳｴｵ順(降順)で</option>
+		<option value="id_old">登録日の古い順で</option>
+		<option value="time_old">更新日の古い順で</option>
+	</select>
+	<input type="submit" value="表示" class="form">
+</form>
+<!-- 目次表示(上) -->
+<?php echo $mokuji; ?><br><br>
+<?php
+	foreach($log_lines as $log_data) {
+		$jump_url = $log_data['url'];
+		if($cfg['rank_fl']) {
+			$jump_url = urlencode(unhtmlentities($log_data['url']));
+			$jump_url = "{$cfg['rank']}?mode=link&id={$log_data['id']}&url={$jump_url}";
+		} else {
+			$jump_url = unhtmlentities($log_data['url']);
+		}
+		?>
+<!-- ﾛｸﾞ表示 -->
+<a href="<?php echo $jump_url; ?>" target="_blank"><?php echo $log_data['title'];?></a>
+<!-- ｱｲｺﾝを付加 -->
+<?php
+		put_icon();
+		?>
+      <br><br><font size="-1">更新日：<?php echo $log_data['last_time']; ?> [<a href="regist_ys.php?mode=enter&id=<?php echo $log_data['id']; ?>">修正･削除</a>]
+ [<a href="regist_ys.php?mode=no_link&id=<?php echo $log_data['id']; ?>&pre=on&title=<?php echo urlencode($log_data['title']); ?>">管理者に通知</a>]
+ [<a href="<?php echo $cfg['script']; ?>?mode=mylink&act=del&id=<?php echo $log_data['id']; ?>">ﾏｲﾘﾝｸから削除</a>]
+</font>
+<?php
+		if($log_data['banner']) {
+			echo "<br><a href=\"{$jump_url}\" target=\"_blank\"><img src=\"{$log_data['banner']}\" border=\"0\" width=\"{$cfg_reg['Mbana_w']}\" height=\"{$cfg_reg['Mbana_h']}\" alt=\"{$log_data['title']}\" title=\"{$log_data['title']}\"></a>";
+		}
+		?>
+<?php
+echo $log_data['message']; ?>&nbsp;
+if($log_data['comment']) {
+?>
+      <font id="kanri"><?php echo $log_data['comment']; ?>&nbsp;</font>
+<?php
+	}
+?>
+<br>
+<!-- /ﾛｸﾞ表示 -->
+<?php
+}
+?>
+<!-- 目次表示(下) -->
+<?php echo $mokuji; ?>
+<!--/ﾃﾞｰﾀがある場合-->
+<?php
+}
+?>
+<hr align="center">
+<!-- Footer Space Output -->
+<?php if(isset($text['foot_sp'])) { echo $text['foot_sp']; } ?>
+<!-- /Footer Space Output -->
+
+<!-- Copy Right Output -->
+<div align="center">
+<?php mcr(); ?><br />
+</div>
+<!-- /Copy Right Output -->
+</div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<?php echo '<?xml version="1.0" encoding="utf-8"?>'; ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="Keywords" content="norobot">
+<meta name="Robots" content="noindex,nofollow">
+<meta name="googlebot" content="noarchive">
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<title>ﾊﾟｽﾜｰﾄﾞ認証画面/登録ﾃﾞｰﾀの修正･削除</title>
+<style type="text/css">
+<![CDATA[
+a:link{color:<?php echo LINK_COLOR; ?>;}
+a:focus{color:<?php echo ALINK_COLOR; ?>;}
+a:visited{color:<?php echo VLINK_COLOR; ?>;}
+]]>
+</style>
+</head>
+<body><div style="font-size:x-small;">
+
+<div style="background-color:<?php echo HR_COLOR; ?>;">
+<img src="./img/spacer.gif" width="1" height="1" /><br /></div>
+<div style="text-align:center; background-color:<?php echo ONE_BACK_COLOR; ?>; color:<?php echo ONE_STR_COLOR; ?>;" align="center">
+<?php echo $cfg['search_name']; ?></div>
+
+<div style="background-color:<?php echo HR_COLOR; ?>;">
+<img src="./img/spacer.gif" width="1" height="1" /><br />
+</div>
+<div style="text-align:center; background-color:<?php echo TWO_BACK_COLOR; ?>; color:<?php echo TWO_STR_COLOR; ?>;" align="center">
+    <div align="center">[<a href="index.php?mode=new">新着ｻｲﾄ</a>|<a href="index.php?mode=rank">ﾗﾝｷﾝｸﾞ</a>|ｻｲﾄ登録]</div>
+</div>
+<div style="background-color:<?php echo HR_COLOR; ?>;">
+    <img src="./img/spacer.gif" width="1" height="1" /><br />
+</div>
+
+<!-- /Menu Bar Output -->
+<!-- Navigation Bar Output -->
+<div style="text-align:center; background-color:<?php echo THREE_BACK_COLOR; ?>; <?php echo THREE_STR_COLOR; ?>" align="center">
+<a href="<?php echo $cfg['home']; ?>">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;修正･削除
+<!-- /Navigation Bar Output -->
+<!-- ここから設定 -->
+<div style="background-color:<?php echo HR_COLOR; ?>;">
+<img src="./img/spacer.gif" width="1" height="1" /><br />
+</div>
+</div>
+
+
+
+【ﾊﾟｽﾜｰﾄﾞ認証画面】
+<br>
+<form action="regist.php" method="post">
+<input type="hidden" name="mode" value="mente">
+1．登録ﾃﾞｰﾀの修正<br />
+変更する人：
+<select name="changer">
+	<option value=""<?php echo $select_0; ?>>登録者</option>
+	<option value="admin"<?php echo $select_1; ?>>管理人</option>
+</select><br>
+ID:<input type="text" name="id" value="<?php echo htmlspecialchars($_REQUEST['id']); ?>" size="12"><br>
+PASS:<input type="password" name="pass" value="<?php echo $pre_pass; ?>" size="12"><br>
+<input type="hidden" name="cookie" value="off"<?php echo $cookie_0; ?>><br>
+<input type="submit" value="認証">
+</form>
+
+<?php
+if(isset($print_data)) {
+	echo $print_data;
+}
+?>
+
+<div style="background-color:#0873C6; margin-bottom: 2px;">
+<img src="./img/spacer.gif" width="1" height="1" /><br />
+</div>
+
+
+<form action="regist.php" method="post">
+<input type="hidden" name="mode" value="act_del">
+<input type="hidden" name="del_mode" value="single">
+2．登録ﾃﾞｰﾀの削除<br>
+変更する人：
+<select name="changer">
+<option value=""<?php echo $select_0; ?>>登録者</option>
+<option value="admin"<?php echo $select_1; ?>>管理人</option>
+</select><br>
+ID:<input type="text" name="id" value="<?php echo $_REQUEST['id']; ?>" size="12"><br>
+PASS:<input type="password" name="pass" value="<?php echo $pre_pass; ?>" size="12"><br>
+削除確認ﾁｪｯｸ→<input type="checkbox" name="del_check" value="on"><br>
+<input type="submit" value="削除">
+</form>
+<?php
+if($cfg["re_pass_fl"]) {
+?>
+
+<div style="background-color:#0873C6; margin-bottom: 2px;">
+<img src="./img/spacer.gif" width="1" height="1" /><br />
+</div>
+
+<form action="regist.php" method="post">
+<input type="hidden" name="mode" value="act_repass">
+<input type="hidden" name="repass_mode" value="repass">
+<div align="left">3．ﾊﾟｽﾜｰﾄﾞの再発行</div>
+ID:<input type="text" name="id" value="<?php echo htmlspecialchars($_REQUEST['id']); ?>" size="12"><br>
+E-Mail:<input type="text" name="email" value="" size="20"><br>
+再発行確認ﾁｪｯｸ→<input type="checkbox" name="repass_check" value="on"><br>
+<input type="submit" value="再発行">
+</form>
+<?php
+    if(@$cfg['mail_pass']) {
+	echo "※新しいPASSは<br />登録時のﾒｱﾄﾞに送信!!";
+    }
+}
+?>
+<div style="background-color:#0873C6;">
+<img src="./img/spacer.gif" width="1" height="1" /><br />
+</div>
+
+<!-- Footer Space Output -->
+<?php if(isset($text['foot_sp'])) { echo $text['foot_sp']; } ?>
+<!-- /Footer Space Output -->
+
+<!-- Copy Right Output -->
+<div align="center"><?php mcr(); ?></div>
+<!-- /Copy Right Output -->
+
+</div>
+</body>
+</html>

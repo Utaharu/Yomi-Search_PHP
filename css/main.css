@@ -1,0 +1,159 @@
+body{
+	font-family : "ヒラギノ角ゴ Pro W3", "Hiragino Kaku GothicPro", "Osaka", "Helvetica", "Arial", "Verdana";
+	color:#333333;
+	background-color:#FFFFFF;
+	background-image:url();
+	font-size: 11px;
+	margin-top: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	padding-top: 5;
+	padding-right: 5;
+	padding-bottom: 5;
+	padding-left: 5;
+}
+a:link{ text-decoration:underline; color:#3366CC; }
+a:visited{ text-decoration:underline; color:#3366CC; }
+a:active{ text-decoration:underline; color:#3366CC; }
+a:hover{ text-decoration:none; color:#FF0000; }
+.form {
+	background-color: #FFFFFF;
+	font-size: 11px;
+	border: 1px solid #000000;
+	color: #333333;
+	font-family: "ＭＳ ゴシック", "Osaka－等幅";
+	padding: 1px;
+}
+img{ border:0; }
+#small{ font-size:10pt; }
+#kanri{ color:#ff9999; } /* 管理人コメントの色 */
+#log{ width:630; border-style:solid; border-color:#9999CC; }
+#log-0{ background-color:#FFCC66; } /* ランキング順位 */
+#log-1{ background-color:#CCCCFF; } /* タイトル */
+#log-2{ background-color:#FFCCFF; } /* カテゴリ */
+#log-3{ background-color:#FFFFFF; font-size: 83%; line-height: 140%; } /* 紹介文 */
+#log-4{ background-color:#FFFFFF; font-size: 83%; line-height: 140%; } /* 管理人コメント */
+#mid-bar{ background-color:#DDDDDD; } /* 中段バー */
+/* タイトルバー */
+.table_titlebar {
+	background-color:#A7C2DD;
+	color:#000000;
+	font-size:12pt;
+}
+/* 検索フォーム */
+.table_searchform {
+	background-color: #EEEEEE;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-top-color: #999999;
+	border-right-color: #999999;
+	border-bottom-color: #999999;
+	border-left-color: #999999;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	padding: 5px;
+	font-size: 12px;
+}
+.table_menu {
+	background-color: #EEEEEE;
+	padding: 5px;
+	line-height: 160%;
+	border: 1px dotted #999999;
+	font-size: 12px;
+}
+.table_topmenu {
+	background-color: #FFFFFF;
+	padding: 2px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	text-align: right;
+	font-size: 12px;
+}
+.table_top_category {
+	background-color: #FFFFFF;
+	padding: 5px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	font-size: 12px;
+	line-height: 160%;
+}
+.table_other_category {
+	background-color: #EEEEEE;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-top-color: #999999;
+	border-right-color: #999999;
+	border-bottom-color: #999999;
+	border-left-color: #999999;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	padding: 5px;
+	font-size: 11px;
+}
+.table_other_category2 {
+	background-color: #FFFFFF;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	padding: 5px;
+	font-size: 11px;
+}
+.table_sub_category {
+	background-color: #EEEEEE;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-top-color: #999999;
+	border-right-color: #999999;
+	border-bottom-color: #999999;
+	border-left-color: #999999;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	padding: 5px;
+	font-size: 11px;
+}
+.table_sub_category2 {
+	background-color: #FFFFFF;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	padding: 5px;
+	font-size: 11px;
+}
+.table_menu_bar {
+	background-color: #FFFFFF;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	padding: 0px;
+	font-size: 11px;
+	text-align: right;
+}
+.table_navigation_bar {
+	background-color: #FFFFFF;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	padding: 0px;
+	font-size: 11px;
+}

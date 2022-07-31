@@ -1,0 +1,284 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<title>管理室トップ</title>
+<link href="css/admin.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#2F5376" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td><a href="<?php echo $cfg['home']; ?>" target="_blank"><img src="<?php echo $cfg['img_path_url']; ?>admin/logo.gif" alt="ホームページ" width="206" height="80" border="0"></a></td>
+    <td align="right"><?php echo $text['menu_bar']; ?></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+  <form action="<?php echo $cfg['admin']; ?>" method="post" lang="ja">
+  <tr>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td class="title">管理室トップ</td>
+    <td align="right"><?php echo $admin_listbox; ?></td>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+  </form>
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td valign="top"><br>
+      <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+        <tr>
+          <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td colspan="2" class="table_in_header">新規登録(代理登録)</td>
+              </tr>
+              <form action="regist_ys.php" method="post">
+              <tr>
+                <td class="table_in_leftcell">                    管理人による新規登録を行います。環境設定の[管理人のみが登録できるモード]を有効にしている場合には、ここから新規登録作業を行ってください。</td>
+                <td width="20%" class="table_in_rightcell"><input name="submit22" type="submit" class="form" value="移動">
+                  <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                  <input name="changer" type="hidden" value="admin">
+                  <input name="mode" type="hidden" value="new_dairi"></td>
+              </tr>
+              </form>
+          </table></td>
+        </tr>
+      </table>
+      <br>
+      <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+      <tr>
+        <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+            <tr>
+              <td colspan="2" class="table_in_header">管理室メニュー</td>
+            </tr>
+			<form action="<?php echo $cfg['admin']; ?>" method="post">
+            <tr>
+              <td class="table_in_leftcell"><strong>登録待ち(
+                  <?php echo $count_temp; ?>
+                件)</strong><br>
+                <br>
+                登録者が登録申請中のデータを本登録するかどうかを決定します。( )内の数値は登録待ちデータの件数です。仮登録モードを有効にしている場合のみ有効です。</td>
+              <td width="20%" class="table_in_rightcell">
+			    <input name="submit" type="submit" class="form" value="移動">
+			    <input type="hidden" name="pass" value="<?php echo $_POST['pass']; ?>">
+			    <input type="hidden" name="mode" value="temp_to_regist"></td>
+            </tr>
+			</form>
+			<form action="<?php echo $cfg['admin']; ?>" method="post">
+			</form>
+			<form action="<?php echo $cfg['admin']; ?>" method="post">
+            <tr>
+              <td class="table_in_leftcell"><strong>環境設定</strong><br>
+                <br>
+                このサーチエンジンに関する環境設定を行います。</td>
+              <td class="table_in_rightcell">
+			    <input name="submit3" type="submit" class="form" value="移動">
+			    <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                <input type="hidden" name="mode" value="config"></td>
+            </tr>
+			</form>
+			<form action="<?php echo $cfg['admin']; ?>" method="post">
+            <tr>
+              <td class="table_in_leftcell"><strong>環境設定(登録処理関連)</strong><br>
+                <br>
+                登録処理に関する設定を行います。</td>
+              <td class="table_in_rightcell">
+			    <input name="submit3" type="submit" class="form" value="移動">
+			    <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                <input type="hidden" name="mode" value="cfg_reg"></td>
+            </tr>
+			</form>
+			<form action="<?php echo $cfg['admin']; ?>" method="post">
+            <tr>
+              <td class="table_in_leftcell"><strong>特殊カテゴリ(マーク項目)設定</strong><br>
+                <br>
+                管理者権限で付与できるマークの名称や説明文に関する設定を行います。</td>
+              <td class="table_in_rightcell">
+			    <input name="submit3" type="submit" class="form" value="移動">
+			    <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                <input type="hidden" name="mode" value="cfg_marks"></td>
+            </tr>
+			</form>
+			<form action="<?php echo $cfg['admin']; ?>" method="post">
+            <tr>
+              <td class="table_in_leftcell"><strong>HTMLの設定</strong><br>
+                <br>
+                メニューバー/外部検索エンジン/ヘッダ・フッタスペースに表示するHTMLを登録します。</td>
+              <td class="table_in_rightcell">
+			    <input name="submit3" type="submit" class="form" value="移動">
+			    <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                <input type="hidden" name="mode" value="cfg_html"></td>
+            </tr>
+			</form>
+			<form action="<?php echo $cfg['admin']; ?>" method="post">
+            <tr>
+              <td class="table_in_leftcell"><strong>カテゴリ設定</strong><br>
+                <br>
+                カテゴリの新規作成・変更・削除を行います。</td>
+              <td class="table_in_rightcell">
+			    <input name="submit4" type="submit" class="form" value="移動">
+			    <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                <input type="hidden" name="mode" value="config_kt"></td>
+            </tr>
+			</form>
+			<form action="<?php echo $cfg['admin']; ?>" method="post">
+            <tr>
+              <td class="table_in_leftcell"><strong> 登録者のメッセージを見る</strong><br>
+                <br>
+                環境設定で登録者のメッセージを保存する設定にした場合、このメニューから見ることができます。</td>
+              <td class="table_in_rightcell">
+			    <input type="submit" class="form" value="移動">
+                <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                <input name="mode" type="hidden" value="look_mes"></td>
+            </tr>
+			</form>
+			<form action="<?php echo $cfg['admin']; ?>" method="post">
+            <tr>
+              <td class="table_in_leftcell"><strong> ログデータの交換・移動・削除</strong><br>
+                <br>
+                指定したカテゴリのデータを一括して削除・移動・交換することができます。</td>
+              <td class="table_in_rightcell">
+			    <input type="submit" class="form" value="移動">
+                <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                <input name="mode" type="hidden" value="log_kt_change"></td>
+            </tr>
+			</form>
+			<form action="<?php echo $cfg['admin']; ?>" method="post">
+            <tr>
+              <td class="table_in_leftcell"><strong> ログ(登録データ)のバックアップ・復元</strong><br>
+                <br>
+                データベースに登録されているログデータをファイルに書き出すことができます。また、ファイルに書き出したデータを基にして復元を行います。復元はデータベース中のデータが破損したり、おかしくなってしまった場合に実行してください。<br>
+                ※復元を実行したら元のデータは二度と戻りません。復元を行う場合にはご注意ください。</td>
+              <td class="table_in_rightcell">
+			    <input type="submit" class="form" value="移動">
+                <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                <input type="hidden" name="mode" value="log_repair"></td>
+            </tr>
+			</form>
+			<form action="<?php echo $cfg['admin']; ?>" method="post">
+            <tr>
+              <td class="table_in_leftcell"><strong> 人気ランキング・アクセスランキングの設定</strong><br>
+                <br>
+                OUTランキングとINランキングに関する各種設定を行います。</td>
+              <td class="table_in_rightcell">
+			    <input type="submit" class="form" value="移動">
+                <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                <input name="mode" type="hidden" value="rank_cfg"></td>
+            </tr>
+			</form>
+			<form action="<?php echo $cfg['admin']; ?>" method="post">
+            <tr>
+              <td class="table_in_leftcell"><strong>キーワードランキングの設定</strong><br>
+                <br>
+                キーワードランキングでは、検索されたワードのうち管理人が設定したデータのみをランキングに反映させることが可能です。</td>
+              <td class="table_in_rightcell">
+			    <input type="submit" class="form" value="移動">
+                <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                <input type="hidden" name="mode" value="key_cfg"></td>
+            </tr>
+			</form>
+			<form action="<?php echo $cfg['admin']; ?>" method="post">
+            <tr>
+              <td class="table_in_leftcell"><strong> マイリンクの設定</strong><br>
+                <br>
+                マイリンクとは訪問者が検索エンジン内に自分専用のお気に入り(ブックマーク)を作成可能にする機能です。ここではマイリンク機能を有効にするかどうかの設定を行います。</td>
+              <td class="table_in_rightcell">
+			    <input type="submit" class="form" value="移動">
+                <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                <input type="hidden" name="mode" value="mylink_cfg"></td>
+            </tr>
+			</form>
+			<form action="<?php echo $cfg['admin']; ?>" method="post">
+            <tr>
+              <td class="table_in_leftcell"><strong> 各種ログ変換</strong><br>
+                <br>
+                本家Yomi-Search(Perl版)のログをデータベースに追加したり、既に登録されているカテゴリを[あいうえお順]にソート(並べ替え)することができます。</td>
+              <td class="table_in_rightcell">
+			    <input type="submit" class="form" value="移動">
+                <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                <input type="hidden" name="mode" value="log_conv"></td>
+            </tr>
+			</form>
+			<form action="<?php echo $cfg['admin']; ?>" method="post">
+            <tr>
+              <td class="table_in_leftcell"><strong> デッドリンクチェック</strong><br>
+                <br>
+                登録データのデッドリンク(リンク切れ)チェックを行います。訪問者からの登録データに関する通知もここで見ることができます。</td>
+              <td class="table_in_rightcell">
+			    <input type="submit" class="form" value="移動">
+                <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                <input type="hidden" name="mode" value="dl_check"></td>
+            </tr>
+			</form>
+			<form action="<?php echo $cfg['admin']; ?>" method="post">
+            <tr>
+              <td class="table_in_leftcell"><strong> 管理者パスワード変更</strong><br>
+                <br>
+                管理室ログイン用パスワードの変更を行います。</td>
+              <td class="table_in_rightcell">
+			    <input type="submit" class="form" value="移動">
+                <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                <input type="hidden" name="mode" value="cfg_admin_pass"></td>
+            </tr>
+			</form>
+			<form action="<?php echo $cfg['admin']; ?>" method="post">
+            <tr>
+              <td class="table_in_leftcell"><strong> バージョン情報</strong><br>
+                <br>
+                Yomi-Search(PHP)modifiedのバージョン/固有の追加機能などを表示します。</td>
+              <td class="table_in_rightcell">
+			    <input type="submit" class="form" value="移動">
+                <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                <input type="hidden" name="mode" value="ver_info"></td>
+            </tr>
+			</form>
+        </table></td>
+      </tr>
+    </table>
+      <br>
+      <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+        <tr>
+          <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td align="center" class="table_in_header">
+<?php
+// 著作権表示ルーチン
+cr();
+?>				</td>
+              </tr>
+          </table></td>
+        </tr>
+      </table>
+    </td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

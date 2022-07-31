@@ -1,0 +1,198 @@
+<?php $_GET = array_map("htmlspecialchars", $_GET); ?>
+<?php echo '<?xml version="1.0" encoding="utf-8"?>'; ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<title>詳細検索画面　| <?php echo $cfg['search_name']; ?></title>
+<meta name="keywords" content="<?php echo $cfg['ver']; ?>,検索エンジン,詳細検索画面" />
+<meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンの詳細検索画面です" />
+<style type="text/css">
+<![CDATA[
+a:link{color:<?php echo LINK_COLOR; ?>;}
+a:focus{color:<?php echo ALINK_COLOR; ?>;}
+a:visited{color:<?php echo VLINK_COLOR; ?>;}
+]]>
+</style>
+</head>
+<body><div style="font-size:x-small;">
+<!-- Menu Bar Output -->
+<?php echo $text['menu_bar']; ?>
+<!-- /Menu Bar Output -->
+
+<!-- Header Space Output -->
+<?php echo $text['head_sp']; ?>
+<!-- /Header Space Output -->
+<!-- Navigation Bar Output -->
+<a href="<?php echo $cfg['home']; ?>">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;詳細検索
+<!-- /Navigation Bar Output -->
+
+<form action="<?php echo $cfg['search']; ?>" method="get" target="<?php echo $_GET['window']; ?>">
+	<input type="hidden" name="mode" value="search">
+	<input type="hidden" name="open_type" value="0">
+	<input name="word" type="text" class="form" size="30">
+	<input type="submit" class="form" value=" 検 索 "> 
+	<input type="reset" class="form" value="ﾘｾｯﾄ">
+	<br>
+	<a href="#ex_method">検索条件</a>：
+	<select name="method" class="form">
+		<option value="and"<?php echo $ck_0_0; ?>>すべての語を含む</option>
+		<option value="or"<?php echo $ck_0_1; ?>>いずれかの語を含む</option>
+	</select>
+	<br>
+	<a href="#ex_str">検索式を使用</a>：<input name="use_str" type="checkbox" class="form" value="on"<?php echo $ck_1; ?>>
+	<br>
+	<a href="#ex_engine">検索ｴﾝｼﾞﾝ</a>：<select name="engine" class="form">
+<?php echo $text['search_form']; ?>
+	<?php echo $ck_2_3; ?>
+	    </select> <input name="www" type="checkbox" class="form" value=on<?php echo $ck_4; ?>>
+	    www.
+<br>
+	<a href="#ex_kt">ｶﾃｺﾞﾘ指定</a>：
+	<select name="search_kt" class="form">
+		<option value="" selected>指定しない</option>
+		<?php echo $ck_5_6; ?>
+<?php
+foreach($ganes as $key=>$val) {
+	?><option value="<?php echo $key; ?>"><?php echo full_category($key) . "\n";
+}
+?>
+	</select><br>　
+	<input name="search_kt_ex" type="radio" class="form" value=""<?php echo $ck_7_0; ?>>
+	指定ｶﾃｺﾞﾘのみ | <input name="search_kt_ex" type="radio" class="form" value="-b_all"<?php echo $ck_7_1; ?>>
+	指定ｶﾃｺﾞﾘ以下
+	<br>
+	<a href="#ex_day">日付指定</a>：
+	<select name="search_day" class="form">
+		<option value="" selected>指定しない</option>
+		<?php echo $ck_8_9; ?>
+		<option value="today">本日</option>
+		<option value="1-0">1日以内</option>
+		<option value="3-0">3日以内</option>
+		<option value="7-0">7日以内</option>
+		<option value="14-0">14日以内</option>
+		<option value="30-0">30日以内</option>
+	</select> | ｺﾏﾝﾄﾞ入力 <input name="search_day_ex" type="text" class="form" value="<?php echo $ck_10; ?>">
+	<br>
+	<a href="#ex_kt_search">ｶﾃｺﾞﾘ名検索</a>：<input name="kt_search" type="radio" class="form" value="on"<?php echo $ck_11_0; ?>>
+	する | <input name="kt_search" type="radio" class="form" value="off"<?php echo $ck_11_1; ?>>
+	しない
+	<br>
+<?php
+if(isset($ck_ck)) {
+	echo "<a href=\"#ex_set_option\">検索ｵﾌﾟｼｮﾝを保存</a>：<input type=\"checkbox\" name=\"set_option\" value=\"on\"{$ck_ck}>";
+} else {
+	echo "<a href=\"#ex_set_option\">検索ｵﾌﾟｼｮﾝを保存</a>：<input type=\"checkbox\" name=\"set_option\" value=\"on\">";
+}
+?>
+</form>
+<!-- Navigation Bar Output -->
+<a href="<?php echo $cfg['home']; ?>">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;一括検索
+<!-- /Navigation Bar Output -->
+<form action="<?php echo $cfg['search']; ?>" method="get" target="<?php echo $_GET['window']; ?>">
+	<input type="hidden" name="mode" value="meta">
+	<input name="word" type="text" class="form" size="30">
+	<input type="submit" class="form" value="一括検索"> 
+	<input type="reset" class="form" value="ﾘｾｯﾄ">
+	<br>
+	<font id="small">検索条件：</font>
+	<select name="method" class="form">
+		<option value="and">すべてのﾜｰﾄﾞを含む</option>
+		<option value="or">いずれかのﾜｰﾄﾞを含む</option>
+	</select><br>
+	<font id="small">表示件数：</font>
+	<select name="hyouji" class="form">
+		<option value="25">25件表示</option>
+		<option value="50">50件表示</option>
+		<option value="75">75件表示</option>
+		<option value="100">100件表示</option>
+	</select><br>
+	<font id="small">ﾍﾟｰｼﾞの開き方：</font>
+	<select name="target" class="form">
+		<option value="_blank">ﾘﾝｸ先を新しいﾍﾟｰｼﾞで開く</option>
+		<option value="">ﾘﾝｸ先を次のﾍﾟｰｼﾞにする</option>
+	</select>
+	<br>
+</form>
+<!-- Navigation Bar Output -->
+<a href="<?php echo $cfg['home']; ?>">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;ﾍﾙﾌﾟ
+<!-- /Navigation Bar Output -->
+<br>
+【詳細検索の説明】<br>
+<br>
+<a name="ex_method"><a href="#ex"><b>検索条件</b></a></a><br>
+ｷｰﾜｰﾄﾞを複数指定したい場合に有効です<br>
+ｷｰﾜｰﾄﾞはｽﾍﾟｰｽ(空白文字)で区切って複数指定することができます<br>
+[すべての語を含む]･･･指定したすべてのｷｰﾜｰﾄﾞを含むﾃﾞｰﾀのみ検索します<br>
+[いずれかの語を含む]･･･指定したｷｰﾜｰﾄﾞが一つでも入っているﾃﾞｰﾀを検索します
+<br><br>
+<a name="ex_str"><a href="#ex">検索式を使用</a></a><br>
+このﾁｪｯｸを入れるとｷｰﾜｰﾄﾞを検索式として検索することができます<br>
+[使用可能なｵﾌﾟｼｮﾝ]<br>
+and･･･このｵﾌﾟｼｮﾝに続くｷｰﾜｰﾄﾞを<b>含む</b>ﾃﾞｰﾀを検索します(AND条件)<br>
+or･･･このｵﾌﾟｼｮﾝに続くｷｰﾜｰﾄﾞを<b>含む</b>ﾃﾞｰﾀを検索します(OR条件)<br>
+not･･･このｵﾌﾟｼｮﾝに続くｷｰﾜｰﾄﾞを<b>含まない</b>ﾃﾞｰﾀを検索します<br><br>
+たとえば｢ﾎｰﾑ｣というｷｰﾜｰﾄﾞを含んで｢ﾎｰﾑﾍﾟｰｼﾞ｣というｷｰﾜｰﾄﾞが含まれないﾃﾞｰﾀを検索する場合は､<br>　
+ﾎｰﾑ not ﾎｰﾑﾍﾟｰｼﾞ</b><br>
+とｷｰﾜｰﾄﾞ欄に記入してください｡
+<br><br>
+<a name="ex_engine"><a href="#ex">検索ｴﾝｼﾞﾝ</a></a><br>
+使用する検索ｴﾝｼﾞﾝを指定します｡<br>
+<?php echo $cfg['search_name']; ?>以外の検索ｴﾝｼﾞﾝではその他の条件を指定できない場合があります
+<br><br>
+<a name="ex_kt"><a href="#ex">ｶﾃｺﾞﾘ指定</a></a><br>
+検索するｶﾃｺﾞﾘを限定することができます｡<br>
+指定しないを選択した場合にはすべてのｶﾃｺﾞﾘから検索します｡<br>
+[ｵﾌﾟｼｮﾝ]<br>
+指定ｶﾃｺﾞﾘのみ･･･選択したｶﾃｺﾞﾘのみを検索対象とします<br>
+指定ｶﾃｺﾞﾘ以下･･･選択したｶﾃｺﾞﾘとその下の階層にあるｶﾃｺﾞﾘを検索対象とします
+<br><br>
+<a name="ex_day"><a href="#ex">日付指定</a></a><br>
+ﾃﾞｰﾀの登録日/更新日を検索対象に指定することができます<br>
+[ｺﾏﾝﾄﾞの説明]<br>
+today-x･･･本日を基準に日付を指定するｺﾏﾝﾄﾞです<br>　
+(例1)本日登録/更新されたのﾃﾞｰﾀを検索する場合<br>　
+today　とｺﾏﾝﾄﾞ欄に入力する｡<br>　
+(例2)10日前に登録/更新されたﾃﾞｰﾀを検索する場合<br>　
+today-10　とｺﾏﾝﾄﾞ欄に入力する｡<br>
+year/month/day･･･西暦で日付を指定するｺﾏﾝﾄﾞです<br>　
+(例1)2000年5月15日に登録/更新されたﾃﾞｰﾀを検索する場合<br>　
+2000/05/15　とｺﾏﾝﾄﾞ欄に入力する｡<br>　
+(例2)1999年10月25日に登録/更新されたﾃﾞｰﾀを検索する場合<br>　
+1999/10/25　とｺﾏﾝﾄﾞ欄に入力する｡<br>
+[start_day]-[end_day] ･･･本日を基準に指定した期間中のﾃﾞｰﾀを検索するｺﾏﾝﾄﾞです<br>　
+(例1)30日前～本日までの間に登録/更新されたﾃﾞｰﾀを検索する場合<br>　
+30-0　とｺﾏﾝﾄﾞ欄に入力する｡<br>　
+(例2)100日前～50日前までに登録/更新されたﾃﾞｰﾀを検索する場合<br>　
+100-50　とｺﾏﾝﾄﾞ欄に入力する｡
+<br><br>
+<a name="ex_kt_search"><a href="#ex"><b>ｶﾃｺﾞﾘ名検索</b></a></a><br>
+ｷｰﾜｰﾄﾞでｶﾃｺﾞﾘを検索することができます<br>
+｢しない｣にﾁｪｯｸするとｶﾃｺﾞﾘを検索しません<br>
+<br>
+<a name="ex_open_type"><a href="#ex"><b>検索結果画面の開き方</b></a></a><br>
+検索結果画面の開き方を選択することができます<br>
+ﾌﾞﾗｳｻﾞの設定でJavaScriptを使用しない設定にしている場合には動作しません<br>
+検索ｵﾌﾟｼｮﾝとしては保存されません<br>
+<br>
+<a name="ex_set_option"><a href="#ex"><b>検索ｵﾌﾟｼｮﾝを保存</b></a></a><br>
+この項目にﾁｪｯｸを入れると詳細画面での検索時に前回検索時に使用したｵﾌﾟｼｮﾝをあらかじめ選択された状態にすることができます<br>
+<br><br><a href="#top">▲ﾍﾟｰｼﾞ先頭に戻る</a>
+<hr align="center">
+
+<!-- Footer Space Output -->
+<?php if(isset($text['foot_sp'])) { echo $text['foot_sp']; } ?>
+<!-- /Footer Space Output -->
+
+<!-- Copy Right Output -->
+<div align="center">
+<?php mcr(); ?><br />
+</div>
+<!-- /Copy Right Output -->
+
+</div>
+</body>
+</html>

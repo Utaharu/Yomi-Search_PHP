@@ -1,0 +1,273 @@
+<?php
+// リストメニューの設定
+// 特殊01をトップページに(表示する=1/表示しない=0)
+if($cfg["m1_fl"]) {
+	$Cm1_fl_0 = "";
+	$Cm1_fl_1 = " selected";
+} else {
+	$Cm1_fl_0 = " selected";
+	$Cm1_fl_1 = "";
+}
+// 特殊02をトップページに(表示する=1/表示しない=0)
+if($cfg["m2_fl"]) {
+	$Cm2_fl_0 = "";
+	$Cm2_fl_1 = " selected";
+} else {
+	$Cm2_fl_0 = " selected";
+	$Cm2_fl_1 = "";
+}
+// 特殊03をトップページに(表示する=1/表示しない=0)
+if($cfg["m3_fl"]) {
+	$Cm3_fl_0 = "";
+	$Cm3_fl_1 = " selected";
+} else {
+	$Cm3_fl_0 = " selected";
+	$Cm3_fl_1 = "";
+}
+// 特殊01をトップページに(表示する=1/表示しない=0)
+if($cfg["m4_fl"]) {
+	$Cm4_fl_0 = "";
+	$Cm4_fl_1 = " selected";
+} else {
+	$Cm4_fl_0 = " selected";
+	$Cm4_fl_1 = "";
+}
+// 特殊05をトップページに(表示する=1/表示しない=0)
+if($cfg["m5_fl"]) {
+	$Cm5_fl_0 = "";
+	$Cm5_fl_1 = " selected";
+} else {
+	$Cm5_fl_0 = " selected";
+	$Cm5_fl_1 = "";
+}
+// 特殊06をトップページに(表示する=1/表示しない=0)
+if($cfg["m6_fl"]) {
+	$Cm6_fl_0 = "";
+	$Cm6_fl_1 = " selected";
+} else {
+	$Cm6_fl_0 = " selected";
+	$Cm6_fl_1 = "";
+}
+// 特殊07をトップページに(表示する=1/表示しない=0)
+if($cfg["m7_fl"]) {
+	$Cm7_fl_0 = "";
+	$Cm7_fl_1 = " selected";
+} else {
+	$Cm7_fl_0 = " selected";
+	$Cm7_fl_1 = "";
+}
+// 特殊08をトップページに(表示する=1/表示しない=0)
+if($cfg["m8_fl"]) {
+	$Cm8_fl_0 = "";
+	$Cm8_fl_1 = " selected";
+} else {
+	$Cm8_fl_0 = " selected";
+	$Cm8_fl_1 = "";
+}
+// 特殊09をトップページに(表示する=1/表示しない=0)
+if($cfg["m9_fl"]) {
+	$Cm9_fl_0 = "";
+	$Cm9_fl_1 = " selected";
+} else {
+	$Cm9_fl_0 = " selected";
+	$Cm9_fl_1 = "";
+}
+// 特殊10をトップページに(表示する=1/表示しない=0)
+if($cfg["m10_fl"]) {
+	$Cm10_fl_0 = "";
+	$Cm10_fl_1 = " selected";
+} else {
+	$Cm10_fl_0 = " selected";
+	$Cm10_fl_1 = "";
+}
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<title>管理室 &gt;&gt; 特殊カテゴリ(マーク項目)設定</title>
+<link href="css/admin.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#2F5376" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td><a href="<?php echo $cfg['home']; ?>" target="_blank"><img src="<?php echo $cfg['img_path_url']; ?>admin/logo.gif" alt="ホームページ" width="206" height="80" border="0"></a></td>
+    <td align="right"><?php echo $text['menu_bar']; ?></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+  <form action="<?php echo $cfg['admin']; ?>" method="post" lang="ja">
+  <tr>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td class="title">管理トップ &gt;&gt; 特殊カテゴリ(マーク項目)設定</td>
+    <td align="right"><?php echo $admin_listbox; ?></td>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+  </form>
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td valign="top"><br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+		  <form name="form1" method="post" action="<?php echo $cfg['admin']; ?>">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td colspan="4" class="table_in_header">特殊カテゴリ(マーク項目)設定</td>
+                </tr>
+              <!-- メニューバーの設定 -->
+              <!-- メニューバーの設定 -->
+              <tr>
+                <td width="80" class="table_in_leftcell">&nbsp;</td>
+                <td class="table_in_rightcell"><strong>名称</strong></td>
+                <td class="table_in_rightcell"><strong>説明</strong></td>
+                <td class="table_in_rightcell"><strong>トップページへの表示</strong></td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>特殊01：</strong></td>
+                <td class="table_in_rightcell"><input name="name_m1" type="text" class="form" value="<?php echo $cfg['name_m1']; ?>" size="25"></td>
+                <td class="table_in_rightcell"><input name="m1_ys" type="text" class="form" value="<?php echo $cfg['m1_ys']; ?>" size="60"></td>
+                <td class="table_in_rightcell"><select name="m1_fl" class="form">
+                  <option value="1"<?php echo $Cm1_fl_1; ?>>表示する</option>
+                  <option value="0"<?php echo $Cm1_fl_0; ?>>表示しない</option>
+                </select>
+                </td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>特殊02：</strong></td>
+                <td class="table_in_rightcell"><input name="name_m2" type="text" class="form" value="<?php echo $cfg['name_m2']; ?>" size="25"></td>
+                <td class="table_in_rightcell"><input name="m2_ys" type="text" class="form" value="<?php echo $cfg['m2_ys']; ?>" size="60"></td>
+                <td class="table_in_rightcell"><select name="m2_fl" class="form">
+                  <option value="1"<?php echo $Cm2_fl_1; ?>>表示する</option>
+                  <option value="0"<?php echo $Cm2_fl_0; ?>>表示しない</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>特殊03：</strong></td>
+                <td class="table_in_rightcell"><input name="name_m3" type="text" class="form" value="<?php echo $cfg['name_m3']; ?>" size="25"></td>
+                <td class="table_in_rightcell"><input name="m3_ys" type="text" class="form" value="<?php echo $cfg['m3_ys']; ?>" size="60"></td>
+                <td class="table_in_rightcell"><select name="m3_fl" class="form">
+                  <option value="1"<?php echo $Cm3_fl_1; ?>>表示する</option>
+                  <option value="0"<?php echo $Cm3_fl_0; ?>>表示しない</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>特殊04：</strong></td>
+                <td class="table_in_rightcell"><input name="name_m4" type="text" class="form" value="<?php echo $cfg['name_m4']; ?>" size="25"></td>
+                <td class="table_in_rightcell"><input name="m4_ys" type="text" class="form" value="<?php echo $cfg['m4_ys']; ?>" size="60"></td>
+                <td class="table_in_rightcell"><select name="m4_fl" class="form">
+                  <option value="1"<?php echo $Cm4_fl_1; ?>>表示する</option>
+                  <option value="0"<?php echo $Cm4_fl_0; ?>>表示しない</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>特殊05：</strong></td>
+                <td class="table_in_rightcell"><input name="name_m5" type="text" class="form" value="<?php echo $cfg['name_m5']; ?>" size="25"></td>
+                <td class="table_in_rightcell"><input name="m5_ys" type="text" class="form" value="<?php echo $cfg['m5_ys']; ?>" size="60"></td>
+                <td class="table_in_rightcell"><select name="m5_fl" class="form">
+                  <option value="1"<?php echo $Cm5_fl_1; ?>>表示する</option>
+                  <option value="0"<?php echo $Cm5_fl_0; ?>>表示しない</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>特殊06：</strong></td>
+                <td class="table_in_rightcell"><input name="name_m6" type="text" class="form" value="<?php echo $cfg['name_m6']; ?>" size="25"></td>
+                <td class="table_in_rightcell"><input name="m6_ys" type="text" class="form" value="<?php echo $cfg['m6_ys']; ?>" size="60"></td>
+                <td class="table_in_rightcell"><select name="m6_fl" class="form">
+                  <option value="1"<?php echo $Cm6_fl_1; ?>>表示する</option>
+                  <option value="0"<?php echo $Cm6_fl_0; ?>>表示しない</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>特殊07：</strong></td>
+                <td class="table_in_rightcell"><input name="name_m7" type="text" class="form" value="<?php echo $cfg['name_m7']; ?>" size="25"></td>
+                <td class="table_in_rightcell"><input name="m7_ys" type="text" class="form" value="<?php echo $cfg['m7_ys']; ?>" size="60"></td>
+                <td class="table_in_rightcell"><select name="m7_fl" class="form">
+                  <option value="1"<?php echo $Cm7_fl_1; ?>>表示する</option>
+                  <option value="0"<?php echo $Cm7_fl_0; ?>>表示しない</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>特殊07：</strong></td>
+                <td class="table_in_rightcell"><input name="name_m8" type="text" class="form" value="<?php echo $cfg['name_m8']; ?>" size="25"></td>
+                <td class="table_in_rightcell"><input name="m8_ys" type="text" class="form" value="<?php echo $cfg['m8_ys']; ?>" size="60"></td>
+                <td class="table_in_rightcell"><select name="m8_fl" class="form">
+                  <option value="1"<?php echo $Cm8_fl_1; ?>>表示する</option>
+                  <option value="0"<?php echo $Cm8_fl_0; ?>>表示しない</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>特殊09：</strong></td>
+                <td class="table_in_rightcell"><input name="name_m9" type="text" class="form" value="<?php echo $cfg['name_m9']; ?>" size="25"></td>
+                <td class="table_in_rightcell"><input name="m9_ys" type="text" class="form" value="<?php echo $cfg['m9_ys']; ?>" size="60"></td>
+                <td class="table_in_rightcell"><select name="m9_fl" class="form">
+                  <option value="1"<?php echo $Cm9_fl_1; ?>>表示する</option>
+                  <option value="0"<?php echo $Cm9_fl_0; ?>>表示しない</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td align="right" class="table_in_leftcell"><strong>特殊10：</strong></td>
+                <td class="table_in_rightcell"><input name="name_m10" type="text" class="form" value="<?php echo $cfg['name_m10']; ?>" size="25"></td>
+                <td class="table_in_rightcell"><input name="m10_ys" type="text" class="form" value="<?php echo $cfg['m10_ys']; ?>" size="60"></td>
+                <td class="table_in_rightcell"><select name="m10_fl" class="form">
+                  <option value="1"<?php echo $Cm10_fl_1; ?>>表示する</option>
+                  <option value="0"<?php echo $Cm10_fl_0; ?>>表示しない</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">&nbsp;</td>
+                <td colspan="3" align="center" class="table_in_rightcell"><input type="submit" class="form" value="送信">
+                  <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                  <input name="mode" type="hidden" id="mode" value="cfg_make"></td>
+              </tr>
+            </table></td>
+          </tr>
+		  </form>
+        </table>
+        <br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+                <tr>
+                  <td align="center" class="table_in_header"><?php
+// 著作権表示ルーチン
+cr();
+?>
+                  </td>
+                </tr>
+            </table></td>
+          </tr>
+        </table></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

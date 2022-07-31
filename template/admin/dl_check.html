@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<title>管理室 &gt;&gt; デッドリンクチェック</title>
+<link href="css/admin.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#2F5376" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td><a href="<?php echo $cfg['home']; ?>" target="_blank"><img src="<?php echo $cfg['img_path_url']; ?>admin/logo.gif" alt="ホームページ" width="206" height="80" border="0"></a><a href="<?php echo $cfg['home']; ?>"></a></td>
+    <td align="right"><?php echo $text['menu_bar']; ?></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+  <form action="<?php echo $cfg['admin']; ?>" method="post" lang="ja">
+  <tr>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td class="title">管理トップ &gt;&gt; デッドリンクチェック</td>
+    <td align="right"><?php echo $admin_listbox; ?></td>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+  </form>
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td valign="top"><br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+          <form name="form1" method="post" action="<?php echo $cfg['admin']; ?>">
+            <tr>
+              <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+                  <tr>
+                    <td colspan="2" class="table_in_header"><a name="settei"></a>リンク切れ報告の設定</td>
+                  </tr>
+                  <tr>
+                    <td class="table_in_leftcell"><strong>報告する最定数</strong></td>
+                    <td class="table_in_rightcell"><input name="no_link_min" type="text" class="form" value="<?php echo $cfg['no_link_min']; ?>" size="4">                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table_in_leftcell"><strong>通知を拒否するIPアドレス</strong><br>
+                      <br>
+                    複数指定する場合には半角カンマ( , )で区切ってください。ここで設定した文字列を含むIPアドレスからリンク切れの報告があっても報告リストには書き込まれなくなります。</td>
+                    <td class="table_in_rightcell"><input name="no_link_ip" type="text" class="form" value="<?php echo $cfg['no_link_ip']; ?>" size="60">                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="table_in_leftcell">&nbsp;</td>
+                    <td class="table_in_rightcell"><input name="submit" type="submit" class="form" value="送信">
+                        <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                        <input name="mode" type="hidden" value="cfg_make"></td>
+                  </tr>
+              </table></td>
+            </tr>
+          </form>
+        </table>
+        <br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+          <form name="form1" method="post" action="<?php echo $cfg['admin']; ?>">
+            <tr>
+              <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+                  <tr>
+                    <td colspan="2" class="table_in_header">チェック用ファイルのダウンロード(<span class="attention_red">Windows</span>専用)</td>
+                  </tr>
+                  <tr>
+                    <td class="table_in_leftcell">デッドリンクチェック用ファイルをダウンロードします。この機能を使用する場合にはWindows用フリーソフト[<a href="http://www.nakka.com/" target="_blank">WWWC</a>]が必要です。</td>
+                    <td class="table_in_rightcell"><input name="submit" type="submit" class="form" value="ダウンロード実行">
+                      <input name="pass" type="hidden" id="pass" value="<?php echo $_POST['pass']; ?>">
+                      <ul>
+                        <input name="mode" type="hidden" id="mode" value="dl_check_dl">
+                    </ul></td>
+                  </tr>
+
+                  <tr>
+                    <td class="table_in_leftcell">&nbsp;</td>
+                    <td class="table_in_rightcell">&nbsp;</td>
+                  </tr>
+              </table></td>
+            </tr>
+          </form>
+    </table>
+        <br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+          <form name="form1" method="post" action="<?php echo $cfg['admin']; ?>">
+            <tr>
+              <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+                  <tr>
+                    <td colspan="2" class="table_in_header">デッドリンクチェック実行</td>
+                  </tr>
+                  <tr>
+                    <td class="table_in_leftcell"><strong>WWWCで生成したファイル名<br>
+                      <br>
+            </strong>[<a href="http://www.nakka.com/" target="_blank">WWWC</a>]で生成したファイルを元にデッドリンクチェックを実行します。結果は上書き保存されます。</td>
+                    <td class="table_in_rightcell"><input name="checkfile" type="text" class="form" value="log/Item.dat">                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table_in_leftcell">&nbsp;</td>
+                    <td class="table_in_rightcell"><input name="submit23" type="submit" class="form" value="送信">
+                        <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                        <input name="mode" type="hidden" id="mode" value="dl_check_act"></td>
+                  </tr>
+              </table></td>
+            </tr>
+          </form>
+        </table>
+      <br>
+      <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+      <form name="form1" method="post" action="regist_ys.php">
+        <tr>
+          <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td colspan="9" class="table_in_header">ユーザ報告のリンク切れデータ</td>
+              </tr>
+              <tr>
+                <td colspan="9" class="table_in_leftcell">ユーザ(訪問者)の方が報告してくださったリンク切れと思われるサイトのリストです。データを削除する場合には、処理区分で[削除]を選択してください。また、データが存在している場合で、このリストから消去したい場合には[存在]を選択してください。この場合、登録データは削除されません<br>
+                  <br>                  
+                  とりあえずこのリストに残しておきたい場合には[保留]を選択してください。コメント欄にはリンク切れを報告してくださった方のIPアドレスが入っています。万が一いたずらなどで困っている場合には、リンク切れ報告の設定(このページの最上段)から該当するIPを拒否する設定にしてください。<br>
+                  <br>                  
+                  移転=ホームページ移転/リンク=リンク切れ/バナー=バナーリンク切れ/違反=規約違反/他=その他/ の略です。数字は報告数です。</td>
+              </tr>
+              <tr>
+                <td align="center" class="table_in_leftcell"><strong>サイト名</strong></td>
+                <td align="center" class="table_in_leftcell"><strong>バナー画像</strong></td>
+                <td align="center" class="table_in_leftcell"><strong>処理区分</strong></td>
+                <td align="center" class="table_in_leftcell"><strong>移転</strong></td>
+                <td align="center" class="table_in_leftcell"><strong>リンク</strong></td>
+                <td align="center" class="table_in_leftcell"><strong>バナー</strong></td>
+                <td align="center" class="table_in_leftcell"><strong>違反</strong></td>
+                <td align="center" class="table_in_leftcell"><strong>他</strong></td>
+                <td align="center" class="table_in_leftcell"><strong>コメント等</strong></td>
+              </tr>
+<?php
+if($report) {
+	foreach($report as $row) {
+		if($cfg["no_link_min"] <= $row["total"]) {
+			?>
+              <tr>
+                <td align="center" class="table_in_rightcell"><a href="<?php echo $row['url']; ?>" target="_blank"><?php echo $row['title']; ?></a></td>
+                <td align="center" class="table_in_rightcell">
+<?php
+			if(!empty($row["banner"])) {
+				echo "<img src=\"{$row['banner']}\" border=\"0\">";
+			} else {
+				echo "バナー未登録";
+			}
+?>
+				</td>
+                <td align="center" class="table_in_rightcell"><select name="id[<?php echo $row['id']; ?>]" class="form">
+                  <option value="" selected>保留</option>
+                  <option value="off">存在</option>
+                  <option value="on">削除</option>
+                </select>                </td>
+                <td align="center" class="table_in_rightcell"><?php echo $row['count'][0]; ?></td>
+                <td align="center" class="table_in_rightcell"><?php echo $row['count'][1]; ?></td>
+                <td align="center" class="table_in_rightcell"><?php echo $row['count'][2]; ?></td>
+                <td align="center" class="table_in_rightcell"><?php echo $row['count'][3]; ?></td>
+                <td align="center" class="table_in_rightcell"><?php echo $row['count'][4]; ?></td>
+                <td align="center" class="table_in_rightcell"><textarea name="textarea" cols="40" rows="3" class="form"><?php echo $row['comment']; ?></textarea></td>
+              </tr>
+<?php
+		}
+	}
+}
+?>
+              <tr>
+                <td colspan="9" align="center" class="table_in_leftcell"><input name="submit" type="submit" class="form" value="変更反映">
+                  &nbsp;
+                  <input name="submit" type="reset" class="form" value="リセット">
+                  <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                  <input type="hidden" name="no_link" value="on">
+                  <input name="mode" type="hidden" value="act_del">
+                  <input type="hidden" name="del_mode" value="multi">
+                  <input type="hidden" name="changer" value="admin"></td>
+              </tr>
+          </table></td>
+        </tr>
+      </form>
+    </table>
+      <br>
+      <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+        <tr>
+          <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td align="center" class="table_in_header"><?php
+// 著作権表示ルーチン
+cr();
+?>
+                </td>
+              </tr>
+          </table></td>
+        </tr>
+      </table></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

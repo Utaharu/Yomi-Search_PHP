@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<title>新規ホームページ登録(管理者用)</title>
+<link media="screen" rel="stylesheet" href="css/main.css" type="text/css">
+</head>
+<body>
+<a name="top"></a>
+<form action="<?php echo htmlspecialchars($cfg['admin']); ?>" method="post">
+<!-- Menu Bar Output -->
+<table width="100%" class="table_menu_bar">
+  <tr>
+    <td><?php echo $text['menu_bar']; ?></td>
+  </tr>
+</table>
+<!-- /Menu Bar Output -->
+<a href="<?php echo $cfg['home']; ?>">ホーム</a> > <table width="100%">
+  <tr>
+    <td id="title-bar">
+      <b>新規ホームページ登録(管理者用)</b>
+    </td>
+  </tr>
+</table>
+<!-- /Navigation Bar Output -->
+<input type="hidden" name="pass" value="<?php echo htmlspecialchars($_POST['pass']); ?>">
+<input type="hidden" name="mode" value="kanri">
+<input type="submit" value="管理室に戻る">
+<br>
+</form>
+<form action="regist_ys.php" method="post">
+<input type="hidden" name="mode" value="act_regist">
+<input type="hidden" name="changer" value="<?php echo htmlspecialchars($_POST['changer']); ?>">
+<input type="hidden" name="pass" value="<?php echo htmlspecialchars($_POST['pass']); ?>">
+<ol>
+	▼項目名の横に<font color="#FF0000">☆</font>が付いている項目は記入必須項目です<br><br>
+<!--お名前-->
+	<li>【お名前】<font color="#FF0000"><?php echo htmlspecialchars($cfg_reg['Fname']); ?></font><br>
+		<ul>※ハンドルネームも可です<br>
+		※全角<b><?php echo $cfg_reg['Mname']; ?></b>文字以内<br>
+		<input type="text" name="Fname" value="<?php echo htmlspecialchars($_POST['Fname']); ?>" size="25"></ul><br>
+<!--メールアドレス-->
+	<li>【メールアドレス】<font color="#FF0000"><?php echo htmlspecialchars($cfg_reg['Femail']); ?></font><br>
+		<ul>※半角英数字<b><?php echo $cfg_reg['Memail']; ?></b>文字以内<br>
+		<input type="text" name="Femail" value="<?php echo htmlspecialchars($_POST['Femail']); ?>" size="25"></ul><br>
+<!--メール送信-->
+	<li>【メール送信】<font color="#FF0000">☆</font>
+		<ul>※元々しない設定になっている場合には「する」を選択しても送信されません<br>
+			<select name="FCmail">
+				<option value="no" selected>しない
+				<option value="">する
+			</select>
+		</ul><br>
+<!--パスワード-->
+	<li>【パスワード】<font color="#FF0000">☆</font>
+		<ul>※このパスワードで今後、登録内容の修正ができます<br>
+		※半角英数字<b>8</b>文字以内<br>
+		<input type="password" name="Fpass" value="<?php echo htmlspecialchars($_POST['Fpass']); ?>" size="10"><br>
+		<input type="password" name="Fpass2" value="<?php echo htmlspecialchars($_POST['Fpass2']); ?>" size="10">(もう一度確認のため入力してください)
+		</ul><br>
+<!--マーク-->
+<?php
+PR_mark();
+?>
+<!--ホームページアドレス-->
+	<li>【ホームページアドレス】<font color="#FF0000"><?php echo htmlspecialchars($cfg_reg['Furl']); ?></font><br>
+		<ul>※半角英数字<b><?php echo $cfg_reg['Murl']; ?></b>文字以内<br>
+		<input type="text" name="Furl" value="<?php echo htmlspecialchars($_POST['Furl']); ?>" size="70"></ul><br>
+<?php
+if(@$cfg_reg['bana_url']) {
+?>
+<!--タイトルバナーのURL-->
+	<li>【タイトルバナーのURL】<font color="#FF0000"><?php echo htmlspecialchars($cfg_reg['Fbana_url']); ?></font>
+		<ul>※バナー(画像)のURLの最後が「.gif」「.jpg」「.png」のいずれかで終わるようにしてください。
+		<br>※表示されるサイズは 横<b><?php echo $cfg_reg['Mbana_w']; ?></b>×縦<b><?php echo $cfg_reg['Mbana_h']; ?></b>(ピクセル)</b> です。 
+		<br>※半角英数字<b><?php echo $cfg_reg['Mbana_url']; ?></b>文字以内
+		<br><input type="text" name="Fbana_url" value="<?php echo htmlspecialchars($_POST['Fbana_url']); ?>" size="60">
+		</ul><br>
+<?php
+}
+?>
+<!--ホームページのタイトル-->
+	<li>【ホームページのタイトル】<font color="#FF0000"><?php echo htmlspecialchars($cfg_reg['Ftitle']); ?></font>
+		<ul>※全角<b><?php echo $cfg_reg['Mtitle']; ?></b>文字以内<br>
+		<input type="text" name="Ftitle" value="<?php echo htmlspecialchars($_POST['Ftitle']); ?>" size="25"></ul><br>
+<!--ホームページの紹介文-->
+	<li>【ホームページの紹介文】<font color="#FF0000"><?php echo htmlspecialchars($cfg_reg['Fsyoukai']); ?></font>
+		<ul>※HTMLタグは使えません<br>
+		※全角<b><?php echo $cfg_reg['Msyoukai']; ?></b>文字以内<br>
+		<textarea wrap="soft" name="Fsyoukai" cols="50" rows="3"><?php echo htmlspecialchars($_POST['Fsyoukai']); ?></textarea></ul><br>
+<!--管理人のコメント-->
+	<li>【管理人のコメント】
+		<ul>※HTMLタグは使えません<br>
+		※全角<b>100</b>文字以内<br>
+		<textarea wrap="soft" name="Fkanricom" cols="50" rows="3"><?php echo htmlspecialchars($_POST['Fkanricom']); ?></textarea></ul><br>
+<!--登録するカテゴリ-->
+	<li>【登録するカテゴリ】<font color="#FF0000">☆</font>
+<?php
+print_category();
+?>
+<!--キーワード-->
+	<li>【キーワード】<font color="#FF0000"><?php echo htmlspecialchars($cfg_reg['Fkey']); ?></font>
+		<ul>※あなたのホームページに関係が深いキーワードを入力してください<br>
+		※複数ある場合にはキーワードを半角スペースで区切ってください<br>
+		※全角<b><?php echo $cfg_reg['Mkey']; ?></b>文字以内<br>
+		<input type="text" name="Fkey" value="<?php echo htmlspecialchars($_POST['Fkey']); ?>" size="60"></ul><br>
+<!--ここまで-->
+	<br><br>
+		<input type="submit" value="&nbsp;登録する&nbsp;">&nbsp;<input type="reset" value="リセット">
+</ol>
+</form>
+<hr align="center">
+
+<!-- Copy Right Output -->
+<div align="center"><?php cr(); ?></div>
+<!-- /Copy Right Output -->
+
+</body>
+</html>

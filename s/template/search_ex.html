@@ -1,0 +1,286 @@
+<?php $_GET = array_map("htmlspecialchars", $_GET); ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>詳細検索|<?php echo $Stitle; ?>|<?php echo stripcslashes($cfg['search_name']); ?></title>
+<meta name="keywords" content="<?php echo $cfg['ver']; ?>,検索エンジン,<?php echo $cfg['ver']; ?>の詳細検索,<?php echo $Stitle; ?>" />
+<meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンの詳細検索,<?php echo $Stitle; ?>" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="index,follow" name="robots" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="content-script-type" content="text/javascript">
+<link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
+<meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
+
+<link rel="stylesheet" href="./jquery.mobile-1.0a2/jquery.mobile-1.0a2.min.css" />
+<script src="./js/jquery-1.4.4.min.js"></script>
+<script src="./jquery.mobile-1.0a2/jquery.mobile-1.0a2.js"></script>
+
+<script type="text/javascript">
+function doScroll() { if (window.pageYOffset === 0) { window.scrollTo(0,1); } }
+window.onload = function() {
+ setTimeout(doScroll, 100);
+}
+</script>
+</head>
+
+
+<body>
+<!-- Start page -->
+<div data-role="page"  data-cache="never">
+
+    <!-- header -->
+    <div data-role="header"  data-theme="b">
+        <h1><?php echo '詳細検索'; ?></h1>
+        <a href="<?php echo SMARTPHONE_HOME;?>" data-icon="arrow-l" rel="external"  class="ui-btn-left" data-transition="slide">TOP</a>
+        <a href="search.php" data-icon="arrow-r" rel="external" class="ui-btn-right" data-transition="slide">検索</a>
+    </div>
+    <!-- /header -->
+   <div data-role="content">
+
+<a href="<?php echo SMARTPHONE_HOME;?>" rel="external">ホーム</a>&nbsp;&gt;&nbsp;<strong>詳細検索</strong><br />
+<!-- /Navigation Bar Output -->
+
+<form action="<?php echo $cfg['search']; ?>" method="get" target="<?php echo $_GET['window']; ?>">
+	<input type="hidden" name="mode" value="search">
+	<input type="hidden" name="open_type" value="0">
+	<input name="word" type="text" class="form" size="30">
+	<input type="submit" class="form" value=" 検 索 "> 
+	<input type="reset" class="form" value="リセット">
+
+        <div class="ui-bar ui-bar-b" >
+            <h3>
+            検索条件
+            </h3>
+        </div>
+        <div class="ui-body ui-body-c" style="text-align:center;">
+        <select name="method" class="form" >
+                <option value="and"<?php echo $ck_0_0; ?>>すべての語を含む</option>
+                <option value="or"<?php echo $ck_0_1; ?>>いずれかの語を含む</option>
+        </select>
+        </div>
+        <div class="ui-bar ui-bar-b" >
+            <h3>
+            検索式を使用
+            </h3>
+        </div>
+        <div class="ui-body ui-body-c">
+	<input name="use_str" type="checkbox" class="form" value="on"<?php echo $ck_1; ?>>
+        </div>
+        <div class="ui-bar ui-bar-b" >
+            <h3>
+            検索エンジン
+            </h3>
+        </div>
+        <div class="ui-body ui-body-c" style="text-align:center;">
+            <select name="engine" class="form" >
+            <?php echo $text['search_form']; ?>
+            <?php echo $ck_2_3; ?>
+		    </select>
+	    
+        <div data-role="fieldcontain">
+                <fieldset data-role="controlgroup">
+                        <input type="checkbox" name="www" value="on" <?php if(isset($ck_4)) echo $ck_4; ?> id="checkbox-11" class="custom" />
+                        <label for="checkbox-11"> www.</label>
+            </fieldset>
+        </div>	    
+        </div>
+
+        <div class="ui-bar ui-bar-b" >
+            <h3>
+            カテゴリ指定
+            </h3>
+        </div>
+        <div class="ui-body ui-body-c" style="text-align:center;">
+	<select name="search_kt" class="form">
+		<option value="" selected>指定しない</option>
+		<?php echo $ck_5_6; ?>
+                <?php
+                foreach($ganes as $key=>$val) {
+                        ?><option value="<?php echo $key; ?>"><?php echo full_category($key) . "\n";
+                }
+                ?>
+	</select>
+        <br />　
+
+	<div data-role="fieldcontain">
+	    <fieldset data-role="controlgroup">
+	            <input type="radio" name="search_kt_ex" id="radio-choice-1" value="" <?php echo $ck_7_0; ?> />
+	            <label for="radio-choice-1">指定カテゴリのみ</label>
+
+	            <input type="radio" name="search_kt_ex" id="radio-choice-2" value="-b_all" <?php echo $ck_7_1; ?>  />
+	            <label for="radio-choice-2">指定カテゴリ以下</label>
+	    </fieldset>
+	</div>
+
+	</div>
+
+        <div class="ui-bar ui-bar-b" >
+            <h3>
+            日付指定
+            </h3>
+        </div>
+        <div class="ui-body ui-body-c" style="text-align:center;">
+	<select name="search_day" class="form" >
+		<option value="" selected>指定しない</option>
+		<?php echo $ck_8_9; ?>
+		<option value="today">本日</option>
+		<option value="1-0">1日以内</option>
+		<option value="3-0">3日以内</option>
+		<option value="7-0">7日以内</option>
+		<option value="14-0">14日以内</option>
+		<option value="30-0">30日以内</option>
+	</select><br />
+        コマンド入力 <input name="search_day_ex" type="text" class="form" value="<?php echo $ck_10; ?>">
+        <div data-role="fieldcontain">
+        <fieldset data-role="controlgroup">
+            <input type="radio" name="kt_search" id="radio-choice-11" value="on" <?php echo $ck_11_0; ?> />
+            <label for="radio-choice-11">カテゴリ名検索をする</label>
+
+            <input type="radio" name="kt_search" id="radio-choice-22" value="off" <?php echo $ck_11_1; ?> />
+            <label for="radio-choice-22">カテゴリ名検索をしない</label>
+        </fieldset>
+        </div>
+
+        <div data-role="fieldcontain">
+                <fieldset data-role="controlgroup">
+                        <legend>検索オプションを保存しますか？</legend>
+                        <input type="checkbox" name="set_option" value="on" <?php if(isset($ck_ck)) echo $ck_ck; ?> id="checkbox-1" class="custom" />
+                        <label for="checkbox-1">保存する</label>
+            </fieldset>
+        </div>
+
+     </div>
+</form>
+<!-- Navigation Bar Output -->
+
+<br />
+<a href="<?php echo $cfg['home']; ?>" rel="external">ホーム</a>&nbsp;&gt;&nbsp;<strong>一括検索</strong><br />
+<!-- /Navigation Bar Output -->
+
+<form action="<?php echo $cfg['search']; ?>" method="get" target="<?php echo $_GET['window']; ?>">
+	<input type="hidden" name="mode" value="meta">
+	<input name="word" type="text" class="form" size="30">
+	<input type="submit" class="form" value="一括検索"> 
+	<input type="reset" class="form" value="リセット">
+        <div class="ui-bar ui-bar-b" >
+            <h3>
+            検索条件
+            </h3>
+        </div>
+        <div class="ui-body ui-body-c" style="text-align:center;">
+	<select name="method" class="form">
+		<option value="and">すべてのワードを含む</option>
+		<option value="or">いずれかのワードを含む</option>
+	</select>
+        </div>
+
+        <div class="ui-bar ui-bar-b" >
+	<h3>表示件数</h3>
+        </div>
+        <div class="ui-body ui-body-c" style="text-align:center;">
+	<select name="hyouji" class="form">
+		<option value="25">25件表示</option>
+		<option value="50">50件表示</option>
+		<option value="75">75件表示</option>
+		<option value="100">100件表示</option>
+	</select>
+        </div>
+        <div class="ui-bar ui-bar-b" >
+	<h3>ページの開き方</h3>
+        </div>
+        <div class="ui-body ui-body-c" style="text-align:center;">
+	<select name="target" class="form" >
+		<option value="_blank">リンク先を新しいページで開く</option>
+		<option value="">リンク先を次のページにする</option>
+	</select>
+        </div>
+</form>
+<!-- Navigation Bar Output -->
+<br />
+<a href="<?php echo SMARTPHONE_HOME;?>" rel="external">ホーム</a>&nbsp;&gt;&nbsp;<strong>ヘルプ</strong><br />
+<!-- /Navigation Bar Output -->
+<br />
+【<strong>詳細検索の説明</strong>】<br />
+<br />
+	<b>検索条件</b><br />
+	ｷｰﾜｰﾄﾞを複数指定したい場合に有効です<br />
+	ｷｰﾜｰﾄﾞはｽﾍﾟｰｽ(空白文字)で区切って複数指定することができます<br />
+	<b>[すべての語を含む]</b> ･･･指定したすべてのｷｰﾜｰﾄﾞを含むﾃﾞｰﾀのみ検索します<br />
+	<b>[いずれかの語を含む]</b> ･･･指定したｷｰﾜｰﾄﾞが一つでも入っているﾃﾞｰﾀを検索します
+	<br /><br />
+	<b>検索式を使用</b><br />
+	このﾁｪｯｸを入れるとｷｰﾜｰﾄﾞを検索式として検索することができます<br />
+	<b>[使用可能なｵﾌﾟｼｮﾝ]</b><br />
+	<b>and</b> ･･･このｵﾌﾟｼｮﾝに続くｷｰﾜｰﾄﾞを<b>含む</b>ﾃﾞｰﾀを検索します(AND条件)<br />
+	<b>or</b> ･･･このｵﾌﾟｼｮﾝに続くｷｰﾜｰﾄﾞを<b>含む</b>ﾃﾞｰﾀを検索します(OR条件)<br />
+	<b>not</b> ･･･このｵﾌﾟｼｮﾝに続くｷｰﾜｰﾄﾞを<b>含まない</b>ﾃﾞｰﾀを検索します<br /><br />
+	たとえば｢ﾎｰﾑ｣というｷｰﾜｰﾄﾞを含んで｢ﾎｰﾑﾍﾟｰｼﾞ｣というｷｰﾜｰﾄﾞが含まれないﾃﾞｰﾀを検索する場合は､<br />　
+	<b>ﾎｰﾑ not ﾎｰﾑﾍﾟｰｼﾞ</b><br />
+	とｷｰﾜｰﾄﾞ欄に記入してください｡
+	<br /><br />
+	
+	<b>検索ｴﾝｼﾞﾝ</b><br />
+	使用する検索ｴﾝｼﾞﾝを指定します｡<br />
+	<b><?php echo $cfg['search_name']; ?></b>以外の検索ｴﾝｼﾞﾝではその他の条件を指定できない場合があります
+	<br /><br />
+	<b>ｶﾃｺﾞﾘ指定</b><br />
+	検索するｶﾃｺﾞﾘを限定することができます｡<br />
+	<b>指定しない</b>を選択した場合にはすべてのｶﾃｺﾞﾘから検索します｡<br />
+	<b>[ｵﾌﾟｼｮﾝ]</b><br />
+	<b>指定ｶﾃｺﾞﾘのみ</b> ･･･選択したｶﾃｺﾞﾘのみを検索対象とします<br />
+	<b>指定ｶﾃｺﾞﾘ以下</b> ･･･選択したｶﾃｺﾞﾘとその下の階層にあるｶﾃｺﾞﾘを検索対象とします
+	<br /><br />
+	<b>日付指定</b><br />
+	ﾃﾞｰﾀの登録日/更新日を検索対象に指定することができます<br />
+	<b>[ｺﾏﾝﾄﾞの説明]</b><br />
+	<b>today-x</b> ･･･本日を基準に日付を指定するｺﾏﾝﾄﾞです<br />　
+	(例1)本日登録/更新されたのﾃﾞｰﾀを検索する場合<br />　
+	<b>today</b>　とｺﾏﾝﾄﾞ欄に入力する｡<br />　
+	(例2)10日前に登録/更新されたﾃﾞｰﾀを検索する場合<br />　
+	<b>today-10</b>　とｺﾏﾝﾄﾞ欄に入力する｡<br />
+	<b>year/month/day</b> ･･･西暦で日付を指定するｺﾏﾝﾄﾞです<br />　
+	(例1)2000年5月15日に登録/更新されたﾃﾞｰﾀを検索する場合<br />　
+	<b>2000/05/15</b>　とｺﾏﾝﾄﾞ欄に入力する｡<br />　
+	(例2)1999年10月25日に登録/更新されたﾃﾞｰﾀを検索する場合<br />　
+	<b>1999/10/25</b>　とｺﾏﾝﾄﾞ欄に入力する｡<br />
+	<b>[start_day]-[end_day]</b> ･･･本日を基準に指定した期間中のﾃﾞｰﾀを検索するｺﾏﾝﾄﾞです<br />　
+	(例1)30日前～本日までの間に登録/更新されたﾃﾞｰﾀを検索する場合<br />　
+	<b>30-0</b>　とｺﾏﾝﾄﾞ欄に入力する｡<br />　
+	(例2)100日前～50日前までに登録/更新されたﾃﾞｰﾀを検索する場合<br />　
+	<b>100-50</b>　とｺﾏﾝﾄﾞ欄に入力する｡
+	<br /><br />
+	<b>ｶﾃｺﾞﾘ名検索</b><br />
+	ｷｰﾜｰﾄﾞでｶﾃｺﾞﾘを検索することができます<br />
+	｢しない｣にﾁｪｯｸするとｶﾃｺﾞﾘを検索しません<br />
+	<br />
+	<b>検索結果画面の開き方</b><br />
+	検索結果画面の開き方を選択することができます<br />
+	ﾌﾞﾗｳｻﾞの設定でJavaScriptを使用しない設定にしている場合には動作しません<br />
+	検索ｵﾌﾟｼｮﾝとしては保存されません<br />
+	<br />
+	<b>検索ｵﾌﾟｼｮﾝを保存</b><br />
+	この項目にﾁｪｯｸを入れると詳細画面での検索時に前回検索時に使用したｵﾌﾟｼｮﾝをあらかじめ選択された状態にすることができます<br />
+	<br /><br /><a href="search_ex.php" rel="external">▲ﾍﾟｰｼﾞ先頭に戻る</a>
+</ul>
+<hr align="center">
+
+<br />
+
+<!-- Other Category Output -->
+<?php other_category(); ?>
+<!-- /Other Category Output -->
+
+<!-- Footer Space Output -->
+<?php if(isset($text['foot_sp'])) { echo $text['foot_sp']; } ?>
+</div>
+<!-- /content -->
+
+<!-- /Footer Space Output -->
+<?php echo SMARTPHONE_FOOTER; ?>
+</body>
+</html>

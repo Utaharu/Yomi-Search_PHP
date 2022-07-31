@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><?php echo $EST['ver']; ?> - インストール &gt;&gt; 初期設定</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<table width="700" border="0" align="center" cellpadding="0" cellspacing="0" class="title">
+  <tr>
+    <td><?php echo $EST['ver']; ?> - インストール</td>
+  </tr>
+</table>
+<hr align="center" width="700" size="1" noshade="noshade" />
+<br />
+<form id="form2" name="form2" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+<table width="700" border="0" align="center" cellpadding="0" cellspacing="0" class="txt">
+  <tr>
+    <td>初期設定<br />
+        ※ここでは最低限必要な設定のみを行います。詳細な設定はインストール完了後に管理画面から行ってください。<br />
+        ※ここで設定した内容は後から管理画面で変更することもできます。<br />
+      <br />
+      管理者パスワード<br />
+      <input name="pass1" type="password" id="pass1" />
+      （半角英数と_で3-8文字）<br />
+      <input name="pass2" type="password" id="pass2" />
+      （確認用）<br />
+      <br />
+    管理者名<br />
+      <input name="admin_name" type="text" id="admin_name" value="管理者" />
+      <br />
+      <br />
+      検索エンジンの名称<br />
+      <input name="search_name" type="text" id="search_name" value="<?php echo $cfg['search_name']; ?>" size="40" />
+      <br />
+      <br />
+      メールアドレス<br />
+      <input name="admin_email" type="text" id="admin_email" size="40" />
+      <br />
+      <br />
+      検索エンジンのURL<br />
+      ※yomi.phpまでのURL ( 例：http://localhost/yomi/yomi.php )<br />
+      <input name="home" type="text" id="home" value="<?php echo $home; ?>" size="60" />
+      <br />
+      <br />
+      ホームページのURL<br />
+      ※あなたが運営するホームページのURL ( 例：http://localhost/index.html )<br />
+      <input name="admin_hp" type="text" id="admin_hp" value="<?php echo $home; ?>" size="60" />
+      <br />
+      <br />
+      トップディレクトリのURL<br />
+      ※yomi.phpを設置したディレクトリのURL ( 例：http://localhost/yomi/ )<br />
+      <input name="cgi_path_url" type="text" id="cgi_path_url" value="<?php echo $cgi_path_url; ?>" size="60" />
+      <br />
+      <br />
+      人気(OUT)ランキングを実施しますか？<br />
+      <select name="rank_fl" id="rank_fl">
+        <option value="1" selected="selected">実施する</option>
+        <option value="0">実施しない</option>
+      </select>
+      <br />
+      <br />
+      アクセス(IN)ランキングを実施しますか？<br />
+      <select name="rev_fl" id="rev_fl">
+        <option value="1" selected="selected">実施する</option>
+        <option value="0">実施しない</option>
+      </select>
+      <br />
+      <br />
+      アクセス(IN)ランキング用URLの転送先<br />
+      ※通常はサーチエンジンのトップページを指定します。<br />
+      <input name="rev_url" type="text" id="rev_url" value="<?php echo $home; ?>" size="60" />
+      <br />
+      <br />
+      マイリンク機能を使用にしますか？<br />
+      ※訪問者が検索エンジン内に自分専用のお気に入り(ブックマーク)を作成可能にする機能です。<br />
+      <select name="mylink_fl" id="mylink_fl">
+        <option value="1" selected="selected">使用する</option>
+        <option value="0">使用しない</option>
+      </select>
+      </td>
+  </tr>
+</table>
+<br />
+<hr align="center" width="700" size="1" noshade="noshade" />
+<br />
+<table width="700" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+      <input name="submit" type="submit" class="btn" value="設定反映" />
+      <input name="mode" type="hidden" id="mode" value="finish" />
+    </td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

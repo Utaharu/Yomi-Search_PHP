@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>パスワード認証画面/登録データの修正・削除</title>
+<meta name="Keywords" content="norobot">
+<meta name="Robots" content="noindex,nofollow">
+<meta name="googlebot" content="noarchive">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="content-script-type" content="text/javascript">
+<link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
+<meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
+<link rel="stylesheet" href="./jquery.mobile-1.0a2/jquery.mobile-1.0a2.min.css" />
+<script src="./js/jquery-1.4.4.min.js"></script>
+<script src="./jquery.mobile-1.0a2/jquery.mobile-1.0a2.js"></script>
+<script type="text/javascript">
+function doScroll() { if (window.pageYOffset === 0) { window.scrollTo(0,1); } }
+window.onload = function() { setTimeout(doScroll, 100); }
+</script>
+</head>
+
+<body>
+<a name="top"></a>
+<!-- Start page -->
+<div data-role="page">
+
+    <!-- header -->
+    <div data-role="header"  data-theme="b">
+        <h1>ﾊﾟｽﾜｰﾄﾞ認証/登録ﾃﾞｰﾀ修正･削除</h1>
+        <a href="<?php echo SMARTPHONE_HOME;?>" rel="external" data-icon="arrow-l" class="ui-btn-left" data-transition="slide">TOP</a>
+        <a href="search.php" data-icon="arrow-r"  rel="external" class="ui-btn-right" data-transition="slide">ｻｲﾄ検索</a>
+    </div>
+    <!-- /header -->
+
+    <div data-role="content">
+
+        <div style="text-align:center;"><?php printTopMenuLink( $text['menu_bar'] ); ?></div>
+
+
+<!-- /Menu Bar Output -->
+<!-- Header Space Output -->
+<?php echo $text['head_sp']; ?>
+<!-- /Header Space Output -->
+<!-- Navigation Bar Output -->
+<a href="<?php echo SMARTPHONE_HOME; ?>"  rel="external">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;<strong>修正･削除</strong><br />
+<!-- /Navigation Bar Output -->
+
+<div class="ui-bar ui-bar-b" >
+	<h1>ﾊﾟｽﾜｰﾄﾞ認証画面</h1>
+</div>
+<div class="ui-body ui-body-c">
+	<form action="mente.php" method="POST">
+<fieldset>
+	<input type="hidden" name="mode" value="mente" />
+	<strong>1．登録ﾃﾞｰﾀの修正</strong>
+	<br />
+
+	<?php
+	if(isset($print_data)) {
+		$str = strip_tags($print_data, '<br><a>');
+		echo $str;
+	}
+	?>
+
+	<div data-role="fieldcontain">
+	<label for="name">変更する人：</label>
+	<select name="changer">
+	<option value="" <?php echo $select_0; ?>>登録者</option>
+	<option value="admin" <?php echo $select_1; ?>>管理人</option>
+	</select>
+	</div>
+
+	<div data-role="fieldcontain">
+	<label for="name">ID：</label>
+	<input type="text" name="id" value="<?php echo htmlspecialchars($_REQUEST['id']); ?>" id="name" />
+	</div>
+
+	<div data-role="fieldcontain">
+	<label for="password">PASS：</label>
+	<input type="password" name="pass" value="<?php echo $pre_pass; ?>" id="password" />
+	</div>
+
+	<div data-role="fieldcontain">
+	<fieldset data-role="controlgroup">
+
+	<input type="radio" name="cookie" id="radio-choice-1" value="off" <?php echo $cookie_1; ?> />
+	<label for="radio-choice-1">ﾊﾟｽﾜｰﾄﾞを記録する</label>
+
+	<input type="radio" name="cookie" id="radio-choice-2" value="on" <?php echo $cookie_0; ?>   />
+	<label for="radio-choice-2">ﾊﾟｽﾜｰﾄﾞを記録しない</label>
+
+	</fieldset>
+	</div>
+        <button type="submit" data-transition="fade" data-theme="a">認証！</button>
+</fieldset>
+
+
+	</form>
+</div>
+
+<br />
+<br />
+
+
+<form action="mente.php" method="post">
+<input type="hidden" name="mode" value="act_del" />
+<input type="hidden" name="del_mode" value="single" />
+
+
+<div class="ui-bar ui-bar-b" >
+	<h1>2.登録データの削除</h1>
+</div>
+
+<div class="ui-body ui-body-c">
+
+
+<div data-role="fieldcontain">
+<label for="name">変更する人：</label>
+<select name="changer">
+<option value=""<?php echo $select_0; ?>>登録者</option>
+<option value="admin"<?php echo $select_1; ?>>管理人</option>
+</select>
+</div>
+
+
+
+	<div data-role="fieldcontain">
+	<label for="name">ID：</label>
+	<input type="text" name="id" value="<?php echo htmlspecialchars($_REQUEST['id']); ?>" id="name" />
+	</div>
+
+	<div data-role="fieldcontain">
+	<label for="password">PASS：</label>
+	<input type="password" name="pass" value="<?php echo $pre_pass; ?>" id="password" />
+	</div>
+
+	<div data-role="fieldcontain">
+	<fieldset data-role="controlgroup">
+		<legend>削除確認ﾁｪｯｸ→</legend>
+		<input type="checkbox" name="del_check" id="checkbox-11a" class="custom" value="on" />
+		<label for="checkbox-11a">削除します</label>
+	</fieldset>
+	</div>
+	
+	<input type="submit" value="削除" />
+</div>
+</form>
+
+
+<br />
+<br />
+
+
+<?php
+if($cfg['re_pass_fl']) {
+?>
+
+
+<form action="mente.php" method="post">
+<input type="hidden" name="mode" value="act_repass" />
+<input type="hidden" name="repass_mode" value="repass" />
+
+<div class="ui-bar ui-bar-b" >
+	<h1>3．ﾊﾟｽﾜｰﾄﾞの再発行</h1>
+</div>
+
+<div class="ui-body ui-body-c">
+
+
+	<div data-role="fieldcontain">
+	<label for="name">ID：</label>
+	<input type="text" name="id" value="<?php echo htmlspecialchars($_REQUEST['id']); ?>" id="name"  />
+	</div>
+	
+	<div data-role="fieldcontain">
+	<label for="email">E-MAIL：</label>
+	<input type="text" name="email" value="<?php echo htmlspecialchars($_REQUEST['email']); ?>" id="email"  />
+	</div>
+	
+	<div data-role="fieldcontain">
+	<fieldset data-role="controlgroup">
+		<legend>再発行確認ﾁｪｯｸ→</legend>
+		<input type="checkbox" name="repass_check" id="checkbox-111a" class="custom" value="on" />
+		<label for="checkbox-111a">再発行します</label>
+	</fieldset>
+	</div>
+	
+	<button type="submit">再発行</button>
+</div>
+</form>
+
+
+<?php
+	if(@$cfg['mail_pass']) {
+		echo "※新しいﾊﾟｽﾜｰﾄﾞは登録時のﾒｰﾙｱﾄﾞﾚｽに送信されます";
+	}
+}
+?>
+
+
+<div align="center"><form><input type="button" value="　戻る　" onClick="history.back()"></form></div><br />
+
+
+<!-- Footer Space Output -->
+<?php if(isset($text['foot_sp'])) { echo $text['foot_sp']; } ?>
+</div>
+<!-- /content -->
+
+<!-- /Footer Space Output -->
+<?php echo SMARTPHONE_FOOTER; ?>
+</body>
+</html>

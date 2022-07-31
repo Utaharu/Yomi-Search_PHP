@@ -1,0 +1,148 @@
+<?php echo '<?xml version="1.0" encoding="utf-8"?>'; ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<title><?php echo $Stitle; ?>| <?php echo $cfg['search_name']; ?></title>
+<meta name="keywords" content="<?php echo $cfg['ver']; ?>,検索エンジン,ランキング画面" />
+<meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンのランキング画面です" />
+<style type="text/css">
+<![CDATA[
+a:link{color:<?php echo LINK_COLOR; ?>;}
+a:focus{color:<?php echo ALINK_COLOR; ?>;}
+a:visited{color:<?php echo VLINK_COLOR; ?>;}
+]]>
+</style>
+</head>
+<body><div style="font-size:x-small;">
+<a name="top"></a>
+<!-- Menu Bar Output -->
+<?php echo $text['menu_bar']; ?>
+<!-- /Menu Bar Output -->
+<!-- Header Space Output -->
+<?php echo $text['head_sp']; ?>
+<!-- /Header Space Output -->
+<br>
+<!-- Navigation Bar Output -->
+<a href="<?php echo $cfg['home']; ?>">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;<?php echo $navi; ?><strong><?php echo $Stitle; ?></strong>
+<?php
+if(!empty($cfg[$_GET['mode']])) {
+	echo $rank_menu;
+	echo " ：" . $cfg[$_GET['mode']];
+}
+?>
+<!-- /Navigation Bar Output -->
+<!-- ﾍﾟｰｼﾞ中段の検索ﾌｫｰﾑ -->
+  <form name="searchform" action="<?php echo $cfg['search']; ?>" method="get">
+      <input type="hidden" name="mode" value="search">
+      <input type="hidden" name="page" value="1">
+      <input type="hidden" name="sort" value="<?php echo $cfg['defo_hyouji']; ?>">
+      <input type="hidden" name="open_type" value="0">
+      <input type="hidden" name="hyouji" value="30">
+      <img src="<?php echo $cfg['img_path_url']; ?>search.gif" alt="検索" align="absbottom" title="検索">&nbsp;<input type="text" name="word" value="" size="20" class="form">&nbsp;<input type="submit" value=" 検 索 " class="form">&nbsp;
+      <select name="method" class="form">
+        <option value="and" selected>AND</option>
+        <option value="or">OR</option>
+      </select>
+      <select name="engine" class="form">
+        <?php echo $text['search_form']; ?>
+      </select>
+  </form>
+<?php
+if($log_count) {
+?>
+<!-- ﾃﾞｰﾀがある場合 -->
+<!-- 表示方法選択ﾌｫｰﾑ -->
+<!-- ﾏｰｸｺﾒﾝﾄ/登録数表示/目次表示(上) -->
+<br>
+<div align="left"><i>集計期間：<?php echo $last_mod; ?></i></div>
+<br>
+<?php echo $mokuji; ?><br>
+<br>
+
+<?php
+	foreach($log_lines as $log_data) {
+		//$jump_url = "{$cfg['rank']}?mode=link&id={$log_data['id']}&url={$log_data['url']}";
+		$jump_url = $log_data["url"]; //ﾗﾝｷﾝｸﾞ画面からもｱｸｾｽを集計する場合は上の行の先頭の｢//｣を取り除き､この行の先頭に｢//｣を追加する
+		?>
+<!-- ﾛｸﾞ表示 -->
+第<?php echo $rank[$log_data['id']]; ?>位&nbsp;-&gt;&nbsp;<?php echo $log_data['pt']; ?>pt
+ <a href="<?php echo $jump_url; ?>" target="_blank"><?php echo $log_data['title'];?></a>
+ <!-- ←ｱｲｺﾝを付加 -->
+<?php
+put_icon();
+?>
+  <br><br><font size="-1">更新日：<?php echo $log_data['last_time']; ?> [<a href="regist_ys.php?mode=enter&id=<?php echo $log_data['id']; ?>">修正･削除</a>]
+  [<a href="regist_ys.php?mode=no_link&id=<?php echo $log_data['id']; ?>&pre=on&ref=<?php echo $Eref; ?>&title=<?php echo urlencode($log_data['title']); ?>">管理者に通知</a>]
+  </font>
+<?php
+if($log_data['banner']) {
+	echo "<br><a href=\"{$jump_url}\" target=\"_blank\"><img src=\"{$log_data['banner']}\" border=\"0\" width=\"{$cfg_reg['Mbana_w']}\" height=\"{$cfg_reg['Mbana_h']}\" alt=\"{$log_data['title']}\" title=\"{$log_data['title']}\"></a>";
+}
+?>
+<?php
+if(!isset($title)) {
+			$kt = explode("&", $log_data['category']);
+			foreach($kt as $tmp) {
+				$query = "SELECT title FROM {$db->db_pre}category WHERE path='{$tmp}' LIMIT 1";
+				$row = $db->single_assoc($query) or $db->error("Query failed $query".__FILE__.__LINE__);
+				if($row["title"]) {
+					?>[<a href="<?php echo $cfg['script']; ?>?mode=dir&amp;path=<?php echo $tmp; ?>">
+                                        <?php
+//					print $row['title'];		//ｶﾃｺﾞﾘ名を短縮ｶﾃｺﾞﾘ名で表示
+					print full_category($tmp);	//ｶﾃｺﾞﾘ名をﾌﾙｶﾃｺﾞﾘ名で表示
+					?></a>]
+<?php
+    	}
+    }
+}
+?>
+<?php echo $log_data['message']; ?>
+<?php
+if($log_data['comment']) {
+?>
+<?php echo $log_data['comment']; ?>
+<?php
+}
+?>
+<br>
+<!-- /ﾛｸﾞ表示 -->
+<?php
+}
+?>
+<!-- 目次表示(下) -->
+<?php echo $mokuji; ?>
+<!--/ﾃﾞｰﾀがある場合-->
+<?php
+} else {
+	if(!@$_GET['path']) {
+		echo "<p align=\"center\">ﾗﾝｷﾝｸﾞのﾃﾞｰﾀを集計中です</p><br>\n";
+	} else {
+		echo "<p align=\"center\">このｶﾃｺﾞﾘのｻｲﾄはﾗﾝｸｲﾝしていません</p><br>\n";
+	}
+}
+?>
+<br><br>
+
+<!-- Other Category Output -->
+<?php other_category(); ?>
+<!-- /Other Category Output -->
+
+<!-- Footer Space Output -->
+<?php if(isset($text['foot_sp'])) { echo $text['foot_sp']; } ?>
+<!-- /Footer Space Output -->
+
+<!-- Copy Right Output -->
+<div align="center">
+<?php mcr(); ?><br />
+<?php printFooterAd(); ?>
+</div>
+<!-- /Copy Right Output -->
+
+</div>
+
+</body>
+</html>

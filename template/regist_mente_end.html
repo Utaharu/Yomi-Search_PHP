@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<meta name="Keywords" content="norobot">
+<meta name="Robots" content="noindex,nofollow">
+<meta name="googlebot" content="noarchive">
+<title>登録データ修正完了</title>
+<link media="screen" rel="stylesheet" href="css/main.css" type="text/css">
+</head>
+<body>
+<!-- Menu Bar Output -->
+<table width="100%" class="table_menu_bar">
+  <tr>
+    <td><?php echo $text['menu_bar']; ?></td>
+  </tr>
+</table>
+<!-- /Menu Bar Output -->
+<!-- Navigation Bar Output -->
+<table width="100%" class="table_navigation_bar">
+  <tr>
+    <td id="title-bar">
+      <b>登録データ修正完了</b>
+    </td>
+  </tr>
+</table>
+<!-- /Navigation Bar Output -->
+<ol>
+	▼登録データ修正が以下のとおり完了しましたのでご確認ください<br><br>
+<!--ID-->
+	<li>【ID】<br>
+		<ul><?php echo $Slog[0]; ?></ul><br>
+<!--お名前-->
+	<li>【お名前】<br>
+		<ul><?php echo $Slog[8]; ?></ul><br>
+<!--メールアドレス-->
+	<li>【メールアドレス】<br>
+		<ul><?php echo $Slog[9]; ?></ul><br>
+<!--マーク-->
+	<li>【マーク】<br>
+		<ul><?php echo $PR_mark; ?></ul><br>
+<!--ホームページアドレス-->
+	<li>【ホームページアドレス】<br>
+		<ul><a href="<?php echo $Slog[2]; ?>"><?php echo $Slog[2]; ?></a>
+		</ul><br>
+<?php
+if(@$cfg_reg['bana_url']) {
+?>
+<!--タイトルバナーのURL-->
+	<li>【タイトルバナーのURL】
+		<ul><a href="<?php echo $Slog[12]; ?>"><?php echo $Slog[12]; ?></a>
+		</ul><br>
+<?php
+}
+?>
+<!--ホームページのタイトル-->
+	<li>【ホームページのタイトル】
+		<ul><?php echo $Slog[1]; ?></ul><br>
+<!--ホームページの紹介文-->
+	<li>【ホームページの紹介文】
+		<ul>
+		<table width="100%" border="0"><tr><td><?php echo $Slog[6]; ?></td></tr></table>
+		</ul><br>
+<!--登録するカテゴリ-->
+	<li>【登録するカテゴリ】<?php echo $PR_kt; ?>
+		<ul>
+<?php
+preview_category2();
+?>
+</ul><br>
+<!--キーワード-->
+	<li>【キーワード】
+		<ul><?php echo $Slog[15]; ?></ul><br>
+<!--ここまで-->
+	<br><br>
+		【　<a href="<?php echo $cfg['home']; ?>">ホームに戻る</a>　】
+</ol></form>
+<hr align="center">
+
+<!-- Copy Right Output -->
+<div align="center"><?php cr(); ?></div>
+<!-- /Copy Right Output -->
+
+</body>
+</html>

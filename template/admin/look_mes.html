@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<title>管理室 &gt;&gt; 登録者のメッセージを見る</title>
+<link href="css/admin.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#2F5376" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td><a href="<?php echo $cfg['home']; ?>" target="_blank"><img src="<?php echo $cfg['img_path_url']; ?>admin/logo.gif" alt="ホームページ" width="206" height="80" border="0"></a><a href="<?php echo $cfg['home']; ?>"></a></td>
+    <td align="right"><?php echo $text['menu_bar']; ?></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+  <form action="<?php echo $cfg['admin']; ?>" method="post" lang="ja">
+  <tr>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td class="title">管理トップ &gt;&gt; 登録者のメッセージを見る</td>
+    <td align="right"><?php echo $admin_listbox; ?></td>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+  </form>
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td valign="top">
+	  <br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td class="table_in_header">登録者のメッセージを見る</td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">
+<?php
+if(!$cfg_reg['look_mes']) {
+    echo "現在、登録者からのメッセージは保存しない設定になっています。";
+} elseif(preg_match("/(\d+)(\w*)/", $cfg_reg['look_mes'], $match)) {
+	if($match[2] == "m"){
+		echo "現在、登録者からのメッセージが<strong>{$match[1]}</strong>件に達するごとにまとめて管理人のメールアドレスに送信される設定になっています。";
+	} else {
+		echo "現在、登録者からのメッセージは最大で<strong>{$match[1]}</strong>件保存される設定になっています。";
+		echo "<strong>{$match[1]}</strong>件を超えた場合には古いものから削除されますのでご注意ください。";
+	}
+}
+?>
+				</td>
+              </tr>
+            </table></td>
+          </tr>
+        </table>
+        <br>
+<?php
+$fp = fopen("{$cfg['log_path']}look_mes.cgi", "r");
+while($tmp = fgets($fp)) {
+	$look_mes = explode("<>", $tmp);
+?>
+
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+                <tr>
+                  <td colspan="2" class="table_in_header">登録日：<?php echo $look_mes[1]; ?></td>
+                </tr>
+<?php
+    // お名前があれば表示
+    if(!empty($look_mes[5])) {
+?>
+                <tr>
+                  <td width="140" align="right" class="table_in_leftcell"><strong>お名前：</strong></td>
+                  <td class="table_in_rightcell"><?php echo $look_mes[5]; ?></td>
+                </tr>
+<?php
+	}
+    // メールアドレスがあればリンクを付けて表示
+    if(!empty($look_mes[4])) {
+?>
+                <tr>
+                  <td align="right" class="table_in_leftcell"><strong>メールアドレス：</strong></td>
+                  <td class="table_in_rightcell"><?php echo $look_mes[4]; ?>&nbsp;&nbsp;[&nbsp;<a href="mailto:<?php echo $look_mes[4]; ?>">メール作成</a>&nbsp;]</td>
+                </tr>
+<?php
+    }
+?>
+                <tr>
+                  <td align="right" class="table_in_leftcell"><strong>タイトル：</strong></td>
+                  <td class="table_in_rightcell"><?php echo $look_mes[7]; ?></td>
+                </tr>
+                <tr>
+                  <td align="right" class="table_in_leftcell"><strong>URL：</strong></td>
+                  <td class="table_in_rightcell"><?php echo $look_mes[6]; ?>&nbsp;&nbsp;[&nbsp;<a href="<?php echo $look_mes[6]; ?>" target="_blank">別窓で開く</a>&nbsp;]</td>
+                </tr>
+<?php
+    // 新設希望カテゴリがあれば表示
+    if(!empty($look_mes[2])) {
+?>
+                <tr>
+                  <td align="right" class="table_in_leftcell"><strong>新設希望カテゴリ：</strong></td>
+                  <td class="table_in_rightcell"><?php echo $look_mes[2]; ?></td>
+                </tr>
+<?php
+    }
+	// 管理者へのメッセージがあれば改行を変換して表示
+    if(isset($look_mes[3])) {
+        $look_mes[3] = str_replace("<br>", "\n", $look_mes[3]);
+?>
+                <tr>
+                  <td align="right" class="table_in_leftcell"><strong>管理者へのメッセージ：</strong></td>
+                  <td class="table_in_rightcell"><textarea name="textarea" cols="70" rows="4" class="form"><?php echo $look_mes[3]; ?></textarea></td>
+                </tr>
+<?php
+    }
+?>
+                <tr>
+                  <td class="table_in_leftcell">&nbsp;</td>
+                  <td class="table_in_rightcell"><a href="regist_ys.php?mode=enter&id=<?php echo $look_mes[0]; ?>" target="_blank">修正/削除(別窓)</a></td>
+                </tr>
+            </table></td>
+          </tr>
+        </table>
+      <br>
+<?php
+}
+fclose($fp);
+?>
+<table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+  <tr>
+    <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+      <tr>
+        <td align="center" class="table_in_header"><?php
+// 著作権表示ルーチン
+cr();
+?>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+</table>	</td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

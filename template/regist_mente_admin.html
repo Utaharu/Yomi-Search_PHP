@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<meta name="Keywords" content="norobot">
+<meta name="Robots" content="noindex,nofollow">
+<meta name="googlebot" content="noarchive">
+<title>登録データの修正(管理者用)</title>
+<link media="screen" rel="stylesheet" href="css/main.css" type="text/css">
+</head>
+<body>
+<a name="top"></a>
+<!-- Menu Bar Output -->
+<table width="100%" class="table_menu_bar">
+  <tr>
+    <td><?php echo $text['menu_bar']; ?></td>
+  </tr>
+</table>
+<!-- /Menu Bar Output -->
+<a href="<?php echo $cfg['home']; ?>">ホーム</a> > 
+<!-- Navigation Bar Output -->
+<table width="100%" class="table_navigation_bar">
+  <tr>
+    <td id="title-bar">
+      <b>登録データの修正(管理者用)</b>
+    </td>
+  </tr>
+</table>
+<!-- /Navigation Bar Output -->
+<br>
+<form action="regist_ys.php" method="post">
+<input type="hidden" name="mode" value="act_mente">
+<input type="hidden" name="changer" value="<?php echo htmlspecialchars($_REQUEST['changer']); ?>">
+<input type="hidden" name="id" value="<?php echo $log_data[0]; ?>">
+<input type="hidden" name="pass" value="<?php echo htmlspecialchars($_REQUEST['pass']); ?>">
+<input type="hidden" name="bkt" value="<?php echo $log_data[10]; ?>">
+<input type="hidden" name="pre_mark" value="<?php echo $log_data[3]; ?>">
+<ol>
+	▼項目名の横に<font color="#FF0000">☆</font>が付いている項目は記入必須項目です<br><br>
+<!--お名前-->
+	<li>【お名前】<font color="#FF0000">☆</font><br>
+		<ul>※ハンドルネームも可です<br>
+		※全角<b><?php echo $cfg_reg['Mname']; ?></b>文字以内<br>
+		<input type="text" name="Fname" value="<?php echo $log_data[8]; ?>" size="25"></ul><br>
+<!--メールアドレス-->
+	<li>【メールアドレス】<font color="#FF0000">☆</font><br>
+		<ul>※半角英数字<b><?php echo $cfg_reg['Memail']; ?></b>文字以内<br>
+		<input type="text" name="Femail" value="<?php echo $log_data[9]; ?>" size="25"></ul><br>
+<!--マーク-->
+<?php
+PR_mark($log_data[3]);
+?>
+<!--ホームページアドレス-->
+	<li>【ホームページアドレス】<font color="#FF0000">☆</font><br>
+		<ul>※半角英数字<b><?php echo $cfg_reg['Murl']; ?></b>文字以内<br>
+		<input type="text" name="Furl" value="<?php echo $log_data[2]; ?>" size="70"></ul><br>
+<?php
+if($cfg_reg["bana_url"]) {
+	?>
+<!--タイトルバナーのURL-->
+	<li>【タイトルバナーのURL】
+		<ul>※バナー(画像)のURLの最後が「.gif」「.jpg」「.png」のいずれかで終わるようにしてください。
+		<br>※表示されるサイズは 横<b><?php echo $cfg_reg['Mbana_w']; ?></b>×縦<b><?php echo $cfg_reg['Mbana_h']; ?></b>(ピクセル)</b> です。 
+		<br>※半角英数字<b><?php echo $cfg_reg['Mbana_url']; ?></b>文字以内
+		<br><input type="text" name="Fbana_url" value="<?php echo $log_data[12]; ?>" size="60">
+		</ul><br>
+<?php
+}
+?>
+<!--ホームページのタイトル-->
+	<li>【ホームページのタイトル】<font color="#FF0000">☆</font>
+		<ul>※全角<b><?php echo $cfg_reg['Mtitle']; ?></b>文字以内<br>
+		<input type="text" name="Ftitle" value="<?php echo $log_data[1]; ?>" size="25"></ul><br>
+<!--ホームページの紹介文-->
+	<li>【ホームページの紹介文】<font color="#FF0000">☆</font>
+		<ul>※HTMLタグは使えません<br>
+		※全角<b><?php echo $cfg_reg['Msyoukai']; ?></b>文字以内<br>
+		<textarea wrap="soft" name="Fsyoukai" cols="50" rows="3"><?php echo $log_data[6]; ?></textarea></ul><br>
+<!--管理人のコメント-->
+	<li>【管理人のコメント】
+		<ul>※HTMLタグは使えません<br>
+		<textarea wrap="soft" name="Fkanricom" cols="50" rows="3"><?php echo $log_data[7]; ?></textarea></ul><br>
+<!--登録するカテゴリ-->
+	<li>【登録するカテゴリ】<font color="#FF0000">☆</font>
+<?php
+print_category($log_data[10]);
+?>
+<!--キーワード-->
+	<li>【キーワード】
+		<ul>※あなたのホームページに関係が深いキーワードを入力してください<br>
+		※複数ある場合にはキーワードを半角スペースで区切ってください<br>
+		※全角<b><?php echo $cfg_reg['Mkey']; ?></b>文字以内<br>
+		<input type="text" name="Fkey" value="<?php echo $log_data[15]; ?>" size="60"></ul><br>
+<!--ここまで-->
+	<br><br>
+		<input type="submit" value="&nbsp; 変更する &nbsp;"> <input type="reset" value="リセット">
+</ol>
+	</form>
+<hr align="center">
+<ul>
+<font size="+1">【パスワードの変更】</font>
+<form action="<?php echo $cfg['cgi_path']; ?>regist_ys.php" method="post">
+<input type="hidden" name="mode" value="act_repass">
+<input type="hidden" name="repass_mode" value="change_pass">
+<input type="hidden" name="changer" value="<?php echo htmlspecialchars($_REQUEST['changer']); ?>">
+<input type="hidden" name="pass" value="<?php echo htmlspecialchars($_REQUEST['pass']); ?>">
+<input type="hidden" name="id" value="<?php echo $log_data[0]; ?>">
+新しいパスワード：<input type="password" name="new_pass" size="12">
+<input type="submit" value="パスワード変更">
+</form>
+</ul>
+<hr align="center">
+<a name="del"></a>
+<form action="regist_ys.php" method="post">
+<input type="hidden" name="mode" value="act_del">
+<input type="hidden" name="del_mode" value="single">
+<ul><div align="left"><font size="+1">【登録データの削除】</font></div>
+<br>
+<input type="hidden" name="changer" value="<?php echo htmlspecialchars($_REQUEST['changer']); ?>">
+<input type="hidden" name="pass" value="<?php echo htmlspecialchars($_REQUEST['pass']); ?>">
+<input type="hidden" name="id" value="<?php echo htmlspecialchars($_REQUEST['id']); ?>">
+削除確認チェック→<input type="checkbox" name="del_check" value="on"><br>
+<input type="submit" value="このデータを削除する">
+</form></ul>
+<hr align="center">
+
+<!-- Copy Right Output -->
+<div align="center"><?php cr(); ?></div>
+<!-- /Copy Right Output -->
+
+</body>
+</html>

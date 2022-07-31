@@ -1,0 +1,277 @@
+<?php
+// リストメニューの設定
+// 二重URL登録(可能=0/不可=1)
+if($cfg_reg["nijyu_url"]) {
+	$Cnijyu_url_0 = "";
+	$Cnijyu_url_1 = " selected";
+} else {
+	$Cnijyu_url_0 = " selected";
+	$Cnijyu_url_1 = "";
+}
+
+// 追加希望カテゴリ(必須=☆/任意=0)
+if($cfg_reg["Fadd_kt"]) {
+	$CFadd_kt_0 = "";
+	$CFadd_kt_1 = " selected";
+} else {
+	$CFadd_kt_0 = " selected";
+	$CFadd_kt_1 = "";
+}
+
+// バナーURL(必須=☆/任意=0)
+if($cfg_reg["Fbana_url"]) {
+	$CFbana_url_0 = "";
+	$CFbana_url_1 = " selected";
+} else {
+	$CFbana_url_0 = " selected";
+	$CFbana_url_1 = "";
+}
+
+// E-Mailアドレス(必須=☆/任意=0)
+if($cfg_reg["Femail"]) {
+	$CFemail_0 = "";
+	$CFemail_1 = " selected";
+} else {
+	$CFemail_0 = " selected";
+	$CFemail_1 = "";
+}
+
+// キーワード(必須=☆/任意=0)
+if($cfg_reg["Fkey"]) {
+	$CFkey_0 = "";
+	$CFkey_1 = " selected";
+} else {
+	$CFkey_0 = " selected";
+	$CFkey_1 = "";
+}
+
+// お名前(必須=☆/任意=0)
+if($cfg_reg["Fname"]) {
+	$CFname_0 = "";
+	$CFname_1 = " selected";
+} else {
+	$CFname_0 = " selected";
+	$CFname_1 = "";
+}
+
+// 紹介文(必須=☆/任意=0)
+if($cfg_reg["Fsyoukai"]) {
+	$CFsyoukai_0 = "";
+	$CFsyoukai_1 = " selected";
+} else {
+	$CFsyoukai_0 = " selected";
+	$CFsyoukai_1 = "";
+}
+
+// タイトル(必須=☆/任意=0)
+if($cfg_reg["Ftitle"]) {
+	$CFtitle_0 = "";
+	$CFtitle_1 = " selected";
+} else {
+	$CFtitle_0 = " selected";
+	$CFtitle_1 = "";
+}
+
+// 管理人へのメッセージ(必須=☆/任意=0)
+if($cfg_reg["Fto_admin"]) {
+	$CFto_admin_0 = "";
+	$CFto_admin_1 = " selected";
+} else {
+	$CFto_admin_0 = " selected";
+	$CFto_admin_1 = "";
+}
+
+// URL(必須=☆/任意=0)
+if($cfg_reg["Furl"]) {
+	$CFurl_0 = "";
+	$CFurl_1 = " selected";
+} else {
+	$CFurl_0 = " selected";
+	$CFurl_1="";
+}
+
+// 管理人のみが登録できるモード(ON=1/OFF=0)
+if($cfg_reg["no_regist"]) {
+	$Cno_regist_0 = "";
+	$Cno_regist_1 = " selected";
+} else {
+	$Cno_regist_0 = " selected";
+	$Cno_regist_1 = "";
+}
+
+// 管理人のみが修正・削除できるモード(ON=1/OFF=0)
+if($cfg_reg["no_mente"]) {
+	$Cno_mente_0 = "";
+	$Cno_mente_1 = " selected";
+} else {
+	$Cno_mente_0 = " selected";
+	$Cno_mente_1 = "";
+}
+
+// バナーURLの登録項目(ON=1/OFF=0)
+if($cfg_reg["bana_url"]) {
+	$Cbana_url_0 = "";
+	$Cbana_url_1 = " selected";
+} else {
+	$Cbana_url_0 = " selected";
+	$Cbana_url_1 = "";
+}
+
+// 新規登録時の追加希望カテゴリ項目(ON=1/OFF=0)
+if($cfg_reg["add_kt"]) {
+	$Cadd_kt_0 = "";
+	$Cadd_kt_1 = " selected";
+} else {
+	$Cadd_kt_0 = " selected";
+	$Cadd_kt_1 = "";
+}
+
+// 新規登録時の管理人へのコメント項目(ON=1/OFF=0)
+if($cfg_reg["to_admin"]) {
+	$Cto_admin_0 = "";
+	$Cto_admin_1 = " selected";
+} else {
+	$Cto_admin_0 = " selected";
+	$Cto_admin_1 = "";
+}
+
+// 新規登録時の相互リンク連絡項目(ON=1/OFF=0)
+if($cfg_reg["sougo"]) {
+	$Csougo_0 = "";
+	$Csougo_1 = " selected";
+} else {
+	$Csougo_0 = " selected";
+	$Csougo_1 = "";
+}
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<title>管理室 &gt;&gt; ログ(登録データ)のバックアップ・復元</title>
+<link href="css/admin.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#2F5376" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td><a href="<?php echo $cfg['home']; ?>" target="_blank"><img src="<?php echo $cfg['img_path_url']; ?>admin/logo.gif" alt="ホームページ" width="206" height="80" border="0"></a><a href="<?php echo $cfg['home']; ?>"></a></td>
+    <td align="right"><?php echo $text['menu_bar']; ?></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+  <form action="<?php echo $cfg['admin']; ?>" method="post" lang="ja">
+  <tr>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td class="title">管理トップ &gt;&gt; ログ(登録データ)のバックアップ・復元</td>
+    <td align="right"><?php echo $admin_listbox; ?></td>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+  </form>
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td valign="top"><br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+		  <form name="form1" method="post" action="<?php echo $cfg['admin']; ?>">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td colspan="2" class="table_in_header">バックアップデータの作成</td>
+                </tr>
+              <tr>
+                <td class="table_in_leftcell"><strong>バックアップファイル名</strong></td>
+                <td class="table_in_rightcell"><input name="file" type="text" class="form" value="<?php echo $cfg['log_path']; ?>ys_log.dump"></td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell"><strong>確認チェック</strong><br>
+                  <br>
+                  バックアップファイルの作成を実行する場合には、チェックボックスにチェックを入れてください。</td>
+                <td class="table_in_rightcell"><input name="dump" type="checkbox" class="form" value="on"></td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">&nbsp;</td>
+                <td class="table_in_rightcell"><input name="bk_day" type="submit" class="form" value="作成">
+                  <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                  <input name="mode" type="hidden" value="log_repair_act">
+                  <input type="hidden" name="act" value="dump"></td>
+              </tr>
+            </table></td>
+          </tr>
+		  </form>
+        </table>
+        <br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+          <form name="form1" method="post" action="<?php echo $cfg['admin']; ?>">
+            <tr>
+              <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+                  <tr>
+                    <td colspan="2" class="table_in_header">バックアップデータの復元</td>
+                  </tr>
+                  <tr>
+                    <td class="table_in_leftcell"><strong>バックアップファイル名</strong></td>
+                    <td class="table_in_rightcell"><input name="file" type="text" class="form" value="<?php echo $cfg['log_path']; ?>ys_log.dump"></td>
+                  </tr>
+                  <tr>
+                    <td class="table_in_leftcell"><strong>確認チェック</strong><br>
+                        <br>
+                      バックアップファイルの作成を実行する場合には、チェックボックスにチェックを入れてください。</td>
+                    <td class="table_in_rightcell"><input name="restore" type="checkbox" class="form" value="on"></td>
+                  </tr>
+                  <tr>
+                    <td class="table_in_leftcell">&nbsp;</td>
+                    <td class="table_in_rightcell"><input name="bk_day" type="submit" class="form" value="復元">
+                        <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                        <input name="mode" type="hidden" value="log_repair_act">
+                    <input name="act" type="hidden" id="act" value="restore"></td>
+                  </tr>
+              </table></td>
+            </tr>
+          </form>
+    </table>
+        <br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+                <tr>
+                  <td align="center" class="table_in_header"><?php
+// 著作権表示ルーチン
+cr();
+?>
+                  </td>
+                </tr>
+            </table></td>
+          </tr>
+        </table></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

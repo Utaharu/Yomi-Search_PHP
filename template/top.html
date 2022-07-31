@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<title><?php echo stripcslashes($cfg['search_name']); ?></title>
+<meta name="keywords" content="<?php echo $cfg['ver']; ?>,検索エンジン" />
+<meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンのトップページ" />
+<link href="./favicon.ico" type="image/x-icon" rel="icon"/>
+<link media="screen" rel="stylesheet" href="css/main.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS2.0" href="<?php echo $cfg['cgi_path_url'] . "rss/rss.php?mode=new"; ?>">
+</head>
+<body>
+<a name="top"></a>
+<?php echo $RssFeed; ?>
+<div align="center">
+    <?php printHeaderAd(); ?><br />
+    <font color="#7D80D7" face="Impact" size="7"><b><?php echo stripcslashes($cfg['search_name']); ?>&nbsp;</b></font>
+</div>
+<?php
+// Access Counter Output
+if($cfg['count']) {
+	require $cfg['sub_path'] . "count_ys.php";
+	echo $counter;
+}
+// Header Space Output
+if(isset($text['head_sp'])) {
+	echo $text['head_sp'];
+}
+?>
+<table align="center" width="100%" class="table_topmenu">
+  <tr>
+    <td>
+      <?php if($cfg['mylink_fl']) { echo "<a href=\"{$cfg['script']}?mode=mylink\">マイリンク</a>&nbsp;|"; } ?>&nbsp;<?php if(@!$cfg_reg['no_regist']) { echo "<a href=\"regist_ys.php?mode=new\">新規登録</a>&nbsp;|"; } ?>&nbsp;<a href="regist_ys.php?mode=enter">更新･削除</a>&nbsp;|&nbsp;<a href="sitemap.php">サイトマップ</a>&nbsp;|&nbsp;<a href="<?php echo $cfg['script']; ?>?mode=help">ヘルプ</a></td>
+  </tr>
+</table>
+<table align="center" width="100%" class="table_searchform">
+<form name="form1" action="<?php echo $cfg['search']; ?>" method="get">
+  <tr>
+    <td align="center">
+	  <input type="hidden" name="mode" value="search">
+	  <input type="hidden" name="page" value="1">
+	  <input type="hidden" name="open_type" value="0">
+	  <input type="hidden" name="sort" value="<?php echo $cfg['defo_hyouji']; ?>">
+	  <img src="<?php echo $cfg['img_path_url']; ?>search.gif" alt="検索" width="18" height="18" align="absbottom" title="検索">&nbsp;<input type="text" name=word size="20" class="form">
+	  <select name="engine" class="form">
+        <?php echo $text['search_form']; ?>
+      </select>
+      <select name="method" class="form">
+		<option value="and" selected>AND</option>
+		<option value="or">OR</option>
+      </select>
+      <input type="submit" value=" 検 索 " class="form">&nbsp;&nbsp;<a href="<?php echo $cfg['search']; ?>"><font size="-2">詳細検索</font></a>
+<!-- #おすすめ検索ワード -->
+<?php if(isset($search_words)) { echo "<br>" . $search_words; } ?>
+    </td>
+  </tr>
+</form>
+</table>
+<br>
+<table cellpadding="5" align="center">
+  <tr>
+    <td valign="top">
+      <table width="500" cellpadding="7" class="table_top_category">
+<?php
+// 1番目の行フラグ
+$i = 0;
+
+// 表示テーブルの列数
+$column = 2;
+
+// 最上層カテゴリ
+$query = 'SELECT title, path FROM '.$db->db_pre.'category WHERE up_id=0 ORDER BY path';
+$top_category = $db->rowset_assoc($query);
+foreach($top_category as $row) {
+	if($column == 2 && $i == 1) {
+		echo "\n</td></tr>";
+	}
+	if($i == 0) {$i = 1;}
+	if($column == 2) {
+		echo "<tr valign=\"top\">";
+		$column = 1;
+	} else {
+		$column++;
+	}
+	if($column != 1) {
+		echo "\n</td>";
+	}
+	echo "\n\n";
+	?>
+<td width="50%"><img src="<?php echo $cfg['img_path_url']; ?>folder.gif" border="0" title="<?php echo $row['title']; ?>" alt="<?php echo $row['title']; ?>" align="absbottom">&nbsp;<a href="<?php echo $cfg['script']; ?>?mode=dir&amp;path=<?php echo $row['path']; ?>"><?php echo $row['title']; ?></a><br>
+<?php
+// サブカテゴリ
+	$top_path = $row['path'];
+	$sublist_flag = 0;
+	$query = 'SELECT title, path, top_list FROM '.$db->db_pre.'category WHERE path LIKE \''.$top_path.'_%\' ORDER BY path;';
+	$sub_category = $db->rowset_assoc($query);
+	foreach ($sub_category as $row){
+		if($row['top_list']) {
+			$sublist_flag = 1;
+			echo "\n<font size=\"-2\"><a href=\"{$cfg['script']}?mode=dir&amp;path={$row['path']}\">{$row['title']}</a></font>, ";
+		}
+	}
+	if($sublist_flag) {
+		echo "<font size=\"-2\"><a href=\"{$cfg['script']}?mode=dir&amp;path={$top_path}\">...</a></font>";
+	}
+}
+echo "</td></tr>";
+?>
+      </table>
+    </td>
+    <td valign="top">
+      <table width="220" class="table_menu">
+        <tr>
+	      <td>
+            <div align="center"><font size="+1"><b>【 メニュー 】</b></font><br></div>
+            <ol>
+              <li><a href="<?php echo $cfg['script']; ?>?mode=new"><?php echo $cfg['name_new']; ?></a><br>
+              <li><a href="<?php echo $cfg['script']; ?>?mode=renew"><?php echo $cfg['name_renew']; ?></a><br>
+<?php
+if($cfg['rank_fl']) {
+	echo "<li><a href=\"{$cfg['rank']}\">{$cfg['name_rank']}</a><br>";
+}
+if($cfg['rev_fl']) {
+	echo "<li><a href=\"{$cfg['rank']}?mode=rev\">{$cfg['name_rev']}</a><br>";
+}
+if($cfg['keyrank']) {
+	echo "<li><a href=\"{$cfg['rank']}?mode=keyrank\">キーワードランキング</a><br>";
+}
+if($cfg['m1_fl']) {
+	echo "<li><a href=\"{$cfg['script']}?mode=m1\">{$cfg['name_m1']}</a><br>";
+}
+if($cfg['m2_fl']) {
+	echo "<li><a href=\"{$cfg['script']}?mode=m2\">{$cfg['name_m2']}</a><br>";
+}
+if($cfg['m3_fl']) {
+	echo "<li><a href=\"{$cfg['script']}?mode=m3\">{$cfg['name_m3']}</a><br>";
+}
+if($cfg['m4_fl']) {
+	echo "<li><a href=\"{$cfg['script']}?mode=m4\">{$cfg['name_m4']}</a><br>";
+}
+if($cfg['m5_fl']) {
+	echo "<li><a href=\"{$cfg['script']}?mode=m5\">{$cfg['name_m5']}</a><br>";
+}
+if($cfg['m6_fl']) {
+	echo "<li><a href=\"{$cfg['script']}?mode=m6\">{$cfg['name_m6']}</a><br>";
+}
+if($cfg['m7_fl']) {
+	echo "<li><a href=\"{$cfg['script']}?mode=m7\">{$cfg['name_m7']}</a><br>";
+}
+if($cfg['m8_fl']) {
+	echo "<li><a href=\"{$cfg['script']}?mode=m8\">{$cfg['name_m8']}</a><br>";
+}
+if($cfg['m9_fl']) {
+	echo "<li><a href=\"{$cfg['script']}?mode=m9\">{$cfg['name_m9']}</a><br>";
+}
+if($cfg['m10_fl']) {
+	echo "<li><a href=\"{$cfg['script']}?mode=m10\">{$cfg['name_m10']}</a><br>";
+}
+?>
+              <li><a href="<?php echo $cfg['script']; ?>?mode=random" target="_blank">ランダムジャンプ</a><br>
+            </ol>
+            <div align="center">(全登録数：<?php echo $total_num; ?>サイト)</div>
+	      </td>
+	    </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<hr align="center">
+<!-- Footer Space Output -->
+<?php if(isset($text['foot_sp'])) { echo $text['foot_sp']; } ?>
+<!-- /Footer Space Output -->
+<!-- Admin Login Form Output -->
+<div align="right">
+<form action="<?php echo $cfg['admin']; ?>" method="post">
+  <input type="hidden" name="mode" value="kanri">
+  <input type="password" name="pass" size="10" class="form">
+  <input type="submit" value="管理室" class="form">
+</form>
+</div>
+<!-- /Admin Login Form Output -->
+<!-- Copy Right Output -->
+<div align="center">
+<?php cr(); ?><br />
+<?php printFooterAd(); ?>
+</div>
+<!-- /Copy Right Output -->
+</body>
+</html>

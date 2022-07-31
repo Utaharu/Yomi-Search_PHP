@@ -1,0 +1,444 @@
+<?php
+// リストメニューの設定
+// 二重URL登録(可能=0/不可=1)
+if($cfg_reg['nijyu_url']) {
+	$Cnijyu_url_0 = '';
+	$Cnijyu_url_1 = ' selected';
+} else {
+	$Cnijyu_url_0 = ' selected';
+	$Cnijyu_url_1 = '';
+}
+
+// 追加希望カテゴリ(必須=☆/任意=0)
+if($cfg_reg['Fadd_kt']) {
+	$CFadd_kt_0 = '';
+	$CFadd_kt_1 = ' selected';
+} else {
+	$CFadd_kt_0 = ' selected';
+	$CFadd_kt_1 = '';
+}
+
+// バナーURL(必須=☆/任意=0)
+if($cfg_reg['Fbana_url']) {
+	$CFbana_url_0 = '';
+	$CFbana_url_1 = ' selected';
+} else {
+	$CFbana_url_0 = ' selected';
+	$CFbana_url_1 = '';
+}
+
+// E-Mailアドレス(必須=☆/任意=0)
+if($cfg_reg['Femail']) {
+	$CFemail_0 = '';
+	$CFemail_1 = ' selected';
+} else {
+	$CFemail_0 = ' selected';
+	$CFemail_1 = '';
+}
+
+// キーワード(必須=☆/任意=0)
+if($cfg_reg['Fkey']) {
+	$CFkey_0 = '';
+	$CFkey_1 = ' selected';
+} else {
+	$CFkey_0 = ' selected';
+	$CFkey_1 = '';
+}
+
+// お名前(必須=☆/任意=0)
+if($cfg_reg['Fname']) {
+	$CFname_0 = '';
+	$CFname_1 = ' selected';
+} else {
+	$CFname_0 = ' selected';
+	$CFname_1 = '';
+}
+
+// 紹介文(必須=☆/任意=0)
+if($cfg_reg['Fsyoukai']) {
+	$CFsyoukai_0 = '';
+	$CFsyoukai_1 = ' selected';
+} else {
+	$CFsyoukai_0 = ' selected';
+	$CFsyoukai_1 = '';
+}
+
+// タイトル(必須=☆/任意=0)
+if($cfg_reg['Ftitle']) {
+	$CFtitle_0 = '';
+	$CFtitle_1 = ' selected';
+} else {
+	$CFtitle_0 = ' selected';
+	$CFtitle_1 = '';
+}
+
+// 管理人へのメッセージ(必須=☆/任意=0)
+if($cfg_reg['Fto_admin']) {
+	$CFto_admin_0 = '';
+	$CFto_admin_1 = ' selected';
+} else {
+	$CFto_admin_0 = ' selected';
+	$CFto_admin_1 = '';
+}
+
+// URL(必須=☆/任意=0)
+if($cfg_reg['Furl']) {
+	$CFurl_0 = '';
+	$CFurl_1 = ' selected';
+} else {
+	$CFurl_0 = ' selected';
+	$CFurl_1='';
+}
+
+// 管理人のみが登録できるモード(ON=1/OFF=0)
+if($cfg_reg['no_regist']) {
+	$Cno_regist_0 = '';
+	$Cno_regist_1 = ' selected';
+} else {
+	$Cno_regist_0 = ' selected';
+	$Cno_regist_1 = '';
+}
+
+// 管理人のみが修正・削除できるモード(ON=1/OFF=0)
+if($cfg_reg['no_mente']) {
+	$Cno_mente_0 = '';
+	$Cno_mente_1 = ' selected';
+} else {
+	$Cno_mente_0 = ' selected';
+	$Cno_mente_1 = '';
+}
+
+// バナーURLの登録項目(ON=1/OFF=0)
+if($cfg_reg['bana_url']) {
+	$Cbana_url_0 = '';
+	$Cbana_url_1 = ' selected';
+} else {
+	$Cbana_url_0 = ' selected';
+	$Cbana_url_1 = '';
+}
+
+// 新規登録時の追加希望カテゴリ項目(ON=1/OFF=0)
+if($cfg_reg['add_kt']) {
+	$Cadd_kt_0 = '';
+	$Cadd_kt_1 = ' selected';
+} else {
+	$Cadd_kt_0 = ' selected';
+	$Cadd_kt_1 = '';
+}
+
+// 新規登録時の管理人へのコメント項目(ON=1/OFF=0)
+if($cfg_reg['to_admin']) {
+	$Cto_admin_0 = '';
+	$Cto_admin_1 = ' selected';
+} else {
+	$Cto_admin_0 = ' selected';
+	$Cto_admin_1 = '';
+}
+
+// 新規登録時の相互リンク連絡項目(ON=1/OFF=0)
+if($cfg_reg['sougo']) {
+	$Csougo_0 = '';
+	$Csougo_1 = ' selected';
+} else {
+	$Csougo_0 = ' selected';
+	$Csougo_1 = '';
+}
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<title>管理室 &gt;&gt; 環境設定(登録処理関連)</title>
+<link href="css/admin.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#2F5376" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td><a href="<?php echo $cfg['home']; ?>" target="_blank"><img src="<?php echo $cfg['img_path_url']; ?>admin/logo.gif" alt="ホームページ" width="206" height="80" border="0"></a><a href="<?php echo $cfg['home']; ?>"></a></td>
+    <td align="right"><?php echo $text['menu_bar']; ?></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+  <form action="<?php echo $cfg['admin']; ?>" method="post" lang="ja">
+  <tr>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td class="title">管理トップ &gt;&gt; 環境設定(登録処理関連)</td>
+    <td align="right"><?php echo $admin_listbox; ?></td>
+    <td background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+  </form>
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+    <td colspan="2"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="630" height="4"></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="10" height="4"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000000">
+  <tr>
+    <td align="center"><img src="<?php echo $cfg['img_path_url']; ?>admin/spacer.gif" alt="spacer.gif" width="650" height="1"></td>
+  </tr>
+</table>
+
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
+  <tr>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_left.gif">&nbsp;</td>
+    <td valign="top"><br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+		  <form name="form1" method="post" action="<?php echo $cfg['admin']; ?>">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td colspan="3" class="table_in_header">環境設定(登録処理関連)</td>
+                </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>カテゴリ選択数</strong><br>
+                  <br>
+                  登録者が選択できるカテゴリ数を設定します。半角数字で入力してください。</td>
+                <td class="table_in_rightcell"><input name="kt_min" type="text" class="form" value="<?php echo $cfg_reg['kt_min']; ?>" size="3">
+                  個～
+                    <input name="kt_max" type="text" class="form" value="<?php echo $cfg_reg['kt_max']; ?>" size="3">
+                  個</td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>URLの二重登録</strong></td>
+                <td class="table_in_rightcell"><select name="nijyu_url" class="form">
+                    <option value="1"<?php echo $Cnijyu_url_1; ?>>許可しない</option>
+                    <option value="0"<?php echo $Cnijyu_url_0; ?>>許可する</option>
+                  </select>                </td>
+              </tr>
+              <tr>
+                <td rowspan="9" class="table_in_leftcell"><strong>記入必須項目</strong></td>
+                <td class="table_in_leftcell">追加希望カテゴリ</td>
+                <td class="table_in_rightcell"><select name="Fadd_kt" class="form">
+                  <option value="☆"<?php echo $CFadd_kt_1; ?>>必須</option>
+                  <option value=""<?php echo $CFadd_kt_0; ?>>任意</option>
+                </select>                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">バナーURL</td>
+                <td class="table_in_rightcell"><select name="Fbana_url" class="form">
+                  <option value="☆"<?php echo $CFbana_url_1; ?>>必須</option>
+                  <option value=""<?php echo $CFbana_url_0; ?>>任意</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">Eメールアドレス</td>
+                <td class="table_in_rightcell"><select name="Femail" class="form">
+                  <option value="☆"<?php echo $CFemail_1; ?>>必須</option>
+                  <option value=""<?php echo $CFemail_0; ?>>任意</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">キーワード</td>
+                <td class="table_in_rightcell"><select name="Fkey" class="form">
+                  <option value="☆"<?php echo $CFkey_1; ?>>必須</option>
+                  <option value=""<?php echo $CFkey_0; ?>>任意</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">お名前</td>
+                <td class="table_in_rightcell"><select name="Fname" class="form">
+                  <option value="☆"<?php echo $CFname_1; ?>>必須</option>
+                  <option value=""<?php echo $CFname_0; ?>>任意</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">紹介文</td>
+                <td class="table_in_rightcell"><select name="Fsyoukai" class="form">
+                  <option value="☆"<?php echo $CFsyoukai_1; ?>>必須</option>
+                  <option value=""<?php echo $CFsyoukai_0; ?>>任意</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">タイトル</td>
+                <td class="table_in_rightcell"><select name="Ftitle" class="form">
+                  <option value="☆"<?php echo $CFtitle_1; ?>>必須</option>
+                  <option value=""<?php echo $CFtitle_0; ?>>任意</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">管理人へのメッセージ</td>
+                <td class="table_in_rightcell"><select name="Fto_admin" class="form">
+                  <option value="☆"<?php echo $CFto_admin_1; ?>>必須</option>
+                  <option value=""<?php echo $CFto_admin_0; ?>>任意</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">URL</td>
+                <td class="table_in_rightcell"><select name="Furl" class="form">
+                  <option value="☆"<?php echo $CFurl_1; ?>>必須</option>
+                  <option value=""<?php echo $CFurl_0; ?>>任意</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td rowspan="11" class="table_in_leftcell"><strong>文字数制限/バナーサイズ等の設定</strong></td>
+                <td class="table_in_leftcell">追加希望カテゴリ</td>
+                <td class="table_in_rightcell"><input name="Madd_kt" type="text" class="form" value="<?php echo $cfg_reg['Madd_kt']; ?>" size="5">
+                  文字以内(全角換算)                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">バナーURL</td>
+                <td class="table_in_rightcell"><input name="Mbana_url" type="text" class="form" value="<?php echo $cfg_reg['Mbana_url']; ?>" size="5">
+                  文字以内(半角換算)                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">バナー画像の縦サイズ</td>
+                <td class="table_in_rightcell"><input name="Mbana_h" type="text" class="form" value="<?php echo $cfg_reg['Mbana_h']; ?>" size="5">
+                  ピクセル                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">バナー画像の横サイズ</td>
+                <td class="table_in_rightcell"><input name="Mbana_w" type="text" class="form" value="<?php echo $cfg_reg['Mbana_w']; ?>" size="5">
+                  ピクセル                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">E-Mailアドレス</td>
+                <td class="table_in_rightcell"><input name="Memail" type="text" class="form" value="<?php echo $cfg_reg['Memail']; ?>" size="5">
+                  文字以内(半角換算)                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">キーワード</td>
+                <td class="table_in_rightcell"><input name="Mkey" type="text" class="form" value="<?php echo $cfg_reg['Mkey']; ?>" size="5">
+                  文字以内(全角換算)                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">お名前</td>
+                <td class="table_in_rightcell"><input name="Mname" type="text" class="form" value="<?php echo $cfg_reg['Mname']; ?>" size="5">
+                  文字以内(全角換算)                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">紹介文</td>
+                <td class="table_in_rightcell"><input name="Msyoukai" type="text" class="form" value="<?php echo $cfg_reg['Msyoukai']; ?>" size="5">
+                  文字以内(全角換算)                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">タイトル</td>
+                <td class="table_in_rightcell"><input name="Mtitle" type="text" class="form" value="<?php echo $cfg_reg['Mtitle']; ?>" size="5">
+                  文字以内(全角換算)                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">管理人へのメッセージ</td>
+                <td class="table_in_rightcell"><input name="Mto_admin" type="text" class="form" value="<?php echo $cfg_reg['Mto_admin']; ?>" size="5">
+                  文字以内(全角換算)                </td>
+              </tr>
+              <tr>
+                <td class="table_in_leftcell">URL</td>
+                <td class="table_in_rightcell"><input name="Murl" type="text" class="form" value="<?php echo $cfg_reg['Murl']; ?>" size="5">
+                  文字以内(半角換算)                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>登録禁止ワードの設定</strong><br>
+                  <br>
+                  複数指定する場合には半角スペース(空白)で区切ってください。このチェックは[名前/E-Mailアドレス/URL/バナーURL/タイトル/紹介文/キーワード/登録者IPアドレス/ホスト名]に適用されます。</td>
+                <td class="table_in_rightcell"><input name="kt_no_word" type="text" class="form" value="<?php echo $cfg_reg['kt_no_word']; ?>" size="70">                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>管理人のみが登録できるモード</strong><br>
+                  <br>
+                  有効にされている場合には、管理人以外は新規登録を行うことができなくなります。この機能を有効にしている場合には、「管理室」→「管理人による新規登録」から新規登録を行ってください。</td>
+                <td class="table_in_rightcell"><select name="no_regist" class="form">
+                  <option value="1"<?php echo $Cno_regist_1; ?>>有効</option>
+                  <option value="0"<?php echo $Cno_regist_0; ?>>無効</option>
+                </select>                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>管理人のみが修正・削除できるモード</strong><br>
+                  <br>
+                  有効にされている場合には、管理人以外は修正・削除を行うことができなくなります。</td>
+                <td class="table_in_rightcell"><select name="no_mente" class="form">
+                  <option value="1"<?php echo $Cno_mente_1; ?>>有効</option>
+                  <option value="0"<?php echo $Cno_mente_0; ?>>無効</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>バナーURLの登録項目</strong><br>
+                  <br>
+                  表示するに設定されている場合には、新規登録・内容変更ページにバナーURLの登録項目が追加されます。</td>
+                <td class="table_in_rightcell"><select name="bana_url" class="form">
+                  <option value="1"<?php echo $Cbana_url_1; ?>>表示する</option>
+                  <option value="0"<?php echo $Cbana_url_0; ?>>表示しない</option>
+                </select>                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>新規登録時の追加希望カテゴリ項目</strong><br>
+                  <br>
+                  表示するに設定されている場合には、新規登録ページに追加を希望するカテゴリ名を記入する項目が追加されます。</td>
+                <td class="table_in_rightcell"><select name="add_kt" class="form">
+                  <option value="1"<?php echo $Cadd_kt_1; ?>>表示する</option>
+                  <option value="0"<?php echo $Cadd_kt_0; ?>>表示しない</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>新規登録時の管理人へのコメント項目</strong><br>
+                  <br>
+                  表示するに設定されている場合には、新規登録ページに管理人宛のコメントを入力できる項目が追加されます。</td>
+                <td class="table_in_rightcell"><select name="to_admin" class="form">
+                  <option value="1"<?php echo $Cto_admin_1; ?>>表示する</option>
+                  <option value="0"<?php echo $Cto_admin_0; ?>>表示しない</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>新規登録時の相互リンク連絡項目</strong><br>
+                  <br>
+                  表示するに設定されている場合には、新規登録ページに相互リンクの有無を記入する項目が追加されます。</td>
+                <td class="table_in_rightcell"><select name="sougo" class="form">
+                  <option value="1"<?php echo $Csougo_1; ?>>表示する</option>
+                  <option value="0"<?php echo $Csougo_0; ?>>表示しない</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell"><strong>登録者のメッセージの最大保存数</strong><br>
+                  <br>
+                  1以上に設定されている場合には、「管理室」→「登録者のメッセージを見る」で保存されたメッセージを参照・削除することが可能です。最大保存数を超えた場合には古い順に自動削除されます。<br>
+                  <br>
+                  最大保存数に達した時にまとめて管理人宛てにメールを送る場合には、数字の後ろに m を付けてください。(例 30m )<br>
+                  <br>
+                  但し、審査登録制にしている場合には保存されません。この機能を使用しない場合には 0 を記入してください。</td>
+                <td class="table_in_rightcell"><input name="look_mes" type="text" class="form" value="<?php echo $cfg_reg['look_mes']; ?>" size="10">
+                  (半角英数字で指定)</td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table_in_leftcell">&nbsp;</td>
+                <td class="table_in_rightcell"><input type="submit" class="form" value="送信">
+                  <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                  <input name="mode" type="hidden" value="cfg_make_reg"></td>
+              </tr>
+            </table></td>
+          </tr>
+		  </form>
+        </table>
+        <br>
+        <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
+                <tr>
+                  <td align="center" class="table_in_header"><?php
+// 著作権表示ルーチン
+cr();
+?>
+                  </td>
+                </tr>
+            </table></td>
+          </tr>
+        </table></td>
+    <td width="10" background="<?php echo $cfg['img_path_url']; ?>admin/bg_right.gif">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

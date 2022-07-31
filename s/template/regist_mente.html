@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html class="ui-mobile landscape min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head><meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+<title>登録ﾃﾞｰﾀの修正</title>
+<meta name="Keywords" content="norobot">
+<meta name="Robots" content="noindex,nofollow">
+<meta name="googlebot" content="noarchive">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="content-script-type" content="text/javascript">
+<link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
+<meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
+<link rel="stylesheet" href="./jquery.mobile-1.0a2/jquery.mobile-1.0a2.min.css" />
+<script src="./js/jquery-1.4.4.min.js"></script>
+<!-- <script src="./jquery.mobile-1.0a2/jquery.mobile-1.0a2.js"></script> -->
+<script type="text/javascript">
+function doScroll() { if (window.pageYOffset === 0) { window.scrollTo(0,1); } }
+window.onload = function() { setTimeout(doScroll, 100); }
+</script>
+</head>
+
+<body>
+<a name="top"></a>
+<!-- Start page -->
+<div data-role="page" class="ui-page ui-body-c ui-page-active">
+
+    <!-- header -->
+    <div data-role="header"  data-theme="b" class="ui-bar-b ui-header">
+        <h1 class="ui-title" tabindex="0" role="heading" aria-level="1">登録ﾃﾞｰﾀ修正</h1>
+        <a data-transition="slide" class="ui-btn-left ui-btn ui-btn-up-b ui-btn-icon-left ui-btn-corner-all ui-shadow" data-icon="arrow-l" rel="external" href="http://www.nkbt.net/yomi/search/s/" data-theme="b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">TOP</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow"></span></span></a>
+        <a data-transition="slide" class="ui-btn-right ui-btn ui-btn-up-b ui-btn-icon-left ui-btn-corner-all ui-shadow" rel="external" data-icon="arrow-r" href="search.php" data-theme="b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">ｻｲﾄ検索</span><span class="ui-icon ui-icon-arrow-r ui-icon-shadow"></span></span></a>
+    </div>
+    <!-- /header -->
+
+    <div data-role="content">
+
+        <div style="text-align:center; font-weight:bold;"><?php printTopMenuLink( $text['menu_bar'], '#2489CE' ); ?></div>
+
+
+<!-- /Menu Bar Output -->
+<!-- Header Space Output -->
+<?php echo $text['head_sp']; ?>
+<!-- /Header Space Output -->
+<!-- Navigation Bar Output -->
+<a href="<?php echo SMARTPHONE_HOME; ?>"  rel="external" class="ui-link">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;<strong>ｻｲﾄ内容修正</strong><br />
+<!-- /Navigation Bar Output -->
+
+<div class="ui-bar ui-bar-b" >
+	<h1>登録データの修正</h1>
+</div>
+
+
+<!-- /Navigation Bar Output -->
+<?php
+if(@$cfg['rev_fl']) {
+	?>
+<ul>
+<br>
+<font size="+1">★現在ｱｸｾｽﾗﾝｷﾝｸﾞを開催しています</font><br>
+以下のURLにﾘﾝｸを張っていただくとﾗﾝｷﾝｸﾞに集計されます｡<br>
+【あなた専用のURL】<br>
+<input type="text" size="90" value="<?php echo $cfg['cgi_path_url']; ?><?php echo $cfg['rank']; ?>?mode=r_link&id=<?php echo htmlspecialchars($_POST['id']); ?>" readonly><br>
+あなたのｻｲﾄの訪問者の方が上記のURLへのﾘﾝｸをｸﾘｯｸすると､<br>
+当ｻｲﾄの<a href="<?php echo $cfg['rev_url']; ?>" target="_blank">ﾄｯﾌﾟﾍﾟｰｼﾞ</a>に転送され､ｱｸｾｽﾗﾝｷﾝｸﾞのﾎﾟｲﾝﾄが加算されます｡<br>
+※ただし､一定時間内の同じ訪問者の方からのｱｸｾｽは1ﾎﾟｲﾝﾄとします
+<br><br>
+あなたのｻｲﾄへのｱｸｾｽ数<br />
+<a href="<?php echo $cfg['rank']; ?>?mode=rank" target="_blank">現在</a>: <b><?php echo $log_data['pt0']; ?></b>pt / <a href="<?php echo $cfg['rank']; ?>?mode=rank_rui" target="_blank">累計</a>: <b><?php echo $log_data['pt1']; ?></b>pt<br>
+あなたのｻｲﾄからのｱｸｾｽ数<br />
+<a href="<?php echo $cfg['rank']; ?>?mode=rev" target="_blank">現在</a>: <b><?php echo $log_data['pt2']; ?></b>pt / <a href="<?php echo $cfg['rank']; ?>?mode=rev_rui" target="_blank">累計</a>: <b><?php echo $log_data['pt3']; ?></b>pt
+</ul>
+<hr align="center">
+<?php
+}
+?>
+	<form action="regist.php" method="post">
+		<input type="hidden" name="mode" value="act_mente">
+		<input type="hidden" name="changer" value="">
+		<input type="hidden" name="id" value="<?php echo $log_data[0]; ?>">
+		<input type="hidden" name="pass" value="<?php echo $_POST['pass']; ?>">
+		<input type="hidden" name="bkt" value="<?php echo $log_data[10]; ?>">
+		<input type="hidden" name="pre_mark" value="<?php echo $log_data[3]; ?>">
+<ol>
+	※文字数の換算方法は｢半角<b>2</b>文字=全角<b>1</b>文字｣です<br>
+	※半角ｶﾅは文字化けの原因になりますので使用しないでください<br><br>
+	▼項目名の横に<font color="#FF0000">☆</font>が付いている項目は<font color="#FF0000">記入必須項目</font>です<br>
+	<br>
+<!--お名前-->
+	<li>【お名前】<font color="#FF0000"><?php echo $cfg_reg['Fname']; ?></font>
+		<ul>※ﾊﾝﾄﾞﾙﾈｰﾑも可です<br>
+		※全角<b><?php echo $cfg_reg['Mname']; ?></b>文字以内<br>
+		<input type="text" name="Fname" value="<?php echo $log_data[8]; ?>" size="25"></ul><br>
+<!--ﾒｰﾙｱﾄﾞﾚｽ-->
+	<li>【ﾒｰﾙｱﾄﾞﾚｽ】<font color="#FF0000"><?php echo $cfg_reg['Femail']; ?></font>
+		<ul>※半角英数字<b><?php echo $cfg_reg['Memail']; ?></b>文字以内<br>
+		<input type="text" name="Femail" value="<?php echo $log_data[9]; ?>" size="25"></ul><br>
+<!--ﾊﾟｽﾜｰﾄﾞ-->
+		<input type="hidden" name="Fpass" value="<?php echo $log_data[5]; ?>" size="10">
+		<input type="hidden" name="Fpass2" value="<?php echo $log_data[5]; ?>" size="10">
+<!--ﾎｰﾑﾍﾟｰｼﾞｱﾄﾞﾚｽ-->
+	<li>【ﾎｰﾑﾍﾟｰｼﾞｱﾄﾞﾚｽ】<font color="#FF0000"><?php echo $cfg_reg['Furl']; ?></font>
+		<ul>※半角英数字<b><?php echo $cfg_reg['Murl']; ?></b>文字以内<br>
+		<input type="text" name="Furl" value="<?php echo $log_data[2]; ?>" size="70"></ul><br>
+<?php
+if($cfg_reg["bana_url"]) {
+	?>
+<!--ﾀｲﾄﾙﾊﾞﾅｰのURL-->
+	<li>【ﾀｲﾄﾙﾊﾞﾅｰのURL】<font color="#FF0000"><?php echo $cfg_reg['Fbana_url']; ?></font>
+		<ul>※ﾊﾞﾅｰ(画像)のURLの最後が<br />
+		｢.gif｣｢.jpg｣｢.png｣のいずれかで終わるようにしてください｡
+		<br>※表示されるｻｲｽﾞは 横<b><?php echo $cfg_reg['Mbana_w']; ?></b>×縦<b><?php echo $cfg_reg['Mbana_h']; ?></b>(ﾋﾟｸｾﾙ)</b> です｡ 
+		<br>※半角英数字<b><?php echo $cfg_reg['Mbana_url']; ?></b>文字以内
+		<br><input type="text" name="Fbana_url" value="<?php echo $log_data[12]; ?>" size="60">
+		</ul><br>
+<?php
+}
+?>
+<!--ﾎｰﾑﾍﾟｰｼﾞのﾀｲﾄﾙ-->
+	<li>【ﾎｰﾑﾍﾟｰｼﾞのﾀｲﾄﾙ】<font color="#FF0000"><?php echo $cfg_reg['Ftitle']; ?></font>
+		<ul>※全角<b><?php echo $cfg_reg['Mtitle']; ?></b>文字以内<br>
+		<input type="text" name="Ftitle" value="<?php echo $log_data[1]; ?>" size="25"></ul><br>
+<!--ﾎｰﾑﾍﾟｰｼﾞの紹介文-->
+	<li>【ﾎｰﾑﾍﾟｰｼﾞの紹介文】<font color="#FF0000"><?php echo $cfg_reg['Fsyoukai']; ?></font>
+		<ul>※HTMLﾀｸﾞは使えません<br>
+		※全角<b><?php echo $cfg_reg['Msyoukai']; ?></b>文字以内<br>
+		<textarea wrap="soft" name="Fsyoukai" cols="50" rows="3"><?php echo $log_data[6]; ?></textarea></ul><br>
+<!--登録するｶﾃｺﾞﾘ-->
+	<li>【登録するｶﾃｺﾞﾘ】<font color="#FF0000">☆</font>
+<?php
+print_category($log_data[10]);
+?>
+<!--ｷｰﾜｰﾄﾞ-->
+	<li>【ｷｰﾜｰﾄﾞ】<font color="#FF0000"><?php echo $cfg_reg['Fkey']; ?></font>
+		<ul>※あなたのﾎｰﾑﾍﾟｰｼﾞに関係が深いｷｰﾜｰﾄﾞを入力してください<br>
+		※複数ある場合にはｷｰﾜｰﾄﾞを半角ｽﾍﾟｰｽで区切ってください<br>
+		※全角<b><?php echo $cfg_reg['Mkey']; ?></b>文字以内<br>
+		<input type="text" name="Fkey" value="<?php echo $log_data[15]; ?>" size="60"></ul><br>
+<!--ここまで-->
+		<input type="submit" value="&nbsp; 変更する &nbsp;"> <input type="reset" value="ﾘｾｯﾄ">
+</ol>
+	</form>
+<hr>
+<ul>
+<font size="+1">【ﾊﾟｽﾜｰﾄﾞの変更】</font>
+<form action="<?php echo $cfg['cgi_path']; ?>regist_ys.php" method="post">
+<input type="hidden" name="mode" value="act_repass">
+<input type="hidden" name="repass_mode" value="change_pass">
+<input type="hidden" name="changer" value="<?php echo htmlspecialchars($_POST['changer']); ?>">
+<input type="hidden" name="pass" value="<?php echo htmlspecialchars($_POST['pass']); ?>">
+<input type="hidden" name="id" value="<?php echo $log_data[0]; ?>">
+新しいﾊﾟｽﾜｰﾄﾞ：<input type="password" name="new_pass" size="12">
+<input type="submit" value="ﾊﾟｽﾜｰﾄﾞ変更">
+</form>
+</ul>
+
+<!-- Footer Space Output -->
+<?php if(isset($text['foot_sp'])) { echo $text['foot_sp']; } ?>
+</div>
+<!-- /content -->
+
+<!-- /Footer Space Output -->
+<?php echo SMARTPHONE_FOOTER_NOJS; ?>
+</body>
+</html>

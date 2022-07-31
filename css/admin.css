@@ -1,0 +1,65 @@
+.form {
+	background-color: #FFFFFF;
+	font-size: 11px;
+	border: 1px solid #000000;
+	color: #333333;
+	font-family: "ＭＳ ゴシック", "Osaka－等幅";
+	padding: 1px;
+}
+.title {
+	font-family: "ＭＳ ゴシック", "Osaka－等幅";
+	font-size: 11px;
+	font-weight: bold;
+	color: #CCCCCC;
+	letter-spacing: 2px;
+}
+.table_in_leftcell {
+	font-family: "ＭＳ ゴシック", "Osaka－等幅";
+	color: #333333;
+	background-color: #C2CDD6;
+	border: 1px none #CCCCCC;
+	padding: 8px;
+	font-size: 11px;
+	margin: 0px;
+	vertical-align: top;
+}
+.table_out {
+	background-color: #FFFFFF;
+	border: 1px solid #000000;
+	padding: 0px;
+}
+.table_in_rightcell {
+	font-family: "ＭＳ ゴシック", "Osaka－等幅";
+	color: #333333;
+	background-color: #DEE3E7;
+	border: 1px none #CCCCCC;
+	padding: 8px;
+	font-size: 11px;
+	margin: 0px;
+	vertical-align: top;
+}
+.table_in_header {
+	font-family: "ＭＳ ゴシック", "Osaka－等幅";
+	color: #FFFFFF;
+	background-color: #000066;
+	border: 1px none #CCCCCC;
+	padding: 8px;
+	font-size: 12px;
+	margin: 0px;
+	vertical-align: middle;
+	font-weight: bold;
+	letter-spacing: 2px;
+}
+a:link {
+	font-family: "ＭＳ ゴシック", "Osaka－等幅";
+	font-size: 10px;
+	color: #CCCCCC;
+}
+a:hover {
+	font-family: "ＭＳ ゴシック", "Osaka－等幅";
+	font-size: 10px;
+	color: #FFFFFF;
+}
+.attention_red {
+	color: #FF0000;
+}

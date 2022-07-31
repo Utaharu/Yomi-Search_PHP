@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title><?php echo stripcslashes($cfg['search_name']); ?></title>
+<meta name="keywords" content="<?php echo $cfg['ver']; ?>,検索エンジン,<?php echo $cfg['ver']; ?>の新規ホームページ登録,<?php echo $cfg['ver']; ?>の新規サイト登録" />
+<meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンの新規ホームページ登録、新規サイト登録です" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="index,follow" name="robots" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="content-script-type" content="text/javascript">
+<link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
+<meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
+
+<link rel="stylesheet" href="./jquery.mobile-1.0a2/jquery.mobile-1.0a2.min.css" />
+<script src="./js/jquery-1.4.4.min.js"></script>
+<script src="./jquery.mobile-1.0a2/jquery.mobile-1.0a2.js"></script>
+<script type="text/javascript">
+function doScroll() { if (window.pageYOffset === 0) { window.scrollTo(0,1); } }
+window.onload = function() {
+ setTimeout(doScroll, 100);
+}
+</script>
+</head>
+
+
+<body>
+<!-- Start page -->
+<div data-role="page"  data-cache="never">
+
+    <!-- header -->
+    <div data-role="header"  data-theme="b">
+        <h1><?php echo 'ｻｲﾄ登録'; ?></h1>
+        <a href="<?php echo SMARTPHONE_HOME;?>" rel="external" data-icon="arrow-l" class="ui-btn-left" data-transition="slide">TOP</a>
+        <a href="search.php" data-icon="arrow-r" rel="external" class="ui-btn-right" data-transition="slide">検索</a>
+    </div>
+    <!-- /header -->
+
+
+   <div data-role="content">
+<!-- Menu Bar Output -->
+        <div style="text-align:center;"><?php printTopMenuLink( $text['menu_bar'] ); ?></div>
+<!-- /Menu Bar Output -->
+<!-- Navigation Bar Output -->
+<a href="<?php echo SMARTPHONE_HOME;?>" rel="external">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;<strong>新規ｻｲﾄ登録</strong>
+
+<!-- ここから設定 -->
+【 登録上の注意事項と利用法 】<br />
+<font id="small">
+以下の(1)-(8)の項目に該当するｻｲﾄは登録をご遠慮ください｡<br />
+<br />(1)ｱﾀﾞﾙﾄｻｲﾄ又は１８歳未満に好ましくないと判断されるｻｲﾄ 
+<br />(2)公的秩序に反するｻｲﾄ 
+<br />(3)犯罪行為に結びつくｻｲﾄ 
+<br />(4)他人の著作権を侵害するｻｲﾄ 
+<br />(5)他人の財産､ﾌﾟﾗｲﾊﾞｼｰを侵害するｻｲﾄ 
+<br />(6)その他､法律に反するｻｲﾄ 
+<br />(7)他人に不利益を与えるｻｲﾄ 
+<br />(8)他人を中傷するｻｲﾄ
+<br /><br /><b>ﾎｰﾑﾍﾟｰｼﾞの紹介文</b>は､登録するｻｲﾄの内容が紹介文を見る人に
+分かりやすく伝わるように書いてみてください｡
+<br /><br />管理人が登録内容について､変更･削除する必要があると判断した場合や<br />URLのﾘﾝｸ先がなくなっている場合には､内容を変更･削除する場合があります｡
+<br /><br /><img src="<?php echo '../'.$cfg['img_path_url']; ?>m1.gif" align="bottom"> の付いたｻｲﾄは､｢<a href="<?php echo $cfg['script']; ?>?mode=m1"><?php echo $cfg['name_m1']; ?></a>｣のｺｰﾅｰにも表示されます｡
+<br /><br /><img src="<?php echo '../'.$cfg['img_path_url']; ?>m2.gif" align="bottom">
+  の付いたｻｲﾄは､｢<a href="<?php echo $cfg['script']; ?>?mode=m2"><?php echo $cfg['name_m2']; ?></a>｣のｺｰﾅｰにも表示されます｡
+</font><br />
+<form action="regist.php" method="post">
+<input type="hidden" name="mode" value="act_regist">
+	※文字数の換算方法は｢半角<b>2</b>文字=全角<b>1</b>文字｣です<br />
+	※半角ｶﾅは文字化けの原因になりますので使用しないでください<br /><br />
+	▼項目名の横に<font color="#FF0000">☆</font>が付いている項目は<font color="#FF0000">記入必須項目</font>です<br />
+	<br />
+<!--お名前-->
+【お名前】<font color="#FF0000"><?php echo $cfg_reg['Fname']; ?></font>
+※ﾊﾝﾄﾞﾙﾈｰﾑも可です<br />
+※全角<b><?php echo $cfg_reg['Mname']; ?></b>文字以内<br />
+<?php if(!isset($_POST['Fname'])) { $_POST['Fname'] = ""; } ?>
+		<input type="text" name="Fname" value="<?php echo htmlspecialchars($_POST['Fname']); ?>" size="25"><br />
+<!--ﾒｰﾙｱﾄﾞﾚｽ-->
+【ﾒｰﾙｱﾄﾞﾚｽ】<font color="#FF0000"><?php echo $cfg_reg['Femail']; ?></font>
+※半角英数字<b><?php echo $cfg_reg['Memail']; ?></b>文字以内<br />
+<?php if(!isset($_POST['Femail'])) { $_POST['Femail'] = ""; } ?>
+<input type="text" name="Femail" value="<?php echo htmlspecialchars($_POST['Femail']); ?>" size="25"><br />
+<!--ﾊﾟｽﾜｰﾄﾞ-->
+【ﾊﾟｽﾜｰﾄﾞ】<font color="#FF0000">☆</font>
+※このﾊﾟｽﾜｰﾄﾞで今後､登録内容の修正ができます<br />
+※半角英数字<b>8</b>文字以内<br />
+<?php
+if(!isset($_POST['Fpass'])) { $_POST['Fpass'] = ""; }
+if(!isset($_POST['Fpass2'])) { $_POST['Fpass2'] = ""; }
+?>
+<input type="password" name="Fpass" value="<?php echo htmlspecialchars($_POST['Fpass']); ?>" size="10"><br />
+(もう一度確認のため入力してください)<br />
+<input type="password" name="Fpass2" value="<?php echo htmlspecialchars($_POST['Fpass2']); ?>" size="10">
+<br />
+<br />
+<!--ﾎｰﾑﾍﾟｰｼﾞｱﾄﾞﾚｽ-->
+【ﾎｰﾑﾍﾟｰｼﾞｱﾄﾞﾚｽ】<font color="#FF0000"><?php echo $cfg_reg['Furl']; ?></font>
+※半角英数字<b><?php echo $cfg_reg['Murl']; ?></b>文字以内<br />
+<?php if(!isset($_POST['Furl'])) { $_POST['Furl'] = ""; } ?>
+<input type="text" name="Furl" value="<?php echo htmlspecialchars($_POST['Furl']); ?>" size="70"><br />
+<?php
+if(@$cfg_reg['bana_url']) {
+?><!--ﾀｲﾄﾙﾊﾞﾅｰのURL-->
+【ﾀｲﾄﾙﾊﾞﾅｰのURL】<font color="#FF0000"><?php echo $cfg_reg['Fbana_url']; ?></font>
+※ﾊﾞﾅｰ(画像)のURLの最後が｢.gif｣｢.jpg｣｢.png｣のいずれかで終わるようにしてください｡
+<br />※表示されるｻｲｽﾞは 横<b><?php echo $cfg_reg['Mbana_w']; ?></b>×縦<b><?php echo $cfg_reg['Mbana_h']; ?></b>(ﾋﾟｸｾﾙ)</b> です｡ 
+<br />※半角英数字<b><?php echo $cfg_reg['Mbana_url']; ?></b>文字以内
+<?php if(!isset($_POST['Fbana_url'])) { $_POST['Fbana_url'] = ""; } ?>
+<br /><input type="text" name="Fbana_url" value="<?php echo htmlspecialchars($_POST['Fbana_url']); ?>" size="60">
+<br />
+<?php
+}
+?>
+<!--ﾎｰﾑﾍﾟｰｼﾞのﾀｲﾄﾙ-->
+【ﾎｰﾑﾍﾟｰｼﾞのﾀｲﾄﾙ】<font color="#FF0000"><?php echo $cfg_reg['Ftitle']; ?></font>
+※全角<b><?php echo $cfg_reg['Mtitle']; ?></b>文字以内<br />
+<?php if(!isset($_POST['Ftitle'])) { $_POST['Ftitle'] = ""; } ?>
+<input type="text" name="Ftitle" value="<?php echo htmlspecialchars($_POST['Ftitle']); ?>" size="25"><br />
+<!--ﾎｰﾑﾍﾟｰｼﾞの紹介文-->
+	【ﾎｰﾑﾍﾟｰｼﾞの紹介文】<font color="#FF0000"><?php echo $cfg_reg['Fsyoukai']; ?></font>
+		※HTMLﾀｸﾞは使えません<br />
+		※全角<b><?php echo $cfg_reg['Msyoukai']; ?></b>文字以内<br />
+<?php if(!isset($_POST['Fsyoukai'])) { $_POST['Fsyoukai'] = ""; } ?>
+		<textarea wrap="soft" name="Fsyoukai" cols="50" rows="3"><?php echo htmlspecialchars($_POST['Fsyoukai']); ?></textarea></ul><br />
+<!--登録するｶﾃｺﾞﾘ-->
+	【登録するｶﾃｺﾞﾘ】<font color="#FF0000">☆</font>
+<?php
+print_category($category, true);
+?>
+<!--ｷｰﾜｰﾄﾞ-->
+	【ｷｰﾜｰﾄﾞ】<font color="#FF0000"><?php echo $cfg_reg['Fkey']; ?></font>
+		※あなたのﾎｰﾑﾍﾟｰｼﾞに関係が深いｷｰﾜｰﾄﾞを入力してください<br />
+		※複数ある場合にはｷｰﾜｰﾄﾞを半角ｽﾍﾟｰｽで区切ってください<br />
+		※全角<b><?php echo $cfg_reg['Mkey']; ?></b>文字以内<br />
+<?php if(!isset($_POST['Fkey'])) { $_POST['Fkey'] = ""; } ?>
+		<input type="text" name="Fkey" value="<?php echo htmlspecialchars($_POST['Fkey']); ?>" size="60"><br />
+<?php
+if(@$cfg_reg['add_kt']) {
+?>
+<!--追加して欲しいｶﾃｺﾞﾘ-->
+	【追加して欲しいｶﾃｺﾞﾘ】<font color="#FF0000"><?php echo $cfg_reg['Fadd_kt']; ?></font>
+		※今後､新設した方が良いと思うｶﾃｺﾞﾘがあればご提案ください<br />
+		※全角<b><?php echo $cfg_reg['Madd_kt']; ?></b>文字以内<br />
+<?php if(!isset($_POST['Fadd_kt'])) { $_POST['Fadd_kt'] = ""; } ?>
+		<input type="text" name="Fadd_kt" value="<?php echo htmlspecialchars($_POST['Fadd_kt']); ?>" size="60">
+		<br />
+<?php
+}
+if(@$cfg_reg['to_admin']) {
+	?>
+<!--管理人へのﾒｯｾｰｼﾞ-->
+	【管理人へのﾒｯｾｰｼﾞ】<font color="#FF0000"><?php echo $cfg_reg['Fto_admin']; ?></font>
+		※管理人へのﾒｯｾｰｼﾞ等ありましたらお書きください<br />
+		※全角<b><?php echo $cfg_reg['Mto_admin']; ?></b>文字以内<br />
+<?php
+	if(!isset($_POST['Fto_admin'])) {
+		$_POST['Fto_admin'] = "";
+	}
+?>
+<textarea wrap="soft" name="Fto_admin" cols="50" rows="3"><?php echo htmlspecialchars($_POST['Fto_admin']); ?></textarea>
+<?php
+}
+?>
+<!--管理人へのﾒｯｾｰｼﾞ-->
+<?php
+$certification_cord = "";
+$certification_cord = substr(md5(uniqid(microtime())), 0, 8);
+?>
+<br />【ｽﾊﾟﾑ登録対策用ｺｰﾄﾞ認証】<font color="#FF0000"><?php echo $cfg_reg['Fto_admin']; ?></font>
+※以下に表示されている8文字の文字列を入力してください<br />
+		<?php echo $certification_cord; ?><br />
+		<input type="hidden" name="certification_cord" value="<?php echo $certification_cord; ?>">
+		<input name="Fcertification_cord" type="text" value="" size="20">
+<?php
+if(@$cfg_reg['sougo']) {
+	if(@$_POST['Fsougo']) {
+		$sougo_0 = "";
+		$sougo_1 = " checked";
+	} else {
+		$sougo_0 = " checked";
+		$sougo_1 = "";
+	}
+	?>
+<!--相互ﾘﾝｸ連絡項目-->
+	<br />【相互ﾘﾝｸの有無】<font color="#FF0000"><?php echo $cfg_reg['Fto_admin']; ?></font>
+		※当ｻｲﾄと相互ﾘﾝｸしてくださる場合には｢<b>相互ﾘﾝｸする</b>｣を選択してください<br />
+		<input type="radio" name="Fsougo" value="1"<?php echo $sougo_1; ?>>相互ﾘﾝｸする | <input type="radio" name="Fsougo" value="0"<?php echo $sougo_0; ?>>相互ﾘﾝｸしない
+		<br />
+<?php
+}
+?>
+<!--ここまで-->
+	<br /><br />
+
+<div data-role="fieldcontain">
+ 	<fieldset data-role="controlgroup">
+		<input type="checkbox" name="preview" id="checkbox-1" class="custom" value="on" checked/>
+		<label for="checkbox-1">ﾌﾟﾚﾋﾞｭｰする</label>
+                <input type="hidden" name="preview" value="on" checked>
+                <button type="submit" data-theme="a">&nbsp; 登録する &nbsp;</button>
+                <input type="reset" value="ﾘｾｯﾄ">
+    </fieldset>
+</div>
+</form>
+
+
+
+
+<!-- Footer Space Output -->
+<?php if(isset($text['foot_sp'])) { echo $text['foot_sp']; } ?>
+</div>
+<!-- /content -->
+
+<!-- /Footer Space Output -->
+<?php echo SMARTPHONE_FOOTER; ?>
+</body>
+</html>

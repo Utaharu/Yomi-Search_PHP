@@ -1,0 +1,171 @@
+<?php echo '<?xml version="1.0" encoding="utf-8"?>'; ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<meta name="Keywords" content="norobot">
+<meta name="Robots" content="noindex,nofollow">
+<meta name="googlebot" content="noarchive">
+<title>新規登録完了</title>
+<style type="text/css">
+<![CDATA[
+a:link{color:<?php echo LINK_COLOR; ?>;}
+a:focus{color:<?php echo ALINK_COLOR; ?>;}
+a:visited{color:<?php echo VLINK_COLOR; ?>;}
+]]>
+</style>
+</head>
+<body><div style="font-size:x-small;">
+
+
+<div style="background-color:#0873C6;">
+<img src="./img/spacer.gif" width="1" height="1" /><br /></div>
+<div style="text-align:center; background-color:#6666cc; color:#ffffff;" align="center">
+<?php echo $cfg['search_name']; ?></div>
+
+<div style="background-color:#0873C6;">
+<img src="./img/spacer.gif" width="1" height="1" /><br />
+</div>
+<div style="text-align:center; background-color:#e1e1f7; color:#225882;" align="center">
+    <div align="center">[<a href="index.php?mode=new">新着ｻｲﾄ</a>|<a href="index.php?mode=rank">ﾗﾝｷﾝｸﾞ</a>|ｻｲﾄ登録]</div>
+</div>
+<div style="background-color:#0873C6;">
+    <img src="./img/spacer.gif" width="1" height="1" /><br />
+</div>
+
+<!-- /Menu Bar Output -->
+<!-- Navigation Bar Output -->
+<div style="text-align:center; background-color:#EFFEFF;" align="center">
+<a href="<?php echo $cfg['home']; ?>">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;新規登録完了
+<!-- /Navigation Bar Output -->
+<!-- ここから設定 -->
+<div style="background-color:#0873C6;">
+<img src="./img/spacer.gif" width="1" height="1" /><br />
+</div>
+</div>
+
+
+
+<?php
+if(@$cfg['rev_fl']) {
+?>
+<br />
+<font size="+1">★現在ｱｸｾｽﾗﾝｷﾝｸﾞを開催しています</font><br />
+以下のURLにﾘﾝｸを張っていただくとﾗﾝｷﾝｸﾞに集計されます｡<br />
+【あなた専用のURL】<br />
+<input type="text" size="90" value="<?php echo $cfg['cgi_path_url'] . $cfg['rank']; ?>?mode=r_link&id=<?php echo $log_data[0]; ?>" readonly><br />
+あなたのｻｲﾄの訪問者の方が上記のURLへのﾘﾝｸをｸﾘｯｸすると､<br />
+当ｻｲﾄの<a href="<?php echo $cfg['home']; ?>" target="_blank">ﾄｯﾌﾟﾍﾟｰｼﾞ</a>に転送され､ｱｸｾｽﾗﾝｷﾝｸﾞのﾎﾟｲﾝﾄが加算されます｡<br />
+※ただし､一定時間内の同じ訪問者の方からのｱｸｾｽは1ﾎﾟｲﾝﾄとします<br />
+※ｱｸｾｽ用のURLは登録内容変更画面からも確認できます
+<br />
+
+
+<div style="background-color:#0873C6;">
+<img src="./img/spacer.gif" width="1" height="1" /><br />
+</div>
+
+
+<?php
+}
+?>
+▼新規登録が以下のとおり完了しましたのでご確認ください<br /><br />
+<!--ID-->
+【ID】<br />
+    <?php echo $log_data[0]; ?><br />
+<!--お名前-->
+  【お名前】<br />
+    <?php echo $log_data[8]; ?><br />
+<!--ﾒｰﾙｱﾄﾞﾚｽ-->
+  【ﾒｰﾙｱﾄﾞﾚｽ】<br />
+    <?php echo $log_data[9]; ?><br />
+<!--ﾊﾟｽﾜｰﾄﾞ-->
+  【ﾊﾟｽﾜｰﾄﾞ】<br />
+    <?php echo $_POST['Fpass']; ?><br />
+<!--ﾎｰﾑﾍﾟｰｼﾞｱﾄﾞﾚｽ-->
+  【ﾎｰﾑﾍﾟｰｼﾞｱﾄﾞﾚｽ】<br />
+    <?php echo $log_data[2]; ?>　[<a href="<?php echo $log_data[2]; ?>" target="_blank">確認</a>]<br />
+<?php
+if(@$cfg_reg['bana_url'] && $log_data[12]) {
+	?>
+<!--ﾀｲﾄﾙﾊﾞﾅｰのURL-->
+  【ﾀｲﾄﾙﾊﾞﾅｰのURL】
+    <?php echo $log_data[12]; ?>　[<a href="<?php echo $log_data[12]; ?>" target="_blank">確認</a>]<br />
+<?php
+}
+?>
+<!--ﾎｰﾑﾍﾟｰｼﾞのﾀｲﾄﾙ-->
+  【ﾎｰﾑﾍﾟｰｼﾞのﾀｲﾄﾙ】
+    <?php echo $log_data[1]; ?><br />
+<!--ﾎｰﾑﾍﾟｰｼﾞの紹介文-->
+  【ﾎｰﾑﾍﾟｰｼﾞの紹介文】
+   <?php echo $log_data[6]; ?><br />
+<!--登録するｶﾃｺﾞﾘ-->
+  【登録するｶﾃｺﾞﾘ】
+    <?preview_category2()?><br />
+<!--ｷｰﾜｰﾄﾞ-->
+  【ｷｰﾜｰﾄﾞ】
+    
+<?php
+if(isset($log_data[15])) {
+	echo $log_data[15];
+}
+?>
+<br />
+<?php
+if(!isset($_POST['in_mode'])) {
+	$_POST['in_mode'] = "";
+}
+if($cfg_reg["add_kt"] && $_POST["in_mode"] != "mente") {
+	?>
+<!--追加して欲しいｶﾃｺﾞﾘ-->
+  【追加して欲しいｶﾃｺﾞﾘ】
+    
+<?php
+if(isset($_POST['Fadd_kt'])) {
+	echo htmlspecialchars($_POST['Fadd_kt']);
+}
+?>
+    <br />
+<?php
+}
+if(@$cfg_reg['to_admin'] && $_POST['in_mode'] != "mente") {
+	?>
+<!--管理人へのﾒｯｾｰｼﾞ-->
+  【管理人へのﾒｯｾｰｼﾞ】
+
+<?php
+if(isset($_POST['Fto_admin'])) {
+	echo htmlspecialchars($_POST['Fto_admin']);
+}
+?>
+	
+<?php
+}
+if(@$cfg_reg['sougo'] && $_POST['in_mode'] != "mente") {
+	if($_POST['Fsougo']) {
+		$sougo = "相互ﾘﾝｸする";
+	} else {
+		$sougo = "相互ﾘﾝｸしない";
+	}
+	?>
+<!--相互ﾘﾝｸ連絡項目-->
+  <br />【相互ﾘﾝｸの有無】
+    <?php echo $sougo; ?>
+<?php
+}
+?>
+<!--ここまで-->
+<br /><br />
+【　<a href="<?php echo $cfg['home']; ?>">ﾎｰﾑに戻る</a>　】
+</form>
+
+<!-- Copy Right Output -->
+<div align="center"><?php mcr(); ?></div>
+<!-- /Copy Right Output -->
+</div>
+</body>
+</html>

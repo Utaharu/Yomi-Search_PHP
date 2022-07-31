@@ -1,0 +1,219 @@
+<?php echo '<?xml version="1.0" encoding="utf-8"?>'; ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<meta name="keywords" content="<?php echo $cfg['ver']; ?>,検索エンジン,<?php echo $cfg['ver']; ?>の登録画面,<?php echo $Stitle; ?>の新規登録" />
+<meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンのサイト登録,<?php echo $Stitle; ?>のホームページ登録" />
+<title>新規ﾎｰﾑﾍﾟｰｼﾞ登録</title>
+<style type="text/css">
+<![CDATA[
+a:link{color:<?php echo LINK_COLOR; ?>;}
+a:focus{color:<?php echo ALINK_COLOR; ?>;}
+a:visited{color:<?php echo VLINK_COLOR; ?>;}
+]]>
+</style>
+</head>
+<body><div style="font-size:x-small;">
+
+<div style="background-color:<?php echo HR_COLOR; ?>;">
+<img src="./img/spacer.gif" width="1" height="1" /><br /></div>
+<div style="text-align:center; background-color:<?php echo ONE_BACK_COLOR; ?>; color:<?php echo ONE_STR_COLOR; ?>;" align="center">
+<?php echo $cfg['search_name']; ?></div>
+
+<div style="background-color:<?php echo HR_COLOR; ?>;">
+<img src="./img/spacer.gif" width="1" height="1" /><br />
+</div>
+<div style="text-align:center; background-color:<?php echo TWO_BACK_COLOR; ?>; color:<?php echo TWO_STR_COLOR; ?>;" align="center">
+    <div align="center">[<a href="index.php?mode=new">新着ｻｲﾄ</a>|<a href="index.php?mode=rank">ﾗﾝｷﾝｸﾞ</a>|ｻｲﾄ登録]</div>
+</div>
+<div style="background-color:<?php echo HR_COLOR; ?>;">
+    <img src="./img/spacer.gif" width="1" height="1" /><br />
+</div>
+
+<!-- /Menu Bar Output -->
+<!-- Navigation Bar Output -->
+<div style="text-align:center; background-color:<?php echo THREE_BACK_COLOR; ?>; <?php echo THREE_STR_COLOR; ?>" align="center">
+<a href="<?php echo $cfg['home']; ?>">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;新規HP登録
+<!-- /Navigation Bar Output -->
+<!-- ここから設定 -->
+<div style="background-color:<?php echo HR_COLOR; ?>;">
+<img src="./img/spacer.gif" width="1" height="1" /><br />
+</div>
+</div>
+
+【登録上の注意事項と利用法】
+<div style="font-size:small;">
+以下の1-8の項目に該当するｻｲﾄは登録をご遠慮ください｡<br />
+(1)ｱﾀﾞﾙﾄｻｲﾄ又は18歳未満に好ましくないと判断されるｻｲﾄ<br />
+(2)公的秩序に反するｻｲﾄ<br />
+(3)犯罪行為に結びつくｻｲﾄ<br />
+(4)他人の著作権を侵害するｻｲﾄ<br />
+(5)他人の財産､ﾌﾟﾗｲﾊﾞｼｰを侵害するｻｲﾄ<br />
+(6)その他､法律に反するｻｲﾄ<br />
+(7)他人に不利益を与えるｻｲﾄ<br />
+(8)他人を中傷するｻｲﾄ<br />
+<br />
+ﾎｰﾑﾍﾟｰｼﾞの紹介文は､登録するｻｲﾄの内容が紹介文を見る人に
+分かりやすく伝わるように書いてみてください｡
+<br /><br />
+管理人が登録内容について､変更･削除する必要があると判断した場合や<br />URLのﾘﾝｸ先がなくなっている場合には､内容を変更･削除する場合があります｡
+<br />
+<form action="regist.php" method="post">
+<input type="hidden" name="mode" value="act_regist">
+	※文字数の換算方法は｢半角<b>2</b>文字=全角<b>1</b>文字｣です<br />
+	※半角ｶﾅは文字化けの原因になりますので使用しないでください<br /><br />
+	▼項目名の横に<font color="#FF0000">☆</font>が付いている項目は<font color="#FF0000">記入必須項目</font>です<br />
+	<br />
+<!--お名前-->
+【お名前】<font color="#FF0000"><?php echo $cfg_reg['Fname']; ?></font><br />
+※ﾊﾝﾄﾞﾙﾈｰﾑも可<br />
+※全角<?php echo $cfg_reg['Mname']; ?>文字以内<br />
+<?php if(!isset($_POST['Fname'])) { $_POST['Fname'] = ""; } ?>
+<input type="text" name="Fname" value="<?php echo htmlspecialchars($_POST['Fname']); ?>" size="25"><br />
+<!--ﾒｰﾙｱﾄﾞﾚｽ-->
+【ﾒｰﾙｱﾄﾞﾚｽ】<font color="#FF0000"><?php echo $cfg_reg['Femail']; ?></font><br />
+※半角英数字<?php echo $cfg_reg['Memail']; ?>文字以内<br />
+<?php if(!isset($_POST['Femail'])) { $_POST['Femail'] = ""; } ?>
+<input type="text" name="Femail" value="<?php echo htmlspecialchars($_POST['Femail']); ?>" size="25"><br />
+<!--ﾊﾟｽﾜｰﾄﾞ-->
+【ﾊﾟｽﾜｰﾄﾞ】<font color="#FF0000">☆</font><br />
+※このﾊﾟｽﾜｰﾄﾞで今後､登録内容の修正ができます<br />
+※半角英数字8文字以内<br />
+<?php
+if(!isset($_POST['Fpass'])) { $_POST['Fpass'] = ''; }
+if(!isset($_POST['Fpass2'])) { $_POST['Fpass2'] = ''; }
+?>
+<input type="password" name="Fpass" value="<?php echo htmlspecialchars($_POST['Fpass']); ?>" size="10"><br />
+<input type="password" name="Fpass2" value="<?php echo htmlspecialchars($_POST['Fpass2']); ?>" size="10"><br />
+(もう一度確認のため入力してください)
+<br />
+<!--ﾎｰﾑﾍﾟｰｼﾞｱﾄﾞﾚｽ-->
+【ﾎｰﾑﾍﾟｰｼﾞｱﾄﾞﾚｽ】<br /><font color="#FF0000"><?php echo $cfg_reg['Furl']; ?></font>
+※半角英数字<?php echo $cfg_reg['Murl']; ?>文字以内<br />
+<?php if(!isset($_POST['Furl'])) { $_POST['Furl'] = ""; } ?>
+<input type="text" name="Furl" value="<?php echo htmlspecialchars($_POST['Furl']); ?>" size="70"><br />
+<?php
+if(@$cfg_reg['bana_url']) {
+?><!--ﾀｲﾄﾙﾊﾞﾅｰのURL-->
+【ﾀｲﾄﾙﾊﾞﾅｰのURL】<br /><font color="#FF0000"><?php echo $cfg_reg['Fbana_url']; ?></font>
+※ﾊﾞﾅｰ(画像)のURLの最後が｢.gif｣｢.jpg｣｢.png｣のいずれかで終わるようにしてください｡
+<br />
+※表示されるｻｲｽﾞは 横<?php echo $cfg_reg['Mbana_w']; ?>×縦<?php echo $cfg_reg['Mbana_h']; ?>(ﾋﾟｸｾﾙ)です｡ 
+<br />※半角英数字<?php echo $cfg_reg['Mbana_url']; ?>文字以内
+<?php if(!isset($_POST['Fbana_url'])) { $_POST['Fbana_url'] = ""; } ?>
+<br /><input type="text" name="Fbana_url" value="<?php echo htmlspecialchars($_POST['Fbana_url']); ?>" size="60">
+<br />
+<?php
+}
+?>
+<!--ﾎｰﾑﾍﾟｰｼﾞのﾀｲﾄﾙ-->
+【ﾎｰﾑﾍﾟｰｼﾞのﾀｲﾄﾙ】<font color="#FF0000"><?php echo $cfg_reg['Ftitle']; ?></font><br />
+※全角<?php echo $cfg_reg['Mtitle']; ?>文字以内<br />
+<?php if(!isset($_POST['Ftitle'])) { $_POST['Ftitle'] = ""; } ?>
+<input type="text" name="Ftitle" value="<?php echo htmlspecialchars($_POST['Ftitle']); ?>" size="25"><br />
+<!--ﾎｰﾑﾍﾟｰｼﾞの紹介文-->
+【ﾎｰﾑﾍﾟｰｼﾞの紹介文】<br />
+<font color="#FF0000"><?php echo $cfg_reg['Fsyoukai']; ?></font>
+※HTMLﾀｸﾞは使えません<br />
+※全角<?php echo $cfg_reg['Msyoukai']; ?>文字以内<br />
+<?php if(!isset($_POST['Fsyoukai'])) { $_POST['Fsyoukai'] = ''; } ?>
+<textarea wrap="soft" name="Fsyoukai" cols="30" rows="5"><?php echo htmlspecialchars($_POST['Fsyoukai']); ?></textarea><br />
+<!--登録するｶﾃｺﾞﾘ-->
+【登録するｶﾃｺﾞﾘ】<br /><font color="#FF0000">☆</font>
+<?php
+print_category($category);
+?>
+<!--ｷｰﾜｰﾄﾞ-->
+【ｷｰﾜｰﾄﾞ】<br /><font color="#FF0000"><?php echo $cfg_reg['Fkey']; ?></font>
+※あなたのﾎｰﾑﾍﾟｰｼﾞに関係が深いｷｰﾜｰﾄﾞを入力してください<br />
+※複数ある場合にはｷｰﾜｰﾄﾞを半角ｽﾍﾟｰｽで区切ってください<br />
+※全角<?php echo $cfg_reg['Mkey']; ?>文字以内<br />
+<?php if(!isset($_POST['Fkey'])) { $_POST['Fkey'] = ""; } ?>
+<input type="text" name="Fkey" value="<?php echo htmlspecialchars($_POST['Fkey']); ?>" size="30"><br />
+<?php
+if(@$cfg_reg['add_kt']) {
+?>
+<!--追加して欲しいｶﾃｺﾞﾘ-->
+【追加して欲しいｶﾃｺﾞﾘ】<br /><font color="#FF0000"><?php echo $cfg_reg['Fadd_kt']; ?></font>
+※今後､新設した方が良いと思うｶﾃｺﾞﾘがあればご提案ください<br />
+※全角<?php echo $cfg_reg['Madd_kt']; ?>文字以内<br />
+<?php if(!isset($_POST['Fadd_kt'])) { $_POST['Fadd_kt'] = ''; } ?>
+<input type="text" name="Fadd_kt" value="<?php echo htmlspecialchars($_POST['Fadd_kt']); ?>" size="30">
+<br />
+<?php
+}
+if(@$cfg_reg['to_admin']) {
+?>
+<!--管理人へのﾒｯｾｰｼﾞ-->
+【管理人へのﾒｯｾｰｼﾞ】<br /><font color="#FF0000"><?php echo $cfg_reg['Fto_admin']; ?></font>
+※管理人へのﾒｯｾｰｼﾞ等ありましたらお書きください<br />
+※全角<?php echo $cfg_reg['Mto_admin']; ?>文字以内<br />
+<?php
+if(!isset($_POST['Fto_admin'])) {
+	$_POST['Fto_admin'] = "";
+}
+?>
+<textarea wrap="soft" name="Fto_admin" cols="30" rows="5"><?php echo htmlspecialchars($_POST['Fto_admin']); ?></textarea>
+<?php
+}
+?>
+<!--管理人へのﾒｯｾｰｼﾞ-->
+<?php
+$certification_cord = '';
+$certification_cord = substr(md5(uniqid(microtime())), 0, 8);
+?>
+<br />
+【ｽﾊﾟﾑ登録対策用ｺｰﾄﾞ認証】<br />
+<font color="#FF0000"><?php echo $cfg_reg['Fto_admin']; ?></font>
+ ※以下に表示されている8文字の文字列を入力してください<br />
+<?php echo $certification_cord; ?><br />
+<input type="hidden" name="certification_cord" value="<?php echo $certification_cord; ?>">
+<input name="Fcertification_cord" type="text" value="" size="20">
+
+<?php
+if(@$cfg_reg['sougo']) {
+	if(@$_POST['Fsougo']) {
+		$sougo_0 = "";
+		$sougo_1 = " checked";
+	} else {
+		$sougo_0 = " checked";
+		$sougo_1 = "";
+	}
+?>
+<!--相互ﾘﾝｸ連絡項目-->
+<br />
+【相互ﾘﾝｸの有無】<br />
+<font color="#FF0000"><?php echo $cfg_reg['Fto_admin']; ?></font>
+※当ｻｲﾄと相互ﾘﾝｸしてくださる場合には｢相互ﾘﾝｸする｣を選択してください<br />
+<input type="radio" name="Fsougo" value="1"<?php echo $sougo_1; ?>>相互ﾘﾝｸする | <input type="radio" name="Fsougo" value="0"<?php echo $sougo_0; ?>>相互ﾘﾝｸしない
+<br />
+<?php
+}
+?>
+<!--ここまで-->
+<br /><br />
+<input type="checkbox" name="preview" value="on" checked>ﾌﾟﾚﾋﾞｭｰする<br />
+<input type="submit" value="&nbsp; 登録する &nbsp;">
+</form>
+</div>
+
+<!-- /Menu Bar Output -->
+<!-- Navigation Bar Output -->
+<div style="background-color:<?php echo HR_COLOR; ?>;">
+<img src="./img/spacer.gif" width="1" height="1" /><br />
+</div>
+<div style="text-align:center; background-color:<?php echo THREE_BACK_COLOR; ?>; color:<?php echo THREE_STR_COLOR; ?>; font-size:x-small;" align="center">
+<a href="<?php echo $cfg['home']; ?>">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;新規HP登録
+<!-- /Navigation Bar Output -->
+<!-- ここから設定 -->
+</div>
+<!-- Copy Right Output -->
+<div align="center"><?php mcr(); ?></div>
+<!-- /Copy Right Output -->
+</div>
+</body>
+</html>

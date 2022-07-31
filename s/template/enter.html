@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html class="ui-mobile landscape min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head><meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+<title>パスワード認証画面/登録データの修正・削除</title>
+<meta name="Keywords" content="norobot">
+<meta name="Robots" content="noindex,nofollow">
+<meta name="googlebot" content="noarchive">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="content-script-type" content="text/javascript">
+<link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
+<meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
+<link rel="stylesheet" href="./jquery.mobile-1.0a2/jquery.mobile-1.0a2.min.css" />
+<script src="./js/jquery-1.4.4.min.js"></script>
+<!-- <script src="./jquery.mobile-1.0a2/jquery.mobile-1.0a2.js"></script> -->
+<script type="text/javascript">
+function doScroll() { if (window.pageYOffset === 0) { window.scrollTo(0,1); } }
+window.onload = function() { setTimeout(doScroll, 100); }
+</script>
+</head>
+
+<body>
+<a name="top"></a>
+<!-- Start page -->
+<div data-role="page" class="ui-page ui-body-c ui-page-active">
+
+    <!-- header -->
+    <div data-role="header"  data-theme="b" class="ui-bar-b ui-header">
+        <h1 class="ui-title" tabindex="0" role="heading" aria-level="1">ﾊﾟｽﾜｰﾄﾞ認証/登録ﾃﾞｰﾀ修正･削除</h1>
+        <a data-transition="slide" class="ui-btn-left ui-btn ui-btn-up-b ui-btn-icon-left ui-btn-corner-all ui-shadow" data-icon="arrow-l" rel="external" href="http://www.nkbt.net/yomi/search/s/" data-theme="b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">TOP</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow"></span></span></a>
+        <a data-transition="slide" class="ui-btn-right ui-btn ui-btn-up-b ui-btn-icon-left ui-btn-corner-all ui-shadow" rel="external" data-icon="arrow-r" href="search.php" data-theme="b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">ｻｲﾄ検索</span><span class="ui-icon ui-icon-arrow-r ui-icon-shadow"></span></span></a>
+    </div>
+    <!-- /header -->
+
+    <div data-role="content">
+
+        <div style="text-align:center; font-weight:bold;"><?php printTopMenuLink( $text['menu_bar'], '#2489CE' ); ?></div>
+
+
+<!-- /Menu Bar Output -->
+<!-- Header Space Output -->
+<?php echo $text['head_sp']; ?>
+<!-- /Header Space Output -->
+<!-- Navigation Bar Output -->
+<a href="<?php echo SMARTPHONE_HOME; ?>"  rel="external" class="ui-link">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;<strong>修正･削除</strong><br />
+<!-- /Navigation Bar Output -->
+
+<div class="ui-bar ui-bar-b" >
+	<h1>ﾊﾟｽﾜｰﾄﾞ認証画面</h1>
+</div>
+<div class="ui-body ui-body-c">
+	<form action="mente.php" method="POST">
+<fieldset>
+	<input type="hidden" name="mode" value="mente" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-body-c" />
+	<strong>1．登録ﾃﾞｰﾀの修正</strong>
+	<br />
+
+	<?php
+	if(isset($print_data)) {
+		$str = strip_tags($print_data, '<br><a>');
+		echo $str;
+	}
+	?>
+
+	<div data-role="fieldcontain">
+	<label for="name">変更する人：</label>
+	<select name="changer">
+	<option value="" <?php echo $select_0; ?>>登録者</option>
+	<option value="admin" <?php echo $select_1; ?>>管理人</option>
+	</select>
+	</div>
+
+	<div data-role="fieldcontain">
+	<label for="name">ID：</label>
+	<input type="text" name="id" value="<?php echo htmlspecialchars($_REQUEST['id']); ?>" id="name" />
+	</div>
+
+	<div data-role="fieldcontain">
+	<label for="password">PASS：</label>
+	<input type="password" name="pass" value="<?php echo $pre_pass; ?>" id="password" />
+	</div>
+
+	<fieldset data-role="controlgroup" class="ui-corner-all ui-controlgroup ui-controlgroup-vertical">
+	
+	<input type="radio" value="off" <?php echo $cookie_1; ?> id="radio-choice-1" name="cookie">ﾊﾟｽﾜｰﾄﾞを記録する<br />
+	<input type="radio" value="on"  <?php echo $cookie_0; ?> id="radio-choice-2" name="cookie">ﾊﾟｽﾜｰﾄﾞを記録しない
+
+	</fieldset>
+    <input data-theme="a" type="submit" value="　認証！　">
+</fieldset>
+
+
+	</form>
+</div>
+
+<br />
+<br />
+
+
+<form action="mente.php" method="post">
+<input type="hidden" name="mode" value="act_del" />
+<input type="hidden" name="del_mode" value="single" />
+
+
+<div class="ui-bar ui-bar-b" >
+	<h1>2.登録データの削除</h1>
+</div>
+
+<div class="ui-body ui-body-c">
+	変更する人：<select name="changer" tabindex="-1">
+	<option selected="" value=""  <?php echo $select_0; ?> >登録者</option>
+	<option value="admin"         <?php echo $select_1; ?> >管理人</option>
+	</select>
+
+
+
+	<div data-role="fieldcontain">
+	<label for="name">ID：</label>
+	<input type="text" name="id" value="<?php echo htmlspecialchars($_REQUEST['id']); ?>" id="name" />
+	</div>
+
+	<div data-role="fieldcontain">
+	<label for="password">PASS：</label>
+	<input type="password" name="pass" value="<?php echo $pre_pass; ?>" id="password" />
+	</div>
+
+	<fieldset data-role="controlgroup" class="ui-corner-all ui-controlgroup ui-controlgroup-vertical">削除確認ﾁｪｯｸ→
+	<input type="checkbox" value="on" class="custom" id="checkbox-11a" name="del_check">削除します
+	</fieldset>
+    <input data-theme="a" type="submit" value="　削除する　">
+</div>
+</form>
+
+
+<br />
+<br />
+
+
+<?php
+if($cfg['re_pass_fl']) {
+?>
+
+
+<form action="mente.php" method="post">
+<input type="hidden" name="mode" value="act_repass" />
+<input type="hidden" name="repass_mode" value="repass" />
+
+<div class="ui-bar ui-bar-b" >
+	<h1>3．ﾊﾟｽﾜｰﾄﾞの再発行</h1>
+</div>
+
+<div class="ui-body ui-body-c">
+
+
+	<label for="name">ID：</label>
+	<input type="text" name="id" value="<?php echo htmlspecialchars($_REQUEST['id']); ?>" id="name"  />
+	<br />
+	
+	<label for="email">E-MAIL：</label>
+	<input type="text" name="email" value="<?php echo htmlspecialchars($_REQUEST['email']); ?>" id="email"  />
+	<br />
+	<br />
+	再発行確認ﾁｪｯｸ→<input type="checkbox" value="on" class="custom" id="checkbox-111a" name="repass_check">再発行します
+	<br />
+    <input data-theme="a" type="submit" value="　再発行する　">
+
+
+<?php
+	if(@$cfg['mail_pass']) {
+		echo "<br />※新しいﾊﾟｽﾜｰﾄﾞは登録時のﾒｰﾙｱﾄﾞﾚｽに送信されます<br />";
+	}
+}
+?>
+
+</div>
+</form>
+
+
+<div align="center">
+<a href="./index.php" role="button" aria-label="button" data-theme="c" class="ui-btn ui-btn-up-c ui-btn-corner-all ui-shadow">
+<span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">　戻る　</span></span></a>
+</div>
+<br>
+
+<!-- Footer Space Output -->
+<?php if(isset($text['foot_sp'])) { echo $text['foot_sp']; } ?>
+</div>
+<!-- /content -->
+
+<!-- /Footer Space Output -->
+<?php echo SMARTPHONE_FOOTER_NOJS; ?>
+</body>
+</html>

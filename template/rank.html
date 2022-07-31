@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<title><?php echo $Stitle; ?>| <?php echo $cfg['search_name']; ?></title>
+<meta name="keywords" content="<?php echo $cfg['ver']; ?>,検索エンジン,ランキング画面" />
+<meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンのランキング画面です" />
+<link media="screen" rel="stylesheet" href="css/main.css" type="text/css">
+</head>
+<body>
+<a name="top"></a>
+<!-- Menu Bar Output -->
+<table width="100%" class="table_menu_bar">
+    <tr>
+        <td style="text-align:center;">
+        <?php printHeaderAd(); ?>
+        </td>
+    </tr>
+  <tr>
+    <td><?php echo $text['menu_bar']; ?></td>
+  </tr>
+</table>
+<!-- /Menu Bar Output -->
+<!-- Header Space Output -->
+<?php echo $text['head_sp']; ?>
+<!-- /Header Space Output -->
+<br>
+<!-- Navigation Bar Output -->
+<table width="100%" class="table_navigation_bar">
+  <tr>
+    <td><a href="<?php echo $cfg['home']; ?>">ホーム</a>&nbsp;&gt;&nbsp;<?php echo $navi; ?><strong><?php echo $Stitle; ?></strong>
+<?php
+if(!empty($cfg[$_GET['mode']])) {
+	echo $rank_menu;
+	echo " ：" . $cfg[$_GET['mode']];
+}
+?>
+	</td>
+  </tr>
+</table>
+<!-- /Navigation Bar Output -->
+<!-- ページ中段の検索フォーム -->
+<table width="100%" class="table_searchform">
+  <form name="searchform" action="<?php echo $cfg['search']; ?>" method="get">
+  <tr>
+    <td>
+      <input type="hidden" name="mode" value="search">
+      <input type="hidden" name="page" value="1">
+      <input type="hidden" name="sort" value="<?php echo $cfg['defo_hyouji']; ?>">
+      <input type="hidden" name="open_type" value="0">
+      <input type="hidden" name="hyouji" value="30">
+      <img src="<?php echo $cfg['img_path_url']; ?>search.gif" alt="検索" align="absbottom" title="検索">&nbsp;<input type="text" name="word" value="" size="20" class="form">&nbsp;<input type="submit" value=" 検 索 " class="form">&nbsp;
+      <select name="method" class="form">
+        <option value="and" selected>AND</option>
+        <option value="or">OR</option>
+      </select>
+      <select name="engine" class="form">
+        <?php echo $text['search_form']; ?>
+      </select>
+    </td>
+  </tr>
+  </form>
+</table>
+<?php
+if($log_count) {
+?>
+<!-- データがある場合 -->
+<!-- 表示方法選択フォーム -->
+<!-- マークコメント/登録数表示/目次表示(上) -->
+<br>
+<div align="left"><i>集計期間：<?php echo $last_mod; ?></i></div>
+<br>
+<?php echo $mokuji; ?><br>
+<br>
+
+<?php
+//==================================//
+//※いらなかったら削除してください
+//右に表示する広告がある場合は表示
+//==================================//
+if(getRightAdFlg()) {
+?>
+<table border="0">
+    <tr><td valign="top">
+<?php
+}   //←広告表示がなければこの閉じ括弧も削除
+
+	foreach($log_lines as $log_data) {
+		//$jump_url = "{$cfg['rank']}?mode=link&id={$log_data['id']}&url={$log_data['url']}";
+		$jump_url = $log_data["url"]; //ランキング画面からもアクセスを集計する場合は上の行の先頭の「//」を取り除き、この行の先頭に「//」を追加する
+		?>
+<!-- ログ表示 -->
+<table border="3" cellpadding="7" id="log">
+  <tr id="log-0">
+    <td>
+	  <b>第<?php echo $rank[$log_data['id']]; ?>位</b>&nbsp;-&gt;&nbsp;<?php echo $log_data['pt']; ?>pt
+	</td>
+  </tr>
+  <tr id="log-1">
+    <td>
+	  <a href="<?php echo $jump_url; ?>" target="_blank"><?php echo $log_data['title'];?></a>
+ <!-- ←アイコンを付加 -->
+<?php
+put_icon();
+?>
+  <br><br><font size="-1">更新日：<?php echo $log_data['last_time']; ?> [<a href="regist_ys.php?mode=enter&id=<?php echo $log_data['id']; ?>">修正・削除</a>]
+  [<a href="regist_ys.php?mode=no_link&id=<?php echo $log_data['id']; ?>&pre=on&ref=<?php echo $Eref; ?>&title=<?php echo urlencode($log_data['title']); ?>">管理者に通知</a>]
+  </font>
+<?php
+		if($log_data['banner']) {
+			echo "<br><a href=\"{$jump_url}\" target=\"_blank\"><img src=\"{$log_data['banner']}\" border=\"0\" width=\"{$cfg_reg['Mbana_w']}\" height=\"{$cfg_reg['Mbana_h']}\" alt=\"{$log_data['title']}\" title=\"{$log_data['title']}\"></a>";
+		}
+?>
+    </td>
+  </tr>
+<?php
+if(!isset($title)) {
+?>
+  <tr id="log-2">
+    <td>
+<?php
+			$kt = explode("&", $log_data['category']);
+			foreach($kt as $tmp) {
+				$query = "SELECT title FROM {$db->db_pre}category WHERE path='{$tmp}' LIMIT 1";
+				$row = $db->single_assoc($query) or $db->error("Query failed $query".__FILE__.__LINE__);
+				if($row["title"]) {
+					?>[<a href="<?php echo $cfg['script']; ?>?mode=dir&amp;path=<?php echo $tmp; ?>">
+                                        <?php
+//					print $row['title'];		//カテゴリ名を短縮カテゴリ名で表示
+					print full_category($tmp);	//カテゴリ名をフルカテゴリ名で表示
+					?></a>]
+<?php
+				}
+			}
+			?>
+    </td>
+  </tr>
+<?php
+}
+?>
+  <tr id="log-3">
+    <td><?php echo $log_data['message']; ?></td>
+  </tr>
+<?php
+if($log_data['comment']) {
+?>
+  <tr id="log-4">
+    <td><font id="kanri"><?php echo $log_data['comment']; ?></font></td>
+  </tr>
+<?php
+}
+?>
+</table><br>
+<!-- /ログ表示 -->
+<?php
+}
+
+//==================================//
+//※いらなかったら削除してください
+//右に表示する広告がある場合は表示
+//==================================//
+if(getRightAdFlg()) {
+    echo '</td><td valign="top" style="padding-left:5%; text-align:center;">';
+    printRightAd();
+    echo '</td></tr></table>';
+}
+//ここまで
+
+?>
+<!-- 目次表示(下) -->
+<?php echo $mokuji; ?>
+<!--/データがある場合-->
+<?php
+} else {
+	if(!@$_GET['path']) {
+		echo "<p align=\"center\">ランキングのデータを集計中です</p><br>\n";
+	} else {
+		echo "<p align=\"center\">このカテゴリのサイトはランクインしていません</p><br>\n";
+	}
+}
+?>
+<br><br>
+
+<!-- Other Category Output -->
+<?php other_category(); ?>
+<!-- /Other Category Output -->
+
+<!-- Footer Space Output -->
+<?php if(isset($text['foot_sp'])) { echo $text['foot_sp']; } ?>
+<!-- /Footer Space Output -->
+
+<!-- Copy Right Output -->
+<div align="center">
+<?php cr(); ?><br />
+<?php printFooterAd(); ?>
+</div>
+<!-- /Copy Right Output -->
+
+</body>
+</html>

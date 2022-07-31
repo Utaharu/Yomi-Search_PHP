@@ -1,0 +1,58 @@
+<?php echo '<?xml version="1.0" encoding="utf-8"?>'; ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<title><?php echo $title; ?> | メッセージ表示 | <?php echo $cfg['search_name']; ?></title>
+<meta name="keywords" content="メッセージ表示,検索エンジン,<?php echo $cfg['ver']; ?>" />
+<meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンのメッセージ表示です" />
+<style type="text/css">
+<![CDATA[
+a:link{color:<?php echo LINK_COLOR; ?>;}
+a:focus{color:<?php echo ALINK_COLOR; ?>;}
+a:visited{color:<?php echo VLINK_COLOR; ?>;}
+]]>
+</style>
+</head>
+<body><div style="font-size:x-small;">
+
+<div style="background-color:<?php echo HR_COLOR; ?>;">
+<img src="./img/spacer.gif" width="1" height="1" /><br /></div>
+<div style="text-align:center; background-color:<?php echo ONE_BACK_COLOR; ?>; color:<?php echo ONE_STR_COLOR; ?>;" align="center">
+<?php echo $cfg['search_name']; ?>
+</div>
+<div style="background-color:<?php echo HR_COLOR; ?>;">
+<img src="./img/spacer.gif" width="1" height="1" /><br />
+</div>
+<div style="text-align:center; background-color:<?php echo TWO_BACK_COLOR; ?>; color:<?php echo TWO_STR_COLOR; ?>;" align="center">
+[<a href="index.php?mode=new">新着ｻｲﾄ</a>|<a href="index.php?mode=rank">ﾗﾝｷﾝｸﾞ</a>|<a href="regist.php">ｻｲﾄ登録</a>]<br />
+</div>
+<div style="background-color:<?php echo HR_COLOR; ?>;">
+<img src="./img/spacer.gif" width="1" height="1" /><br />
+</div>
+
+<!--上部メニュー-->
+<div style="text-align:center; background-color:<?php echo THREE_BACK_COLOR; ?>; <?php echo THREE_STR_COLOR; ?>" align="center">
+<a href="<?php echo $cfg['home']; ?>">ホーム</a>&nbsp;&gt;&nbsp;メッセージ
+<div style="background-color:<?php echo HR_COLOR; ?>;">
+<img src="./img/spacer.gif" width="1" height="1" /><br />
+</div>
+</div>
+
+<br />
+<br />
+<div style="text-align:center; font-size:normal; color:red;">【<?php echo $title; ?>】</div><br />
+<div style="text-align:center; font-size:x-small; color:#014D68;"><?php echo $mes; ?></div>
+<br />
+<div align="center"><?php echo $back_url; ?></div><br>
+<br />
+<!-- Copy Right Output -->
+<div style="text-align:center;"><?php mcr(); ?></div>
+<!-- /Copy Right Output -->
+
+</div>
+</body>
+</html>

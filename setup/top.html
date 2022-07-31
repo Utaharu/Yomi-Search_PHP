@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><?php echo $EST['ver']; ?> - インストール</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<table width="700" border="0" align="center" cellpadding="0" cellspacing="0" class="title">
+  <tr>
+    <td><?php echo $EST['ver']; ?> - インストール</td>
+  </tr>
+</table>
+<hr align="center" width="700" size="1" noshade="noshade" />
+<br />
+<table width="700" border="0" align="center" cellpadding="0" cellspacing="0" class="txt">
+  <tr>
+    <td>インストール前の準備<br />
+        <br />
+      1) データベースの準備<br />
+      Yomi-Search(PHP)modified用にMySQLデータベースを用意してください。<br />
+      <br />
+      2) class/db.phpの編集<br />
+      使用するMySQLデータベースに接続するための設定を行います。[class]ディレクトリ内のdb.phpをUTF-8対応エディタで開いて「データベース設定」部分をご自身の環境に合わせて変更してください。<br />
+      <br />
+      3) ファイルのアップロード<br />
+      設定ファイルの編集が完了したら全てのファイルを<a href="http://www2.biglobe.ne.jp/~sota/ffftp.html" title="FFFTP" target="_blank">FFFTP</a>や<a href="http://www.toxsoft.com/nextftp/" title="NextFTP" target="_blank">NextFTP</a>を使ってサーバにアップロードしてください。<br />
+      <br />
+      4) アクセス権設定<br />
+      サーバ上にある[log]ディレクトリのパーミッションを755に設定。但し、PHPプログラムがWEBサーバの権限で実行されるサーバでは757または777に設定する必要があります。詳しくはサーバ管理者へお問い合わせください。<br />
+      なお、この設定は管理画面からログデータのバックアップを行う場合のみ必須となります。バックアップ機能を使用しない場合にはアクセス権の設定を変更する必要はありません。<be />
+      <br />
+      <br />
+      上記1)から4)の確認と設定が完了したら「インストール開始」ボタンをクリックしてください。</td>
+  </tr>
+</table>
+<br />
+<hr align="center" width="700" size="1" noshade="noshade" />
+<br />
+<table width="700" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+      <input name="submit" type="submit" class="btn" value="インストール開始" />
+      <input name="mode" type="hidden" value="install" />
+    </form>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
