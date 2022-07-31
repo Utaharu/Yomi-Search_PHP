@@ -179,7 +179,7 @@ if(!isset($table_list["{$db->db_pre}counter"])) {
 // counter_logテーブル作成
 if(!isset($table_list["{$db->db_pre}counter_log"])) {
 	$sql = "CREATE TABLE {$db->db_pre}counter_log (
-		ip VARCHAR(15),
+		ip VARCHAR(40),
 		time BIGINT UNSIGNED
 		)";
 	$db->query($sql);
@@ -193,7 +193,7 @@ if(!isset($table_list["{$db->db_pre}key"])) {
 	$sql = "CREATE TABLE {$db->db_pre}key (
 		word VARCHAR(50),
 		time INT UNSIGNED,
-		ip VARCHAR(15)
+		ip VARCHAR(40)
 		)";
 	$db->query($sql);
 	$mes .= "データベース {$db->db_name} にテーブル {$db->db_pre}key を作成しました。<br>\n<br>\n";
@@ -232,7 +232,7 @@ if(!isset($table_list["{$db->db_pre}log"])) {
 		stamp INT UNSIGNED,
 		banner VARCHAR(100),
 		renew TINYINT UNSIGNED,
-		ip VARCHAR(15),
+		ip VARCHAR(40),
 		keywd VARCHAR(255) BINARY
 		)";
 	$db->query($sql);
@@ -258,7 +258,7 @@ if(!isset($table_list["{$db->db_pre}log_temp"])) {
 		stamp BIGINT UNSIGNED,
 		banner VARCHAR(100),
 		renew TINYINT UNSIGNED,
-		ip VARCHAR(15),
+		ip VARCHAR(40),
 		keywd VARCHAR(255) BINARY
 		)";
 	$db->query($sql);
@@ -272,7 +272,7 @@ if(!isset($table_list["{$db->db_pre}rank"])) {
 	$sql = "CREATE TABLE {$db->db_pre}rank (
 		id INT UNSIGNED,
 		time INT UNSIGNED,
-		ip VARCHAR(15)
+		ip VARCHAR(40)
 		)";
 	$db->query($sql);
 	$mes .= "データベース {$db->db_name} にテーブル {$db->db_pre}rank を作成しました。<br>\n<br>\n";
@@ -297,7 +297,7 @@ if(!isset($table_list["{$db->db_pre}rank"])) {
 if(!isset($table_list["{$db->db_pre}report"])) {
 	$sql = "CREATE TABLE {$db->db_pre}report (
 		id INT UNSIGNED,
-		ip VARCHAR(15),
+		ip VARCHAR(40),
 		no_url CHAR (1),
 		move CHAR (1),
 		no_banner CHAR (1),
@@ -318,7 +318,7 @@ if(!isset($table_list["{$db->db_pre}rev"])) {
 	$sql = "CREATE TABLE {$db->db_pre}rev (
 		id INT UNSIGNED,
 		time INT UNSIGNED,
-		ip VARCHAR(15)
+		ip VARCHAR(40)
 		)";
 	$db->query($sql);
 	$mes .= "データベース {$db->db_name} にテーブル {$db->db_pre}rev を作成しました。<br>\n<br>\n";
