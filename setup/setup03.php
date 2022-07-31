@@ -66,7 +66,7 @@ if(empty($_POST['rev_url'])) {
 // データベースを更新(初期設定反映)
 if(empty($mes)) {
 	// パスワードを暗号化して更新
-	$_POST['pass1'] = crypt($_POST['pass1']);
+	$_POST['pass1'] = crypt($_POST['pass1'],"ys");
 	$query = "UPDATE {$db->db_pre}cfg SET value='{$_POST["pass1"]}' WHERE name='pass'";
 	$result = $db->query($query) or $db->error('Query failed '.$query.__FILE__.__LINE__);
 	// 管理者名を更新
@@ -102,6 +102,14 @@ if(empty($mes)) {
 	// マイリンク機能の使用を更新
 	$query = "UPDATE {$db->db_pre}cfg SET value='{$_POST["mylink_fl"]}' WHERE name='mylink_fl'";
 	$result = $db->query($query) or $db->error('Query failed '.$query.__FILE__.__LINE__); 
+	
+	// cfgテーブルから設定情報を配列($cfg)へ読込
+	$query = 'SELECT name, value FROM '.$db->db_pre.'cfg';
+	$rowset = $db->rowset_num($query) or $db->error('Query failed '.$query.__FILE__.__LINE__);
+	foreach($rowset as $tmp) {
+		$cfg[$tmp[0]] = $tmp[1];
+	}
+	
 	// セットアップ完了ページを表示
 	require_once 'setup03.html';
 	exit;

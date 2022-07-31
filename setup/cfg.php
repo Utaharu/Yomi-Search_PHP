@@ -10,7 +10,7 @@ $EST = array('ver' => 'Yomi-Search(PHP)modified ver1.5.8.n2',
 	         'admin_hp'     => '',                  // 管理人のホームページのURL
              'pass'         => '',                    // 管理用パスワード(WEB上で設定後は暗号化されます)
              'home'         => '',                 // サーチエンジンのトップへのパスorURL
-             'script'       => 'yomi.php',                 // yomi.phpのファイル名
+             'script'       => 'index.php',                 // yomi.phpのファイル名
              'search'       => 'search.php',               // 検索用のPHPファイル名
              'rank'         => 'rank.php',                 // ランキング用のPHPファイル名
              'admin'        => 'admin.php',                // 管理処理用のPHPファイル名

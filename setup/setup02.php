@@ -17,11 +17,11 @@ foreach($rowset as $tmp) {
 }
 
 // 検索エンジンのURL取得(例：http://localhost/yomi/yomi.php)
-$home = 'http://' . htmlspecialchars($HTTP_SERVER_VARS['HTTP_HOST'], ENT_QUOTES) . htmlspecialchars($HTTP_SERVER_VARS['REQUEST_URI'], ENT_QUOTES);
+$home = 'http://' . htmlspecialchars($_SERVER['HTTP_HOST'], ENT_QUOTES) . htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES);
 $home = substr($home, 0, -15);
-$home .= 'yomi.php';
+$home .= 'index.php';
 
 // yomi.phpが設置されているURLを取得
-$cgi_path_url = 'http://' . htmlspecialchars($HTTP_SERVER_VARS['HTTP_HOST'], ENT_QUOTES) . htmlspecialchars($HTTP_SERVER_VARS['REQUEST_URI'], ENT_QUOTES);
+$cgi_path_url = 'http://' . htmlspecialchars($_SERVER['HTTP_HOST'], ENT_QUOTES) . htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES);
 $cgi_path_url = substr($cgi_path_url, 0, -15);
 ?>
