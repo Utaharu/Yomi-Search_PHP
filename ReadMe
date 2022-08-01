@@ -1,6 +1,8 @@
 - Yomi-Search PHP - nkbt n2 -
 
 各種修正や、php8対応していく。
+-2022/08/01-
+・rank.php クロスサイトスクリプティング・脆弱性の修正。
 
 -2022/07/31-
 ・setup01.php - ipv6対応の為、ip VARCHAR(15)->ip VARCHAR(40)に拡張

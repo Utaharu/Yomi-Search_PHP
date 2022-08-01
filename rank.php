@@ -71,7 +71,7 @@ if(isset($_GET['mode'])) {
 	// (1)リンクジャンプ処理(link)
 	if($_GET['mode'] == 'link') {
 		$_GET['id'] = preg_replace('/\D/', '', $_GET['id']);
-		if($_GET['id']) {
+		if($_GET['id']){
 			// refererチェック
 			// refererが無いときにカウントしない場合にはこのif文を削除
 			if(!$_SERVER['HTTP_REFERER']) {
@@ -88,7 +88,6 @@ if(isset($_GET['mode'])) {
 				}
 			}
 
-
 			if($fl) {
 				$time = time();
 				$query = 'SELECT id FROM '.$db->db_pre.'rank WHERE id=\''.$_GET['id'].'\' AND ip=\''.$_SERVER['REMOTE_ADDR'].'\' AND time > '.($time - $cfg['rank_time'] * 3600);
@@ -100,20 +99,20 @@ if(isset($_GET['mode'])) {
 					$db->query($query);
 				}
 			}
+	
+			//リンク先URLの引き当て
+			$getid = (int)$_GET['id'];
+			$query = 'SELECT url FROM '.$db->db_pre.'log WHERE id=\''.$getid.'\'';
+			$url = $db->single_num($query) or $db->error('Query failed '.$query.__FILE__.__LINE__);
+			//リンク先へ転送
+			if(isset($url[0])){
+				location($url[0]);
+				exit();
+			}
+			unset($url);
+			unset($getid);
 		}
-		if($_GET["url"]) {
-			location($_GET["url"]);
-		} else if(is_numeric($_GET['id'])) {
-		    $getid = (int)$_GET['id'];
-		    $query = 'SELECT url FROM '.$db->db_pre.'log WHERE id=\''.$getid.'\'';
-        	$url = $db->single_num($query) or $db->error('Query failed '.$query.__FILE__.__LINE__);
-		    if(isset($url[0])) {
-    		    location($url[0]);
-    		    exit();
-		    }
-		    unset($url);
-		    unset($getid);
-		}
+		mes("該当するリンクが有りません","エラー","java");
 	// (1.1)アクセスジャンプ処理(r_link)
 	} elseif($_GET['mode'] == 'r_link'){
 		if($cfg['rev_fl']) {
