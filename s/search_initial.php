@@ -12,14 +12,6 @@ foreach($rowset as $tmp) {
 }
 
 if(isset($_GET['word'])) {
-	if(get_magic_quotes_gpc()) {
-		$_GET['word'] = stripslashes($_GET['word']);
-		if(isset($_GET['words'])) {
-			if($_GET['words']) {
-				$_GET['words'] = array_map('stripslashes', $_GET['words']);
-			}
-		}
-	}
 	$_GET['word'] = mb_convert_encoding($_GET['word'], 'UTF-8', 'auto');
 	$_GET['word'] = htmlspecialchars($_GET['word']);
 	if(isset($_GET['words'])) {

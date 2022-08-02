@@ -1,6 +1,10 @@
 - Yomi-Search PHP - nkbt n2 -
 
 各種修正や、php8対応していく。
+
+
+・get_magic_quotes_gpcは使えなくなったので削除。
+
 -2022/08/01-
 ・rank.php クロスサイトスクリプティング・脆弱性の修正。
 

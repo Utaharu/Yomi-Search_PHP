@@ -16,6 +16,7 @@ $yesterday_time = mktime(0, 0, 0, $getdate['mon'], $getdate['mday'], $getdate['y
 $d = $db->db_pre;
 
 $query = 'SELECT ip FROM '.$d.'counter_log ORDER BY time DESC LIMIT 1';
+$ip = array();
 $ip = $db->single_num($query);
 
 if(!$ip_check || $ip[0] != $_SERVER['REMOTE_ADDR']) {

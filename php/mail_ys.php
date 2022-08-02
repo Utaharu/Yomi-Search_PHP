@@ -317,9 +317,6 @@ function sendmail($mailto, $from_mail, $kenmei, $mail_mode, $admin, $log, $arg6 
 
 // エンコード関数
 function mime_enc($str, $mime = 0) {
-	if(get_magic_quotes_gpc()) {
-		$str = stripslashes($str);
-	}
 	$str = mb_convert_encoding($str, 'JIS', 'UTF-8');
 	if($mime) {
 		$encode = "=?iso-2022-jp?B?" . base64_encode($str) . "?=";

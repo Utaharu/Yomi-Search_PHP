@@ -3,9 +3,6 @@
 if($_REQUEST['mode'] == 'no_link') {
 	if(!empty($_REQUEST['pre'])) {
 		if($_GET['pre'] == 'on') {
-			if(get_magic_quotes_gpc()) {
-				$_GET['title'] = stripslashes($_GET['title']);
-            }
 			$Eref = urlencode($_SERVER['HTTP_REFERER']);
 			header('Content-type: text/html; charset=UTF-8');
 			require $cfg['temp_path'] . 'no_link.html';
@@ -77,11 +74,7 @@ if($_REQUEST['mode'] == 'no_link') {
         }
     }
 	$_POST['ref'] = urldecode($_POST['ref']);
-	if (get_magic_quotes_gpc()) {
-        $title = stripslashes($_POST['title']);
-	} else {
-        $title = $_POST['title'];
-    }
+    $title = $_POST['title'];
     $msg = 'ご報告ありがとうございました。<br>'
      . '管理人に「<b>' . $title . '</b>」についての通知を行いました。';
     $msgTitle = 'ご報告ありがとうございます。';

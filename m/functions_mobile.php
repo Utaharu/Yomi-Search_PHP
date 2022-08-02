@@ -559,9 +559,6 @@ function check() {
 	if(!isset($_POST['changer'])) {
 		$_POST['changer'] = '';
 	}
-	if(get_magic_quotes_gpc()) {
-		$_POST = array_map('stripslashes', $_POST);
-	}
 	$_POST = array_map('htmlspecialchars', $_POST);
 	if($cfg_reg['kt_no_word']) {
 		// ワードチェック対象の項目
@@ -956,10 +953,6 @@ function check_certification_cord() {
 		$_POST['changer'] = '';
 	}
 	if($_POST['changer'] != 'admin') {
-		if(get_magic_quotes_gpc()) {
-			$_POST['certification_cord'] = stripslashes($_POST['certification_cord']);
-			$_POST['Fcertification_cord'] = stripslashes($_POST['Fcertification_cord']);
-		}
 		$_POST['certification_cord'] = htmlspecialchars($_POST['certification_cord']);
 		$_POST['Fcertification_cord'] = htmlspecialchars($_POST['Fcertification_cord']);
 		// 認証実行

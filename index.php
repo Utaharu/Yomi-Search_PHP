@@ -20,7 +20,7 @@ $start_time1 = microtime(true);
 
 $mobile_flg = 0;
 $strHostName = @gethostbyaddr($_SERVER['REMOTE_ADDR']);
-if ( strstr($strHostHostName, 'docomo.ne.jp') !== false) {
+if ( strstr($strHostName, 'docomo.ne.jp') !== false) {
     $mobile_flg=1;
 } elseif (preg_match('/\.[dhtckrnsq]\.vodafone\.ne\.jp/i', $strHostName) || preg_match('/\.softbank\.ne\.jp/i', $strHostName)) {
     $mobile_flg=3;

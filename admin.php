@@ -176,9 +176,6 @@ if($_POST["mode"] == "kanri") {
 			$Slog[14] = $Tlog["ip"];
 			// キーワード(15)
 			$Slog[15] = $_POST["Fkey"][$Tlog["id"]];
-			if(get_magic_quotes_gpc()) {
-				$Slog = array_map("stripslashes", $Slog);
-			}
 			foreach($Slog as $key=>$val) {
 				$Slog[$key] = $db->escape_string($val);
 			}
@@ -758,9 +755,6 @@ if($_POST["mode"] == "kanri") {
 	pass_check();
 	foreach($cfg as $key=>$val) {
 		if(isset($_POST[$key]) && $_POST[$key] != $cfg[$key] && $key != "pass") {
-			if(get_magic_quotes_gpc()) {
-				$_POST[$key] = stripslashes($_POST[$key]);
-			}
 			$_POST[$key] = $db->escape_string($_POST[$key]);
 			$query = "UPDATE {$db->db_pre}cfg SET value='{$_POST[$key]}' WHERE name='{$key}'";
 			$result = $db->query($query);
@@ -774,12 +768,6 @@ if($_POST["mode"] == "kanri") {
 	pass_check();
 	$fl = 0;
 	$p_fl = 1;
-	if(get_magic_quotes_gpc()) {
-		$_POST["search_form"] = stripslashes($_POST["search_form"]);
-		$_POST["menu_bar"] = stripslashes($_POST["menu_bar"]);
-		$_POST["head_sp"] = stripslashes($_POST["head_sp"]);
-		$_POST["foot_sp"] = stripslashes($_POST["foot_sp"]);
-	}
 	$_POST["search_form"] = str_replace("&lt;", "<", $_POST["search_form"]);
 	$_POST["search_form"] = str_replace("&gt;", ">", $_POST["search_form"]);
 	$_POST["search_form"] = str_replace("’", "'", $_POST["search_form"]);
@@ -883,11 +871,6 @@ if($_POST["mode"] == "kanri") {
 				if($row["id"]) {
 					continue;
 				} else {
-					if(get_magic_quotes_gpc()) {
-						$val = stripslashes($val);
-						$furi = stripslashes($furi);
-						$cmt = stripslashes($cmt);
-					}
 					$val = $db->escape_string($val);
 					$furi = $db->escape_string($furi);
 					$cmt = $db->escape_string($cmt);

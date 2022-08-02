@@ -77,10 +77,16 @@ function subcategory($path) {
 	global $db;
 	$count = 0;
 	$check = 0;
+	$num = array();
+	$sub = array();
 	$query = 'SELECT COUNT(id) FROM '.$db->db_pre.'log WHERE category LIKE \'%&'.$path.'%\'';
 	$num = $db->single_num($query);
 	$query = 'SELECT id FROM '.$db->db_pre.'category WHERE path LIKE \''.$path.'_%\'';
 	$sub = $db->single_num($query);
+	
+	if(!isset($num[0])){$num[0] = 0;}
+	if(!isset($sub[0])){$sub[0] = 0;}
+	
 	return (array($num[0], $sub[0]));
 }
 
@@ -100,7 +106,7 @@ function print_subcategory($category, $num, $column) {
 	$id = $db->single_num($query);
 	$query = 'SELECT title, path FROM '.$db_pre.'category WHERE up_id=\''.$id[0].'\' ORDER BY path';
 	$rowset = $db->rowset_assoc($query);
-
+	if(isset($rowset[0])){
         if($rowset[0] != "") {
             $w .= "\n".'<table width="100%" class="table_sub_category2">';
             foreach ($rowset as $row) {
@@ -159,6 +165,7 @@ function print_subcategory($category, $num, $column) {
         }
         echo $w;
         return true;
+	}
 }
 
 // 目次作成(mokuji)
@@ -374,7 +381,7 @@ function unhtmlentities($string) {
 
 
 function checkSQLWord($word) {
-	if(preg_match("/delete.*from|select.*from|insert\sinto|1=1|'[0-9a-z]{1}'='[0-9a-z]{1}'|drop.*table|update.*set|truncate|or.*='/i", $val) == true) {
+	if(preg_match("/delete.*from|select.*from|insert\sinto|1=1|'[0-9a-z]{1}'='[0-9a-z]{1}'|drop.*table|update.*set|truncate|or.*='/i", $word) == true) {
 	    return false;
 	} else {
             return true;
