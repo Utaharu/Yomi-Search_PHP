@@ -407,7 +407,8 @@ function join_fld($id = '') {
 	if($_POST['changer'] == 'admin'){ // 変更者が管理人
 		$log_data[7] = $_POST['Fkanricom'];
 	} else { // 登録者の変更
-		$log_data[7] = $pre_log[7];
+		if(isset($pre_log[7])){$log_data[7] = $pre_log[7];}
+		else{$log_data[7] = "";}
 	}
 	// お名前(8)
 	$log_data[8] = $_POST['Fname'];

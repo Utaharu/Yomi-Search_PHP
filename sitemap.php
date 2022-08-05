@@ -40,6 +40,9 @@ foreach($rowset as $tmp) {
 	$text[$tmp[0]] = $tmp[1];
 }
 
+$navi = "";
+$sort = "";
+if(isset($_POST['sort'])){$sort = $_POST['sort'];}
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -86,7 +89,7 @@ foreach($rowset as $tmp) {
     <td align="center">
 	<input type="hidden" name="mode" value="search">
 	<input type="hidden" name="page" value="1">
-	<input type="hidden" name="sort" value="<?php echo $_POST['sort']; ?>">
+	<input type="hidden" name="sort" value="<?php echo $sort ?>">
 	<input type="hidden" name="open_type" value="0">
 	<input type="hidden" name="hyouji" value="30">
 	<input type="text" name="word" class="form" value="" size="20">

@@ -179,13 +179,15 @@ if(!@$_GET['sort']) {
 <?php
 		$kt = explode("&", $log_data["category"]);
 		foreach($kt as $tmp) {
-			$query = "SELECT title FROM {$db->db_pre}category WHERE path='{$tmp}' LIMIT 1";
-			$row = $db->single_assoc($query) or $db->error("Query failed $query".__FILE__.__LINE__);
-			if($row["title"]) {
-				?>[<a href="<?php echo $cfg['script']; ?>?mode=dir&amp;path=<?php echo $tmp; ?>"><?php
-				// echo $row[title]; // カテゴリ名を短縮カテゴリ名で表示
-				echo full_category($tmp); // カテゴリ名をフルカテゴリ名で表示
-				?></a>] <?php
+			if($tmp){
+				$query = "SELECT title FROM {$db->db_pre}category WHERE path='{$tmp}' LIMIT 1";
+				$row = $db->single_assoc($query) or $db->error("Query failed $query".__FILE__.__LINE__);
+				if($row["title"]) {
+					?>[<a href="<?php echo $cfg['script']; ?>?mode=dir&amp;path=<?php echo $tmp; ?>"><?php
+					// echo $row[title]; // カテゴリ名を短縮カテゴリ名で表示
+					echo full_category($tmp); // カテゴリ名をフルカテゴリ名で表示
+					?></a>] <?php
+				}
 			}
 		}
 		?>

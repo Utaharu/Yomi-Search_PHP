@@ -18,6 +18,7 @@ $d = $db->db_pre;
 $query = 'SELECT ip FROM '.$d.'counter_log ORDER BY time DESC LIMIT 1';
 $ip = array();
 $ip = $db->single_num($query);
+if(!isset($ip[0])){$ip[0] = "";}
 
 if(!$ip_check || $ip[0] != $_SERVER['REMOTE_ADDR']) {
 	$query = 'INSERT INTO '.$d.'counter_log VALUES(\''.$_SERVER['REMOTE_ADDR'].'\', \''.$time.'\')';

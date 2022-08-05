@@ -772,12 +772,12 @@ EOD;
 
 // メニューバーの設定
 $menu_bar = <<<EOD
-<a href="{$EST["cgi_path_url"]}yomi.php?mode=new">新着サイト</a> -
-<a href="{$EST["cgi_path_url"]}yomi.php?mode=renew">更新サイト</a> -
-<a href="{$EST["cgi_path_url"]}rank.php">人気ランキング</a> -
-<a href="{$EST["cgi_path_url"]}rank.php?mode=keyrank">キーワードランキング</a> -
-<a href="{$EST["cgi_path_url"]}yomi.php?mode=m1">おすすめサイト</a> -
-<a href="{$EST["cgi_path_url"]}yomi.php?mode=m2">相互リンクサイト</a> -
-<a href="{$EST["cgi_path_url"]}yomi.php?mode=mylink">マイリンク</a>
+<a href="{$EST["cgi_path_url"]}{$EST["script"]}?mode=new">新着サイト</a> -
+<a href="{$EST["cgi_path_url"]}{$EST["script"]}?mode=renew">更新サイト</a> -
+<a href="{$EST["cgi_path_url"]}{$EST["rank"]}">人気ランキング</a> -
+<a href="{$EST["cgi_path_url"]}{$EST["rank"]}?mode=keyrank">キーワードランキング</a> -
+<a href="{$EST["cgi_path_url"]}{$EST["script"]}?mode=m1">おすすめサイト</a> -
+<a href="{$EST["cgi_path_url"]}{$EST["script"]}?mode=m2">相互リンクサイト</a> -
+<a href="{$EST["cgi_path_url"]}{$EST["script"]}?mode=mylink">マイリンク</a>
 EOD;
 ?>

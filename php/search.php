@@ -1,12 +1,18 @@
 <?php
 // (1)検索結果表示画面(search)
 if($_GET['mode'] =='search') { // 検索結果表示画面
-
+	$navi = "";
+	$search_day = "";
 	$log_lines = array();
 	$words_a = array();
 	$words_o = array();
 	$words_n = array();
 	$kt_search_list=array();
+	
+	if(!isset($_GET['search_kt'])){$_GET['search_kt'] = "";}
+	if(!isset($_GET['search_kt_ex'])){$_GET['search_kt_ex'] = "";}
+	if(!isset($_GET['search_day'])){$_GET['search_day'] = "";}
+	
 	// 検索オプションをクッキーに記録
 	// オプション
 	// [0]=>検索条件(a|o)/[1]=>検索式の使用有無(0|1)/[2]=>検索エンジン名(ID)/
@@ -243,6 +249,7 @@ if($_GET['mode'] =='search') { // 検索結果表示画面
 			$category = 'category LIKE \'%&'.$_GET['search_kt'].'%\'';
 		}
 	}
+	$where = "";
 	// ワード検索部分
 	if(count($words_a) >= 0) { // and検索
 		foreach($words_a as $word) {

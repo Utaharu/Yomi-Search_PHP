@@ -2,6 +2,7 @@
 // (7)パスワードの再発行・変更(act_repass)
 if($_POST['mode'] == 'act_repass') {
 	if($_POST['repass_mode'] == 'repass') { // パスワード再発行時
+		if(!isset($_POST['repass_check'])){$_POST['repass_check'] = "";}
 		if($_POST['repass_check'] != 'on') {
 			mes('パスワード再発行の確認チェックがありません。もう一度戻ってからチェックを入れて再度実行してください', '確認チェックをしてください', 'java');
 		}

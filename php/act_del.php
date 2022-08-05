@@ -1,7 +1,8 @@
 <?php
 // (8)削除実行(act_del)
 if($_POST['mode'] == 'act_del') {
-        $d = $db->db_pre;
+	$d = $db->db_pre;
+	if(!isset($_POST['del_check'])){$_POST['del_check'] = "";}
 	$Cdel = 0;
 	if($_POST['del_mode'] == 'single') { // del_mode:single
 		if($_POST['del_check'] != 'on') {

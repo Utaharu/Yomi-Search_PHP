@@ -10,6 +10,8 @@ if($_POST['mode'] == 'act_regist') {
 		$_POST['preview'] = '';
 	}
 	if($_POST['preview'] == 'on') {
+		if(!isset($_POST['Smode_name'])){$_POST['Smode_name'] = "";}
+		if(!isset($_POST['pass'])){$_POST['pass'] = "";}
 		// ※登録者の新規登録時にのみ使用
 		check();
 		// その他の設定
