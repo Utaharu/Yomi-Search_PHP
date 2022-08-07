@@ -92,7 +92,7 @@ print_category($log_data[10]);
 
 <hr align="center">
 <font size="+1">【ﾊﾟｽﾜｰﾄﾞの変更】</font>
-<form action="<?php echo $cfg['cgi_path']; ?>regist_ys.php" method="post">
+<form action="<?php echo $cfg['cgi_path_url']; ?>regist_ys.php" method="post">
 <input type="hidden" name="mode" value="act_repass">
 <input type="hidden" name="repass_mode" value="change_pass">
 <input type="hidden" name="changer" value="<?php echo htmlspecialchars($_REQUEST['changer']); ?>">

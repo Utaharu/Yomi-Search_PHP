@@ -1,6 +1,10 @@
 - Yomi-Search PHP - nkbt n2 -
 
 各種修正や、php8対応していく。
+
+-2022/08/07-
+・テンプレート内で変数の記述間違いを修正。（cgi_path）
+
 -2022/08/05-
 ・Deprecated nullエラーが出るregist等スクリプトを修正。
 
