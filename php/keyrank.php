@@ -18,6 +18,7 @@ function PR_keyrank_data($keyrank_fl) {
 	}
 	$query = 'SELECT count(k.word) pt,k.word wd,r.view_word vwd FROM '.$db->db_pre.'key AS k LEFT JOIN '.$db->db_pre.'key_rank AS r ON k.word=r.word WHERE (k.time BETWEEN \''.$start.'\' AND \''.$end.'\') AND r.open_key=\'1\' GROUP BY k.word ORDER BY pt DESC';
 	$rowset = $db->rowset_assoc($query);
+	$bf_c = "";
 	foreach($rowset as $row) {
 		if($row['pt'] >= $cfg['keyrank_cut']) {
 			$row['wd'] = str_replace("’", "'", $row["wd"]);

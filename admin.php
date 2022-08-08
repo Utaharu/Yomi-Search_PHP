@@ -218,7 +218,7 @@ if($_POST["mode"] == "kanri") {
 	$rowset = $db->rowset_assoc($query);
 	foreach($rowset as $row) {
 		if(!$row["rwd"]) {
-			$row['wd'] = mysql_real_escape_string($row['wd']);
+			$row['wd'] = $db->escape_string($row['wd']);
 			$query = "INSERT INTO {$db->db_pre}key_rank VALUES('{$row['wd']}','','','')";
 			$db->query($query);
 		}
@@ -230,8 +230,9 @@ if($_POST["mode"] == "kanri") {
 	pass_check();
 	if($_POST["change"]) {
 		foreach($_POST["change"] as $key=>$val) {
-			if($val or $_POST["view"][$key]) {
-				$view = $db->escape_string($_POST["view"][$key]);
+			if($val or (isset($_POST['view']) and isset($_POST['view'][$key]) and $_POST['view'][$key])) {
+				$view = "";
+				if((isset($_POST['view']) and isset($_POST['view'][$key]) and $_POST['view'][$key])){$view = $db->escape_string($_POST['view'][$key]);}
 				$key = $db->escape_string($key);
 				$opn = ($val == "open") ? "1" : NULL;
 				$bad = ($val == "bad") ? "1" : NULL;
