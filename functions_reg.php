@@ -14,15 +14,27 @@ function print_category($category = '', $smartphone_flg = false) {
 		$writeStr .=   '<ul>※<b>'.$cfg_reg['kt_max'].'</b>個選択してください<br>';
 	}
 	$writeStr .=   '※各カテゴリの詳細は「<a href="sitemap.php" target="_blank">カテゴリ一覧</a>」を参考にしてください<br>'."\n";
-
-	for($category_no = 1; $category_no <= $cfg_reg['kt_max']; $category_no++) {
+//cfg_reg[kt_mode] = ?? editing...
+	$selecter_mode = "multiple";
+	if(isset($cfg_reg['kt_select_mode']) and $cfg_reg['kt_select_mode'] != "multiple"){$selecter_mode = "";}
+	$selecter_max = 1;
+	if($selecter_mode != "multiple"){$selecter_max = $cfg_reg['kt_max'];}
+	for($category_no = 1; $category_no <= $selecter_max; $category_no++) {
+		$selecter_name = "Fkt" . $category_no . "[]";
+		if($selecter_mode != "multiple"){$selecter_name = "Fkt" . $category_no;}
+		
 		$select = ' selected';
                 if(defined('SMARTPHONE_SITE_NAME')) $writeStr .=   '<div data-role="fieldcontain"><label for="Fkt'.$category_no.'" class="select"></label>';
-		$writeStr .=  '<select name="Fkt'.$category_no.'" size="7"   ';
+		$writeStr .=  '<select name="' . $selecter_name .'" size="7"   ';
                 if(defined('SMARTPHONE_SITE_NAME')) $writeStr .=  'id="Fkt'.$category_no.'" ';
+				if($selecter_mode == "multiple"){$writeStr .= "multiple";}
                 $writeStr .=  '>';
 		if(isset($category_list[$category_no]) && $category_list[$category_no] != '') {
-			$writeStr .=  '<option value="'. $category_list[$category_no] . '"'.$select.'>' . full_category($category_list[$category_no]) . "</option>\n";
+			if($selecter_mode == "multiple"){
+				foreach ($category_list as $category_value){if($category_value){$writeStr .= '<option value="'. $category_value . '"'.$select.'>' . full_category($category_value) . "</option>\n";}}
+			}else{
+				$writeStr .=  '<option value="'. $category_list[$category_no] . '"'.$select.'>' . full_category($category_list[$category_no]) . "</option>\n";
+			}
 			$select='';
 		}
 		$writeStr .=  '<option value="" '.$select.'>--指定しない--</option>';

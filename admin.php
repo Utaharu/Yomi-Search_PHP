@@ -797,6 +797,10 @@ if($_POST["mode"] == "kanri") {
 } elseif($_POST["mode"] == "cfg_make_reg") {
 	// (cfg3)環境設定(登録処理関係)を更新 (&cfg_make_reg)
 	pass_check();
+	if(!isset($cfg_reg['kt_select_mode'])){
+		$query = "INSERT INTO {$db->db_pre}cfg_reg VALUES('kt_select_mode','multiple')";
+		$result = $db->query($query);
+	}
 	foreach($cfg_reg as $key=>$val) {
 		if(isset($_POST[$key]) and $_POST[$key] != $cfg_reg[$key]) {
 			$_POST[$key] = $db->escape_string($_POST[$key]);
