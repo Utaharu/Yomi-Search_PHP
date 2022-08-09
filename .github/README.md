@@ -44,4 +44,4 @@
 ・setup03.php - cfgテーブル更新後、設定情報を呼び出し、setup03.htmlの「検索エンジンのトップページに移動」リンクにスクリプト名を差し込むように変更。
 ・setup02.php - $HTTP_SERVER_VARS変数　削除により->$_SERVERに変更。
 ・setupディレクトリのsetup.phpをindex.phpに名前変更。
-・yomi.php削除。index.phpのみに。
+・yomi.php削除。index.phpのみに。5
