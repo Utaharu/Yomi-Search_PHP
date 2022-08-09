@@ -265,26 +265,33 @@ if($_POST["mode"] == "kanri") {
 } elseif($_POST["mode"] == "key_cfg_del_word_act") {
 	// (6.2)キーワードランキングの集計対象外のキーワードを一括登録実行(&key_cfg_del_word_act)
 	pass_check();
-	require $cfg["log_path"] . "keyrank_ys.php";
-	$fp = fopen("{$cfg["log_path"]}keyrank_ys.php", "w");
-	fputs($fp, "<?php\n\{$keyrank}=array(\n");
-	while(list($key, $value) = each($keyrank)) {
-		fputs($fp, "'{$key}'=>'{$value}',\n");
+	$del_key_list = explode(",", $_POST['del_key_list']);
+	if(is_array($del_key_list)){
+		foreach($del_key_list as $key){
+				$key = str_replace("\n","",$key);
+				if($key){
+					$key = $db->escape_string($key);
+					//key_rank table check
+					$query = "SELECT * FROM {$db->db_pre}key_rank WHERE word='{$key}'";
+					$rowset = $db->single_assoc($query);
+					if($rowset){//update
+					$query = "UPDATE {$db->db_pre}key_rank SET open_key='',bad_key='1' WHERE word='{$key}'";
+					$db->query($query);
+				}else{//add
+					$query = "INSERT INTO {$db->db_pre}key_rank VALUES ('{$key}','','1','')";
+					$db->query($query);
+				}
+				//key table Check
+				$query = "SELECT word FROM {$db->db_pre}key WHERE word='{$key}'";
+				$tmp = $db->single_num($query);
+				if(!$tmp){
+					$time = time();
+					$query = "INSERT INTO {$db->db_pre}key (word, time, ip) VALUES ('{$key}','{$time}','{$_SERVER['REMOTE_ADDR']}')";
+					$db->query($query);
+				}
+			}
+		}
 	}
-	fputs($fp, ");\n\{$bad_key}=array(\n");
-	while(list($key, $value) = each($bad_key)){
-		fputs($fp, "'{$key}'=>'{$value}',\n");
-	}
-	$del_key_list = explode(",", $_POST["del_key_list"]);
-	foreach($del_key_list as $tmp) {
-		$tmp = str_replace("\n", "", $tmp);
-		fputs($fp, "'{$tmp}'=>'1',\n");
-	}
-	fputs($fp, ");\n\{$open_key}=array(\n");
-	while(list($key, $value) = each($open_key)) {
-		fputs($fp, "'{$key}'=>'{$value}',\n");
-	}
-	fputs($fp, ");\n?>");
 	mes("集計対象外のキーワードの一括登録が完了しました", "登録完了", "kanri");
 	exit;
 } elseif($_POST["mode"] == "log_conv") {
@@ -361,10 +368,10 @@ if($_POST["mode"] == "kanri") {
 	}
 	pass_check();
 	$del_list = array();
+	$change_path = array();
 	if($_POST['check'] != 'on') {
 		mes('確認チェックにチェックしてから変換ボタンを押してください', 'チェックミス', 'java');
 	}
-
 	if($_POST['all'] == 'on') {
 		// $_POST['all']の処理
 		$change_path = sort_category(0, '');
