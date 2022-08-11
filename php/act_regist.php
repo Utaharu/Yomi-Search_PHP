@@ -114,6 +114,8 @@ if($_POST['mode'] == 'act_regist') {
 		$db->query($query);
 		$log_data = $hyouji_log;
 		// 登録者のメッセージを保存する設定の場合
+		if(!isset($_POST['Fadd_kt'])){$_POST['Fadd_kt'] = "";}
+		if(!isset($_POST['Fto_admin'])){$_POST['Fto_admin'] = "";}
 		if(($_POST['Fadd_kt'] || $_POST['Fto_admin']) && $cfg_reg['look_mes'] && preg_match('/(\d+)(\w*)/', $cfg_reg['look_mes'], $match)) {
 			$i = 0;
 			$look_mes_list = array();

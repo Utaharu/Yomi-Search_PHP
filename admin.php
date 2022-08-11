@@ -602,7 +602,17 @@ if($_POST["mode"] == "kanri") {
 			fputs($fp, implode("\t", $line)."\n");
 		}
 		fclose($fp);
-		mes("データのバックアップが完了しました", "バックアップ完了", "kanri");
+
+		header("Content-type: application/octet-stream");
+		header("Content-Disposition: attachment; filename=".basename($_POST['file']));
+	
+		$fp = fopen($_POST["file"], "r");
+		while($line = $db->fetch_num($result)) {
+			echo implode("\t", $line)."\n";
+		}
+		fclose($fp);
+
+//		mes("データのバックアップが完了しました", "バックアップ完了", "kanri");
 	} elseif($_POST["act"] == "restore") {
 		if($_POST["restore"] != "on") {
 			mes("修復確認のため、確認チェックを入れてからもう一度実行してください", "確認チェックをしてください", "java");

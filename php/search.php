@@ -253,17 +253,17 @@ if($_GET['mode'] =='search') { // 検索結果表示画面
 	// ワード検索部分
 	if(count($words_a) >= 0) { // and検索
 		foreach($words_a as $word) {
-			$where .= ' AND (title LIKE \'%'.$word.'%\' OR message LIKE \'%'.$word.'%\' OR comment LIKE \'%'.$word.'%\' OR keywd LIKE \'%'.$word.'%\' OR url LIKE \'%'.$word.'%\')';
+			$where .= ' AND (id LIKE '%{$word}%' OR title LIKE \'%'.$word.'%\' OR message LIKE \'%'.$word.'%\' OR comment LIKE \'%'.$word.'%\' OR keywd LIKE \'%'.$word.'%\' OR url LIKE \'%'.$word.'%\')';
 		}
 	}
 	if(count($words_o) >= 0) { // or検索
 		foreach($words_o as $word) {
-			$where .= ' OR (title LIKE  \'%'.$word.'%\' OR message LIKE  \'%'.$word.'%\' OR comment LIKE  \'%'.$word.'%\' OR keywd LIKE  \'%'.$word.'%\' OR url LIKE  \'%'.$word.'%\')';
+			$where .= ' OR (id LIKE '%{$word}%' OR title LIKE  \'%'.$word.'%\' OR message LIKE  \'%'.$word.'%\' OR comment LIKE  \'%'.$word.'%\' OR keywd LIKE  \'%'.$word.'%\' OR url LIKE  \'%'.$word.'%\')';
 		}
 	}
 	if(count($words_n) >= 0) { // not検索
 		foreach($words_n as $word) {
-			$where .= ' AND (title NOT LIKE  \'%'.$word.'%\' AND message NOT LIKE  \'%'.$word.'%\' AND comment NOT LIKE  \'%'.$word.'%\' AND keywd NOT LIKE  \'%'.$word.'%\' AND url NOT LIKE  \'%'.$word.'%\')';
+			$where .= ' AND (id collate NOT LIKE '%{$word}%' AND title NOT LIKE  \'%'.$word.'%\' AND message NOT LIKE  \'%'.$word.'%\' AND comment NOT LIKE  \'%'.$word.'%\' AND keywd NOT LIKE  \'%'.$word.'%\' AND url NOT LIKE  \'%'.$word.'%\')';
 		}
 	}
 	if($where) {

@@ -204,17 +204,17 @@ if($cfg_reg["sougo"]) {
           <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
               <tr>
-                <td colspan="2" class="table_in_header">バックアップデータの作成</td>
+                <td colspan="2" class="table_in_header">バックアップデータの作成/ダウンロード</td>
                 </tr>
               <tr>
-                <td class="table_in_leftcell"><strong>バックアップファイル名</strong></td>
-                <td class="table_in_rightcell"><input name="file" type="text" class="form" value="<?php echo $cfg['log_path']; ?>ys_log.dump"></td>
+                <td class="table_in_leftcell"><strong>バックアップ保存先</strong></td>
+                <td class="table_in_rightcell"><input name="file" type="text" class="form" value="<?php echo $cfg['log_path']; ?>ys_log.dump"><br/>*サーバの保存先</td>
               </tr>
               <tr>
                 <td class="table_in_leftcell"><strong>確認チェック</strong><br>
                   <br>
                   バックアップファイルの作成を実行する場合には、チェックボックスにチェックを入れてください。</td>
-                <td class="table_in_rightcell"><input name="dump" type="checkbox" class="form" value="on"></td>
+                <td class="table_in_rightcell" style="vertical-align:middle;"><input name="dump" type="checkbox" class="form" value="on"></td>
               </tr>
               <tr>
                 <td class="table_in_leftcell">&nbsp;</td>
@@ -242,8 +242,8 @@ if($cfg_reg["sougo"]) {
                   <tr>
                     <td class="table_in_leftcell"><strong>確認チェック</strong><br>
                         <br>
-                      バックアップファイルの作成を実行する場合には、チェックボックスにチェックを入れてください。</td>
-                    <td class="table_in_rightcell"><input name="restore" type="checkbox" class="form" value="on"></td>
+                      バックアップファイルからの復元を実行する場合には、チェックボックスにチェックを入れてください。</td>
+                    <td class="table_in_rightcell" style="vertical-align:middle;"><input name="restore" type="checkbox" class="form" value="on"></td>
                   </tr>
                   <tr>
                     <td class="table_in_leftcell">&nbsp;</td>

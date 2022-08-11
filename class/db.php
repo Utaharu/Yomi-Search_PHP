@@ -59,14 +59,14 @@ class db {
 
 	function fetch_num($result_id = 0) {
 		if (!$result_id) $result_id = $this->result;
-		$this->row[$result_id] = @mysqli_fetch_row($result_id);
-		return $this->row[$result_id];
+		$this->row = @mysqli_fetch_row($result_id);
+		return $this->row;
 	}
 
 	function fetch_assoc($result_id = 0) {
 		if (!$result_id) $result_id = $this->result;
-		$this->row[$result_id] = @mysqli_fetch_assoc($result_id);
-		return $this->row[$result_id];
+		$this->row = @mysqli_fetch_assoc($result_id);
+		return $this->row;
 	}
 
 	function single_num($query) {
