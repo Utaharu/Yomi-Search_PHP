@@ -35,7 +35,7 @@
 </table>
 <!-- /Navigation Bar Output -->
 <ul>
-<form action="<?php echo $cfg['search']; ?>" method="get" target="<?php echo $_GET['window']; ?>">
+<form action="<?php echo $cfg['search']; ?>" method="get" target="<?php if(!isset($_GET['window'])){$_GET['window'] = "";} echo $_GET['window']; ?>">
 	<input type="hidden" name="mode" value="search">
 	<input type="hidden" name="open_type" value="0">
 	<input name="word" type="text" class="form" size="30">

@@ -2,24 +2,24 @@
 //著作権表示(削除・変更をしないでください。ただし、中寄せ・左寄せは可)
 function cr(){
 	global $cfg;
-	print "<style type=\"text/css\">\n";
-	print "<!--\n";
-	print "#copyright {float:right; text-align:left;　position:relateve; margin-top:10px; padding:5px; border:1px solid black; background-color:silver; color:black;}\n";
-	print "#copyright > #version_name {text-decoration:underline;}\n";
-	print "#copyright a{color:black;}\n";
-	print "#copyright_version {display:none; padding:5px 5px 5px 20px; margin:5px 0 0 0; border-top:dashed black 1px;}\n";
-	print "#copyright_version li { max-width:100%; min-width:100%; width:100%; margin:0 0 0 10px; text-align:left;}\n";
-	print "#copyright:hover > #copyright_version, #copyright:focus > #copyright_version,#copyright:active > #copyright_version{display:block;}\n";
-	print "-->\n";
-	print "</style>\n";
-	print "<div id=\"copyright\">This program is : <span id=\"version_name\">" .  $cfg['ver'] . "</span>\n";
-	print "<ul id=\"copyright_version\">\n";
-	print "<li><a href=\"http://www.nkbt.net/yomi/\" target=\"_blank\">Yomi-Search(PHP)modified ver1.5.8.n2</a></li>\n";
-	print "<li><a href=\"http://yomiphp-mod.sweet82.com/\" target=\"_blank\">Yomi-Search(PHP)modified ver1.5.8</a></li>\n";	
-	print "<li><a href=\"http://sql.s28.xrea.com/\" target=\"_blank\">Yomi-Search(PHP)</a></li>\n";
-	print "<li><a href=\"http://yomi.pekori.to/\" target=\"_blank\">Yomi-Search</a></li>\n";
-	print "</ul>\n";
-	print "</div>\n";
+	print	"<style type=\"text/css\">\n".
+			"	<!--\n".
+			"		#copyright {float:right; text-align:left;　position:relateve; margin-top:10px; padding:5px; border:1px solid black; background-color:silver; color:black;}\n".
+			"		#copyright > #version_name {text-decoration:underline;}\n".
+			"		#copyright a{color:black;}\n".
+			"		#copyright_version {display:none; padding:5px 5px 5px 20px; margin:5px 0 0 0; border-top:dashed black 1px;}\n".
+			"		#copyright_version li { max-width:100%; min-width:100%; width:100%; margin:0 0 0 10px; text-align:left;}\n".
+			"		#copyright:hover > #copyright_version, #copyright:focus > #copyright_version,#copyright:active > #copyright_version{display:block;}\n".
+			"	-->\n".
+			"</style>\n";
+	print	"<div id=\"copyright\">This program is : <span id=\"version_name\">" .  $cfg['ver'] . "</span>\n";
+	print	"	<ul id=\"copyright_version\">\n".
+			"		<li><a href=\"http://www.nkbt.net/yomi/\" target=\"_blank\">Yomi-Search(PHP)modified ver1.5.8.n2</a></li>\n".
+			"		<li><a href=\"http://yomiphp-mod.sweet82.com/\" target=\"_blank\">Yomi-Search(PHP)modified ver1.5.8</a></li>\n".
+			"		<li><a href=\"http://sql.s28.xrea.com/\" target=\"_blank\">Yomi-Search(PHP)</a></li>\n";
+			"		<li><a href=\"http://yomi.pekori.to/\" target=\"_blank\">Yomi-Search</a></li>\n".
+			"	</ul>\n".
+			"</div>\n";
 }
 
 //(c1)クッキーの書き込み(set_cookie)
