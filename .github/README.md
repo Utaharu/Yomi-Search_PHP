@@ -1,4 +1,11 @@
-# Yomi-Search PHP - nkbt n2
+# Yomi-Search PHP
+
+#### このプログラムのバージョン履歴について
+* 現在
+  * [Yomi-Search(PHP)modified ver1.5.8.n2_1.1](http://www.nkbt.net/yomi/) - nkbt版
+    * [Yomi-Search(PHP)modified ver1.5.8](http://yomiphp-mod.sweet82.com/) - Yomi-Search(PHP)modified版
+      * [Yomi-Search(PHP)](http://sql.s28.xrea.com/) - Yomi-Search(PHP)版
+        * Yomi-Search [WonderLink](http://yomi.pekori.to/) / [Vector](https://www.vector.co.jp/soft/unix/net/se124310.html) - CGI版
 
 ## やっていくこと。
 各種修正や、php8対応など
@@ -12,8 +19,17 @@
 - [x] XSSオープンリダイレクトの脆弱性
 - [x] キーワードの表示/非表示設定が反映されない
 - [x] 登録データのバックアップ・復元のバックアップデータの作成が行われない。
+- [x] キーワードランキングの集計対象外のキーワードを一括登録が機能してない。
+
 
 ## 更新履歴
+-2022/08/15-
+* admin.php array keyのWarningErrorが出ないように修正。
+
+-2022/08/12-
+* php/search.php idを検索対象の追加のコード記述ミスの修正。
+* Copyright表示方法の調整。
+
 -2022/08/11-
 * php/search.php idを検索対象に追加。
 * 登録バックアップデータの作成/ダウンロードが行えるように修正。(nkbt-31_2@1704100057)

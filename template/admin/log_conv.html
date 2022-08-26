@@ -1,7 +1,7 @@
 <?php
 // リストメニューの設定
 // 認証設定(無効にする=0/有効にする=1)
-if($cfg["cfg_kanri"]) {
+if(isset($cfg["cfg_kanri"]) and $cfg["cfg_kanri"]) {
 	$Ccfg_kanri_fl_0 = "";
 	$Ccfg_kanri_fl_1 = " selected";
 } else {

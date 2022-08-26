@@ -18,6 +18,7 @@ $start_time1 = microtime(true);
 //    ご使用になる前に必ずお読みください。
 // --------------------------------------------------------------------------+
 
+
 $mobile_flg = 0;
 $strHostName = @gethostbyaddr($_SERVER['REMOTE_ADDR']);
 if ( strstr($strHostName, 'docomo.ne.jp') !== false) {

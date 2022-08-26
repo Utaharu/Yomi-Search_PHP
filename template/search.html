@@ -1,4 +1,4 @@
-<?php $_GET = array_map("htmlspecialchars", $_GET); ?>
+<?php if(isset($_GET) and is_array($_GET)){$_GET = array_map("htmlspecialchars",$_GET);}?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
