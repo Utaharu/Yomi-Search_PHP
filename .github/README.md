@@ -8,7 +8,9 @@
         * Yomi-Search [WonderLink](http://yomi.pekori.to/) / [Vector](https://www.vector.co.jp/soft/unix/net/se124310.html) - CGI版
 
 ## やっていくこと。
-各種修正や、php8対応など
+各種修正や、拡張。
+
+php8対応など
 
 ### 拡張
 - [ ] PHP8対応
@@ -17,6 +19,9 @@
 - - [ ] mobile
 
 - [x] IPV6対応
+- - [x] 新規設置(setup)
+- - [ ] 既存からの
+
 - [x] 登録カテゴリー・セレクトボックスのmultiple化
 - - [x] pc
 - - [ ] smartphone
