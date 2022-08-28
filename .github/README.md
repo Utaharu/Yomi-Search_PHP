@@ -1,7 +1,7 @@
 # Yomi-Search PHP
 
 #### このプログラムのバージョン履歴について
-* 現在
+* 現在 Yomi-Search PHP Ver:4~
   * [Yomi-Search(PHP)modified ver1.5.8.n2_1.1](http://www.nkbt.net/yomi/) - nkbt版
     * [Yomi-Search(PHP)modified ver1.5.8](http://yomiphp-mod.sweet82.com/) - Yomi-Search(PHP)modified版
       * [Yomi-Search(PHP)](http://sql.s28.xrea.com/) - Yomi-Search(PHP)版
@@ -12,8 +12,15 @@
 
 ### 拡張
 - [ ] PHP8対応
+- - [ ] pc
+- - [ ] smartphone
+- - [ ] mobile
+
 - [x] IPV6対応
 - [x] 登録カテゴリー・セレクトボックスのmultiple化
+- - [x] pc
+- - [ ] smartphone
+- - [ ] mobile
 
 ### 修正
 - [x] XSSオープンリダイレクトの脆弱性
@@ -23,6 +30,9 @@
 
 
 ## 更新履歴
+-2022/08/28-
+* smartphone版の一部をエラー修正。php8用
+
 -2022/08/15-
 * admin.php array keyのWarningErrorが出ないように修正。
 

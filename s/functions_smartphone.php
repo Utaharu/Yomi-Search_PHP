@@ -174,8 +174,9 @@ EOF;
  * @param string $path パス
  * @return none  カテゴリメニューHTMLタグを出力して終わり
  */
-function printCategoryMenu($mode, $path) {
-    global $cfg;
+function printCategoryMenu($mode, $get_path) {
+    global $cfg,$cfg_reg;
+	$regist = "";
     $w=<<<EOF
              <div class="ui-bar ui-bar-a">
                     <h1>カテゴリメニュー</h1>
@@ -330,12 +331,12 @@ function full_category($id){
 function navi_bar($id) {
 	global $cfg, $db, $navi_h1str, $title;
 	$navi_id = array();
+	$path = '';
+	$navi = '';
 	
 	if(strstr($id, '/') !== false) {
 		$navi_id = explode('/', substr($id, 0, -1));
 		array_pop($navi_id);
-		$path = '';
-		$navi = '';
 	} else {
 		$navi_id[0] = $id;
 	}
@@ -426,7 +427,7 @@ function unhtmlentities($string) {
 
 
 function checkSQLWord($word) {
-	if(preg_match("/delete.*from|select.*from|insert\sinto|1=1|'[0-9a-z]{1}'='[0-9a-z]{1}'|drop.*table|update.*set|truncate|or.*='/i", $val) == true) {
+	if(preg_match("/delete.*from|select.*from|insert\sinto|1=1|'[0-9a-z]{1}'='[0-9a-z]{1}'|drop.*table|update.*set|truncate|or.*='/i", $word) == true) {
 	    return false;
 	} else {
             return true;

@@ -102,13 +102,13 @@ if(isset($_GET['page']) && is_numeric($_GET['page'])) {
 
 if(isset($_REQUEST['mode'])) {
 
-    if($_GET['mode'] == 'random') {
+    if($_REQUEST['mode'] == 'random') {
             require $cfg['sub_path'] . 'random.php';
             exit();
-    } elseif($_GET['mode'] == 'mylink') {
+    } elseif($_REQUEST['mode'] == 'mylink') {
             require $cfg['sub_path'] . 'mylink.php';
             exit();
-    } elseif ($_GET['mode'] && strpos($_SERVER['PHP_SELF'], 'index') !== false) {
+    } elseif ($_REQUEST['mode'] && strpos($_SERVER['PHP_SELF'], 'index') !== false) {
             require $cfg['sub_path'] . 'category.php';
             exit();
     }
@@ -131,23 +131,23 @@ if(isset($_REQUEST['mode'])) {
     }
 
     // 新規登録実行(act_regist)
-    if($_POST['mode'] == 'act_regist') {
+    if($_REQUEST['mode'] == 'act_regist') {
             
             require $cfg['sub_path'] . 'act_regist.php';
             exit;
     }
     // 新規登録実行(代理登録)
-    if($_POST['mode'] == 'new_dairi') {
+    if($_REQUEST['mode'] == 'new_dairi') {
         require $cfg['sub_path'] . 'regist_new_admin.php';
         exit;
     }
     // 削除実行
-    if($_POST['mode'] == 'act_del'){
+    if($_REQUEST['mode'] == 'act_del'){
         require $cfg['sub_path'] . 'act_del.php';
         exit;
     }
     // パスワード再発行
-    if($_POST['mode'] == 'act_repass') {
+    if($_REQUEST['mode'] == 'act_repass') {
         require $cfg['sub_path'] . 'act_repass.php';
         exit;
     }
@@ -160,11 +160,10 @@ if(isset($_REQUEST['mode'])) {
 }
 
 //新規サイト登録
-if(($_REQUEST['mode'] == '' && strpos($_SERVER['PHP_SELF'], 'regist'))||$_REQUEST['mode']=='form'){
+if(((!isset($_REQUEST['mode']) or $_REQUEST['mode'] == '') && strpos($_SERVER['PHP_SELF'], 'regist'))|| (isset($_REQUEST['mode']) and $_REQUEST['mode']=='form')){
     require $cfg['sub_path'].'regist_new.php';
     exit();
 }
-
 
 if($debugmode) {
     $end_time1 = microtime(true);
