@@ -49,7 +49,7 @@ window.onload = function() {
 
 
 <!-- Navigation Bar Output -->
-<a href="<?php echo $cfg['home']; ?>" rel="external">ホーム</a>&nbsp;&gt;&nbsp;<?php echo $navi; ?><strong>ｻｲﾄﾏｯﾌﾟ</strong>
+<a href="<?php echo $cfg['home']; ?>" rel="external">ホーム</a>&nbsp;&gt;&nbsp;<?php if(isset($navi)){echo $navi;} ?><strong>ｻｲﾄﾏｯﾌﾟ</strong>
 <!-- /Navigation Bar Output -->
 
 <?php

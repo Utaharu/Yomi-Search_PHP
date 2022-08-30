@@ -92,11 +92,15 @@ function subcategory($path) {
 	global $db;
 	$count = 0;
 	$check = 0;
+	$num = "";
+	$sub = "";
 	$query = 'SELECT COUNT(id) FROM '.$db->db_pre.'log WHERE category LIKE \'%&'.$path.'%\'';
 	$num = $db->single_num($query);
 	$query = 'SELECT id FROM '.$db->db_pre.'category WHERE path LIKE \''.$path.'_%\'';
 	$sub = $db->single_num($query);
-	return (array($num[0], $sub[0]));
+	if(isset($num[0])){$num = $num[0];}
+	if(isset($sub[0])){$sub = $sub[0];}
+	return (array($num, $sub));
 }
 
 /**
@@ -143,7 +147,7 @@ EOF;
             $query = 'SELECT title, path FROM '.$db_pre.'category WHERE reffer LIKE \'%&'.$id[0].'&%\' ORDER BY path';
             $rowset = $db->rowset_assoc($query);
 
-
+			$tr_flag = 0;
             foreach($rowset as $row) {
                     $id = substr($row['path'], 0, -1);
                     list($count, $check) = subcategory($id);

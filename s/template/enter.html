@@ -161,7 +161,7 @@ if($cfg['re_pass_fl']) {
 	<br />
 	
 	<label for="email">E-MAIL：</label>
-	<input type="text" name="email" value="<?php echo htmlspecialchars($_REQUEST['email']); ?>" id="email"  />
+	<input type="text" name="email" value="<?php if(isset($_REQUEST['email'])){echo htmlspecialchars($_REQUEST['email']);}	?>" id="email"  />
 	<br />
 	<br />
 	再発行確認ﾁｪｯｸ→<input type="checkbox" value="on" class="custom" id="checkbox-111a" name="repass_check">再発行します

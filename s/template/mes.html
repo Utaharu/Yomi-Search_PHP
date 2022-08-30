@@ -53,12 +53,12 @@ window.onload = function() { setTimeout(doScroll, 100); }
 
     <div data-role="content">
 
-        <div style="text-align:center; font-weight:bold;"><?php printTopMenuLink( $text['menu_bar'], '#2489CE' ); ?></div>
+        <div style="text-align:center; font-weight:bold;"><?php if(isset($text['menu_bar'])){printTopMenuLink( $text['menu_bar'], '#2489CE' );} ?></div>
 
 
 <!-- /Menu Bar Output -->
 <!-- Header Space Output -->
-<?php echo $text['head_sp']; ?>
+<?php if(isset($text['head_sp'])){echo $text['head_sp'];}?>
 <!-- /Header Space Output -->
 <!-- Navigation Bar Output -->
 <a href="<?php echo SMARTPHONE_HOME; ?>"  rel="external" class="ui-link">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;<strong>ﾒｯｾｰｼﾞ表示</strong><br />

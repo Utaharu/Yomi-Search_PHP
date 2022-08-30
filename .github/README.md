@@ -1,11 +1,11 @@
 # Yomi-Search PHP
 
 #### このプログラムのバージョン履歴について
-* 現在 Yomi-Search PHP Ver:4~
-  * [Yomi-Search(PHP)modified ver1.5.8.n2_1.1](http://www.nkbt.net/yomi/) - nkbt版
-    * [Yomi-Search(PHP)modified ver1.5.8](http://yomiphp-mod.sweet82.com/) - Yomi-Search(PHP)modified版
-      * [Yomi-Search(PHP)](http://sql.s28.xrea.com/) - Yomi-Search(PHP)版
-        * Yomi-Search [WonderLink](http://yomi.pekori.to/) / [Vector](https://www.vector.co.jp/soft/unix/net/se124310.html) - CGI版
+* 現在 Yomi-Search PHP Ver:8　~
+  * (PHP版:6~7) [Yomi-Search(PHP)modified ver1.5.8.n2_1.1](http://www.nkbt.net/yomi/) - nkbt版
+    *(PHP版:5~6) [Yomi-Search(PHP)modified ver1.5.8](http://yomiphp-mod.sweet82.com/) - Yomi-Search(PHP)modified版
+      *(PHP版:4~5) [Yomi-Search(PHP) Ver4.19.5](http://sql.s28.xrea.com/) - Yomi-Search(PHP)版
+        *(CGI版:~4) Yomi-Search [WonderLink](http://yomi.pekori.to/) / [Vector](https://www.vector.co.jp/soft/unix/net/se124310.html) - CGI版
 
 ## やっていくこと。
 各種修正や、php8対応など
@@ -27,13 +27,19 @@
 
 ### 修正
 - [x] XSSオープンリダイレクトの脆弱性
+- - [x] pc
+- - [ ] smartphone
+- - [ ] mobile
 - [x] キーワードの表示/非表示設定が反映されない
 - [x] 登録データのバックアップ・復元のバックアップデータの作成が行われない。
 - [x] キーワードランキングの集計対象外のキーワードを一括登録が機能してない。
 
 ## 更新履歴
+-2022/08/30-
+* smartphone版の一部エラーを修正。php8適応用
+
 -2022/08/28-
-* smartphone版の一部をエラー修正。php8用
+* smartphone版の一部をエラー修正。php8適応用
 
 -2022/08/15-
 * admin.php array keyのWarningErrorが出ないように修正。

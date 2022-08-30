@@ -37,10 +37,11 @@ $navi = '';
 
 // カテゴリの登録可否フラグを初期化
 $regist = 0;
-
 if($_GET['mode'] == 'dir') { //各カテゴリの場合
+	if(!preg_match("/\/$/",$_GET['path'])){$_GET['path'] .= "/";}
 	$query = 'SELECT title, regist, comment FROM '.$db->db_pre.'category WHERE path=\''.$_GET['path'].'\' LIMIT 1';
 	$row = $db->single_assoc($query);
+
 	$title = $row['title'];
 	$guide = $row['comment'];
 	if(isset($row['regist'])) { // カテゴリの登録可否フラグを更新

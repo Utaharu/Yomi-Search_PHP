@@ -49,7 +49,7 @@ window.onload = function() { setTimeout(doScroll, 100); }
 	<form method="GET" action="./search.php" rel="external">
             <input type="hidden" name="mode" value="search">
 		<p>サイト名を入れて検索してください。</p>
-        <input  type="search" name="word" id="name" value="<?php echo $word; ?>"  /><br />
+        <input  type="search" name="word" id="name" value="<?php if(isset($word)){echo $word;} ?>"  /><br />
         <input type="submit" data-role="button" data-theme="b" data-inline="true" value="サイト検索">
 	</form>
 	<h5>詳細検索は<a href="./search_ex.php" rel="external">コチラ</a></h5>
