@@ -12,8 +12,8 @@ require 'mobile_initial.php';
 <meta http-equiv="Cache-Control" content="no-cache">
 <meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
 <title>サイトマップ | <?php echo $cfg['search_name']; ?></title>
-<meta name="keywords" content="<?php echo $title; ?>,検索エンジン,サイトマップ" />
-<meta name="description" content="<?php echo $title; ?>の検索エンジンサイトマップ表示です" />
+<meta name="keywords" content="<?php echo $cfg['search_name']; ?>,検索エンジン,サイトマップ" />
+<meta name="description" content="<?php echo $cfg['search_name']; ?>の検索エンジンサイトマップ表示です" />
 <style type="text/css">
 <![CDATA[
 a:link{color:<?php echo LINK_COLOR; ?>;}
@@ -41,26 +41,13 @@ a:visited{color:<?php echo VLINK_COLOR; ?>;}
 
 <!--上部メニュー-->
 <div style="text-align:center; background-color:<?php echo THREE_BACK_COLOR; ?>; color:<?php echo THREE_STR_COLOR; ?>;" align="center">
-<a href="<?php echo $cfg['home']; ?>">ﾎｰﾑ</a>&nbsp;&gt;<?php if($navi != '') echo $navi.'<br />'; ?>ｻｲﾄﾏｯﾌﾟ
+<a href="<?php echo $cfg['home']; ?>">ﾎｰﾑ</a>&nbsp;&gt;<?php if(isset($navi) and $navi != '') echo $navi.'<br />'; ?>ｻｲﾄﾏｯﾌﾟ
 <div style="background-color:<?php echo HR_COLOR; ?>">
 <img src="./img/spacer.gif" width="1" height="1" /><br />
 </div>
 </div>
 <div style="font-size:x-small;">
-  <form action="<?php echo $cfg['search']; ?>" method="get" name="form1">
-	<input type="hidden" name="mode" value="search">
-	<input type="hidden" name="page" value="1">
-	<input type="hidden" name="sort" value="<?php echo $_POST['sort']; ?>">
-	<input type="hidden" name="open_type" value="0">
-	<input type="hidden" name="hyouji" value="30">
-	<input type="text" name="word" class="form" value="" size="20">
-	&nbsp;
-	<select name="method" class="form">
-		<option value="and" selected>AND</option>
-		<option value="or">OR</option>
-	</select>
-	<input type="submit" class="form" value="検索">
-  </form>
+
 <?php
 $query = 'SELECT up_id, title, path, comment FROM '.$db->db_pre.'category ORDER BY path;';
 $top_category = $db->rowset_assoc($query);
@@ -84,7 +71,7 @@ echo $str;
 
 <!-- Copy Right Output -->
 <div style="text-align:center; background-color:<?php echo THREE_BACK_COLOR; ?>; color:<?php echo THREE_STR_COLOR; ?>;" align="center">
-<a href="<?php echo $cfg['home']; ?>">ﾎｰﾑ</a>&nbsp;&gt;<?php if($navi != '') echo $navi.'<br />'; ?>ｻｲﾄﾏｯﾌﾟ
+<a href="<?php echo $cfg['home']; ?>">ﾎｰﾑ</a>&nbsp;&gt;<?php if(isset($navi) and $navi != '') echo $navi.'<br />'; ?>ｻｲﾄﾏｯﾌﾟ
 <div style="background-color:<?php echo HR_COLOR; ?>">
 <img src="./img/spacer.gif" width="1" height="1" /><br />
 </div>

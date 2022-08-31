@@ -419,7 +419,7 @@ function unhtmlentities($string) {
 
 
 function checkSQLWord($word) {
-	if(preg_match("/delete.*from|select.*from|insert\sinto|1=1|'[0-9a-z]{1}'='[0-9a-z]{1}'|drop.*table|update.*set|truncate|or.*='/i", $val) == true) {
+	if(preg_match("/delete.*from|select.*from|insert\sinto|1=1|'[0-9a-z]{1}'='[0-9a-z]{1}'|drop.*table|update.*set|truncate|or.*='/i", $word) == true) {
 	    return false;
 	} else {
             return true;
@@ -441,9 +441,10 @@ function print_category($category = '') {
 		echo '※'.$cfg_reg['kt_max'].'個選択してください<br />';
 	}
 	echo '※各カテゴリの詳細は「<a href="sitemap.php">ｶﾃｺﾞﾘ一覧</a>」を参考にしてください<br />'."\n";
-
+	
+	
 	for($category_no = 1; $category_no <= $cfg_reg['kt_max']; $category_no++) {
-	    
+	  if(!isset($_POST['Fkt'.$category_no])){$_POST['Fkt'.$category_no] = "";}
 	    if($_POST['Fkt'.$category_no] == '') $select = ' selected';
                 if(defined('SMARTPHONE_SITE_NAME')) echo '<div data-role="fieldcontain"><label for="Fkt'.$category_no.'" class="select"></label>';
 		echo '<select name="Fkt'.$category_no.'" size="7"   ';

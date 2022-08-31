@@ -2,19 +2,23 @@
 
 #### このプログラムのバージョン履歴について
 * 現在 Yomi-Search PHP Ver:8 - 
-  * (PHP版:6 - 7) [Yomi-Search(PHP)modified ver1.5.8.n2_1.1](http://www.nkbt.net/yomi/) - nkbt版
-    *(PHP版:5 - 6) [Yomi-Search(PHP)modified ver1.5.8](http://yomiphp-mod.sweet82.com/) - Yomi-Search(PHP)modified版
-      *(PHP版:4 - 5) [Yomi-Search(PHP) Ver4.19.5](http://sql.s28.xrea.com/) - Yomi-Search(PHP)版
-        *(CGI版: - 4) Yomi-Search [WonderLink](http://yomi.pekori.to/) / [Vector](https://www.vector.co.jp/soft/unix/net/se124310.html) - CGI版
+　・ (PHP版:6 - 7) [Yomi-Search(PHP)modified ver1.5.8.n2_1.1](http://www.nkbt.net/yomi/) - nkbt版
+　　・ (PHP版:5 - 6) [Yomi-Search(PHP)modified ver1.5.8](http://yomiphp-mod.sweet82.com/) - Yomi-Search(PHP)modified版
+　　　・ (PHP版:4 - 5) [Yomi-Search(PHP) Ver4.19.5](http://sql.s28.xrea.com/) - Yomi-Search(PHP)版
+　　　　・ (CGI版: - 4) Yomi-Search [WonderLink](http://yomi.pekori.to/) / [Vector](https://www.vector.co.jp/soft/unix/net/se124310.html) - CGI版
 
 ## やっていくこと。
 各種修正や、php8対応など
 
+### 要検討
+* smartphone版
+* mobile版
+
 ### 拡張
 - [ ] PHP8対応
-- - [ ] pc
-- - [ ] smartphone
-- - [ ] mobile
+- - [ ] pc (/)
+- - [ ] smartphone (/s/)
+- - [ ] mobile (/m/)
 
 - [x] IPV6対応
 - - [x] 新規設置(setup)
@@ -22,19 +26,22 @@
 
 - [x] 登録カテゴリー・セレクトボックスのmultiple化
 - - [x] pc
-- - [ ] smartphone
-- - [ ] mobile
+- - [ ] smartphone (/s/)
+- - [ ] mobile (/m/)
 
 ### 修正
 - [x] XSSオープンリダイレクトの脆弱性
 - - [x] pc
-- - [ ] smartphone
-- - [ ] mobile
+- - [ ] smartphone (/s/)
+- - [ ] mobile (/m/)
 - [x] キーワードの表示/非表示設定が反映されない
 - [x] 登録データのバックアップ・復元のバックアップデータの作成が行われない。
 - [x] キーワードランキングの集計対象外のキーワードを一括登録が機能してない。
 
 ## 更新履歴
+-2022/08/31-
+* mobile版の一部エラーを修正。php8適応用
+
 -2022/08/30-
 * smartphone版の一部エラーを修正。php8適応用
 

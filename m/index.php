@@ -6,7 +6,8 @@ include 'mobile_initial.php';
 
 //データの読み込み＆下層カテゴリ表示
 $check_mode_arr = array('dir', 'rank','new');
-
+if(!isset($_GET['path'])){$_GET['path']="";}
+if(!isset($_GET['word'])){$_GET['word']="";}
 if (isset($_GET['mode']) && in_array($_GET['mode'], $check_mode_arr) && (is_numeric(str_replace('/', '', $_GET['path']))==true || $_GET['word'] != '' || $_GET['mode']=='rank' || $_GET['mode']=='new' )) {
     $word = '';
     $title = '';
@@ -262,6 +263,7 @@ require './google_ads.php';
         $query = 'SELECT title, path FROM '.$db_pre.'category WHERE up_id=\''.$id[0].'\' ORDER BY path';
         $rowset = $db->rowset_assoc($query);
         $z=0;
+		$i = 0;
         foreach ($rowset as $row) {
             $query = 'SELECT COUNT(id) FROM '.$db_pre.'log WHERE category LIKE \'%&'.$row['path'].'%\'';
             $num = $db->single_num($query);
@@ -276,12 +278,13 @@ require './google_ads.php';
             $w .= $EMOJI_NUM_ARRAY[$i];
             $w .= '<a href="index.php?mode=dir&amp;path='.$row['path'].'" '.$ACCESSKEY_ARRAY[$z].' >'.$row['title'];
             echo $w;
-            if($sub[0]) echo '*';
+            if(isset($sub[0]) and $sub[0]) echo '*';
             echo '</a>';
             if($count_flag) echo '('.$num[0].')';
             //区切り線
             echo '</div><div style="background-color:'.HR_COLOR2.';"><img src="./img/spacer.gif" width="1" height="1" /><br /></div>';
             $z++;
+			$i++;
         }
         $query = 'SELECT title, path FROM '.$db_pre.'category WHERE reffer LIKE \'%&'.$id[0].'&%\' ORDER BY path';
         $rowset = $db->rowset_assoc($query);

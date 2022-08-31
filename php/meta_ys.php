@@ -11,7 +11,8 @@
 // 第一引数=>モード選択(選択表示=select/メタサーチ画面表示=meta_page)
 // ※使用する検索エンジンは$_GET['検索エンジン名']は'on'を格納
 // ※使用する検索エンジンは$_GET['engine']は使用検索エンジンがひとつの場合の検索エンジン名
-
+if(!isset($_GET['hyouji'])){$_GET['hyouji'] = "";}
+if(!isset($_GET['method'])){$_GET['method'] = "";}
 function meta($T_mode, $cut = '') {
 	// $arg1=検索モード(select | meta_page)
 	$T_word = $_GET['word'];
