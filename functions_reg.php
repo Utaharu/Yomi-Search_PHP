@@ -27,7 +27,7 @@ function print_category($category = '', $smartphone_flg = false) {
                 if(defined('SMARTPHONE_SITE_NAME')) $writeStr .=   '<div data-role="fieldcontain"><label for="Fkt'.$category_no.'" class="select"></label>';
 		$writeStr .=  '<select name="' . $selecter_name .'" size="7"   ';
                 if(defined('SMARTPHONE_SITE_NAME')) $writeStr .=  'id="Fkt'.$category_no.'" ';
-				if($selecter_mode == "multiple"){$writeStr .= "multiple";}
+				if($selecter_mode == "multiple"){$writeStr .= "multiple=\"multiple\"";}
                 $writeStr .=  '>';
 		if(isset($category_list[$category_no]) && $category_list[$category_no] != '') {
 			if($selecter_mode == "multiple"){
@@ -151,6 +151,7 @@ function check() {
 		$_POST['changer'] = '';
 	}
 	$_POST = array_map('htmlspecialchars', $_POST);
+
 	if($cfg_reg['kt_no_word']) {
 		// ワードチェック対象の項目
 		$check_str = implode(' ', array($_POST['Fname'], $_POST['Femail'], $_POST['Furl'], $_POST['Fbana_url'], $_POST['Ftitle'], $_POST['Fsyoukai'], $_POST['Fkey']));

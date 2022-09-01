@@ -378,7 +378,7 @@ function pass_check(){
 	}
 	$cr_pass = crypt($_POST['pass'], $cfg['pass']);
 	if($cfg['pass'] != $cr_pass) { //パスワードが不一致
-		if(!$_SERVER['REMOTE_HOST']) {
+		if(!isset($_SERVER['REMOTE_HOST']) or !$_SERVER['REMOTE_HOST']) {
 			$_SERVER['REMOTE_HOST'] = gethostbyaddr($_SERVER['REMOTE_ADDR']);
 		}
 		$date = date('Y/m/d H:i');

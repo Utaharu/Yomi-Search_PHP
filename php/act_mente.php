@@ -18,7 +18,7 @@ if($_REQUEST['mode'] == 'mente'){ // 登録内容変更時
 			$CK_data[3] = $_REQUEST['pass'];
 		}
 		if($_REQUEST['cookie'] == 'off') {
-			set_fo_cookie();
+			if(function_exists("set_for_cookie")){set_fo_cookie();}
 		} else {
 			set_cookie($CK_data);
 		}

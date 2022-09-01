@@ -1,11 +1,11 @@
 # Yomi-Search PHP
 
 #### このプログラムのバージョン履歴について
-* 現在 Yomi-Search PHP Ver:8 - 
-　・ (PHP版:6 - 7) [Yomi-Search(PHP)modified ver1.5.8.n2_1.1](http://www.nkbt.net/yomi/) - nkbt版
-　　・ (PHP版:5 - 6) [Yomi-Search(PHP)modified ver1.5.8](http://yomiphp-mod.sweet82.com/) - Yomi-Search(PHP)modified版
-　　　・ (PHP版:4 - 5) [Yomi-Search(PHP) Ver4.19.5](http://sql.s28.xrea.com/) - Yomi-Search(PHP)版
-　　　　・ (CGI版: - 4) Yomi-Search [WonderLink](http://yomi.pekori.to/) / [Vector](https://www.vector.co.jp/soft/unix/net/se124310.html) - CGI版
+現在: Yomi-Search PHP Ver:8 -<br>
+4 :　(PHP版:6 - 7) [Yomi-Search(PHP)modified ver1.5.8.n2_1.1](http://www.nkbt.net/yomi/) - nkbt版<br>
+3　:　(PHP版:5 - 6) [Yomi-Search(PHP)modified ver1.5.8](http://yomiphp-mod.sweet82.com/) - Yomi-Search(PHP)modified版<br>
+2　:　(PHP版:4 - 5) [Yomi-Search(PHP) Ver4.19.5](http://sql.s28.xrea.com/) - Yomi-Search(PHP)版<br>
+1　:　(CGI版: - 4) Yomi-Search [WonderLink](http://yomi.pekori.to/) / [Vector](https://www.vector.co.jp/soft/unix/net/se124310.html) - CGI版<br>
 
 ## やっていくこと。
 各種修正や、php8対応など
@@ -39,6 +39,9 @@
 - [x] キーワードランキングの集計対象外のキーワードを一括登録が機能してない。
 
 ## 更新履歴
+-2022/09/01-
+* mobile版の一部エラーを修正など。php8適応用
+
 -2022/08/31-
 * mobile版の一部エラーを修正。php8適応用
 

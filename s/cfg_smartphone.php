@@ -20,7 +20,7 @@ define('SMARTPHONE_IMG_PATH', '../img/');
 define('SMARTPHONE_EMOJI_IMG_PATH', '../m/img/emoticons/');
 
 //SMARTPHONE版のINDEXのPATHを設定
-define('SMARTPHONE_HOME', 'http://www.nkbt.net/yomi/search/s/');
+define('SMARTPHONE_HOME', '');
 
 //HOMEのファイル名
 define('SMARTPHONE_INDEX', 'index.php');
