@@ -965,7 +965,14 @@ if($_POST["mode"] == "kanri") {
 } elseif($_POST["mode"] == "cfg_marks") {
 	require $cfg["temp_path"] . "admin/cfg_marks.html";
 	exit;
-}
+}elseif($_POST['mode'] == "db_ipv6"){
+	require_once 'php/db_check.php';
+	$db_check = new Db_Check();
+	$db_check->Change_Ipv6_Column();
+	
+	exit;
+}	
+
 } else {
 	// (1)ログイン画面(&login)
 	require $cfg["temp_path"] . "admin/login.html";

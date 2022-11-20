@@ -1,11 +1,11 @@
 # Yomi-Search PHP
 
 #### このプログラムのバージョン履歴について
-現在: Yomi-Search PHP Ver:8 -<br>
-4 :　(PHP版:6 - 7) [Yomi-Search(PHP)modified ver1.5.8.n2_1.1](http://www.nkbt.net/yomi/) - nkbt版<br>
-3　:　(PHP版:5 - 6) [Yomi-Search(PHP)modified ver1.5.8](http://yomiphp-mod.sweet82.com/) - Yomi-Search(PHP)modified版<br>
-2　:　(PHP版:4 - 5) [Yomi-Search(PHP) Ver4.19.5](http://sql.s28.xrea.com/) - Yomi-Search(PHP)版<br>
-1　:　(CGI版: - 4) Yomi-Search [WonderLink](http://yomi.pekori.to/) / [Vector](https://www.vector.co.jp/soft/unix/net/se124310.html) - CGI版<br>
+現在: Yomi-Search PHP Ver:8.0β -<br>
+4 :　(PHP版: Ver.6 - 7) [Yomi-Search(PHP)modified ver1.5.8.n2_1.1](http://www.nkbt.net/yomi/) - nkbt版<br>
+3　:　(PHP版: Ver.5 - 6) [Yomi-Search(PHP)modified ver1.5.8](http://yomiphp-mod.sweet82.com/) - Yomi-Search(PHP)modified版<br>
+2　:　(PHP版: Ver.4 - 5) [Yomi-Search(PHP) Ver4.19.5](http://sql.s28.xrea.com/) - Yomi-Search(PHP)版<br>
+1　:　(CGI版: Ver.0 - 4) Yomi-Search [WonderLink](http://yomi.pekori.to/) / [Vector](https://www.vector.co.jp/soft/unix/net/se124310.html) - CGI版<br>
 
 ## やっていくこと。
 各種修正や、php8対応など
@@ -22,7 +22,7 @@
 
 - [x] IPV6対応
 - - [x] 新規設置(setup)
-- - [ ] 既存から
+- - [x] 既存設置からipカラムを拡張する(管理者ページ->環境設定)
 
 - [x] 登録カテゴリー・セレクトボックスのmultiple化
 - - [x] pc
@@ -39,6 +39,11 @@
 - [x] キーワードランキングの集計対象外のキーワードを一括登録が機能してない。
 
 ## 更新履歴
+-2022/11/20-
+* (既存設置の場合用)データベースのipカラムをipv6様に拡張させる処理を追加。 
+ db_check.phpの追加。
+　管理者ページ -> 環境設定　画面から、状態の確認と処理を出来るように。
+
 -2022/09/01-
 * mobile版の一部エラーを修正など。php8適応用
 

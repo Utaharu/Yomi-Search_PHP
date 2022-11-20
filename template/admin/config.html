@@ -1,4 +1,5 @@
 <?php
+
 // リストメニューの設定
 // カテゴリ変更(可能=0/不可=1)
 if($cfg['user_change_kt']) {
@@ -119,6 +120,7 @@ switch($cfg['defo_hyouji']) {
 	case "ac_old": $Sdefo_hyouji = "アイウエオ順(降順)"; break;
 	default: $Sdefo_hyouji = "マーク順";
 }
+
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -455,8 +457,77 @@ switch($cfg['defo_hyouji']) {
             </table></td>
           </tr>
 		  </form>
+			</td>
+		  </tr>
+        </table>
+		
+		<table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out" style="margin-top:2em;">
+			<tr>
+				<td>
+					<table width="100%" border="0" cellpadding="0" cellspacing="1">
+						<tr>
+							<td colspan="3" class="table_in_header">DB</td>
+						</tr>
+						<tr>
+							<td class="table_in_leftcell" width="50%;">
+								<div><strong>ipv6</strong></div>
+								<div>*ipv6をDBに登録できるように、ip VARCHAR(15 -> 40)に拡張する。</div>
+							</td>
+							<td class="table_in_rightcell">
+								<?php
+									if(file_exists("php/db_check.php")){
+										require_once("php/db_check.php");
+										$db_check = new Db_Check();
+										$db_check->Check_Ipv6_Column();
+										
+										if(isset($db_check->ipv6_result['list']) and is_array($db_check->ipv6_result['list'])){
+											print "<div style=\"display:table;\">";
+											foreach($db_check->ipv6_result['list'] as $table_name => $check_flag){
+												if(!is_null($check_flag)){
+													print "	<div style=\"display:table-row;\">\n";
+													print "		<div style=\"display:table-cell; width:100px; background-color:black; color:white; padding:2px 5px;\">\n";
+													print "			<div>" .$table_name . "</div>\n";
+													print "		</div>\n";
+													print "		<div style=\"display:table-cell; border:1px solid black; padding:2px 5px; text-align:center;\">\n";
+													print "			<div>";
+														if($check_flag){print "<span style=\"color:blue;\">処理済</span>";}
+														else{print "<span style=\"color:red; font-weight:bold;\">未処理</span>";}
+													print "			</div>\n";
+													print "		</div>\n";
+													print "	</div>\n";
+													
+												}
+											}
+											print "</div>\n";
+										}
+									}
+								?>
+							</td>
+							<td class="table_in_rightcell" style="vertical-align:middle; text-align:center;">
+								<?php
+									if(isset($db_check->ipv6_result['flag'])){
+										if($db_check->ipv6_result['flag']){
+											print "<div><button style=\"padding:5px; width:120px; background-color:silver; color:black; font-weight:bold;\" disabled>拡張済み</button></div>\n";
+										}else{
+											print "<div>\n";
+											print "	<form method=\"post\" action=\"" . $cfg['admin'] . "\">\n";
+											print "		<button type=\"submit\" name=\"mode\" value=\"db_ipv6\" style=\" padding:5px; width:120px; color:red; font-weight:bold;\">未拡張</button>\n";
+											print "		<input name=\"pass\" type=\"hidden\" value=\"" . $_POST['pass'] . "\" />\n";
+											print "	</form>\n";
+											print "</div>\n";
+										}
+									}else{
+										print "Error!";
+									}
+								?>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
         </table>
         <br>
+
         <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" class="table_out">
           <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="1">
