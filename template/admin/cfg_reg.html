@@ -216,7 +216,10 @@ if($cfg_reg['sougo']) {
                   個</td>
               </tr>
              <tr>
-                <td colspan="2" class="table_in_leftcell"><strong>カテゴリ選択方法</strong></td>
+                <td colspan="2" class="table_in_leftcell">
+					<div><strong>カテゴリ選択方法</strong></div>
+					<div style="color:red; font-weight:bold; padding:5px;">* PC用ページみ有効</div>
+				</td>
                 <td class="table_in_rightcell">
 					<input type="radio" name="kt_select_mode" value="" <?php if(isset($cfg_reg['kt_select_mode']) and $cfg_reg['kt_select_mode'] != "multiple"){print "checked";}; ?>/>複数のセレクトボックスを表示<br/>
 					<input type="radio" name="kt_select_mode" value="multiple" <?php if(!isset($cfg_reg['kt_select_mode']) or $cfg_reg['kt_select_mode'] == "multiple"){print "checked";}; ?>/>1つのセレクトボックスでMultiple
