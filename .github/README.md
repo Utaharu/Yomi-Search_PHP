@@ -3,11 +3,11 @@
 <br/>
 
 > ## このプログラムのバージョン履歴について
-現在: Yomi-Search PHP Ver:8.0β -<br>
-4 :　(PHP版: Ver.6 - 7) [Yomi-Search(PHP)modified ver1.5.8.n2_1.1](http://www.nkbt.net/yomi/) - nkbt版<br>
-3　:　(PHP版: Ver.5 - 6) [Yomi-Search(PHP)modified ver1.5.8](http://yomiphp-mod.sweet82.com/) - Yomi-Search(PHP)modified版<br>
-2　:　(PHP版: Ver.4 - 5) [Yomi-Search(PHP) Ver4.19.5](http://sql.s28.xrea.com/) - Yomi-Search(PHP)版<br>
-1　:　(CGI版: Ver.0 - 4) Yomi-Search [WonderLink](http://yomi.pekori.to/) / [Vector](https://www.vector.co.jp/soft/unix/net/se124310.html) - CGI版<br>
+現在: Yomi-Search PHP Ver:8.0β -<br/>
+4 :　(PHP版: Ver.6 - 7) [Yomi-Search(PHP)modified ver1.5.8.n2_1.1](http://www.nkbt.net/yomi/) - nkbt版<br/>
+3　:　(PHP版: Ver.5 - 6) [Yomi-Search(PHP)modified ver1.5.8](http://yomiphp-mod.sweet82.com/) - Yomi-Search(PHP)modified版<br/>
+2　:　(PHP版: Ver.4 - 5) [Yomi-Search(PHP) Ver4.19.5](http://sql.s28.xrea.com/) - Yomi-Search(PHP)版<br/>
+1　:　(CGI版: Ver.0 - 4) Yomi-Search [WonderLink](http://yomi.pekori.to/) / [Vector](https://www.vector.co.jp/soft/unix/net/se124310.html) - CGI版<br/>
 
 <br/>
 
@@ -15,8 +15,8 @@
  各種修正や、php8対応など
 
 >> ### 要検討
-* smartphone版
-* mobile版
+* smartphoneページ
+* mobileページ
 
 >> #### 拡張
 - [ ] PHP8対応
@@ -34,10 +34,10 @@
 - - [ ] mobile (/m/)
 
 >> #### 修正
-- [x] XSSオープンリダイレクトの脆弱性
+- [x] rank.php、XSSオープンリダイレクトの脆弱性
 - - [x] pc
-- - [ ] smartphone (/s/)
-- - [ ] mobile (/m/)
+- - [x] smartphone (/s/)
+- - [x] mobile (/m/)
 - [x] キーワードの表示/非表示設定が反映されない
 - [x] 登録データのバックアップ・復元のバックアップデータの作成が行われない。
 - [x] キーワードランキングの集計対象外のキーワードを一括登録が機能してない。
@@ -45,11 +45,14 @@
 <br/>
 
 > ## 更新履歴
+-2022/11/22-
+* スマホ・モバイルページ向けのrank.php クロスサイトスクリプティング・脆弱性の修正。(nkbt-40@2105111814)
+
 -2022/11/21-
-* 「登録するカテゴリのセレクトボックスをmultiple化」における、再調整。(nkbt-37@1811202326)
+* 「登録するカテゴリのセレクトボックスをmultiple化」における、再調整。(nkbt-37@1811202326) <br/>
 　multiple設定の場合、スマホ向けページにて、表示機構で上手く動作しない。<br/>
- PC用ページのみ、multiple化の対応。とし、
- スマホ向けページは、従来型の複数のセレクトボックスを表示する様に変更。
+ PC用ページのみ、multiple化の対応。とし、<br/>
+ スマホ向けページは、従来型の複数のセレクトボックスを表示する様に変更。<br/>
 
 -2022/11/20-
 * (既存設置の場合用)データベースのipカラムをipv6様に拡張させる処理を追加。 <br/>
@@ -83,10 +86,10 @@
 * admin.php キーワードランキングの集計対象外のキーワードを一括登録が機能してなかったのを修正。
 
 -2022/08/08-
-* admin.phpなどのキーワードランキング用。(nkbt-27@1702152209)
- キーワードの表示/非表示設定の反映が出来ない部分があったのを修正。
-* 登録するカテゴリのセレクトボックスをmultipleにも出来るように。(nkbt-37@1811202326)
- 管理者ページ -> 環境設定(登録処理関連)から、切り替え可能に。
+* admin.phpなどのキーワードランキング用。(nkbt-27@1702152209) <br/>
+ キーワードの表示/非表示設定の反映が出来ない部分があったのを修正。 <br/>
+* 登録するカテゴリのセレクトボックスをmultipleにも出来るように。(nkbt-37@1811202326) <br/>
+ 管理者ページ -> 環境設定(登録処理関連)から、切り替え可能に。 <br/>
  
 -2022/08/07-
 * テンプレート内で変数の記述間違いを修正。（cgi_path）
@@ -102,7 +105,7 @@
 * get_magic_quotes_gpcは使えなくなったので削除。
 
 -2022/08/01-
-* rank.php クロスサイトスクリプティング・脆弱性の修正。(nkbt-40@2105111814)
+* PCページ向けのrank.php クロスサイトスクリプティング・脆弱性の修正。(nkbt-40@2105111814)
 
 -2022/07/31-
 * setup01.php - ipv6対応の為、ip VARCHAR(15)->ip VARCHAR(40)に拡張
