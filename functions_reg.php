@@ -14,9 +14,9 @@ function print_category($category = '', $smartphone_flg = false) {
 		$writeStr .=   '<ul>※<b>'.$cfg_reg['kt_max'].'</b>個選択してください<br>';
 	}
 	$writeStr .=   '※各カテゴリの詳細は「<a href="sitemap.php" target="_blank">カテゴリ一覧</a>」を参考にしてください<br>'."\n";
-	//cfg_reg[kt_mode]
+//cfg_reg[kt_mode] = ?? editing...
 	$selecter_mode = "multiple";
-	if(isset($cfg_reg['kt_select_mode']) and $cfg_reg['kt_select_mode'] != "multiple" or ($selecter_mode == "multiple" and defined('SMARTPHONE_SITE_NAME'))){$selecter_mode = "";}
+	if(isset($cfg_reg['kt_select_mode']) and $cfg_reg['kt_select_mode'] != "multiple"){$selecter_mode = "";}
 	$selecter_max = 1;
 	if($selecter_mode != "multiple"){$selecter_max = $cfg_reg['kt_max'];}
 	for($category_no = 1; $category_no <= $selecter_max; $category_no++) {
