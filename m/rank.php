@@ -100,19 +100,10 @@ if(isset($_GET['mode'])) {
 					$db->query($query);
 				}
 			}
-			//リンク先URLの引き当て
-			$getid = (int)$_GET['id'];
-			$query = 'SELECT url FROM '.$db->db_pre.'log WHERE id=\''.$getid.'\'';
-			$url = $db->single_num($query) or $db->error('Query failed '.$query.__FILE__.__LINE__);
-			//リンク先へ転送
-			if(isset($url[0])){
-				location($url[0]);
-				exit();
-			}
-			unset($url);
-			unset($getid);
 		}
-		mes("該当するリンクが有りません","エラー","java");
+		if($_GET["url"]) {
+			location($_GET["url"]);
+		}
 	// (1.1)アクセスジャンプ処理(r_link)
 	} elseif($_GET["mode"] == "r_link"){
 		if($cfg['rev_fl']) {
