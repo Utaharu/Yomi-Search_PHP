@@ -16,7 +16,9 @@ if(isset($_GET['path'])) {
 if(isset($_POST['mode']) && $_POST['mode'] == 'form') { // 外部入力(form)
 	$category = '&';
 	for($i = 1; $i <= $cfg_reg['kt_max']; $i++) {
-		$category .= $_POST['Fkt{$i}'] . '&';
+		if(isset($_POST['Fkt{$i}'])){
+			$category .= $_POST['Fkt{$i}'] . '&';
+		}
 	}
 }
 

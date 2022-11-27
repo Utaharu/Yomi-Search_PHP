@@ -6,48 +6,85 @@ function print_category($category = '', $smartphone_flg = false) {
 	if(!isset($_POST['changer'])) {
 		$_POST['changer'] = '';
 	}
+
+	$selected_categories = array();
+	for($i = 1; $i <= $cfg_reg['kt_max']; $i++){
+		if(isset($_POST["Fkt{$i}"]) and $_POST["Fkt{$i}"]){
+			$selected_categories[] = $_POST["Fkt{$i}"];
+		}
+	}
+	
+	//Get DB Categories
+	$query = 'SELECT path, regist FROM '.$db->db_pre.'category ORDER BY path';
+	$categories_data = $db->rowset_assoc($query);
+	
     $writeStr = '';
 	$category_list = explode('&', $category);
-	if($cfg_reg['kt_min'] != $cfg_reg['kt_max']) {
+	if($cfg_reg['kt_min'] != $cfg_reg['kt_max']){
 		$writeStr .=  '<ul>※<b>'.$cfg_reg['kt_min'].'</b>～<b>'.$cfg_reg['kt_max'].'</b>個まで選択できます<br>';
 	} else {
 		$writeStr .=   '<ul>※<b>'.$cfg_reg['kt_max'].'</b>個選択してください<br>';
 	}
 	$writeStr .=   '※各カテゴリの詳細は「<a href="sitemap.php" target="_blank">カテゴリ一覧</a>」を参考にしてください<br>'."\n";
-//cfg_reg[kt_mode] = ?? editing...
+	/*
+		$selecter_mode = '' or 'multiple'
+		$selecter_name is <select name="$selecter_name">
+	*/
+	//selecter_mode
 	$selecter_mode = "multiple";
 	if(isset($cfg_reg['kt_select_mode']) and $cfg_reg['kt_select_mode'] != "multiple"){$selecter_mode = "";}
-	$selecter_max = 1;
-	if($selecter_mode != "multiple"){$selecter_max = $cfg_reg['kt_max'];}
-	for($category_no = 1; $category_no <= $selecter_max; $category_no++) {
-		$selecter_name = "Fkt" . $category_no . "[]";
-		if($selecter_mode != "multiple"){$selecter_name = "Fkt" . $category_no;}
+	
+	//selecter_max
+	$selecter_max = $cfg_reg['kt_max'];
+	if($selecter_mode == "multiple"){$selecter_max = 1;}
+	
+	//html - print selectbox
+	for($category_no = 1; $category_no <= $selecter_max; $category_no++){
+		//selecter name
+		$selecter_name = "Fkt" . $category_no;
+		if($selecter_mode == "multiple"){$selecter_name .= "[]";}
+		
+		//Html - Select Tag
+        if(defined('SMARTPHONE_SITE_NAME')){$writeStr .=   '<div data-role="fieldcontain"><label for="Fkt'.$category_no.'" class="select"></label>';}
+		$writeStr .=  "<select name=\"{$selecter_name}\" size=\"7\"";
+			if(defined('SMARTPHONE_SITE_NAME')) $writeStr .=  " id=\"Fkt{$category_no}\" data-native-menu=\"false\"";
+			if($selecter_mode == "multiple"){$writeStr .= " multiple=\"multiple\"";}
+        $writeStr .=  '>';
 		
 		$select = ' selected';
-                if(defined('SMARTPHONE_SITE_NAME')) $writeStr .=   '<div data-role="fieldcontain"><label for="Fkt'.$category_no.'" class="select"></label>';
-		$writeStr .=  '<select name="' . $selecter_name .'" size="7"   ';
-                if(defined('SMARTPHONE_SITE_NAME')) $writeStr .=  'id="Fkt'.$category_no.'" ';
-				if($selecter_mode == "multiple"){$writeStr .= "multiple=\"multiple\"";}
-                $writeStr .=  '>';
-		if(isset($category_list[$category_no]) && $category_list[$category_no] != '') {
+		if(isset($category_list[$category_no]) && $category_list[$category_no] != ''){
 			if($selecter_mode == "multiple"){
-				foreach ($category_list as $category_value){if($category_value){$writeStr .= '<option value="'. $category_value . '"'.$select.'>' . full_category($category_value) . "</option>\n";}}
+				foreach ($category_list as $category_value){
+					if($category_value){
+						$writeStr .= '<option value="'. $category_value . '"'.$select.'>' . full_category($category_value) . "</option>\n";
+					}
+				}
 			}else{
 				$writeStr .=  '<option value="'. $category_list[$category_no] . '"'.$select.'>' . full_category($category_list[$category_no]) . "</option>\n";
 			}
-			$select='';
+			$select = '';
 		}
-		$writeStr .=  '<option value="" '.$select.'>--指定しない--</option>';
-		$query = 'SELECT path, regist FROM '.$db->db_pre.'category ORDER BY path';
-		$rowset = $db->rowset_assoc($query);
-		foreach($rowset as $row) {
-			if($_POST['changer'] == 'admin' || !$row['regist']) {
-				$writeStr .=  '<option value="'.$row['path'].'">' . full_category($row['path']) . "</option>\n";
+		
+		if(!defined('SMARTPHONE_SITE_NAME')){
+			if(count($selected_categories) > 0){$select = "";}
+			$writeStr .=  "<option value=\"\" {$select} >--指定しない--</option>";
+		}else{$writeStr .= "<option value=\"\">カテゴリ</option>\n";}
+		
+		//DB - Print Categories
+		if(is_array($categories_data)){
+			foreach($categories_data as $row){
+				$selected_flag = "";
+				if($_POST['changer'] == 'admin' || !$row['regist']){
+					$pm = preg_replace("/\//","\/",$row['path']);
+					if(preg_grep("/^" . $pm . "$/",$selected_categories)){$selected_flag = " selected";}
+					$writeStr .=  "<option value=\"" . $row['path'] . "\"" . $selected_flag .">" . full_category($row['path']) . "</option>\n";
+				}
 			}
 		}
+
 		$writeStr .=  '</select>';
-                if(defined('SMARTPHONE_SITE_NAME')) $writeStr .=  '</div> ';
-                $writeStr .=  '<br><br>'."\n";
+        if(defined('SMARTPHONE_SITE_NAME')) $writeStr .=  '</div> ';
+        $writeStr .=  '<br><br>'."\n";
 	}
 	$writeStr .=  '</ul><br>'."\n";
     if($smartphone_flg == true) {
@@ -121,7 +158,9 @@ EOM;
 			$back_url .= '<input type="hidden" name="Fkanricom" value="">';
 		}
         for ($i = 1; $i <= $cfg_reg['kt_max']; $i++) {
-            $back_url .= '<input type="hidden" name="Fkt' . $i . '" value="' . $_POST['Fkt'.$i] . '">' . "\n";
+			if(isset($_POST['Fkt'.$i]) and !is_array($_POST['Fkt'.$i])){
+				$back_url .= '<input type="hidden" name="Fkt' . $i . '" value="' . $_POST['Fkt'.$i] . '">' . "\n";
+			}
         }
 		$back_url .= <<<EOM
     <input type="hidden" name="Fkey" value="{$_POST['Fkey']}">
@@ -150,7 +189,6 @@ function check() {
 	if(!isset($_POST['changer'])) {
 		$_POST['changer'] = '';
 	}
-	$_POST = array_map('htmlspecialchars', $_POST);
 
 	if($cfg_reg['kt_no_word']) {
 		// ワードチェック対象の項目
@@ -269,29 +307,53 @@ function check() {
 	if(@$_POST['Fkanricom']) {
 		$_POST['Fkanricom'] = str_replace(array("\r\n", "\r", "\n"), "<br>", $_POST['Fkanricom']);
 	}
+	
 	// カテゴリ
+	// form - 登録するカテゴリ - 情報整形
+	$regist_categories = array();
+	$post_category_count = 0;
+	for($i = 1; $i <= $cfg_reg['kt_max']; $i++){
+		if(isset($_POST['Fkt'.$i])){
+			if($_POST['Fkt'.$i] != ""){
+				$post_category_count++;
+				if(is_array($_POST['Fkt'.$i])){
+					foreach($_POST['Fkt'.$i] as $fkt_line){
+						if($fkt_line){
+							$regist_categories['Fkt'.$post_category_count] = $fkt_line;
+							$post_category_count++;
+						}
+					}
+				}elseif(!is_array($_POST['Fkt'.$i]) and $_POST['Fkt'.$i] != ""){
+					$regist_categories['Fkt'.$post_category_count] = $_POST['Fkt'.$i];
+				}
+			}
+			unset($_POST['Fkt'.$i]);			
+		}
+	}
+	$_POST = array_merge($_POST,$regist_categories);
+	
 	$kt_fl = array();
-	for($i = 1; $i <= $cfg_reg['kt_max']; $i++) {
-		if(!$_POST["Fkt{$i}"]) {
-			$_POST["Fkt{$i}"] = 0;
-		}
-		$query = "SELECT id, regist FROM {$db->db_pre}category WHERE path='{$_POST["Fkt{$i}"]}'";
-		$regist = $db->single_assoc($query) or $db->error("Query failed $query".__FILE__.__LINE__);
-		if(isset($_POST["Fkt{$i}"])) {
-			$_POST["Fkt{$i}"] = str_replace(array("\r", "\n"), "", $_POST["Fkt{$i}"]);
-		}
-		if(isset($kt_fl[$_POST["Fkt{$i}"]])) {
-			$_POST["Fkt{$i}"] = '';
-		} elseif($regist['id']) {
-			$kt_fl[$_POST["Fkt{$i}"]] = 1;
-		} else {
-			$_POST["Fkt{$i}"] = '';
-		}
+	for($i = 1; $i <= $cfg_reg['kt_max']; $i++){
+		if(isset($_POST["Fkt{$i}"]) and $_POST["Fkt{$i}"]){
+			$query = "SELECT id, regist FROM {$db->db_pre}category WHERE path='". $_POST["Fkt{$i}"] . "'";
+			$regist = $db->single_assoc($query) or $db->error("Query failed $query".__FILE__.__LINE__);
+			if(isset($_POST["Fkt{$i}"])) {
+				$_POST["Fkt{$i}"] = str_replace(array("\r", "\n"), "", $_POST["Fkt{$i}"]);
+			}
+			if(isset($kt_fl[$_POST["Fkt{$i}"]])) {
+				$_POST["Fkt{$i}"] = '';
+			} elseif($regist['id']) {
+				$kt_fl[$_POST["Fkt{$i}"]] = 1;
+			} else {
+				$_POST["Fkt{$i}"] = '';
+			}
 
-		// 禁止カテゴリに登録しようとした場合
-		if($_POST['changer'] != "admin" && $regist['regist']) {
-			mes("登録者の登録ができないカテゴリに変更しようとしています", "カテゴリ選択ミス", "back_reg");
+			// 禁止カテゴリに登録しようとした場合
+			if($_POST['changer'] != "admin" && $regist['regist']) {
+				mes("登録者の登録ができないカテゴリに変更しようとしています", "カテゴリ選択ミス", "back_reg");
+			}
 		}
+		
 	}
 	$j = count($kt_fl);
 	if ($cfg_reg['kt_min'] == $cfg_reg['kt_max']) {
@@ -359,8 +421,10 @@ function check() {
 function preview_category1() {
 	global $cfg_reg;
 	for($kt_no = 1; $kt_no <= $cfg_reg['kt_max']; $kt_no++) {
-		$value = $_POST['Fkt'.$kt_no];
-		echo '<input type="hidden" name="Fkt'.$kt_no.'" value="'.$value.'">'."\n";
+		if(isset($_POST['Fkt'.$kt_no])){
+			$value = $_POST['Fkt'.$kt_no];
+			echo '<input type="hidden" name="Fkt'.$kt_no.'" value="'.$value.'">'."\n";
+		}
 	}
 }
 
@@ -368,9 +432,11 @@ function preview_category1() {
 function preview_category2() {
 	global $cfg_reg;
 	for($kt_no = 1; $kt_no <= $cfg_reg['kt_max']; $kt_no++) {
-		$value = $_POST['Fkt'.$kt_no];
-		echo full_category($value);
-		echo '<input type="hidden" name="Fkt'.$kt_no.'" value="'.$value.'"><br>'."\n";
+		if(isset($_POST['Fkt'.$kt_no])){
+			$value = $_POST['Fkt'.$kt_no];
+			echo full_category($value);
+			echo '<input type="hidden" name="Fkt'.$kt_no.'" value="'.$value.'"><br>'."\n";
+		}
 	}
 }
 
@@ -439,7 +505,7 @@ function join_fld($id = '') {
 	} else { // その他の場合
 		$log_data[10] = '&';
 		for($i = 1; $i <= $cfg_reg['kt_max']; $i++) {
-			$log_data[10] .= $_POST['Fkt'.$i] . '&';
+			if(isset($_POST['Fkt'.$i])){$log_data[10] .= $_POST['Fkt'.$i] . '&';}
 		}
 	}
 	// time形式(11)新規or更新(13)

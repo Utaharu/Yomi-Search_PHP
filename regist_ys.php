@@ -74,18 +74,6 @@ if(isset($_REQUEST['mode'])) {
 }
 
 if(isset($_POST['mode'])) {
-
-	if(isset($_POST['Fkt1']) and is_array($_POST['Fkt1'])){
-		$fkt_list = $_POST['Fkt1'];
-		$fkt_cnt = 0;
-		foreach($fkt_list as $fkt){
-			if($fkt){
-				$fkt_cnt++;
-				$_POST["Fkt{$fkt_cnt}"] = $fkt;
-			}
-		}
-	}	
-	
 	// 新規登録実行(act_regist)
 	if($_POST['mode'] == 'act_regist') {
 		require $cfg['sub_path'] . 'act_regist.php';
