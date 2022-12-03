@@ -4,7 +4,7 @@ require 'initial.php';
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>サイトマップ | <?php echo stripcslashes($cfg['search_name']); ?></title>
+<title>サイトマップ | <?php echo $cfg['sp_search_name'] ?></title>
 <meta name="keywords" content="<?php echo $cfg['ver']; ?>,検索エンジン,<?php echo $cfg['ver']; ?>のサイトマップ" />
 <meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンのサイトマップです" />
 <meta content="yes" name="apple-mobile-web-app-capable" />
@@ -18,9 +18,9 @@ require 'initial.php';
 <link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
 <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
 
-<link rel="stylesheet" href="./jquery.mobile-1.0a2/jquery.mobile-1.0a2.min.css" />
-<script src="./js/jquery-1.4.4.min.js"></script>
-<script src="./jquery.mobile-1.0a2/jquery.mobile-1.0a2.js"></script>
+<link rel="stylesheet" href="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="./js/jquery-2.2.4.min.js"></script>
+<script src="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
 
 <script type="text/javascript">
 function doScroll() { if (window.pageYOffset === 0) { window.scrollTo(0,1); } }
@@ -37,7 +37,7 @@ window.onload = function() {
     <!-- header -->
     <div data-role="header"  data-theme="b">
         <h1>ｻｲﾄﾏｯﾌﾟ</h1>
-        <a href="<?php echo $cfg['home']; ?>" data-icon="arrow-l" class="ui-btn-left"  rel="external" data-transition="slide">TOP</a>
+        <a href="<?php echo $cfg['sp_home']; ?>" data-icon="arrow-l" class="ui-btn-left"  rel="external" data-transition="slide">TOP</a>
         <a href="search.php" data-icon="arrow-r" class="ui-btn-right" data-transition="slide"  rel="external">検索</a>
     </div>
     <!-- /header -->
@@ -49,25 +49,23 @@ window.onload = function() {
 
 
 <!-- Navigation Bar Output -->
-<a href="<?php echo $cfg['home']; ?>" rel="external">ホーム</a>&nbsp;&gt;&nbsp;<?php if(isset($navi)){echo $navi;} ?><strong>ｻｲﾄﾏｯﾌﾟ</strong>
+<a href="<?php echo $cfg['sp_home']; ?>" rel="external">ホーム</a>&nbsp;&gt;&nbsp;<?php if(isset($navi)){echo $navi;} ?><strong>ｻｲﾄﾏｯﾌﾟ</strong>
 <!-- /Navigation Bar Output -->
 
 <?php
 $query = 'SELECT up_id, title, path, comment FROM '.$db->db_pre.'category ORDER BY path;';
 $top_category = $db->rowset_assoc($query);
 $n=0;
-$tmp = 'c';
 foreach($top_category as $row){
     if(!$row['up_id']) { // 最上層カテゴリ
             if($n>0) echo '</ul>';
-            if($n%2==0) $tmp='c'; else $tmp='d';
-            echo '<ul data-role="listview" data-inset="true" data-theme="'.$tmp.'" data-dividertheme="e">'."\n";
-            echo '<li data-role="list-divider"><a href="'.$cfg['script'].'?mode=dir&amp;path='.$row['path'].'">'.$row['title'].'</a></li>'."\n";
+            echo '<ul data-role="listview" data-inset="true"  data-dividertheme="e">'."\n";
+            echo '<li data-role="list-divider" data-theme="b"><a href="'.$cfg['sp_script'].'?mode=dir&amp;path='.$row['path'].'" style="color:white;">'.$row['title'].'</a></li>'."\n";
             $n++;
     } else {
 //		echo str_repeat("&nbsp;", strlen($row['path']));
 
-        echo '<li><a href="'.$cfg['script'].'?mode=dir&amp;path='.$row['path'].'">'.$row['title'];
+        echo '<li data-theme="a"><a href="'.$cfg['sp_script'].'?mode=dir&amp;path='.$row['path'].'">'.$row['title'];
         if($row['comment']) {
              echo '<p style="margin-top:4px;">'.$row['comment'].'</p>';
         }
@@ -86,6 +84,6 @@ foreach($top_category as $row){
 <!-- /content -->
 
 <!-- /Footer Space Output -->
-<?php echo SMARTPHONE_FOOTER; ?>
+<?php cr(); ?>
 </body>
 </html>

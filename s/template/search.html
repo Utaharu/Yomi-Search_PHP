@@ -1,8 +1,7 @@
-<?php $_GET = array_map("htmlspecialchars", $_GET); ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title><?php echo $Stitle; ?>|<?php echo stripcslashes($cfg['search_name']); ?></title>
+<title><?php echo $Stitle; ?>|<?php echo $cfg['sp_search_name'] ?></title>
 <meta name="keywords" content="<?php echo $cfg['ver']; ?>,検索エンジン,<?php echo $cfg['ver']; ?>の検索結果,<?php echo $Stitle; ?>" />
 <meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンの検索結果,<?php echo $Stitle; ?>" />
 <meta content="yes" name="apple-mobile-web-app-capable" />
@@ -13,12 +12,11 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-style-type" content="text/css">
 <meta http-equiv="content-script-type" content="text/javascript">
-<link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
 <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
 
-<link rel="stylesheet" href="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
 <script src="./js/jquery-2.2.4.min.js"></script>
-<script src="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+<script src="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
 
 <script type="text/javascript">
 function doScroll() { if (window.pageYOffset === 0) { window.scrollTo(0,1); } }
@@ -36,7 +34,7 @@ window.onload = function() {
     <!-- header -->
     <div data-role="header"  data-theme="b">
         <h1><?php echo '検索結果'; ?></h1>
-        <a href="<?php echo SMARTPHONE_HOME;?>" data-icon="arrow-l" rel="external"  class="ui-btn-left" data-transition="slide">TOP</a>
+        <a href="<?php echo $cfg['sp_path_url'];?>" data-icon="arrow-l" rel="external"  class="ui-btn-left" data-transition="slide">TOP</a>
         <a href="search.php" data-icon="arrow-r" rel="external" class="ui-btn-right" data-transition="slide">検索</a>
     </div>
     <!-- /header -->
@@ -47,7 +45,7 @@ window.onload = function() {
         <div style="text-align:center;"><?php printTopMenuLink( $text['menu_bar'] ); ?></div>
 <!-- /Menu Bar Output -->
 <!-- Navigation Bar Output -->
-<a href="<?php echo SMARTPHONE_HOME;?>" rel="external">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;<strong>検索結果</strong>
+<a href="<?php echo $cfg['sp_path_url'];?>" rel="external">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;<strong>検索結果</strong>
 
 <a name="top"></a>
 <!-- Header Space Output -->
@@ -58,22 +56,24 @@ window.onload = function() {
 <?php echo $search_day; ?>
 <!-- ページ中段の検索フォーム -->
 <table width="100%" class="table_searchform">
-  <form action="<?php echo $cfg['search']; ?>" method="get">
   <tr>
     <td align="center">
-	<input type="hidden" name="mode" value="search">
-	<input type="hidden" name="page" value="1">
-	<input type="hidden" name="sort" value="<?php echo htmlspecialchars($_GET['sort']); ?>">
-	<input type="hidden" name="open_type" value="0">
-	<input type="hidden" name="hyouji" value="30">
-	<img src="<?php echo $cfg['img_path_url']; ?>search.gif" alt="検索" align="absbottom" title="検索">&nbsp;<input name="word" type="text" class="form" value="<?php echo htmlspecialchars($_GET['word']); ?>" size="20">&nbsp;<input type="submit" class="form" value="検索">&nbsp;
-	<select name="method" class="form">
-		<option value="and" selected>AND</option>
-		<option value="or">OR</option>
-	</select>
+		<form action="<?php echo $cfg['search']; ?>" method="get">
+			<input type="hidden" name="mode" value="search">
+			<input type="hidden" name="page" value="1">
+			<input type="hidden" name="sort" value="<?php echo htmlspecialchars($_GET['sort']); ?>">
+			<input type="hidden" name="open_type" value="0">
+			<input type="hidden" name="hyouji" value="30">
+			<input name="word" type="search" class="form" value="<?php echo htmlspecialchars($_GET['word']); ?>" size="20">&nbsp;
+			<input type="submit" class="form" value="検索">&nbsp;
+
+			<select name="method" class="form">
+				<option value="and" selected>AND</option>
+				<option value="or">OR</option>
+			</select>
+		</form>
     </td>
   </tr>
-  </form>
 </table>
 <?php
 // カテゴリ検索結果を表示
@@ -82,7 +82,7 @@ if(@$kt_search_list && $_GET['page'] == 1) {
     <hr><ul>▼以下のカテゴリと一致しました(<?php echo count($kt_search_list); ?>件)<br><br>
     <?php
     foreach ($kt_search_list as $kt) {
-		?><a href="<?php echo $cfg['script']; ?>?mode=dir&amp;path=<?php echo $kt; ?>"><?php echo full_category($kt); ?></a><br><br><?php
+		?><a href="<?php echo $cfg['sp_script']; ?>?mode=dir&amp;path=<?php echo $kt; ?>"><?php echo full_category($kt); ?></a><br><br><?php
 	}
 	?></ul><?php
 }
@@ -196,7 +196,7 @@ if(!@$_GET['sort']) {
     <a href="regist.php?mode=enter&id=<?php echo $log_data['id']; ?>" rel="external">修正/削除</a>&nbsp;|&nbsp;<a href="regist.php?mode=no_link&id=<?php echo $log_data['id']; ?>&pre=on&title=<?php echo urlencode($log_data['title']); ?>">管理者通知</a>
     <?php
      if(@$cfg['mylink_fl']) {
-           echo '&nbsp;|&nbsp;<a href="'.$cfg['script'].'?mode=mylink&act=add&id='.$log_data['id'].'" rel="external">ﾏｲﾘﾝｸ追加</a>';
+           echo '&nbsp;|&nbsp;<a href="'.$cfg['sp_script'].'?mode=mylink&act=add&id='.$log_data['id'].'" rel="external">ﾏｲﾘﾝｸ追加</a>';
      }
     if(isset($log_data['banner']) && $log_data['banner'] != '') {
         echo '<br><a href="'.$jump_url.'" target="_blank"><img src="'.$log_data['banner'].'" border="0" width="'.$cfg_reg['Mbana_w'].'" height="'.$cfg_reg['Mbana_h'].'" alt="'.$log_data['title'].'" title="'.$log_data['title'].'"></a>';
@@ -218,7 +218,7 @@ if(!@$_GET['sort']) {
 } else { // 外部検索エンジンへのリンクを表示
     ?>▼該当するデータは見つかりませんでした。下記の検索エンジンで再検索できます。<br /><br />
     <?php
-	require_once $cfg['sub_path'] . 'meta_ys.php';
+	require_once $cfg['sp_sub_path'] . 'meta_ys.php';
 	$location_list = meta('meta_page', 'on');
 	PR_meta_page($location_list);
 }
@@ -235,6 +235,6 @@ if(!@$_GET['sort']) {
 <!-- /content -->
 
 <!-- /Footer Space Output -->
-<?php echo SMARTPHONE_FOOTER; ?>
+<?php cr(); ?>
 </body>
 </html>

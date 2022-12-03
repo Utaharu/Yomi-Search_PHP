@@ -69,15 +69,13 @@ foreach($rowset as $tmp) {
 
 require 'cfg_smartphone.php';
 
-
-//強引に読み込ませるtemplateディレクトリを変える
-$cfg['temp_path'] = SMARTPHONE_TEMPLATE;
-
-//強引に。。
-$cfg['search_name'] = SMARTPHONE_SITE_NAME;
-$cfg['sub_path'] = SMARTPHONE_PHP_DIR;
-$cfg['script'] =  SMARTPHONE_HOME;
-$cfg['home'] = SMARTPHONE_HOME;
+if(!isset($cfg['sp_path_url']) or !$cfg['sp_path_url']){$cfg['sp_path_url'] = "./";}
+if(!isset($cfg['sp_search_name']) or !$cfg['sp_search_name']){$cfg['sp_search_name'] = $cfg['search_name'];}
+if(!isset($cfg['sp_script']) or !$cfg['sp_script']){$cfg['sp_script'] = $cfg['sp_path_url'];}
+if(!isset($cfg['sp_home']) or  !$cfg['sp_home']){$cfg['sp_home'] = $cfg['sp_path_url'];}
+if(!isset($cfg['sp_temp_path']) or !$cfg['sp_temp_path']){$cfg['sp_temp_path'] = $cfg['temp_path'];}
+if(!isset($cfg['sp_sub_path']) or !$cfg['sp_sub_path']){$cfg['sp_sub_path'] = "../" . $cfg['sub_path'];}
+if(!isset($cfg['sp_img_path']) or !$cfg['sp_img_path']){$cfg['sp_img_path'] = "../" . $cfg['img_path_url'];}
 
 require './functions_smartphone.php';
 
@@ -103,65 +101,65 @@ if(isset($_GET['page']) && is_numeric($_GET['page'])) {
 if(isset($_REQUEST['mode'])) {
 
     if($_REQUEST['mode'] == 'random') {
-            require $cfg['sub_path'] . 'random.php';
+            require $cfg['sp_sub_path'] . 'random.php';
             exit();
     } elseif($_REQUEST['mode'] == 'mylink') {
-            require $cfg['sub_path'] . 'mylink.php';
+            require $cfg['sp_sub_path'] . 'mylink.php';
             exit();
     } elseif ($_REQUEST['mode'] && strpos($_SERVER['PHP_SELF'], 'index') !== false) {
-            require $cfg['sub_path'] . 'category.php';
+            require $cfg['sp_sub_path'] . 'category.php';
             exit();
     }
     
     //検索
     if($_REQUEST['mode'] == 'search') {
             require 'search_initial.php';
-            require $cfg['sub_path'] . 'search.php';
+            require $cfg['sp_sub_path'] . 'search.php';
             exit;
     }
 
     //サイト登録情報の変更
     if($_REQUEST['mode'] == 'enter') {
-            require $cfg['sub_path'] . 'enter.php';
+            require $cfg['sp_sub_path'] . 'enter.php';
             exit;
     }
     if($_REQUEST['mode'] == 'no_link') {
-            require $cfg['sub_path'] . 'no_link.php';
+            require $cfg['sp_sub_path'] . 'no_link.php';
             exit;
     }
 
     // 新規登録実行(act_regist)
     if($_REQUEST['mode'] == 'act_regist') {
             
-            require $cfg['sub_path'] . 'act_regist.php';
+            require $cfg['sp_sub_path'] . 'act_regist.php';
             exit;
     }
     // 新規登録実行(代理登録)
     if($_REQUEST['mode'] == 'new_dairi') {
-        require $cfg['sub_path'] . 'regist_new_admin.php';
+        require $cfg['sp_sub_path'] . 'regist_new_admin.php';
         exit;
     }
     // 削除実行
     if($_REQUEST['mode'] == 'act_del'){
-        require $cfg['sub_path'] . 'act_del.php';
+        require $cfg['sp_sub_path'] . 'act_del.php';
         exit;
     }
     // パスワード再発行
     if($_REQUEST['mode'] == 'act_repass') {
-        require $cfg['sub_path'] . 'act_repass.php';
+        require $cfg['sp_sub_path'] . 'act_repass.php';
         exit;
     }
     
     //メンテ
     if($_REQUEST['mode'] == 'mente' || $_REQUEST['mode'] == 'act_mente') {
-        require $cfg['sub_path'] . 'act_mente.php';
+        require $cfg['sp_sub_path'] . 'act_mente.php';
         exit;
     }
 }
 
 //新規サイト登録
 if(((!isset($_REQUEST['mode']) or $_REQUEST['mode'] == '') && strpos($_SERVER['PHP_SELF'], 'regist'))|| (isset($_REQUEST['mode']) and $_REQUEST['mode']=='form')){
-    require $cfg['sub_path'].'regist_new.php';
+    require $cfg['sp_sub_path'].'regist_new.php';
     exit();
 }
 

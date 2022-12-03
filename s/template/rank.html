@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title><?php echo stripcslashes($cfg['search_name']); ?></title>
+<title><?php echo $cfg['sp_search_name'] ?></title>
 <meta name="keywords" content="<?php echo $cfg['ver']; ?>,検索エンジン,<?php echo $cfg['ver']; ?>のランキング表示,<?php echo $cfg['ver']; ?>のランク表示" />
 <meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンのランキング表示です。ランク表示です。" />
 <meta content="yes" name="apple-mobile-web-app-capable" />
@@ -15,10 +15,9 @@
 <link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
 <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
 
-<link rel="stylesheet" href="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
 <script src="./js/jquery-2.2.4.min.js"></script>
-<script src="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
-<script src="./js/jquery.socialbutton-1.7.1.js" type="text/javascript"></script>
+<script src="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script type="text/javascript">
 function doScroll() { if (window.pageYOffset === 0) { window.scrollTo(0,1); } }
 window.onload = function() { setTimeout(doScroll, 100); }
@@ -32,7 +31,7 @@ window.onload = function() { setTimeout(doScroll, 100); }
     <!-- header -->
     <div data-role="header"  data-theme="b">
         <h1><?php echo 'ﾗﾝｷﾝｸﾞ一覧'; ?></h1>
-        <a href="<?= SMARTPHONE_HOME ?>" rel="external" data-icon="arrow-l" class="ui-btn-left" data-transition="slide">TOP</a>
+        <a href="<?= $cfg['sp_path_url'] ?>" rel="external" data-icon="arrow-l" class="ui-btn-left" data-transition="slide">TOP</a>
         <a href="search.php" data-icon="arrow-r" rel="external" class="ui-btn-right" data-transition="slide">検索</a>
     </div>
     <!-- /header -->
@@ -51,7 +50,7 @@ window.onload = function() { setTimeout(doScroll, 100); }
             );
         }
         ?>
-<span style="font-size:80%;"><a href="<?= SMARTPHONE_HOME ?>"  rel="external">ﾎｰﾑ</a>&gt;<?php echo mb_convert_kana($navi, 'ka', 'UTF-8'); ?><strong><?php echo mb_convert_kana($Stitle, 'ka', 'UTF-8'); ?></strong></span>
+<span style="font-size:80%;"><a href="<?= $cfg['sp_path_url'] ?>"  rel="external">ﾎｰﾑ</a>&gt;<?php echo mb_convert_kana($navi, 'ka', 'UTF-8'); ?><strong><?php echo mb_convert_kana($Stitle, 'ka', 'UTF-8'); ?></strong></span>
 <?php
 if(!empty($cfg[$_GET['mode']])) {
 	$rank_menu = str_replace('ランキング', 'ランク', $rank_menu);
@@ -91,7 +90,7 @@ if($log_count) {
             <a href="regist_ys.php?mode=enter&id=<?php echo $log_data['id']; ?>">修正/削除</a>&nbsp;|&nbsp;<a href="regist_ys.php?mode=no_link&id=<?php echo $log_data['id']; ?>&pre=on&title=<?php echo urlencode($log_data['title']); ?>">管理者通知</a>
             <?php
              if(@$cfg['mylink_fl']) {
-                   echo '&nbsp;|&nbsp;<a href="'.$cfg['script'].'?mode=mylink&act=add&id='.$log_data['id'].'">ﾏｲﾘﾝｸ追加</a>';
+                   echo '&nbsp;|&nbsp;<a href="'.$cfg['sp_script'].'?mode=mylink&act=add&id='.$log_data['id'].'">ﾏｲﾘﾝｸ追加</a>';
              }
             if(isset($log_data['banner']) && $log_data['banner'] != '') {
                 echo '<br><a href="'.$jump_url.'" target="_blank"><img src="'.$log_data['banner'].'" border="0" width="'.$cfg_reg['Mbana_w'].'" height="'.$cfg_reg['Mbana_h'].'" alt="'.$log_data['title'].'" title="'.$log_data['title'].'"></a>';
@@ -105,7 +104,7 @@ if($log_count) {
                         $query = "SELECT title FROM {$db->db_pre}category WHERE path='{$tmp}' LIMIT 1";
                         $row = $db->single_assoc($query) or $db->error("Query failed $query".__FILE__.__LINE__);
                         if($row['title']) {
-                         ?>[<a href="<?php echo $cfg['script']; ?>?mode=dir&amp;path=<?php echo $tmp; ?>">
+                         ?>[<a href="<?php echo $cfg['sp_script']; ?>?mode=dir&amp;path=<?php echo $tmp; ?>">
                          <?php
                               print mb_convert_kana($row['title'], 'ka', 'UTF-8');		//カテゴリ名を短縮カテゴリ名で表示
     //                        print full_category($tmp);	//カテゴリ名をフルカテゴリ名で表示
@@ -149,6 +148,6 @@ if($log_count) {
 <!-- /content -->
 
 <!-- /Footer Space Output -->
-<?php echo SMARTPHONE_FOOTER; ?>
+<?php cr(); ?>
 </body>
 </html>

@@ -77,6 +77,9 @@ if(empty($mes)) {
 	$_POST["search_name"] = $db->escape_string(trim($_POST["search_name"]));
 	$query = "UPDATE {$db->db_pre}cfg SET value='{$_POST["search_name"]}' WHERE name='search_name'";
 	$result = $db->query($query) or $db->error('Query failed '.$query.__FILE__.__LINE__);
+	//　- スマホ
+	$query = "UPDATE {$db->db_pre}cfg SET value='{$_POST["search_name"]}' WHERE name='sp_search_name'";
+	$result = $db->query($query) or $db->error('Query failed '.$query.__FILE__.__LINE__);
 	// メールアドレスを更新
 	$_POST["admin_email"] = $db->escape_string(trim($_POST["admin_email"]));
 	$query = "UPDATE {$db->db_pre}cfg SET value='{$_POST["admin_email"]}' WHERE name='admin_email'";
@@ -90,6 +93,10 @@ if(empty($mes)) {
 	// トップディレクトリのURLを更新
 	$query = "UPDATE {$db->db_pre}cfg SET value='{$_POST["cgi_path_url"]}' WHERE name='cgi_path_url'";
 	$result = $db->query($query) or $db->error('Query failed '.$query.__FILE__.__LINE__);
+	// - スマホ
+	$query = "UPDATE {$db->db_pre}cfg SET value='{$_POST["cgi_path_url"]}/s/' WHERE name='sp_path_url'";
+	$result = $db->query($query) or $db->error('Query failed '.$query.__FILE__.__LINE__);
+	
 	// 人気(OUT)ランキングの実施を更新
 	$query = "UPDATE {$db->db_pre}cfg SET value='{$_POST["rank_fl"]}' WHERE name='rank_fl'";
 	$result = $db->query($query) or $db->error('Query failed '.$query.__FILE__.__LINE__);

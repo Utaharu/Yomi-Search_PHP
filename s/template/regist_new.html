@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title><?php echo stripcslashes($cfg['search_name']); ?></title>
+<title><?php echo $cfg['sp_search_name'] ?></title>
 <meta name="keywords" content="<?php echo $cfg['ver']; ?>,検索エンジン,<?php echo $cfg['ver']; ?>の新規ホームページ登録,<?php echo $cfg['ver']; ?>の新規サイト登録" />
 <meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンの新規ホームページ登録、新規サイト登録です" />
 <meta content="yes" name="apple-mobile-web-app-capable" />
@@ -14,9 +14,9 @@
 <meta http-equiv="content-script-type" content="text/javascript">
 <link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
 <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
-<link rel="stylesheet" href="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
 <script src="./js/jquery-2.2.4.min.js"></script>
-<script src="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+<script src="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
 <script type="text/javascript">
 function doScroll() { if (window.pageYOffset === 0) { window.scrollTo(0,1); } }
 window.onload = function() {
@@ -33,7 +33,7 @@ window.onload = function() {
     <!-- header -->
     <div data-role="header"  data-theme="b">
         <h1><?php echo 'ｻｲﾄ登録'; ?></h1>
-        <a href="<?php echo SMARTPHONE_HOME;?>" rel="external" data-icon="arrow-l" class="ui-btn-left" data-transition="slide">TOP</a>
+        <a href="<?php echo $cfg['sp_path_url'];?>" rel="external" data-icon="arrow-l" class="ui-btn-left" data-transition="slide">TOP</a>
         <a href="search.php" data-icon="arrow-r" rel="external" class="ui-btn-right" data-transition="slide">検索</a>
     </div>
     <!-- /header -->
@@ -44,7 +44,7 @@ window.onload = function() {
         <div style="text-align:center;"><?php printTopMenuLink( $text['menu_bar'] ); ?></div>
 <!-- /Menu Bar Output -->
 <!-- Navigation Bar Output -->
-<a href="<?php echo SMARTPHONE_HOME;?>" rel="external">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;<strong>新規ｻｲﾄ登録</strong>
+<a href="<?php echo $cfg['sp_path_url'];?>" rel="external">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;<strong>新規ｻｲﾄ登録</strong>
 
 <!-- ここから設定 -->
 【 登録上の注意事項と利用法 】<br />
@@ -61,9 +61,9 @@ window.onload = function() {
 <br /><br /><b>ﾎｰﾑﾍﾟｰｼﾞの紹介文</b>は､登録するｻｲﾄの内容が紹介文を見る人に
 分かりやすく伝わるように書いてみてください｡
 <br /><br />管理人が登録内容について､変更･削除する必要があると判断した場合や<br />URLのﾘﾝｸ先がなくなっている場合には､内容を変更･削除する場合があります｡
-<br /><br /><img src="<?php echo '../'.$cfg['img_path_url']; ?>m1.gif" align="bottom"> の付いたｻｲﾄは､｢<a href="<?php echo $cfg['script']; ?>?mode=m1"><?php echo $cfg['name_m1']; ?></a>｣のｺｰﾅｰにも表示されます｡
+<br /><br /><img src="<?php echo '../'.$cfg['img_path_url']; ?>m1.gif" align="bottom"> の付いたｻｲﾄは､｢<a href="<?php echo $cfg['sp_script']; ?>?mode=m1"><?php echo $cfg['name_m1']; ?></a>｣のｺｰﾅｰにも表示されます｡
 <br /><br /><img src="<?php echo '../'.$cfg['img_path_url']; ?>m2.gif" align="bottom">
-  の付いたｻｲﾄは､｢<a href="<?php echo $cfg['script']; ?>?mode=m2"><?php echo $cfg['name_m2']; ?></a>｣のｺｰﾅｰにも表示されます｡
+  の付いたｻｲﾄは､｢<a href="<?php echo $cfg['sp_script']; ?>?mode=m2"><?php echo $cfg['name_m2']; ?></a>｣のｺｰﾅｰにも表示されます｡
 </font><br />
 <form action="regist.php" method="post">
 <input type="hidden" name="mode" value="act_regist">
@@ -214,6 +214,6 @@ if(@$cfg_reg['sougo']) {
 <!-- /content -->
 
 <!-- /Footer Space Output -->
-<?php echo SMARTPHONE_FOOTER; ?>
+<?php cr(); ?>
 </body>
 </html>

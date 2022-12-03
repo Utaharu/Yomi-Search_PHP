@@ -1,34 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Cache-Control" content="no-cache">
-<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
-<meta name="Keywords" content="norobot">
-<meta name="Robots" content="noindex,nofollow">
-<meta name="googlebot" content="noarchive">
-<title>登録データ修正完了</title>
-<link media="screen" rel="stylesheet" href="css/main.css" type="text/css">
-</head>
-<body>
-<!-- Menu Bar Output -->
-<table width="100%" class="table_menu_bar">
-  <tr>
-    <td><?php echo $text['menu_bar']; ?></td>
-  </tr>
-</table>
-<!-- /Menu Bar Output -->
-<!-- Navigation Bar Output -->
-<table width="100%" class="table_navigation_bar">
-  <tr>
-    <td id="title-bar">
-      <b>登録データ修正完了</b>
-    </td>
-  </tr>
-</table>
-
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="ui-mobile landscape min-width-320px min-width-480px min-width-768px min-width-1024px">
 <head><meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
@@ -45,9 +14,9 @@
 <meta http-equiv="content-script-type" content="text/javascript">
 <link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
 <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
-<link rel="stylesheet" href="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
 <script src="./js/jquery-2.2.4.min.js"></script>
-<!-- <script src="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script> -->
+<!-- <script src="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script> -->
 <script type="text/javascript">
 function doScroll() { if (window.pageYOffset === 0) { window.scrollTo(0,1); } }
 window.onload = function() { setTimeout(doScroll, 100); }
@@ -62,7 +31,7 @@ window.onload = function() { setTimeout(doScroll, 100); }
     <!-- header -->
     <div data-role="header"  data-theme="b" class="ui-bar-b ui-header">
         <h1 class="ui-title" tabindex="0" role="heading" aria-level="1">登録データ修正完了</h1>
-        <a data-transition="slide" class="ui-btn-left ui-btn ui-btn-up-b ui-btn-icon-left ui-btn-corner-all ui-shadow" data-icon="arrow-l" rel="external" href="http://www.nkbt.net/yomi/search/s/" data-theme="b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">TOP</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow"></span></span></a>
+        <a data-transition="slide" class="ui-btn-left ui-btn ui-btn-up-b ui-btn-icon-left ui-btn-corner-all ui-shadow" data-icon="arrow-l" rel="external" href="<?php echo $cfg['sp_path_url'];?>" data-theme="b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">TOP</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow"></span></span></a>
         <a data-transition="slide" class="ui-btn-right ui-btn ui-btn-up-b ui-btn-icon-left ui-btn-corner-all ui-shadow" rel="external" data-icon="arrow-r" href="search.php" data-theme="b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">ｻｲﾄ検索</span><span class="ui-icon ui-icon-arrow-r ui-icon-shadow"></span></span></a>
     </div>
     <!-- /header -->
@@ -77,7 +46,7 @@ window.onload = function() { setTimeout(doScroll, 100); }
 <?php echo $text['head_sp']; ?>
 <!-- /Header Space Output -->
 <!-- Navigation Bar Output -->
-<a href="<?php echo SMARTPHONE_HOME; ?>"  rel="external" class="ui-link">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;<strong>ｻｲﾄ内容修正</strong><br />
+<a href="<?php echo $cfg['sp_path_url']; ?>"  rel="external" class="ui-link">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;<strong>ｻｲﾄ内容修正</strong><br />
 <!-- /Navigation Bar Output -->
 
 <div class="ui-bar ui-bar-b" >
@@ -147,7 +116,7 @@ preview_category2();
 		<ul><?php echo $Slog[15]; ?></ul><br>
 <!--ここまで-->
 	<br><br>
-		【　<a href="<?php echo SMARTPHONE_HOME;?>" rel="external">ﾎｰﾑに戻る</a>　】
+		【　<a href="<?php echo $cfg['sp_path_url'];?>" rel="external">ﾎｰﾑに戻る</a>　】
 </ol></form>
 
 <!-- Footer Space Output -->
@@ -156,6 +125,6 @@ preview_category2();
 <!-- /content -->
 
 <!-- /Footer Space Output -->
-<?php echo SMARTPHONE_FOOTER_NOJS; ?>
+<?php cr(); ?>
 </body>
 </html>

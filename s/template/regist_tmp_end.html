@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>仮登録完了| <?php echo $cfg['search_name']; ?></title>
+<title>仮登録完了| <?php echo $cfg['sp_search_name']; ?></title>
 <meta name="Keywords" content="norobot">
 <meta name="Robots" content="noindex,nofollow">
 <meta name="googlebot" content="noarchive">
@@ -12,11 +12,10 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-style-type" content="text/css">
 <meta http-equiv="content-script-type" content="text/javascript">
-<link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
 <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
-<link rel="stylesheet" href="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
 <script src="./js/jquery-2.2.4.min.js"></script>
-<script src="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script type="text/javascript">
 function doScroll() { if (window.pageYOffset === 0) { window.scrollTo(0,1); } }
 window.onload = function() { setTimeout(doScroll, 100); }
@@ -31,7 +30,7 @@ window.onload = function() { setTimeout(doScroll, 100); }
     <!-- header -->
     <div data-role="header"  data-theme="b">
         <h1>仮登録完了</h1>
-        <a href="<?php echo SMARTPHONE_HOME;?>" rel="external" data-icon="arrow-l" class="ui-btn-left" data-transition="slide">TOP</a>
+        <a href="<?php echo $cfg['sp_path_url'];?>" rel="external" data-icon="arrow-l" class="ui-btn-left" data-transition="slide">TOP</a>
         <a href="search.php" data-icon="arrow-r" rel="external" class="ui-btn-right" data-transition="slide">ｻｲﾄ検索</a>
     </div>
     <!-- /header -->
@@ -122,7 +121,7 @@ if(@$cfg_reg['sougo'] && $_POST['in_mode'] !=  "mente") {
 ?>
 <!--ここまで-->
   <br><br>
-【　<a href="<?php echo $cfg['home']; ?>">ﾎｰﾑに戻る</a>　】
+【　<a href="<?php echo $cfg['sp_home']; ?>">ﾎｰﾑに戻る</a>　】
 </ol>
 </form>
 
@@ -133,6 +132,6 @@ if(@$cfg_reg['sougo'] && $_POST['in_mode'] !=  "mente") {
 <!-- /content -->
 
 <!-- /Footer Space Output -->
-<?php echo SMARTPHONE_FOOTER; ?>
+<?php cr(); ?>
 </body>
 </html>

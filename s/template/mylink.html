@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>マイリンク | <?php echo $cfg['search_name']; ?></title>
+<title>マイリンク | <?php echo $cfg['sp_search_name']; ?></title>
 <meta name="keywords" content="<?php echo $cfg['ver']; ?>,マイリンク表示" />
 <meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンのマイリンク表示" />
 <meta content="yes" name="apple-mobile-web-app-capable" />
@@ -15,9 +15,9 @@
 <link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
 <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
 
-<link rel="stylesheet" href="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
 <script src="./js/jquery-2.2.4.min.js"></script>
-<script src="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
 <script type="text/javascript">
 function doScroll() { if (window.pageYOffset === 0) { window.scrollTo(0,1); } }
@@ -32,7 +32,7 @@ window.onload = function() { setTimeout(doScroll, 100); }
     <!-- header -->
     <div data-role="header"  data-theme="b">
         <h1>マイリンク表示</h1>
-        <a href="<?php echo SMARTPHONE_HOME;?>" rel="external"  data-icon="arrow-l" class="ui-btn-left" data-transition="slide">TOP</a>
+        <a href="<?php echo $cfg['sp_path_url'];?>" rel="external"  data-icon="arrow-l" class="ui-btn-left" data-transition="slide">TOP</a>
         <a href="search.php" data-icon="arrow-r"  rel="external" class="ui-btn-right" data-transition="slide">ｻｲﾄ検索</a>
     </div>
     <!-- /header -->
@@ -43,7 +43,7 @@ window.onload = function() { setTimeout(doScroll, 100); }
 <!-- Navigation Bar Output -->
 
 
-<a href="<?php echo SMARTPHONE_HOME; ?>" rel="external">ホーム</a>&nbsp;&gt;&nbsp;<strong><?php echo $title; ?></strong><br />
+<a href="<?php echo $cfg['sp_path_url']; ?>" rel="external">ホーム</a>&nbsp;&gt;&nbsp;<strong><?php echo $title; ?></strong><br />
 <!-- /Navigation Bar Output -->
 <!-- ページ中段の検索フォーム -->
 <div style="text-align:center;">
@@ -68,7 +68,7 @@ if(isset($log_lines)) {
 	?>
 <!-- データがある場合 -->
 <div align="left">
-<form action="<?php echo $cfg['script']; ?>" method="get">
+<form action="<?php echo $cfg['sp_script']; ?>" method="get">
 <input type="hidden" name="mode" value="<?php echo htmlspecialchars($_GET['mode']); ?>">
 <input type="hidden" name="page" value="1">
 [現在の表示：<b>
@@ -137,7 +137,7 @@ foreach($log_lines as $log_data) {
     <a href="regist.php?mode=enter&id=<?php echo $log_data['id']; ?>" rel="external">修正/削除</a>&nbsp;|&nbsp;<a href="regist.php?mode=no_link&id=<?php echo $log_data['id']; ?>&pre=on&title=<?php echo urlencode($log_data['title']); ?>">管理者通知</a>
     <?php
      if(@$cfg['mylink_fl']) {
-           echo '&nbsp;|&nbsp;<a href="'.$cfg['script'].'?mode=mylink&act=add&id='.$log_data['id'].'" rel="external">ﾏｲﾘﾝｸ追加</a>';
+           echo '&nbsp;|&nbsp;<a href="'.$cfg['sp_script'].'?mode=mylink&act=add&id='.$log_data['id'].'" rel="external">ﾏｲﾘﾝｸ追加</a>';
      }
     if(isset($log_data['banner']) && $log_data['banner'] != '') {
         echo '<br><a href="'.$jump_url.'" target="_blank"><img src="'.$log_data['banner'].'" border="0" width="'.$cfg_reg['Mbana_w'].'" height="'.$cfg_reg['Mbana_h'].'" alt="'.$log_data['title'].'" title="'.$log_data['title'].'"></a>';
@@ -162,6 +162,6 @@ foreach($log_lines as $log_data) {
 <!-- /content -->
 
 <!-- /Footer Space Output -->
-<?php echo SMARTPHONE_FOOTER; ?>
+<?php cr(); ?>
 </body>
 </html>

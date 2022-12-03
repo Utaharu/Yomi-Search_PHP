@@ -9,7 +9,7 @@ require 'initial.php';
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title><?php echo stripcslashes($cfg['search_name']); ?></title>
+<title><?php echo $cfg['sp_search_name'] ?></title>
 <meta name="keywords" content="<?php echo $cfg['ver']; ?>,検索エンジン" />
 <meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンのトップページ" />
 <meta content="yes" name="apple-mobile-web-app-capable" />
@@ -23,11 +23,9 @@ require 'initial.php';
 <link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
 <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
 
-<link rel="stylesheet" href="jquery.mobile-1.0a2/jquery.mobile-1.0a2.min.css" />
-<script src="js/jquery-1.4.4.min.js"></script>
-<script src="jquery.mobile-1.0a2/jquery.mobile-1.0a2.min.js"></script>
-
-
+<link rel="stylesheet" href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
 
 <script type="text/javascript">
@@ -42,20 +40,24 @@ window.onload = function() { setTimeout(doScroll, 100); }
 <div data-role="page" data-theme="b">
 
 	<div data-role="header" data-theme="b">
-        <a href="<?php echo $cfg['home']; ?>" rel="external" data-icon="arrow-l" class="ui-btn-left" data-transition="slide">TOP</a>
+        <a href="<?php echo $cfg['sp_home']; ?>" rel="external" data-icon="arrow-l" class="ui-btn-left" data-transition="slide">TOP</a>
 		<h1><?php echo 'サイト検索'; ?></h1>
 	</div><!-- /header -->
-	<div data-role="content"  data-theme="c">	
-	<form method="GET" action="./search.php" rel="external">
-            <input type="hidden" name="mode" value="search">
-		<p>サイト名を入れて検索してください。</p>
-        <input  type="search" name="word" id="name" value="<?php if(isset($word)){echo $word;} ?>"  /><br />
-        <input type="submit" data-role="button" data-theme="b" data-inline="true" value="サイト検索">
-	</form>
-	<h5>詳細検索は<a href="./search_ex.php" rel="external">コチラ</a></h5>
+	<div data-role="content"  data-theme="a">	
+		<form method="GET" action="./search.php" rel="external">
+				<input type="hidden" name="mode" value="search">
+			<p>サイト名を入れて検索してください。</p>
+					<input type="search" name="word" id="name" value="<?php if(isset($word)){echo $word;} ?>" />
+
+					<input type="submit" data-role="button" data-theme="b" value="サイト検索">
+		
+		</form>
+		<div>
+			<div style="margin:50px 0;">詳細検索は<a href="./search_ex.php" rel="external">コチラ</a></div>
+		</div>
 	</div><!-- /content -->
 
-        <?php echo SMARTPHONE_FOOTER; ?>
+        <?php cr(); ?>
 </div><!-- /page -->
 
 </html>

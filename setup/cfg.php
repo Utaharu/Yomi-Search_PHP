@@ -10,7 +10,7 @@ $EST = array('ver' => 'Yomi-Search(PHP)modified ver1.5.8.n2',
 	         'admin_hp'     => '',                  // 管理人のホームページのURL
              'pass'         => '',                    // 管理用パスワード(WEB上で設定後は暗号化されます)
              'home'         => '',                 // サーチエンジンのトップへのパスorURL
-             'script'       => 'index.php',                 // yomi.phpのファイル名
+             'script'       => 'index.php',                 // yomi-search本体のファイル名
              'search'       => 'search.php',               // 検索用のPHPファイル名
              'rank'         => 'rank.php',                 // ランキング用のPHPファイル名
              'admin'        => 'admin.php',                // 管理処理用のPHPファイル名
@@ -40,11 +40,20 @@ $EST = array('ver' => 'Yomi-Search(PHP)modified ver1.5.8.n2',
              'temp_path' => 'template/', // テンプレートディレクトリのパス(URLは不可)
              'html_path' => 'html/',     // HTMLファイル用ディレクトリのパス(URLは不可)
              'sub_path'  => 'php/',      // 各種phpスクリプトファイル保存ディレクトリ
-
+			 
              // URL設定
              'html_path_url' => 'html/', // HTMLファイルへのURL
              'cgi_path_url'  => '',      // CGIファイルを置くディレクトリのURL
              'img_path_url'  => 'img/',  // 画像ファイルを置くディレクトリのURL
+
+			 //スマホ版の設定(sディレクトリの位置から)
+			 'sp_search_name'=> '',//　サーチエンジンの名称
+			 'sp_path_url' => './',	//　スマホ用のディレクトリ
+			 'sp_sub_path' =>'../' . $EST['sub_path'],//各種phpスクリプトファイル保存ディレクトリ(スマホ用ディレクトリからのルート)
+			 'sp_temp_path' =>'./template/',//テンプレートディレクトリ
+			 'sp_script' => 'index.php',//yomi-search本体のファイル名
+			 'sp_home' => '',//サーチエンジンのトップへのパスorURL
+			 'sp_img_path' => "../" . $EST['img_path_url'],// 画像ファイルを置くディレクトリのURL
 
              // 名称設定
              'name_new'      => '新着サイト',

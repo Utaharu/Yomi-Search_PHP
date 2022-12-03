@@ -1,22 +1,7 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Cache-Control" content="no-cache">
-<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
-<title><?php echo $title; ?> | メッセージ表示 | <?php echo $cfg['search_name']; ?></title>
-<meta name="keywords" content="メッセージ表示,検索エンジン,<?php echo $cfg['ver']; ?>" />
-<meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンのメッセージ表示です" />
-<link media="screen" rel="stylesheet" href="css/main.css" type="text/css">
-</head>
-<body>
-<br>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="ui-mobile landscape min-width-320px min-width-480px min-width-768px min-width-1024px">
 <head><meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
-<title><?php echo $title; ?> | メッセージ表示 | <?php echo $cfg['search_name']; ?></title>
+<title><?php echo $title; ?> | メッセージ表示 | <?php echo $cfg['sp_search_name']; ?></title>
 <meta name="Keywords" content="norobot">
 <meta name="Robots" content="noindex,nofollow">
 <meta name="googlebot" content="noarchive">
@@ -29,9 +14,9 @@
 <meta http-equiv="content-script-type" content="text/javascript">
 <link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
 <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
-<link rel="stylesheet" href="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
 <script src="./js/jquery-2.2.4.min.js"></script>
-<!-- <script src="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script> -->
+<!-- <script src="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script> -->
 <script type="text/javascript">
 function doScroll() { if (window.pageYOffset === 0) { window.scrollTo(0,1); } }
 window.onload = function() { setTimeout(doScroll, 100); }
@@ -46,7 +31,7 @@ window.onload = function() { setTimeout(doScroll, 100); }
     <!-- header -->
     <div data-role="header"  data-theme="b" class="ui-bar-b ui-header">
         <h1 class="ui-title" tabindex="0" role="heading" aria-level="1">ﾊﾟｽﾜｰﾄﾞ認証/登録ﾃﾞｰﾀ修正･削除</h1>
-        <a data-transition="slide" class="ui-btn-left ui-btn ui-btn-up-b ui-btn-icon-left ui-btn-corner-all ui-shadow" data-icon="arrow-l" rel="external" href="http://www.nkbt.net/yomi/search/s/" data-theme="b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">TOP</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow"></span></span></a>
+        <a data-transition="slide" class="ui-btn-left ui-btn ui-btn-up-b ui-btn-icon-left ui-btn-corner-all ui-shadow" data-icon="arrow-l" rel="external" href="<?php echo $cfg['sp_path_url'];?>" data-theme="b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">TOP</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow"></span></span></a>
         <a data-transition="slide" class="ui-btn-right ui-btn ui-btn-up-b ui-btn-icon-left ui-btn-corner-all ui-shadow" rel="external" data-icon="arrow-r" href="search.php" data-theme="b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">ｻｲﾄ検索</span><span class="ui-icon ui-icon-arrow-r ui-icon-shadow"></span></span></a>
     </div>
     <!-- /header -->
@@ -61,7 +46,7 @@ window.onload = function() { setTimeout(doScroll, 100); }
 <?php if(isset($text['head_sp'])){echo $text['head_sp'];}?>
 <!-- /Header Space Output -->
 <!-- Navigation Bar Output -->
-<a href="<?php echo SMARTPHONE_HOME; ?>"  rel="external" class="ui-link">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;<strong>ﾒｯｾｰｼﾞ表示</strong><br />
+<a href="<?php echo $cfg['sp_path_url']; ?>"  rel="external" class="ui-link">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;<strong>ﾒｯｾｰｼﾞ表示</strong><br />
 <!-- /Navigation Bar Output -->
 
 <div class="ui-bar ui-bar-b" style="text-align: center;" >
@@ -71,7 +56,7 @@ window.onload = function() { setTimeout(doScroll, 100); }
 	<div data-role="fieldcontain"  style="text-align: center;">
 		<span style="color:#FF0000;"><?php echo $mes; ?></span><br />
 		<div align="center">
-		<a href="javascript:history.back();" role="button" aria-label="button" data-theme="c" class="ui-btn ui-btn-up-c ui-btn-corner-all ui-shadow">
+		<a href="javascript:history.back();" role="button" aria-label="button" data-theme="b" class="ui-btn ui-btn-up-c ui-btn-corner-all ui-shadow">
 		<span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">　戻る　</span></span></a>
 		</div>
 		
@@ -83,6 +68,6 @@ window.onload = function() { setTimeout(doScroll, 100); }
 <!-- /content -->
 
 <!-- /Footer Space Output -->
-<?php echo SMARTPHONE_FOOTER_NOJS; ?>
+<?php cr(); ?>
 </body>
 </html>

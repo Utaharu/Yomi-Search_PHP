@@ -59,11 +59,12 @@ foreach($rowset as $tmp) {
 // 登録申請中(仮登録状態)のログ件数を取得して
 // 管理室用のリストボックスを生成
 $count_temp = $db->log_count($db_pre.'log_temp');
-require 'admin_listbox.php';
 
 // (1)ログイン画面(&login)
 // header("Content-type: text/html; charset=UTF-8");
 if(isset($_POST["mode"])) {
+	require 'admin_listbox.php';
+
 if($_POST["mode"] == "kanri") {
 	// (2)管理人室(&kanri)
 	// パスワードチェック
@@ -771,6 +772,23 @@ if($_POST["mode"] == "kanri") {
 } elseif($_POST["mode"] == "cfg_make") {
 	// (cfg1)環境設定($cfg)を更新(cfg_make)
 	pass_check();
+	$new_cfg_list = array(
+		'sp_search_name'=>$cfg['search_name'],
+		'sp_path_url'=>"./",
+		'sp_home'=>$cfg['sp_path_url'],
+		'sp_temp_path'=>$cfg['temp_path'],
+		'sp_sub_path'=>"../" . $cfg['sub_path'],
+		'sp_img_path'=>"../" . $cfg['img_path_url']
+	);
+
+	foreach ($new_cfg_list as $new_cfg_key=>$new_cfg_value){
+		if(!isset($cfg[$new_cfg_key])){
+			$query = "INSERT INTO {$db->db_pre}cfg VALUES('{$new_cfg_key}','{$new_cfg_value}')";
+			$result = $db->query($query);
+			$cfg[$new_cfg_key] = $new_cfg_value;
+		}
+	}
+
 	foreach($cfg as $key=>$val) {
 		if(isset($_POST[$key]) && $_POST[$key] != $cfg[$key] && $key != "pass") {
 			$_POST[$key] = $db->escape_string($_POST[$key]);
@@ -818,6 +836,7 @@ if($_POST["mode"] == "kanri") {
 	if(!isset($cfg_reg['kt_select_mode'])){
 		$query = "INSERT INTO {$db->db_pre}cfg_reg VALUES('kt_select_mode','multiple')";
 		$result = $db->query($query);
+		$cfg_reg['kt_select_mode'] = "multiple";
 	}
 	foreach($cfg_reg as $key=>$val) {
 		if(isset($_POST[$key]) and $_POST[$key] != $cfg_reg[$key]) {

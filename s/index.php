@@ -6,13 +6,13 @@
 /***********************************************/
 require 'initial.php';
 if($cfg['count']) {
-	require $cfg['sub_path'] . "count_ys.php";
+	require $cfg['sp_sub_path'] . "count_ys.php";
 }
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title><?php echo stripcslashes($cfg['search_name']); ?></title>
+<title><?php echo $cfg['sp_search_name'] ?></title>
 <meta name="keywords" content="<?php echo $cfg['ver']; ?>,検索エンジン" />
 <meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンのトップページ" />
 <meta content="yes" name="apple-mobile-web-app-capable" />
@@ -23,13 +23,11 @@ if($cfg['count']) {
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta http-equiv="content-style-type" content="text/css">
 <meta http-equiv="content-script-type" content="text/javascript">
-<link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
 <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
 
-<link rel="stylesheet" href="<?php echo SMARTPHONE_HOME; ?>jquery.mobile-1.0a2/jquery.mobile-1.0a2.min.css" />
-<script src="<?php echo SMARTPHONE_HOME; ?>js/jquery-1.4.4.min.js"></script>
-<script src="<?php echo SMARTPHONE_HOME; ?>jquery.mobile-1.0a2/jquery.mobile-1.0a2.min.js"></script>
-<script src="./js/jquery.socialbutton-1.7.1.js" type="text/javascript"></script>
+<link rel="stylesheet" href="<?php echo $cfg['sp_path_url']; ?>jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="<?php echo $cfg['sp_path_url']; ?>js/jquery-2.2.4.min.js"></script>
+<script src="<?php echo $cfg['sp_path_url']; ?>js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <style>
 .clearfix:after {
 	content: ".";
@@ -70,31 +68,6 @@ $(document).bind("mobileinit", function(){
 function doScroll() { if (window.pageYOffset === 0) { window.scrollTo(0,1); } }
 window.onload = function() { setTimeout(doScroll, 100); }
 
-$(function() {
-
-	$('#hatena').socialbutton('hatena');
-
-	$('#gree').socialbutton('gree_sf', {
-		button: 0
-	});
-
-	$('#twitter').socialbutton('twitter', {
-		button: 'horizontal',
-        text: 'Yomi-search スマートフォン版',
-        via: 'NKBT'
-	});
-
-	$('#facebook_like').socialbutton('facebook_like', {
-		button: 'button_count',
-	});
-
-	$('#facebook_share').socialbutton('facebook_share', {
-        text: 'ｼｪｱ'
-    });
-
-});
-
-
 </script>
 </head>
 
@@ -104,21 +77,15 @@ $(function() {
 
         <!-- header -->
 	<div data-role="header"  data-theme="b">
-		<h1><?php echo $cfg['search_name']; ?></h1>
+		<h1><?php echo $cfg['sp_search_name']; ?></h1>
 		<a href="./search.php"  rel="external" data-icon="arrow-r" class="ui-btn-right" data-transition="slide">検索</a>
 	</div>
         <!-- /header -->
 
 	<div data-role="content">
 		<?php echo '<span style="font-size:10px;">'.$counter.'</span>'; ?>
-<div class="block clearfix">
-			<div id="hatena"></div>
-        	<div id="gree"></div>
-        	<div id="facebook_share"></div>
-        	<div id="facebook_like"></div>
-</div>
 
-		<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="a">
+		<ul data-role="listview" data-inset="true" data-theme="b" data-dividertheme="a">
 			<li data-role="list-divider">メニュー</li>
             <li><a href="index.php?mode=new" rel="external">新着サイト<span class="arrow"></span></a></li>
             <li><a href="index.php?mode=renew"  rel="external">更新サイト<span class="arrow"></span></a></li>
@@ -128,7 +95,7 @@ $(function() {
 		</ul>
 		
 		
-		<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="a">
+		<ul data-role="listview" data-inset="true" data-theme="b" data-dividertheme="a">
 			<li data-role="list-divider">カテゴリ</li>
             <?php
             //1番目の行フラグ
@@ -167,7 +134,7 @@ $(function() {
 		</ul>
 		
 		
-	<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="a">
+	<ul data-role="listview" data-inset="true" data-theme="b" data-dividertheme="a">
             <li data-role="list-divider">その他</li>
             <li><a href="regist.php" rel="external">サイト登録<span class="arrow"></span></a></li>
             <li><a href="help.php"  rel="external">ヘルプ<span class="arrow"></span></a></li>
@@ -177,7 +144,7 @@ $(function() {
 		
 		
 	</div><!-- /content -->
-        <?php echo SMARTPHONE_FOOTER; ?>
+        <?php cr();?>
 </div><!-- /page -->
 </body>
 

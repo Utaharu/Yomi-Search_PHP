@@ -1,7 +1,7 @@
 <?php
 //----------------------------------------------------------------------------
 // (f1)登録するカテゴリを表示(print_category)
-function print_category($category = '', $smartphone_flg = false) {
+function print_category($category = '', $smartphone_flag = false) {
 	global $cfg, $cfg_reg, $db;
 	if(!isset($_POST['changer'])) {
 		$_POST['changer'] = '';
@@ -45,9 +45,9 @@ function print_category($category = '', $smartphone_flg = false) {
 		if($selecter_mode == "multiple"){$selecter_name .= "[]";}
 		
 		//Html - Select Tag
-        if(defined('SMARTPHONE_SITE_NAME')){$writeStr .=   '<div data-role="fieldcontain"><label for="Fkt'.$category_no.'" class="select"></label>';}
+        if($smartphone_flag){$writeStr .=   '<div data-role="fieldcontain"><label for="Fkt'.$category_no.'" class="select"></label>';}
 		$writeStr .=  "<select name=\"{$selecter_name}\" size=\"7\"";
-			if(defined('SMARTPHONE_SITE_NAME')) $writeStr .=  " id=\"Fkt{$category_no}\" data-native-menu=\"false\"";
+			if($smartphone_flag) $writeStr .=  " id=\"Fkt{$category_no}\" data-native-menu=\"false\"";
 			if($selecter_mode == "multiple"){$writeStr .= " multiple=\"multiple\"";}
         $writeStr .=  '>';
 		
@@ -65,7 +65,7 @@ function print_category($category = '', $smartphone_flg = false) {
 			$select = '';
 		}
 		
-		if(!defined('SMARTPHONE_SITE_NAME')){
+		if(!$smartphone_flag){
 			if(count($selected_categories) > 0){$select = "";}
 			$writeStr .=  "<option value=\"\" {$select} >--指定しない--</option>";
 		}else{$writeStr .= "<option value=\"\">カテゴリ</option>\n";}
@@ -83,11 +83,11 @@ function print_category($category = '', $smartphone_flg = false) {
 		}
 
 		$writeStr .=  '</select>';
-        if(defined('SMARTPHONE_SITE_NAME')) $writeStr .=  '</div> ';
+        if($smartphone_flag) $writeStr .=  '</div> ';
         $writeStr .=  '<br><br>'."\n";
 	}
 	$writeStr .=  '</ul><br>'."\n";
-    if($smartphone_flg == true) {
+    if($smartphone_flag == true) {
         $writeStr =  str_replace(array('<ul>','</ul>'), '', $writeStr);
         $writeStr =  str_replace('<br><br>', '', $writeStr);
         $writeStr =  str_replace('エンターテイメント', 'ｴﾝﾀﾒ', $writeStr);

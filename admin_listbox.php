@@ -8,8 +8,9 @@ if(!isset($_POST['mode']) || $_POST['mode'] == 'kanri') {
 }
 
 // 管理室用リストボックス生成
-$admin_listbox = <<< LIST
-      <input type="hidden" name="pass" value="{$_POST['pass']}">
+$admin_listbox = "";
+if(isset($_POST['pass'])){$admin_listbox = "<input type=\"hidden\" name=\"pass\" value=\"{$_POST['pass']}\">";}
+$admin_listbox .= <<< LIST
 	  <select name="mode" class="form">
         <option value="kanri"{$selected_00}>00. 管理室トップへ戻る</option>
         <option value="temp_to_regist"{$selected_01}>01. 登録待ち({$count_temp}件)</option>

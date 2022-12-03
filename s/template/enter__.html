@@ -14,9 +14,9 @@
 <meta http-equiv="content-script-type" content="text/javascript">
 <link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
 <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
-<link rel="stylesheet" href="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
 <script src="./js/jquery-2.2.4.min.js"></script>
-<!-- <script src="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script> -->
+<!-- <script src="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script> -->
 <script type="text/javascript">
 function doScroll() { if (window.pageYOffset === 0) { window.scrollTo(0,1); } }
 window.onload = function() { setTimeout(doScroll, 100); }
@@ -31,7 +31,7 @@ window.onload = function() { setTimeout(doScroll, 100); }
     <!-- header -->
     <div data-role="header"  data-theme="b" class="ui-bar-b ui-header">
         <h1 class="ui-title" tabindex="0" role="heading" aria-level="1">ﾊﾟｽﾜｰﾄﾞ認証/登録ﾃﾞｰﾀ修正･削除</h1>
-        <a data-transition="slide" class="ui-btn-left ui-btn ui-btn-up-b ui-btn-icon-left ui-btn-corner-all ui-shadow" data-icon="arrow-l" rel="external" href="http://www.nkbt.net/yomi/search/s/" data-theme="b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">TOP</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow"></span></span></a>
+        <a data-transition="slide" class="ui-btn-left ui-btn ui-btn-up-b ui-btn-icon-left ui-btn-corner-all ui-shadow" data-icon="arrow-l" rel="external" href="<?php echo $cfg['sp_path_url'];?>" data-theme="b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">TOP</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow"></span></span></a>
         <a data-transition="slide" class="ui-btn-right ui-btn ui-btn-up-b ui-btn-icon-left ui-btn-corner-all ui-shadow" rel="external" data-icon="arrow-r" href="search.php" data-theme="b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">ｻｲﾄ検索</span><span class="ui-icon ui-icon-arrow-r ui-icon-shadow"></span></span></a>
     </div>
     <!-- /header -->
@@ -46,7 +46,7 @@ window.onload = function() { setTimeout(doScroll, 100); }
 <?php echo $text['head_sp']; ?>
 <!-- /Header Space Output -->
 <!-- Navigation Bar Output -->
-<a href="<?php echo SMARTPHONE_HOME; ?>"  rel="external">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;<strong>修正･削除</strong><br />
+<a href="<?php echo $cfg['sp_path_url']; ?>"  rel="external">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;<strong>修正･削除</strong><br />
 <!-- /Navigation Bar Output -->
 
 <div class="ui-bar ui-bar-b" >
@@ -211,6 +211,6 @@ if($cfg['re_pass_fl']) {
 <!-- /content -->
 
 <!-- /Footer Space Output -->
-<?php echo SMARTPHONE_FOOTER; ?>
+<?php cr(); ?>
 </body>
 </html>

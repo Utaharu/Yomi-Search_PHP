@@ -71,9 +71,11 @@ foreach($rowset as $tmp) {
 if(isset($_GET['word'])) {
 	$_GET['word'] = mb_convert_encoding($_GET['word'], 'UTF-8', 'auto');
 	$_GET['word'] = htmlspecialchars($_GET['word']);
-	if(isset($_GET['words'])) {
-		if($_GET['words']) {
-			$_GET['words'] = array_map('htmlspecialchars', $_GET['words']);
+	if(isset($_GET['words']) and is_array($_GET['words'])) {
+		foreach($_GET['words'] as $words_index=>$word_value){
+			if($word_value){
+				$_GET['words'][$words_index] = htmlspecialchars($word_value);
+			}
 		}
 	}
 }

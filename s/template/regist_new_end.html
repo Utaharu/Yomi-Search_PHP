@@ -14,9 +14,9 @@
 <meta http-equiv="content-script-type" content="text/javascript">
 <link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
 <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
-<link rel="stylesheet" href="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
 <script src="./js/jquery-2.2.4.min.js"></script>
-<script src="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script type="text/javascript">
 function doScroll() { if (window.pageYOffset === 0) { window.scrollTo(0,1); } }
 window.onload = function() { setTimeout(doScroll, 100); }
@@ -31,7 +31,7 @@ window.onload = function() { setTimeout(doScroll, 100); }
     <!-- header -->
     <div data-role="header"  data-theme="b">
         <h1>新規登録完了</h1>
-        <a href="<?php echo SMARTPHONE_HOME;?>" rel="external" data-icon="arrow-l" class="ui-btn-left" data-transition="slide">TOP</a>
+        <a href="<?php echo $cfg['sp_path_url'];?>" rel="external" data-icon="arrow-l" class="ui-btn-left" data-transition="slide">TOP</a>
         <a href="search.php" data-icon="arrow-r" rel="external" class="ui-btn-right" data-transition="slide">ｻｲﾄ検索</a>
     </div>
     <!-- /header -->
@@ -63,7 +63,7 @@ if(@$cfg['rev_fl']) {
 【あなた専用のURL】<br>
 <input type="text" size="90" value="<?php echo $cfg['cgi_path_url'] . $cfg['rank']; ?>?mode=r_link&id=<?php echo $log_data[0]; ?>" readonly><br>
 あなたのｻｲﾄの訪問者の方が上記のURLへのﾘﾝｸをｸﾘｯｸすると､<br>
-当ｻｲﾄの<a href="<?php echo $cfg['home']; ?>" target="_blank">ﾄｯﾌﾟﾍﾟｰｼﾞ</a>に転送され､ｱｸｾｽﾗﾝｷﾝｸﾞのﾎﾟｲﾝﾄが加算されます｡<br>
+当ｻｲﾄの<a href="<?php echo $cfg['sp_home']; ?>" target="_blank">ﾄｯﾌﾟﾍﾟｰｼﾞ</a>に転送され､ｱｸｾｽﾗﾝｷﾝｸﾞのﾎﾟｲﾝﾄが加算されます｡<br>
 ※ただし､一定時間内の同じ訪問者の方からのｱｸｾｽは1ﾎﾟｲﾝﾄとします<br>
 ※ｱｸｾｽ用のURLは登録内容変更画面からも確認できます
 <br><br>
@@ -167,7 +167,7 @@ if(@$cfg_reg['sougo'] && $_POST['in_mode'] != "mente") {
 ?>
 <!--ここまで-->
 <br><br>
-【　<a href="<?php echo $cfg['home']; ?>">ﾎｰﾑに戻る</a>　】
+【　<a href="<?php echo $cfg['sp_home']; ?>">ﾎｰﾑに戻る</a>　】
 </ol></form>
 
 
@@ -177,6 +177,6 @@ if(@$cfg_reg['sougo'] && $_POST['in_mode'] != "mente") {
 <!-- /content -->
 
 <!-- /Footer Space Output -->
-<?php echo SMARTPHONE_FOOTER; ?>
+<?php cr(); ?>
 </body>
 </html>

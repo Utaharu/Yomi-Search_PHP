@@ -5,5 +5,5 @@
 /*
 /***********************************************/
 require 'initial.php';
-require $cfg['sub_path'] .'search_ex.php';
+require $cfg['sp_sub_path'] .'search_ex.php';
 ?>

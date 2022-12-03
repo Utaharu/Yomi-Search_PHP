@@ -5,6 +5,6 @@
 /*--------------------------------------------------------------------------*/
 
 require 'initial.php';
-require $cfg['temp_path'] . 'help.html';
+require $cfg['sp_temp_path'] . 'help.html';
 exit();
 ?>

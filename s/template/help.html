@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title><?php echo stripcslashes($cfg['search_name']); ?></title>
+<title><?php echo $cfg['sp_search_name'] ?></title>
 <meta name="keywords" content="<?php echo $cfg['ver']; ?>,検索エンジン,<?php echo $cfg['ver']; ?>のヘルプ表示" />
 <meta name="description" content="<?php echo $cfg['ver']; ?>の検索エンジンのヘルプ表示です。" />
 <meta content="yes" name="apple-mobile-web-app-capable" />
@@ -15,9 +15,9 @@
 <link href="./images/yomi_icon.jpg" rel="apple-touch-icon" />
 <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
 
-<link rel="stylesheet" href="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
 <script src="./js/jquery-2.2.4.min.js"></script>
-<script src="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script type="text/javascript">
 function doScroll() { if (window.pageYOffset === 0) { window.scrollTo(0,1); } }
 window.onload = function() { setTimeout(doScroll, 100); }
@@ -31,7 +31,7 @@ window.onload = function() { setTimeout(doScroll, 100); }
     <!-- header -->
     <div data-role="header"  data-theme="b">
         <h1>ヘルプ</h1>
-        <a href="<?php echo SMARTPHONE_HOME;?>" rel="external" data-icon="arrow-l" class="ui-btn-left" data-transition="slide">TOP</a>
+        <a href="<?php echo $cfg['sp_path_url'];?>" rel="external" data-icon="arrow-l" class="ui-btn-left" data-transition="slide">TOP</a>
         <a href="search.php" data-icon="arrow-r" rel="external" class="ui-btn-right" data-transition="slide">検索</a>
     </div>
     <!-- /header -->
@@ -42,11 +42,11 @@ window.onload = function() { setTimeout(doScroll, 100); }
 <!-- /Menu Bar Output -->
 <!-- Navigation Bar Output -->
 <br />
-<a href="<?php echo SMARTPHONE_HOME;?>"  rel="external">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;<strong>ヘルプ</strong>
+<a href="<?php echo $cfg['sp_path_url'];?>"  rel="external">ﾎｰﾑ</a>&nbsp;&gt;&nbsp;<strong>ヘルプ</strong>
 <br />
 <br />
 
-<strong><?php echo $cfg['search_name']; ?></strong>&nbsp;はﾃﾞｨﾚｸﾄﾘ型ｻｰﾁｴﾝｼﾞﾝです｡
+<strong><?php echo $cfg['sp_search_name']; ?></strong>&nbsp;はﾃﾞｨﾚｸﾄﾘ型ｻｰﾁｴﾝｼﾞﾝです｡
 <br />このｻｰﾁｴﾝｼﾞﾝに登録されている様々な情報･ﾎｰﾑﾍﾟｰｼﾞを見つけることができます｡<br />
 <br />
 
@@ -55,14 +55,14 @@ window.onload = function() { setTimeout(doScroll, 100); }
 <br />ｷｰﾜｰﾄﾞは複数指定することも可能です｡
 <br />複数指定する場合には､ｷｰﾜｰﾄﾞを半角ｽﾍﾟｰｽで区切って入力してください｡
 <br />[例] ｽﾎﾟｰﾂ 野球
-<br />ｷｰﾜｰﾄﾞ検索は&nbsp;<a href="<?php echo $cfg['home']; ?>">ﾄｯﾌﾟﾍﾟｰｼﾞ</a>&nbsp;や各ｶﾃｺﾞﾘのﾍﾟｰｼﾞからすることができます｡
+<br />ｷｰﾜｰﾄﾞ検索は&nbsp;<a href="<?php echo $cfg['sp_home']; ?>">ﾄｯﾌﾟﾍﾟｰｼﾞ</a>&nbsp;や各ｶﾃｺﾞﾘのﾍﾟｰｼﾞからすることができます｡
 <br />より詳細な条件を指定して検索したい場合には&nbsp;[&nbsp;<a href="search_ex.php" rel="external">詳細検索</a>&nbsp;]&nbsp;を使用してください｡
 <br /><br />
 <font size="+1"><b>※ﾎｰﾑﾍﾟｰｼﾞを登録する</b></font><br />
 【<font color="#6666CC"><b>新しく自分のﾎｰﾑﾍﾟｰｼﾞを登録する</b></font>】<br />
 自分のﾎｰﾑﾍﾟｰｼﾞをお持ちの方は宣伝のためにもぜひ登録してみてください｡
 <br />登録の方法は､
-(1)自分のﾎｰﾑﾍﾟｰｼﾞのﾃｰﾏ（ｼﾞｬﾝﾙ）にあったｶﾃｺﾞﾘを&nbsp;<a href="<?php echo $cfg['home']; ?>">ﾄｯﾌﾟﾍﾟｰｼﾞ</a>&nbsp;又は&nbsp;<a href="sitemap.php"  rel="external">ｻｲﾄﾏｯﾌﾟ</a>&nbsp;から探します｡
+(1)自分のﾎｰﾑﾍﾟｰｼﾞのﾃｰﾏ（ｼﾞｬﾝﾙ）にあったｶﾃｺﾞﾘを&nbsp;<a href="<?php echo $cfg['sp_home']; ?>">ﾄｯﾌﾟﾍﾟｰｼﾞ</a>&nbsp;又は&nbsp;<a href="sitemap.php"  rel="external">ｻｲﾄﾏｯﾌﾟ</a>&nbsp;から探します｡
 <br />(2)そのﾍﾟｰｼﾞの&nbsp;[&nbsp;<font color="#6666CC">このｶﾃｺﾞﾘに新規登録</font>&nbsp;]&nbsp;というﾘﾝｸがある場合には､
 <br />登録することができますのでﾘﾝｸをｸﾘｯｸして登録画面から登録してください｡
 <br />登録する場合には登録画面の&nbsp;[&nbsp;<strong>登録上の注意</strong>&nbsp;]&nbsp;をよく読んでから登録してください｡
@@ -82,6 +82,6 @@ window.onload = function() { setTimeout(doScroll, 100); }
 <!-- /content -->
 
 <!-- /Footer Space Output -->
-<?php echo SMARTPHONE_FOOTER; ?>
+<?php cr(); ?>
 </body>
 </html>

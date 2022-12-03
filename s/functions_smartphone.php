@@ -2,9 +2,37 @@
 //著作権表示(削除・変更をしないでください。ただし、中寄せ・左寄せは可)
 function cr(){
 	global $cfg;
-	echo '- <a href="http://yomi.pekori.to/" target="_blank">Yomi-Search</a> - ';
-	echo '<a href="http://sql.s28.xrea.com/">Yomi-Search(PHP)</a>&nbsp;/&nbsp;<a href="http://yomiphp-mod.sweet82.com/" target="_blank">Yomi-Search(PHP)modified ver1.5.8</a> - ';
-	echo '<a href="http://www.nkbt.net/yomi/" target="_blank">'.$cfg['ver'].'</a> - ';
+	
+$version = array(
+	array('','Yomi-Search PHP Ver:8.0β'),
+	array('http://www.nkbt.net/yomi/','Yomi-Search(PHP)modified ver1.5.8.n2'),
+	array('http://yomiphp-mod.sweet82.com/','Yomi-Search(PHP)modified ver1.5.8'),
+	array('http://sql.s28.xrea.com/','Yomi-Search(PHP)'),
+	array('http://yomi.pekori.to/','Yomi-Search')
+);
+
+	print	"<style type=\"text/css\">\n".
+			"	<!--\n".
+			"		#copyright {float:right; margin-top:10px; padding:5px; border:1px solid black; background-color:silver; color:black;}\n".
+			"		#copyright > #version_name {text-decoration:underline;}\n".
+			"		#copyright a{color:black;}\n".
+			"		#copyright_version {display:none; padding:5px 5px 5px 20px; margin:5px 0 0 0; border-top:dashed black 1px;}\n".
+			"		#copyright_version li {margin:0 0 0 10px; text-align:left;}\n".
+			"		#copyright:hover > #copyright_version, #copyright:focus > #copyright_version,#copyright:active > #copyright_version{display:block;}\n".
+			"	-->\n".
+			"</style>\n";
+	print	"<div id=\"copyright\" data-role=\"footer\" data-theme=\"b\">\n";
+	print	"	This program is : <span id=\"version_name\">" .  $version[0][1] . "</span>\n";
+	print	"	<ul id=\"copyright_version\">\n";
+
+	foreach($version as $line){
+		if($line){
+			print "		<li><a href=\"" . $line[0] . "\" target=\"_blank\" title=\"" . $line[1] . "\">" . $line[1] . "</a></li>\n";
+		}
+	}
+	print	"	</ul>\n";
+	print	"</div>\n";
+
 }
 
 //(c1)クッキーの書き込み(set_cookie)
@@ -49,7 +77,7 @@ function other_category($path = '') {
                 <select id="other_category" onChange="location.href=$('#other_category').val();">
 EOF;
 	foreach ($rowset as $row) {
-            $w .= '<option value="'.$cfg['script'].'?mode=dir&amp;path='.$row['path'].'">'.$row['title'].'</option>'."\n";
+            $w .= '<option value="'.$cfg['sp_script'].'?mode=dir&amp;path='.$row['path'].'">'.$row['title'].'</option>'."\n";
 	}
         $w .= '</select></div>';
         echo $w;
@@ -62,6 +90,7 @@ EOF;
  * @param string $str PC版の元のリンク
  */
 function printTopMenuLink($str, $color='') {
+	global $cfg;
     $tmp = explode(" -\n", $str);
     $t = count($tmp);
     $w = '<style>a.ui-link:link{color:#7199C0;} a.ui-link:visited{color:#444782;} a.ui-link:hover{color:#19C5D9;}</style>';
@@ -78,7 +107,7 @@ function printTopMenuLink($str, $color='') {
         $w = str_replace('href=', ' rel="external" href=', $w);
     }
     $w = str_replace('href=?', 'href=index.php?', $w);
-    echo str_replace('yomi.php', SMARTPHONE_INDEX, trim($w, '|'));
+    echo str_replace('yomi.php', $cfg['sp_script'], trim($w, '|'));
 }
 
 /**
@@ -120,9 +149,10 @@ function print_subcategory($category, $num, $column) {
 
 	$query = 'SELECT id FROM '.$db_pre.'category WHERE path=\''.$category.'\'';
 	$id = $db->single_num($query);
-	$query = 'SELECT title, path FROM '.$db_pre.'category WHERE up_id=\''.$id[0].'\' ORDER BY path';
-	$rowset = $db->rowset_assoc($query);
-
+	if(isset($id[0])){
+		$query = 'SELECT title, path FROM '.$db_pre.'category WHERE up_id=\''.$id[0].'\' ORDER BY path';
+		$rowset = $db->rowset_assoc($query);
+	}
         $w = '';
         $w=<<<EOF
                  <div class="ui-bar ui-bar-a">
@@ -132,10 +162,10 @@ function print_subcategory($category, $num, $column) {
                     <select id="chokka_category" onChange="location.href=$('#chokka_category').val();">
 EOF;
 
-        if($rowset[0] != "") {
+        if(isset($rowset) and $rowset[0] != "") {
             foreach ($rowset as $row) {
                     list($count, $check) = subcategory($row['path']);
-                    $w .= '<option value="'.$cfg['script'].'?mode=dir&amp;path='.trim($row['path'],'/').'">'.$row['title'];
+                    $w .= '<option value="'.$cfg['sp_script'].'?mode=dir&amp;path='.trim($row['path'],'/').'">'.$row['title'];
                     if($check) {
                             $w .= '*';
                     }
@@ -152,7 +182,7 @@ EOF;
                     $id = substr($row['path'], 0, -1);
                     list($count, $check) = subcategory($id);
 
-                    $w .=  '<option value="'.$cfg['script'].'?mode=dir&amp;path='.trim($row['path'],'/').'">'.$row['title'].'@';
+                    $w .=  '<option value="'.$cfg['sp_script'].'?mode=dir&amp;path='.trim($row['path'],'/').'">'.$row['title'].'@';
                     if($num) {
                             $w .= ' ('.$count.')';
                     }
@@ -297,10 +327,10 @@ function put_icon() {
         $writeStr = '';
 	if($log_data['renew'] == 0 && ($times - $log_data['stamp']) < 86400 * $cfg['new_time']) {
 		//新着マーク
-		$writeStr = '<img src="'.SMARTPHONE_IMG_PATH.'new.gif" alt="'.$cfg['name_new'].'\" title="'.$cfg['name_new'].'" align="absbottom"> ';
+		$writeStr = '<img src="'.$cfg['sp_img_path'].'new.gif" alt="'.$cfg['name_new'].'\" title="'.$cfg['name_new'].'" align="absbottom"> ';
 	} elseif(($times - $log_data["stamp"]) < 86400 * $cfg["new_time"]) {
 		//更新マーク
-		$writeStr = '<img src="'.SMARTPHONE_IMG_PATH.'renew.gif" alt="'.$cfg['name_renew'].'\" title="'.$cfg['name_renew'].'" align="absbottom"> ';
+		$writeStr = '<img src="'.$cfg['sp_img_path'].'renew.gif" alt="'.$cfg['name_renew'].'\" title="'.$cfg['name_renew'].'" align="absbottom"> ';
         }
 
         //m1マーク(デフォルト：おすすめ)
@@ -309,7 +339,7 @@ function put_icon() {
             if($mark[$z]) {
                 $zz=$z+1;
                 $n = 'name_m'.$zz;
-		$writeStr .= '<img src="'.SMARTPHONE_IMG_PATH.'m'.$zz.'.gif" alt="'.$cfg[$n].'" title="'.$cfg[$n].'" align="absbottom"> ';
+		$writeStr .= '<img src="'.$cfg['sp_img_path'].'m'.$zz.'.gif" alt="'.$cfg[$n].'" title="'.$cfg[$n].'" align="absbottom"> ';
             }
         }
         echo $writeStr;
@@ -348,7 +378,7 @@ function navi_bar($id) {
 		$path .= $tmp . '/';
 		$query = 'SELECT title FROM '.$db->db_pre.'category WHERE path=\''.$path.'\'';
 		$row = $db->single_assoc($query);
-		$navi .= '<a href="'.$cfg['script'].'?mode=dir&amp;path='.$path.'">'.$row['title'].'</a> &gt; ';
+		$navi .= '<a href="'.$cfg['sp_script'].'?mode=dir&amp;path='.$path.'">'.$row['title'].'</a> &gt; ';
 		$navi_h1str .= $row['title'].'-';
 	}
 	if($navi_h1str != '') {

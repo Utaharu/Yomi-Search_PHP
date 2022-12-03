@@ -267,14 +267,33 @@ switch($cfg['defo_hyouji']) {
                 <td class="table_in_rightcell"><input name="img_path_url" type="text" class="form" value="<?php echo $cfg['img_path_url']; ?>" size="40"></td>
               </tr>
               <tr>
-                <td colspan="2" class="table_in_leftcell"><strong>トップディレクトリのURL</strong><br>
+                <td colspan="0" rowspan="2" class="table_in_leftcell"><strong>トップディレクトリのURL</strong><br>
                   <br>
                   スクリプト(yomi.php等)を置いているディレクトリのURLです。[http://]からはじまるURLを設定してください。(例：http://localhost/yomi/)</td>
-                <td class="table_in_rightcell"><input name="cgi_path_url" type="text" class="form" value="<?php echo $cfg['cgi_path_url']; ?>" size="40">                </td>
-              </tr>
+                <td class="table_in_leftcell">PC</td>
+				<td class="table_in_rightcell">
+					<input name="cgi_path_url" type="text" class="form" value="<?php echo $cfg['cgi_path_url']; ?>" size="40">
+				</td>
+			  </tr>
+			  <tr>
+				<td class="table_in_leftcell">スマホ</td>
+				<td class="table_in_rightcell">
+					<input name="sp_path_url" type="text" class="form" value="<?php if(isset($cfg['sp_path_url'])){echo $cfg['sp_path_url'];} ?>" size="40">
+				</td>
+			  </tr>
               <tr>
-                <td colspan="2" class="table_in_leftcell"><strong>サーチエンジンの名称</strong></td>
-                <td class="table_in_rightcell"><input name="search_name" type="text" class="form" value="<?php echo stripcslashes($cfg['search_name']); ?>" size="20">                </td>
+                <td colspan="0" rowspan="2" class="table_in_leftcell"><strong>サーチエンジンの名称</strong></td>
+				<td class="table_in_leftcell">PC</td>
+				<td class="table_in_rightcell">
+					<input name="search_name" type="text" class="form" value="<?php echo stripcslashes($cfg['search_name']); ?>" size="20">
+				</td>
+              </tr>
+			  <tr>
+				<td class="table_in_leftcell">スマホ</td>
+				<td class="table_in_rightcell">
+					<input name="sp_search_name" type="text" class="form" value="<?php if(isset($cfg['sp_search_name'])){echo stripcslashes($cfg['sp_search_name']);} ?>" size="20">
+				</td>
+
               </tr>
               <tr>
                 <td colspan="2" class="table_in_leftcell"><strong>管理者名</strong></td>

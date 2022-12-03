@@ -81,14 +81,14 @@ if(isset($_GET['mode'])) {
 
 	// (2)キーワードランキング表示画面(keyrank)
 	} elseif($_GET['mode'] == 'keyrank'){
-		require $cfg['sub_path'] . 'keyrank.php';
+		require $cfg['sp_sub_path'] . 'keyrank.php';
 		exit;
 	// (3)アクセス(IN)ランキング表示画面(rev)
 	} elseif($_GET['mode'] == 'rev' or $_GET['mode'] == 'rev_bf' or $_GET['mode'] == 'rev_rui'){
 		if(!$cfg['rev_fl']) {
 			mes('アクセスランキングは実施しない設定になっています','エラー','java');
 		}
-		require $cfg['sub_path'] . 'rank.php';
+		require $cfg['sp_sub_path'] . 'rank.php';
 		exit;
 	}
 }
@@ -99,7 +99,7 @@ if(!$cfg['rank_fl']) {
 if(!isset($_GET['mode'])) {
 	$_GET['mode'] = 'rank_ys';
 }
-require $cfg['sub_path'] . 'rank.php';
+require $cfg['sp_sub_path'] . 'rank.php';
 exit;
 
 
