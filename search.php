@@ -14,8 +14,6 @@ mb_language('ja');
 
 // インクルード
 require 'class/db.php';
-require 'functions.php';
-require 'ads.php';
 
 // dbクラスをインスタンス化
 // コンストラクタでデータベースに接続
@@ -67,6 +65,9 @@ $rowset = $db->rowset_num($query);
 foreach($rowset as $tmp) {
 	$ganes[$tmp[0]] = $tmp[1];
 }
+
+require $cfg['sub_path'] . "functions.php";
+require $cfg['sub_path'] . 'ads.php';
 
 if(isset($_GET['word'])) {
 	$_GET['word'] = mb_convert_encoding($_GET['word'], 'UTF-8', 'auto');

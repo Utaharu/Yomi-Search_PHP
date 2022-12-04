@@ -11,9 +11,7 @@ if(!$debugmode) {
 mb_internal_encoding("UTF-8");
 mb_language("ja");
 
-// インクルード
 require("class/db.php");
-require("functions.php");
 
 // dbクラスをインスタンス化
 // コンストラクタでデータベースに接続
@@ -55,6 +53,7 @@ foreach($rowset as $tmp) {
 	$cfg_reg[$tmp[0]] = $tmp[1];
 }
 
+require $cfg['sub_path'] . "functions.php";
 
 // 登録申請中(仮登録状態)のログ件数を取得して
 // 管理室用のリストボックスを生成
@@ -63,7 +62,7 @@ $count_temp = $db->log_count($db_pre.'log_temp');
 // (1)ログイン画面(&login)
 // header("Content-type: text/html; charset=UTF-8");
 if(isset($_POST["mode"])) {
-	require 'admin_listbox.php';
+	require $cfg['sub_path'].'admin_listbox.php';
 
 if($_POST["mode"] == "kanri") {
 	// (2)管理人室(&kanri)

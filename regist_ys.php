@@ -15,10 +15,7 @@ if(!$debugmode) {
 mb_internal_encoding('UTF-8');
 mb_language('ja');
 
-// インクルード
 require './class/db.php';
-require './functions.php';
-require './functions_reg.php';
 
 // dbクラスをインスタンス化
 // コンストラクタでデータベースに接続
@@ -60,6 +57,8 @@ foreach($rowset as $tmp) {
 	$cfg_reg[$tmp[0]] = $tmp[1];
 }
 
+require $cfg['sub_path'] . 'functions.php';
+require $cfg['sub_path'] .'functions_reg.php';
 
 
 // 修正・削除のためのパスワード認証(enter)

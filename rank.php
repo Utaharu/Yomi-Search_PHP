@@ -11,10 +11,7 @@ if(!$debugmode) {
 mb_internal_encoding('UTF-8');
 mb_language('ja');
 
-// インクルード
 require 'class/db.php';
-require 'functions.php';
-require 'ads.php';
 
 // dbクラスをインスタンス化
 // コンストラクタでデータベースに接続
@@ -46,6 +43,9 @@ $rowset = $db->rowset_num($query);
 foreach($rowset as $tmp) {
 	$text[$tmp[0]] = $tmp[1];
 }
+
+require $cfg['sub_path'] . "functions.php";
+require $cfg['sub_path'] . 'ads.php';
 
 // #-- 目次 --#
 // (1)リンクジャンプ処理(link)

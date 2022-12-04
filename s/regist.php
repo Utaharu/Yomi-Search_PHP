@@ -3,8 +3,6 @@
 // Yomi-Search(PHP) modified データ登録用プログラム
 // smartphone
 /*--------------------------------------------------------------------------*/
-
-require '../functions_reg.php';
 require 'initial.php';
 // 終了
 exit;

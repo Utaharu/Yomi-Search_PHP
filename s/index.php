@@ -25,7 +25,7 @@ if($cfg['count']) {
 <meta http-equiv="content-script-type" content="text/javascript">
 <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
 
-<link rel="stylesheet" href="<?php echo $cfg['sp_path_url']; ?>jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="<?php echo $cfg['sp_path_url']; ?>js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
 <script src="<?php echo $cfg['sp_path_url']; ?>js/jquery-2.2.4.min.js"></script>
 <script src="<?php echo $cfg['sp_path_url']; ?>js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <style>

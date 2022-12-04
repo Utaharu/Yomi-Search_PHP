@@ -2,8 +2,7 @@
 /**
  * 一般の共通設定
  */
-$EST = array('ver' => 'Yomi-Search(PHP)modified ver1.5.8.n2',
-
+$EST = array(
              'search_name'  => '', // サーチエンジンの名称
 	         'admin_name'   => '',                   // 管理人の名前
 	         'admin_email'  => '',                         // 管理人のE-Mail

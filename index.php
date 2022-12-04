@@ -46,10 +46,7 @@ if(!$debugmode) {
 mb_internal_encoding('UTF-8');
 mb_language('ja');
 
-// インクルード
 require 'class/db.php';
-require 'functions.php';
-require 'ads.php';
 
 // dbクラスをインスタンス化
 // コンストラクタでデータベースに接続
@@ -91,6 +88,9 @@ $rowset = $db->rowset_num($query);
 foreach($rowset as $tmp) {
 	$cfg_reg[$tmp[0]] = $tmp[1];
 }
+
+require $cfg['sub_path'] . "functions.php";
+require $cfg['sub_path'] . 'ads.php';
 
 // ページ設定
 if(isset($_GET['page']) && is_numeric($_GET['page'])) {

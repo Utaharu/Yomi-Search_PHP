@@ -67,8 +67,6 @@ foreach($rowset as $tmp) {
 	$cfg_reg[$tmp[0]] = $tmp[1];
 }
 
-require 'cfg_smartphone.php';
-
 if(!isset($cfg['sp_path_url']) or !$cfg['sp_path_url']){$cfg['sp_path_url'] = "./";}
 if(!isset($cfg['sp_search_name']) or !$cfg['sp_search_name']){$cfg['sp_search_name'] = $cfg['search_name'];}
 if(!isset($cfg['sp_script']) or !$cfg['sp_script']){$cfg['sp_script'] = $cfg['sp_path_url'];}
@@ -152,6 +150,7 @@ if(isset($_REQUEST['mode'])) {
     
     //メンテ
     if($_REQUEST['mode'] == 'mente' || $_REQUEST['mode'] == 'act_mente') {
+		require $cfg['sp_sub_path'] . 'functions_reg.php';
         require $cfg['sp_sub_path'] . 'act_mente.php';
         exit;
     }
@@ -159,6 +158,7 @@ if(isset($_REQUEST['mode'])) {
 
 //新規サイト登録
 if(((!isset($_REQUEST['mode']) or $_REQUEST['mode'] == '') && strpos($_SERVER['PHP_SELF'], 'regist'))|| (isset($_REQUEST['mode']) and $_REQUEST['mode']=='form')){
+	require $cfg['sp_sub_path'].'functions_reg.php';
     require $cfg['sp_sub_path'].'regist_new.php';
     exit();
 }
