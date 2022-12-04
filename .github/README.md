@@ -12,7 +12,12 @@
 <br/>
 
 > ## やっていくこと。
- 各種修正や、php8対応など
+* Yomi-Search PHP Ver:9.0
+ - 各種処理コードの関数化な、調整など。
+
+* Yomi-Search PHP Ver:8.0β 
+  - nkbt-n2版からの各種修正や、php8対応など。
+
 
 >> ### 要検討
 * smartphoneページ
