@@ -126,7 +126,7 @@ if(!isset($title)) {
 			foreach($kt as $tmp) {
 				$query = "SELECT title FROM {$db->db_pre}category WHERE path='{$tmp}' LIMIT 1";
 				$row = $db->single_assoc($query) or $db->error("Query failed $query".__FILE__.__LINE__);
-				if($row["title"]) {
+				if(isset($row["title"]) and $row["title"]) {
 					?>[<a href="<?php echo $cfg['script']; ?>?mode=dir&amp;path=<?php echo $tmp; ?>">
                                         <?php
 //					print $row['title'];		//カテゴリ名を短縮カテゴリ名で表示

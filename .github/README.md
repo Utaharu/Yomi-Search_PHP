@@ -34,7 +34,7 @@
 - - [x] 新規設置(setup)
 - - [x] 既存設置からipカラムを拡張用(管理者ページ->環境設定)
 
-- [ ] [登録カテゴリー・セレクトボックスのmultiple化](https://github.com/Utaharu/Yomi-Search_PHP/issues/3)
+- [ ] [登録カテゴリー・セレクトボックスのmultiple化(nkbt-37@1811202326)](https://github.com/Utaharu/Yomi-Search_PHP/issues/3)
 - - [x] pc
 - - [x] smartphone (/s/)
 - - [ ] mobile (/m/)
@@ -44,8 +44,10 @@
 - - [x] pc
 - - [x] smartphone (/s/)
 - - [x] mobile (/m/)
-- [x] キーワードの表示/非表示設定が反映されない
-- [x] 登録データのバックアップ・復元のバックアップデータの作成が行われない。
+
+- [x] [キーワードの表示/非表示設定が反映されない(nkbt-27@1702152209)](https://github.com/Utaharu/Yomi-Search_PHP/issues/4)
+
+- [x] [登録データのバックアップ・復元のバックアップデータの作成が行われない。(nkbt-31_2@1704100057)](https://github.com/Utaharu/Yomi-Search_PHP/issues/6)
 - [x] キーワードランキングの集計対象外のキーワードを一括登録が機能してない。
 
 <br/>
