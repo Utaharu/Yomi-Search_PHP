@@ -30,9 +30,9 @@
 
 >> ### [拡張修正](https://github.com/Utaharu/Yomi-Search_PHP/issues?q=label%3A%E6%8B%A1%E5%BC%B5+)
 - [ ] [PHP8対応](https://github.com/Utaharu/Yomi-Search_PHP/issues/5)
-- - [ ] pc (/)
-- - [ ] smartphone (/s/)
-- - [ ] mobile (/m/)
+- - [ ] pc (/) △
+- - [ ] smartphone (/s/)　△
+- - [ ] mobile (/m/) x
 
 - [x] [DBにおける、IPV6対応](https://github.com/Utaharu/Yomi-Search_PHP/issues/1)
 - - [x] 新規設置(setup)
@@ -58,7 +58,8 @@
 
 > ## [更新履歴](History.md)
 -2022/12/09-
-*ファイルの整理・nullエラーの修正。
+* ファイルの整理(config4debug.php)
+* nullエラーの修正。(s/rank.html)
 
 -2022/12/04-
 * ファイルの整理・位置の変更。
