@@ -25,7 +25,10 @@
 
 
 > ## 修正
->> ### 拡張修正(https://github.com/Utaharu/Yomi-Search_PHP/issues?q=label%3A%E6%8B%A1%E5%BC%B5+)
+
+<br/>
+
+>> ### [拡張修正](https://github.com/Utaharu/Yomi-Search_PHP/issues?q=label%3A%E6%8B%A1%E5%BC%B5+)
 - [ ] [PHP8対応](https://github.com/Utaharu/Yomi-Search_PHP/issues/5)
 - - [ ] pc (/)
 - - [ ] smartphone (/s/)
@@ -40,7 +43,7 @@
 - - [x] smartphone (/s/)
 - - [ ] mobile (/m/)
 
->> ### バグ修正(https://github.com/Utaharu/Yomi-Search_PHP/issues?q=label%3A%E3%83%90%E3%82%B0)
+>> ### [バグ修正](https://github.com/Utaharu/Yomi-Search_PHP/issues?q=label%3A%E3%83%90%E3%82%B0)
 - [x] [rank.php、XSSオープンリダイレクトの脆弱性](https://github.com/Utaharu/Yomi-Search_PHP/issues/2)
 - - [x] pc
 - - [x] smartphone (/s/)
