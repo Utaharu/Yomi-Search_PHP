@@ -12,7 +12,7 @@ if( strpos($strHostName, 'docomo.ne.jp') !== false || strpos($_SERVER['HTTP_USER
     header('Content-Type: text/html; charset=UTF-8');
 }
 // エラーレポート設定
-require '../config4debug.php';
+require '../php/config4debug.php';
 
 if(!$debugmode) {
     error_reporting(E_ALL ^ E_NOTICE);

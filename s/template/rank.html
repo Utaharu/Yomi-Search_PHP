@@ -102,7 +102,7 @@ if($log_count) {
                 foreach($kt as $tmp) {
                         $query = "SELECT title FROM {$db->db_pre}category WHERE path='{$tmp}' LIMIT 1";
                         $row = $db->single_assoc($query) or $db->error("Query failed $query".__FILE__.__LINE__);
-                        if($row['title']) {
+                        if(isset($row['title']) and $row['title']) {
                          ?>[<a href="<?php echo $cfg['sp_script']; ?>?mode=dir&amp;path=<?php echo $tmp; ?>">
                          <?php
                               print mb_convert_kana($row['title'], 'ka', 'UTF-8');		//カテゴリ名を短縮カテゴリ名で表示

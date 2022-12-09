@@ -19,12 +19,13 @@
   - nkbt-n2版からの各種修正や、php8対応など。
 
 
->> ### 要検討
+> ### 要検討
 * smartphoneページ
 * mobileページ
 
 
->> #### 拡張
+> ## 修正
+>> ### 拡張修正(https://github.com/Utaharu/Yomi-Search_PHP/issues?q=label%3A%E6%8B%A1%E5%BC%B5+)
 - [ ] [PHP8対応](https://github.com/Utaharu/Yomi-Search_PHP/issues/5)
 - - [ ] pc (/)
 - - [ ] smartphone (/s/)
@@ -39,7 +40,7 @@
 - - [x] smartphone (/s/)
 - - [ ] mobile (/m/)
 
->> #### 修正
+>> ### バグ修正(https://github.com/Utaharu/Yomi-Search_PHP/issues?q=label%3A%E3%83%90%E3%82%B0)
 - [x] [rank.php、XSSオープンリダイレクトの脆弱性](https://github.com/Utaharu/Yomi-Search_PHP/issues/2)
 - - [x] pc
 - - [x] smartphone (/s/)
@@ -53,6 +54,9 @@
 <br/>
 
 > ## [更新履歴](History.md)
+-2022/12/09-
+*ファイルの整理・nullエラーの修正。
+
 -2022/12/04-
 * ファイルの整理・位置の変更。
 * 呼び出しコードの修正など
@@ -68,14 +72,3 @@
 
 -2022/11/28-
 * スマホ向けページの変数の変更。
-
--2022/11/27-
-* スマホ版の環境設定を管理画面に追加。
-* array_mapのエラーを修正。
-
--2022/11/25-
-* 「登録するカテゴリのセレクトボックスをmultiple化」の再修正。([nkbt-37@1811202326](https://github.com/Utaharu/Yomi-Search_PHP/issues/3)) <br/>
-　multiple設定の場合、スマホ向けページにて、表示機構などで上手く動作しなかった為、修正。<br/><br/>
-  - jquery.mobile-1.0a2をjquery.mobile-1.4.5に更新。
-  - jquery-1.4.4.minをjquery-2.2.4.minに更新。
-  - スクリプトのエラーや処理の修正。

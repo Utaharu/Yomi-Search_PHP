@@ -1,6 +1,6 @@
 <?php
 // エラーレポート設定
-require_once '../config4debug.php';
+require_once '../php/config4debug.php';
 require_once './cfg.php';
 
 if(!$debugmode) {

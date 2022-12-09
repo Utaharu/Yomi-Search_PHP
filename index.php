@@ -35,7 +35,7 @@ if($mobile_flg > 0) {
 }
 
 // エラーレポート設定
-require 'config4debug.php';
+require 'php/config4debug.php';
 if(!$debugmode) {
 	error_reporting(E_ALL ^ E_NOTICE);
 } else {
