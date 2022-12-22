@@ -781,12 +781,12 @@ EOD;
 
 // メニューバーの設定
 $menu_bar = <<<EOD
-<a href="{$EST["cgi_path_url"]}{$EST["script"]}?mode=new">新着サイト</a> -
-<a href="{$EST["cgi_path_url"]}{$EST["script"]}?mode=renew">更新サイト</a> -
-<a href="{$EST["cgi_path_url"]}{$EST["rank"]}">人気ランキング</a> -
-<a href="{$EST["cgi_path_url"]}{$EST["rank"]}?mode=keyrank">キーワードランキング</a> -
-<a href="{$EST["cgi_path_url"]}{$EST["script"]}?mode=m1">おすすめサイト</a> -
-<a href="{$EST["cgi_path_url"]}{$EST["script"]}?mode=m2">相互リンクサイト</a> -
-<a href="{$EST["cgi_path_url"]}{$EST["script"]}?mode=mylink">マイリンク</a>
+<a href="$index?mode=new">新着サイト</a> -
+<a href="$index?mode=renew">更新サイト</a> -
+<a href="$rank">人気ランキング</a> -
+<a href="$rank?mode=keyrank">キーワードランキング</a> -
+<a href="$index?mode=m1">おすすめサイト</a> -
+<a href="$index?mode=m2">相互リンクサイト</a> -
+<a href="$index?mode=mylink">マイリンク</a>
 EOD;
 ?>

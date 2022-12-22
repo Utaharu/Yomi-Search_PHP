@@ -69,6 +69,9 @@ foreach($rowset as $tmp) {
 require $cfg['sub_path'] . "functions.php";
 require $cfg['sub_path'] . 'ads.php';
 
+//[html環境設定->menu_bar]と、[環境設定->スクリプト名]でのpath。置換処理。
+Menu_Bar();
+
 if(isset($_GET['word'])) {
 	$_GET['word'] = mb_convert_encoding($_GET['word'], 'UTF-8', 'auto');
 	$_GET['word'] = htmlspecialchars($_GET['word']);

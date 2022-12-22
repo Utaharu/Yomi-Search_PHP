@@ -92,6 +92,9 @@ foreach($rowset as $tmp) {
 require $cfg['sub_path'] . "functions.php";
 require $cfg['sub_path'] . 'ads.php';
 
+//[html環境設定->menu_bar]と、[環境設定->スクリプト名]でのpath。置換処理。
+Menu_Bar();
+
 // ページ設定
 if(isset($_GET['page']) && is_numeric($_GET['page'])) {
  	if($_GET['page'] < 1 or $_GET['page'] > 1000) {

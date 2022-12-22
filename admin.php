@@ -55,6 +55,12 @@ foreach($rowset as $tmp) {
 
 require $cfg['sub_path'] . "functions.php";
 
+$PR_menu_bar = "";
+if(isset($text['menu_bar'])){$PR_menu_bar = $text['menu_bar'];}
+
+//[html環境設定->menu_bar]と、[環境設定->スクリプト名]でのpath。置換処理。
+Menu_Bar();
+
 // 登録申請中(仮登録状態)のログ件数を取得して
 // 管理室用のリストボックスを生成
 $count_temp = $db->log_count($db_pre.'log_temp');
@@ -972,7 +978,7 @@ if($_POST["mode"] == "kanri") {
 	pass_check();
 	$PR_search_form = rtrim($text["search_form"]);
 	$PR_search_form = str_replace(array("<",">"), array("&lt;","&gt;"), $PR_search_form);
-	$PR_menu_bar = rtrim($text["menu_bar"]);
+	$PR_menu_bar = rtrim($PR_menu_bar);
 	$PR_menu_bar = str_replace(array("<",">"), array("&lt;","&gt;"), $PR_menu_bar);
 	$PR_head_sp = rtrim($text["head_sp"]);
 	$PR_head_sp = str_replace(array("<",">"), array("&lt;","&gt;"), $PR_head_sp);

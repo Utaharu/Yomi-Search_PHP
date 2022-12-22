@@ -60,6 +60,8 @@ foreach($rowset as $tmp) {
 require $cfg['sub_path'] . 'functions.php';
 require $cfg['sub_path'] .'functions_reg.php';
 
+//[html環境設定->menu_bar]と、[環境設定->スクリプト名]でのpath。置換処理。
+Menu_Bar();
 
 // 修正・削除のためのパスワード認証(enter)
 if(isset($_REQUEST['mode'])) {

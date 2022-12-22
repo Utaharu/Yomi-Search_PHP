@@ -47,6 +47,10 @@ foreach($rowset as $tmp) {
 require $cfg['sub_path'] . "functions.php";
 require $cfg['sub_path'] . 'ads.php';
 
+//[html環境設定->menu_bar]と、[環境設定->スクリプト名]でのpath。置換処理。
+Menu_Bar();
+
+
 // #-- 目次 --#
 // (1)リンクジャンプ処理(link)
 // (1.1)アクセスジャンプ処理(r_link)

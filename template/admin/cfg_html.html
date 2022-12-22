@@ -62,10 +62,29 @@
                 </tr>
               <!-- メニューバーの設定 -->
               <tr>
-                <td width="220" class="table_in_leftcell"><strong>メニューバーの設定</strong><br>
-                  <br>
-                  各画面の一番上に出てくるメニューです。</td>
-                <td class="table_in_rightcell"><textarea name="menu_bar" cols="90" rows="6" class="form"><?php echo $PR_menu_bar; ?></textarea></td>
+                <td width="220" class="table_in_leftcell">
+					<div><strong>メニューバーの設定</strong></div>
+					<div>各画面の一番上に出てくるメニューです。</div>
+					<p>- 下記の変数/記述は置換されます - </p>
+					<div style="padding-left:5px;">*ページ出力時、置換されます。</div>
+					<ul style="margin:0 0 0 25px; padding:0;">
+						<li style="margin:0 0 5px 0px;">
+							<span style="font-weight:bold;">$index</span> , <span style="font-weight:bold;">yomi.php</span>
+							<div style="padding-left:10px;">= index用ファイルのリンク</div>
+						</li>
+						<li style="margin:0 0 5px 0px;">
+							<span style="font-weight:bold;">$ranking</span> , <span style="font-weight:bold;">rank.php</span>
+							<div style="padding-left:10px;">= ランキング用ファイルのリンク</div>
+						</li>
+						<li style="margin:0 0 5px 0px;">
+							<span style="font-weight:bold;">$search</span> , <span style="font-weight:bold;">search.php</span>
+							<div style="padding-left:10px;">= 検索用のファイルのリンク</div>
+						</li>
+					</ul>
+				  </td>
+                <td class="table_in_rightcell">
+					<textarea name="menu_bar" cols="90" rows="10" class="form"><?php echo $PR_menu_bar; ?></textarea>
+				</td>
               </tr>
               <!-- メニューバーの設定 -->
               <tr>

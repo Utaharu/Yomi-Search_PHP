@@ -1,4 +1,22 @@
 <?php
+
+function Menu_Bar(){
+	global $text,$cfg;
+	if(isset($text['menu_bar'])){		
+		$pm = array('yomi.php','rank.php','search.php','$index','$ranking','$search');
+		$rm = array(
+					$cfg['cgi_path_url'] . $cfg['script'],
+					$cfg['cgi_path_url'] . $cfg['rank'],
+					$cfg['cgi_path_url'] . $cfg['search'],
+					$cfg['cgi_path_url'] . $cfg['script'],
+					$cfg['cgi_path_url'] . $cfg['rank'],
+					$cfg['cgi_path_url'] . $cfg['search']
+				);
+				
+		$text['menu_bar'] = str_replace($pm,$rm,$text['menu_bar']);
+	}
+}
+
 //著作権表示(削除・変更をしないでください。ただし、中寄せ・左寄せは可)
 function cr(){
 	global $cfg;
@@ -26,7 +44,13 @@ $version = array(
 
 	foreach($version as $line){
 		if($line){
-			print "		<li><a href=\"" . $line[0] . "\" target=\"_blank\" title=\"" . $line[1] . "\">" . $line[1] . "</a></li>\n";
+			print "		<li>\n";
+			if(preg_match("/^https?:\/\/.+/",$line[0])){
+				print "		<a href=\"" . $line[0] . "\" target=\"_blank\" title=\"" . $line[1] . "\">" . $line[1] . "</a>\n";
+			}else{
+				print "		{$line[1]}\n";
+			}
+			print "		</li>\n";
 		}
 	}
 	print	"	</ul>\n";

@@ -189,11 +189,11 @@ switch($cfg['defo_hyouji']) {
               <tr>
                 <td colspan="2" class="table_in_leftcell"><strong>サーチエンジントップのURL</strong><br>
                   <br>
-                  [http://]から始まるアドレス(yomi.phpまでのURL)を指定します。</td>
+                  [http://]から始まるアドレス(yomi-searchのindexファイルまでのURL)を指定します。</td>
                 <td class="table_in_rightcell"><input name="home" type="text" class="form" value="<?php echo $cfg['home']; ?>" size="50">                </td>
               </tr>
               <tr>
-                <td colspan="2" class="table_in_leftcell"><strong>yomi.phpのファイル名</strong></td>
+                <td colspan="2" class="table_in_leftcell"><strong>yomi-searchのindexファイル名</strong></td>
                 <td class="table_in_rightcell"><input name="script" type="text" class="form" value="<?php echo $cfg['script']; ?>">                </td>
               </tr>
               <tr>
@@ -269,7 +269,7 @@ switch($cfg['defo_hyouji']) {
               <tr>
                 <td colspan="0" rowspan="2" class="table_in_leftcell"><strong>トップディレクトリのURL</strong><br>
                   <br>
-                  スクリプト(yomi.php等)を置いているディレクトリのURLです。[http://]からはじまるURLを設定してください。(例：http://localhost/yomi/)</td>
+                  yomi-searchスクリプト(index.php等)を置いているディレクトリのURLです。[http://]からはじまるURLを設定してください。(例：http://localhost/yomi/)</td>
                 <td class="table_in_leftcell">PC</td>
 				<td class="table_in_rightcell">
 					<input name="cgi_path_url" type="text" class="form" value="<?php echo $cfg['cgi_path_url']; ?>" size="40">
