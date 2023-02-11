@@ -52,9 +52,6 @@ require 'class/db.php';
 // コンストラクタでデータベースに接続
 $db = new db();
 
-// [SQL-SET-NAMES]設定
-$db->sql_setnames();
-
 //local変数に
 $db_pre = $db->db_pre;
 

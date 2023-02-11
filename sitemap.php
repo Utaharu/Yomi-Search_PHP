@@ -21,9 +21,6 @@ $db = new db();
 //local変数に
 $db_pre = $db->db_pre;
 
-// [SQL-SET-NAMES]設定
-$db->sql_setnames();
-
 // cfgテーブルから設定情報を配列($cfg)へ読込
 $query = 'SELECT name, value FROM '.$db_pre.'cfg';
 $rowset = $db->rowset_num($query);
