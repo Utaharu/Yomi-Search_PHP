@@ -5,13 +5,15 @@
 **/
 class db {
 
-    // <データベース設定> utf8_general_ciで作成
+    // <データベース設定> utf8mb4_general_ciで作成
     var $db_host = 'localhost';  // MySQLのホスト名
     var $db_user = 'root';       // MySQLのログインに使用するユーザ名
     var $db_pass = '';           // MySQLのログインに使用するパスワード
     var $db_name = 'yomiyomi';   // MySQLのデータベース名
     var $db_pre  = 'zzz_';       // テーブルの先頭に付加するプレフィックス
-	var $db_charaset = 'utf8mb4';　//mysqli_set_charset
+	
+	/* 文字コードの指定(mysqli_set_charset) */
+	var $db_charaset = 'utf8mb4';
     // </データベース設定>
 
     var $db_link;
