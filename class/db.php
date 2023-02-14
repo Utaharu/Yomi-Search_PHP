@@ -1,6 +1,5 @@
 <?php
 /**
-2023/02/11/ add- mysqli_set_charset($this->db_link, "utf8mb4");
  * 20160902 mysql to mysqli use !
 **/
 class db {
@@ -11,7 +10,6 @@ class db {
     var $db_pass = '';           // MySQLのログインに使用するパスワード
     var $db_name = 'yomiyomi';   // MySQLのデータベース名
     var $db_pre  = 'zzz_';       // テーブルの先頭に付加するプレフィックス
-	var $db_charaset = 'utf8mb4';　//mysqli_set_charset
     // </データベース設定>
 
     var $db_link;
@@ -30,7 +28,6 @@ class db {
      */
     function db() {
         $this->db_link = mysqli_connect($this->db_host, $this->db_user, $this->db_pass);
-		mysqli_set_charset($this->db_link, $this->db_charaset);
         mysqli_select_db($this->db_link, $this->db_name);
         return TRUE;
     }
@@ -165,7 +162,7 @@ class db {
 			stamp INT UNSIGNED,
 			banner VARCHAR(100),
 			renew TINYINT UNSIGNED,
-			ip VARCHAR(40),
+			ip VARCHAR(15),
 			keywd VARCHAR(255) BINARY
 			)";
 			$result = self::query($query);
@@ -191,6 +188,24 @@ class db {
 //		}
 		return $tb_names;
 	}
+
+
+    /**
+	 *
+	 * sql_setnames
+	 * MySQLサーバのバージョンが4.1以上の場合に[SET-NAMES]句を発行する
+	 *
+     * 引数:なし
+     * 戻値:なし
+     *
+     */
+    function sql_setnames()
+    {
+        if (mysqli_get_server_info($this->db_link) >= '4.1') {
+            if(!$this->query('SET NAMES \'utf8\'')) die('error around sql-set-names.');
+        }
+        return TRUE;
+    }
 
     function close()
     {
