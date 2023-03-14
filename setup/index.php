@@ -3,12 +3,6 @@
 require_once '../php/config4debug.php';
 require_once './cfg.php';
 
-if(!$debugmode) {
-	error_reporting(E_ALL ^ E_NOTICE);
-} else {
-	error_reporting(E_ALL);
-}
-
 // 言語設定
 mb_internal_encoding('UTF-8');
 mb_language('ja');

@@ -104,6 +104,18 @@ if($_GET['mode'] != 'rev_rui' and $_GET['mode'] != 'rank_rui') {
 	}
 }
 
+//Get IN,OUT Rank(Request By.Dan 2023/02/19)
+if(is_array($log_lines) and $log_count > 0){
+	foreach($log_lines as $log_key=>$log_val){
+		if($log_val){
+			$query = 'SELECT rank,rev FROM '.$db->db_pre.'rank_counter WHERE id=\''.$log_val['id'].'\'';
+			$r_count = $db->single_assoc($query);
+			$log_lines[$log_key]['in_count'] = $r_count['rev'];//IN
+			$log_lines[$log_key]['out_count'] = $r_count['rank'];//OUT
+		}
+	}
+}
+
 $cut = $time - $cfg['rank_kikan'] * 172800;
 $query = 'DELETE FROM '.$db->db_pre.'rank WHERE time<'.$cut;
 $db->query($query);

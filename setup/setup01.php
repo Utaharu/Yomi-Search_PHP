@@ -9,9 +9,6 @@ require_once 'cfg.php';
 // コンストラクタでデータベースに接続
 $db = new db();
 
-// [SQL-SET-NAMES]設定
-$db->sql_setnames();
-
 // データベース内のテーブルリスト取得
 $table = $db->list_tables();
 foreach ($table as $name) {

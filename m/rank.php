@@ -1,11 +1,6 @@
 <?php
 // エラーレポート設定
 require 'mobile_initial.php';
-if(!$debugmode) {
-	error_reporting(E_ALL ^ E_NOTICE);
-} else {
-	error_reporting(E_ALL);
-}
 
 // 言語設定
 mb_internal_encoding('UTF-8');
@@ -19,10 +14,6 @@ mb_language('ja');
 // dbクラスをインスタンス化
 // コンストラクタでデータベースに接続
 $db = new db();
-
-// [SQL-SET-NAMES]設定
-$db->sql_setnames();
-
 
 //local変数に
 $db_pre = $db->db_pre;
@@ -119,9 +110,8 @@ if(isset($_GET['mode'])) {
 			$_GET['id'] = preg_replace("/\D/", "", $_GET['id']);
 			if($_GET['id']){
 				$query = "SELECT COUNT(id) FROM {$db->db_pre}log WHERE id='{$_GET["id"]}'";
-				$result = $db->query($query);
-				if(mysql_result($result, 0) > 0) {
-					$time = time();
+				$site_id = $db->single_num($query);
+				if(isset($site_id[0])) {					$time = time();
 					$_GET['id'] = str_replace("\n", "", $_GET['id']);
 					$query = "SELECT id FROM {$db->db_pre}rev WHERE id='{$_GET["id"]}' AND ip='{$_SERVER["REMOTE_ADDR"]}' AND time > ".($time - $cfg['rank_time'] * 3600);
 					$tmp = $db->single_num($query);

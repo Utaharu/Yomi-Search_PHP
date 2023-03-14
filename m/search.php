@@ -2,12 +2,6 @@
 // エラーレポート設定
 require '../php/config4debug.php';
 
-if(!$debugmode) {
-	error_reporting(E_ALL ^ E_NOTICE);
-} else {
-	error_reporting(E_ALL);
-}
-
 // 言語設定
 mb_internal_encoding('UTF-8');
 mb_language('ja');
@@ -20,10 +14,6 @@ require 'ads.php';
 // dbクラスをインスタンス化
 // コンストラクタでデータベースに接続
 $db = new db();
-
-// [SQL-SET-NAMES]設定
-$db->sql_setnames();
-
 
 //local変数に
 $db_pre = $db->db_pre;

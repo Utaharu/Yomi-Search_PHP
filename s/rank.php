@@ -61,9 +61,8 @@ if(isset($_GET['mode'])) {
 			$_GET['id'] = preg_replace("/\D/", "", $_GET['id']);
 			if($_GET['id']){
 				$query = 'SELECT COUNT(id) FROM '.$db->db_pre.'log WHERE id=\''.$_GET['id'].'\'';
-				$result = $db->query($query);
-				if(mysql_result($result, 0) > 0) {
-					$time = time();
+				$site_id = $db->single_num($query);
+				if(isset($site_id[0])) {					$time = time();
 					$_GET['id'] = str_replace("\n", "", $_GET['id']);
 					$query = 'SELECT id FROM '.$db->db_pre.'rev WHERE id=\''.$_GET['id'].'\' AND ip=\''.$_SERVER['REMOTE_ADDR'].'\' AND time > '.($time - $cfg['rank_time'] * 3600);
 					$tmp = $db->single_num($query);

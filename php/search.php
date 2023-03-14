@@ -332,6 +332,13 @@ if($_GET['mode'] =='search') { // 検索結果表示画面
 	$start = $time - $cfg['rank_kikan'] * 86400;
 	$end = $time;
 	foreach($rowset as $log_data) {
+		
+		//Get IN,OUT Rank(Request By.Dan 2023/02/19)
+		$query = 'SELECT rank,rev FROM '.$db->db_pre.'rank_counter WHERE id=\''.$log_data['id'].'\'';
+		$r_count = $db->single_assoc($query);
+		$log_data['in_count'] = $r_count['rev'];//IN
+		$log_data['out_count'] = $r_count['rank'];//OUT		
+		
 		if($cookie_data[3]) { // adminモード
 			$query = 'SELECT COUNT(id) FROM '.$db->db_pre.'rank WHERE time BETWEEN '.$start.' AND '.$end.' AND id=\''.$log_data['id'].'\'';
 			$count = $db->single_num($query);

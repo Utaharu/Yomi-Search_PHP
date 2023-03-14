@@ -113,7 +113,13 @@ if (isset($_COOKIE['mylink4php'])) {
 	$rowset = array();
 	$rowset = $db->rowset_assoc_limit($query, $st_no, $cfg['hyouji']);
 	$log_lines = array(); // 表示データリスト
+
 	foreach ($rowset as $log_data) {
+		//Get IN,OUT Rank(Request By.Dan 2023/02/19)
+		$query = 'SELECT rank,rev FROM '.$db->db_pre.'rank_counter WHERE id=\''.$log_data['id'].'\'';
+		$r_count = $db->single_assoc($query);
+		$log_data['in_count'] = $r_count['rev'];//IN
+		$log_data['out_count'] = $r_count['rank'];//OUT
 		array_push($log_lines, $log_data);
 	}
 	

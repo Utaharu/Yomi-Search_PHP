@@ -1,11 +1,6 @@
 <?php
 // エラーレポート設定
 require 'php/config4debug.php';
-if(!$debugmode) {
-	error_reporting(E_ALL ^ E_NOTICE);
-} else {
-	error_reporting(E_ALL);
-}
 
 // 言語設定
 mb_internal_encoding("UTF-8");
@@ -16,9 +11,6 @@ require("class/db.php");
 // dbクラスをインスタンス化
 // コンストラクタでデータベースに接続
 $db = new db();
-
-// [SQL-SET-NAMES]設定
-$db->sql_setnames();
 
 //local変数に
 $db_pre = $db->db_pre;
@@ -611,12 +603,9 @@ if($_POST["mode"] == "kanri") {
 
 		header("Content-type: application/octet-stream");
 		header("Content-Disposition: attachment; filename=".basename($_POST['file']));
-	
-		$fp = fopen($_POST["file"], "r");
-		while($line = $db->fetch_num($result)) {
-			echo implode("\t", $line)."\n";
-		}
-		fclose($fp);
+		
+		$dump_data = file_get_contents($_POST['file']);
+		echo $dump_data;
 
 //		mes("データのバックアップが完了しました", "バックアップ完了", "kanri");
 	} elseif($_POST["act"] == "restore") {
@@ -677,8 +666,9 @@ if($_POST["mode"] == "kanri") {
 		$report[$key]["count"] = $count;
 		$query = "SELECT ip,name,email,comment FROM {$db->db_pre}report WHERE id={$id["id"]}";
 		$rowset = $db->rowset_assoc($query);
-		foreach($rowset as $row) {
-			$report[$key]["comment"] .= "{$row["name"]} / {$row["email"]}\nIP:{$row["ip"]}:\n{$row["comment"]}\n+--------+\n";
+		if(!isset($report[$key]["comment"])){$report[$key]["comment"] = "";}				
+		foreach($rowset as $row) {		
+			$report[$key]["comment"] .= "報告者:{$row["name"]}\nメールアドレス:{$row["email"]}\nIP:{$row["ip"]}:\n{$row["comment"]}\n+--------+\n";			
 		}
 		$query = "SELECT title,url,banner FROM {$db->db_pre}log WHERE id={$id["id"]}";
 		$res = $db->single_num($query);

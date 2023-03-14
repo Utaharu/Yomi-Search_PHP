@@ -65,6 +65,13 @@ if($_GET['mode'] == 'dir') { //各カテゴリの場合
 	$query = 'SELECT id, title,url,mark,last_time,passwd,message,comment,name,mail,category,stamp,banner,renew,ip,keywd  FROM '.$db->db_pre.'log WHERE category LIKE \'%&'.$_GET['path'].'%&%\' ORDER BY '.$order;
 	$rowset = $db->rowset_assoc_limit($query, $st_no, $cfg['hyouji']);
 	foreach ($rowset as $log_data) {
+
+		//Get IN,OUT Rank(Request By.Dan 2023/02/19)
+		$query = 'SELECT rank,rev FROM '.$db->db_pre.'rank_counter WHERE id=\''.$log_data['id'].'\'';
+		$r_count = $db->single_assoc($query);
+		$log_data['in_count'] = $r_count['rev'];//IN
+		$log_data['out_count'] = $r_count['rank'];//OUT
+		
 		if ($cookie_data[3]) { //adminモード
 			$query = 'SELECT count(id) FROM '.$db->db_pre.'rank WHERE time BETWEEN '.$start.' AND '.$end.' AND id=\''.$log_data['id'].'\'';
 			$count = $db->single_num($query);

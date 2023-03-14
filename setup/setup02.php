@@ -6,9 +6,6 @@ require_once '../class/db.php';
 // コンストラクタでデータベースに接続
 $db = new db();
 
-// [SQL-SET-NAMES]設定
-$db->sql_setnames();
-
 // cfgテーブルから設定情報を配列($cfg)へ読込
 $query = 'SELECT name, value FROM '.$db->db_pre.'cfg';
 $rowset = $db->rowset_num($query) or $db->error('Query failed '.$query.__FILE__.__LINE__);

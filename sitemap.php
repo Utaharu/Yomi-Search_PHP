@@ -1,11 +1,6 @@
 <?php
 // エラーレポート設定
 require 'php/config4debug.php';
-if(!$debugmode) {
-	error_reporting(E_ALL ^ E_NOTICE);
-} else {
-	error_reporting(E_ALL);
-}
 
 // 言語設定
 mb_internal_encoding('UTF-8');
@@ -20,9 +15,6 @@ $db = new db();
 
 //local変数に
 $db_pre = $db->db_pre;
-
-// [SQL-SET-NAMES]設定
-$db->sql_setnames();
 
 // cfgテーブルから設定情報を配列($cfg)へ読込
 $query = 'SELECT name, value FROM '.$db_pre.'cfg';
