@@ -1,5 +1,8 @@
 #　更新履歴
 
+## -2023/04/21-
+* ガラケー向けページの廃止。
+
 ## -2023/03/07- (beta_8.0.4)
 * Get IN,OUT Count(Request By.Dan 2023/02/19)
 　- php/category.php , php/search.php , php/rank.php , php/mylink.php

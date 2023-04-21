@@ -29,11 +29,6 @@ if ( strstr($strHostName, 'docomo.ne.jp') !== false) {
     $mobile_flg=2;
 }
 
-if($mobile_flg > 0) {
-    header('Location: ./m/index.php');
-    exit();
-}
-
 // エラーレポート設定
 require 'php/config4debug.php';
 

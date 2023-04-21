@@ -3,7 +3,7 @@
 <br/>
 
 > ## このプログラムのバージョン履歴について
-現在: Yomi-Search PHP Ver:8.0β (Yomi-Search(PHP)modified ver1.5.8.n3)<br/>
+5 : Yomi-Search PHP Ver:8.0β (Yomi-Search(PHP)modified ver1.5.8.n3)<br/>
 4 :　(PHP版: Ver.6 - 7) [Yomi-Search(PHP)modified ver1.5.8.n2_1.1](http://www.nkbt.net/yomi/) - nkbt版<br/>
 3　:　(PHP版: Ver.5 - 6) [Yomi-Search(PHP)modified ver1.5.8](http://yomiphp-mod.sweet82.com/) - Yomi-Search(PHP)modified版<br/>
 2　:　(PHP版: Ver.4 - 5) [Yomi-Search(PHP) Ver4.19.5](http://sql.s28.xrea.com/) - Yomi-Search(PHP)版<br/>
@@ -18,13 +18,9 @@
 * Yomi-Search PHP Ver:8.0β 
   - nkbt-n2版からの各種修正や、php8対応など。
 
-
 > ### 要検討
 * smartphoneページ
  - jquery-mobile系
- 
-* mobileページ
- - 廃止
 
 > ## 修正
 
@@ -34,7 +30,6 @@
 - [ ] [PHP8対応](https://github.com/Utaharu/Yomi-Search_PHP/issues/5)
 - - [ ] pc (/) △
 - - [ ] smartphone (/s/)　△
-- - [ ] mobile (/m/) x
 
 - [x] [DBにおける、IPV6対応](https://github.com/Utaharu/Yomi-Search_PHP/issues/1)
 - - [x] 新規設置(setup)
@@ -43,22 +38,22 @@
 - [ ] [登録カテゴリー・セレクトボックスのmultiple化(nkbt-37@1811202326)](https://github.com/Utaharu/Yomi-Search_PHP/issues/3)
 - - [x] pc
 - - [x] smartphone (/s/)
-- - [ ] mobile (/m/)
 
 >> ### [バグ修正](https://github.com/Utaharu/Yomi-Search_PHP/issues?q=label%3A%E3%83%90%E3%82%B0)
 - [x] [rank.php、XSSオープンリダイレクトの脆弱性](https://github.com/Utaharu/Yomi-Search_PHP/issues/2)
 - - [x] pc
 - - [x] smartphone (/s/)
-- - [x] mobile (/m/)
 
 - [x] [キーワードの表示/非表示設定が反映されない(nkbt-27@1702152209)](https://github.com/Utaharu/Yomi-Search_PHP/issues/4)
 
 - [x] [登録データのバックアップ・復元のバックアップデータの作成が行われない。(nkbt-31_2@1704100057)](https://github.com/Utaharu/Yomi-Search_PHP/issues/6)
 - [x] キーワードランキングの集計対象外のキーワードを一括登録が機能してない。
 
+>> ### [削除]
+- [x] ガラケー向けページの廃止・削除。
+
 <br/>
 
 > ## [更新履歴](History.md)
--2023/03/07-
-* Get IN,OUT Count(Request By.Dan 2023/02/19)
-　- php/category.php , php/search.php , php/rank.php , php/mylink.php
+ -2023/04/21-
+* ガラケー向けページの廃止・削除。
