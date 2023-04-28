@@ -13,28 +13,19 @@
 
 // Load Components
 //=================
-require_once '../class/db.php';
+require "../config.php";
+require $script['lib']['db']['main'];
 
 // dbクラスをインスタンス化
 // コンストラクタでデータベースに接続
 //====================================
-$db = new db();
+$db = new DB_Connecter($db_set['host'],$db_set['user'],$db_set['password'],$db_set['name'],$db_set['prefix'],$db_set['charset']);
 
-// cfgテーブルから設定情報を配列($cfg)へ読込
-//===========================================
-//local変数に
-$db_pre = $db->db_pre;
-
-// cfgテーブルから設定情報を配列($cfg)へ読込
+//Load Config
+require_once $script['lib']['db']['get_setting'];
+$Settings = new Get_Settings($db);
 $cfg = array();
-
-// cfgテーブルから設定情報を配列($cfg)へ読込
-$query = 'SELECT name, value FROM '.$db_pre.'cfg';
-$rowset = $db->rowset_num($query);
-foreach($rowset as $tmp) {
-	$cfg[$tmp[0]] = $tmp[1];
-}
-
+$cfg = $Settings->Common;
 
 // 新着・更新期間の日数からタイムスタンプを算出
 //==============================================
@@ -42,12 +33,12 @@ $ntime = time() - $cfg['new_time'] * 24 * 3600;
 
 // 新着サイト&更新サイト共通クエリ(SQL文)
 //========================================
-$sql_base = 'SELECT id, title, url, message, stamp FROM ' . $db_pre . 'log';
+$sql_base = 'SELECT id, title, url, message, stamp FROM {prefix}log';
 
 
 // 各モードへ分岐
 //================
-if (@$_GET['mode'] == 'new') {
+if (@$Form['mode'] == 'new') {
 
 	// 新着サイト
 	//============
@@ -55,7 +46,7 @@ if (@$_GET['mode'] == 'new') {
 	$sql = ' WHERE stamp > ' . $ntime . ' AND renew != 1 ORDER BY id DESC';
 	$description = '新しく登録されたサイトの一覧です。';
 
-} elseif(@$_GET['mode'] == 'update') {
+} elseif(@$Form['mode'] == 'update') {
 
 	// 更新サイト
 	//============
@@ -83,7 +74,7 @@ foreach ($rowset as $tmp) {
 
 // リンク要素の生成
 //==================
-$link = $cfg['cgi_path_url'] . 'rss/rss.php' . '?mode=' . htmlspecialchars($_GET['mode']);
+$link = $cfg['cgi_path_url'] . 'rss/rss.php' . '?mode=' . htmlspecialchars($Form['mode']);
 
 // RSSフィード生成
 //=================

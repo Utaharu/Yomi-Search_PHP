@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="<?php echo $system_set['charset']; ?>" />
+		<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $system_set['charset']; ?>" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<title>Yomi-Search PHP - 設定</title>
+		<link href="<?php echo $Setup_Config['template']['css']; ?>" rel="stylesheet" media="all" />
+	</head>
+	<body>
+		<div id="body">
+			<article>
+				<h1>Yomi-Search PHP - 設定</h1>
+				<section>
+					<h2>初期設定</h2>
+					<div class="description">
+						<ul>
+							<li>
+								ここでは最低限必要な設定のみを行います。
+							</li>
+							<li>
+								詳細な設定はインストール完了後に管理画面から行ってください。
+							</li>
+							<li>
+								ここで設定した内容は後から管理画面で変更することもできます。
+							</li>
+						</ul>
+					</div>
+					<div>
+						<form id="setting_form" method="post" action="<?php echo $Setup_Config['script']['index']; ?>">
+							<section class="input">
+								<h3>管理者パスワード</h3>
+								<div>
+									<ul>
+										<li>
+											3-8文字で入力してください。
+										</li>
+										<li>
+											半角英数と_が利用できます。
+										</lii>
+									</ul>
+								</div>
+								<div class="flexbox">
+									<div class="caption">
+										パスワード:
+									</div>
+									<div class="input_box">
+										<input name="pass1" type="password" />
+									</div>
+								</div>
+									<div class="flexbox">
+										<div class="caption">
+											再入力:
+										</div>
+										<div class="input_box">
+											<input name="pass2" type="password" />
+										</div>
+									</div>
+							</section>
+							<section class="input">
+								<h3>管理者名</h3>
+								<div>
+									<input name="admin_name" type="text" id="admin_name" value="<?php echo $cfg['admin_name']; ?>" />
+								</div>
+							</section>
+							<section class="input">
+								<h3>検索エンジンの名称</h3>
+								<div>
+									<input name="search_name" type="text" id="search_name" value="<?php echo $cfg['search_name']; ?>" size="40" />
+								</div>
+							</section>
+							<section class="input">
+								<h3>メールアドレス</h3>
+								<div>
+									<input name="admin_email" type="text" id="admin_email" size="40" value="<?php echo $cfg['admin_email']; ?>" />
+								</div>
+							</section>
+							<section class="input">
+								<h3>検索エンジンのURL</h3>
+								<div>
+									<ul>
+										<li>
+											Yomi-Searchのindex.phpまでのURL ( 例：http://localhost/yomi/index.php )
+										</li>
+									</ul>
+								</div>
+								<div>
+									<input name="home" type="text" id="home" value="<?php echo $cfg['home']; ?>" size="60" />
+								</div>
+							</section>
+							<section class="input">
+								<h3>ホームページのURL</h3>
+								<div>
+									<ul>
+										<li>
+											あなたが運営するホームページのURL ( 例：http://localhost/index.html )
+										</li>
+									</ul>
+								</div>
+								<div>
+									<input name="admin_hp" type="text" id="admin_hp" value="<?php if($cfg['admin_hp']){echo $cfg['admin_hp'];}else{echo $cfg['home'];} ?>" size="60" />
+								</div>
+							</section>
+							<section class="input">
+								<h3>トップディレクトリのURL</h3>
+								<div>
+									<ul>
+										<li>
+											Yomi-Searchのindex.phpを設置したディレクトリのURL ( 例：http://localhost/yomi/ )
+										</li>
+									</ul>
+								</div>
+								<div>
+									<input name="cgi_path_url" type="text" id="cgi_path_url" value="<?php echo $cfg['cgi_path_url']; ?>" size="60" />
+								</div>
+							</section>
+							<section class="input">
+								<h3>人気(OUT)ランキングを実施しますか？</h3>
+								<div>
+									<select name="rank_fl" id="rank_fl">
+										<option value="1" selected="selected">実施する</option>
+										<option value="0">実施しない</option>
+									</select>
+								</div>
+							</section>
+							<section class="input">
+								<h3>アクセス(IN)ランキングを実施しますか？</h3>
+								<div>
+									<select name="rev_fl" id="rev_fl">
+										<option value="1" selected="selected">実施する</option>
+										<option value="0">実施しない</option>
+									</select>
+								</div>
+							</section>
+							<section class="input">
+								<h3>アクセス(IN)ランキング用URLの転送先</h3>
+								<div>
+									<ul>
+										<li>
+											リンク用URLからのアクセス転送先。
+										</li>
+										<li>
+											検索エンジンのtopページや、ホームページのトップページのURLなどを設定。
+										</li>
+									</ul>
+								</div>
+								<div>
+									<input name="rev_url" type="text" id="rev_url" value="<?php if($cfg['admin_hp']){echo $cfg['admin_hp'];}else{echo $cfg['home'];} ?>" size="60" />
+								</div>
+							</section>
+							<section class="input">
+								<h3>マイリンク機能を使用にしますか？</h3>
+								<div>
+									<ul>
+										<li>
+											訪問者が検索エンジン内に自分専用のお気に入り(ブックマーク)を作成可能にする機能です。
+										</li>
+									</ul>
+								</div>
+								<div>
+									<select name="mylink_fl" id="mylink_fl">
+										<option value="1" selected="selected">使用する</option>
+										<option value="0">使用しない</option>
+									</select>
+								</div>
+							</section>
+						</form>
+					</div>
+				</section>
+			</article>
+			<div>
+				<button form="setting_form" type="submit" name="mode" value="finish">設定反映</button>
+			</div>
+		</div>
+		<div id="fotter">
+			Yomi-Search PHP
+		</div>
+	</body>
+</html>

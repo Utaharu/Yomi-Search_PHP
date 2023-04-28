@@ -1,9 +1,9 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $system_set['charset']; ?>" />
 <title>管理室 &gt;&gt; 登録待ち</title>
-<link href="css/admin.css" rel="stylesheet" type="text/css">
+<link href="<?php echo $css['pc']['admin']; ?>" rel="stylesheet" type="text/css">
 </head>
 <body bgcolor="#2F5376" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0">
 <a name="top"></a>
@@ -57,14 +57,14 @@
 	  <br>
 	  <div align="center">
       <form action="<?php echo $cfg['admin']; ?>" method="post">
-        <input type="hidden" name="pass" value="<?php echo $_POST['pass']; ?>">
+        <input type="hidden" name="pass" value="<?php echo $Form['pass']; ?>">
         <input type="hidden" name="mode" value="temp_to_regist">
-        <input type="hidden" name="pre_no" value="<?php echo $_POST['pre_no']; ?>">
+        <input type="hidden" name="pre_no" value="<?php echo $Form['pre_no']; ?>">
 <?php
-if($_POST['pre_no'] - $Ekreg >= 0) {
+if($Form['pre_no'] - $Ekreg >= 0) {
     echo "<input name=\"page\" type=\"submit\" class=\"form\" value=\"前のページ\">";
 }
-if($_POST['pre_no'] + $Ekreg <= $count_temp) {
+if($Form['pre_no'] + $Ekreg <= $count_temp) {
     echo "<input name=\"page\" type=\"submit\" class=\"form\" value=\"次のページ\">";
 }
 ?>
@@ -76,7 +76,7 @@ if($count_temp < 1) {
 	echo "<div align=\"center\">登録待ちのデータはありません</div>";
 } else {
 ?>
-	<input type="hidden" name="pass" value="<?php echo $_POST['pass']; ?>">
+	<input type="hidden" name="pass" value="<?php echo $Form['pass']; ?>">
 	<input type="hidden" name="mode" value="temp_to_regist_act">
 	<div align="center"><input type="submit" class="form" value="登録・削除の実行">&nbsp;&nbsp;<input type="reset" class="form" value="リセット"><br><br>
 <?php
@@ -85,7 +85,7 @@ if($count_temp < 1) {
 	$link_next = 2;
 	$i1 = 1;
 	foreach($rowset as $Slog) {
-		if($_POST["pre_no"] <= $i1 && $i1 < $_POST['pre_no'] + $Ekreg) {
+		if($Form["pre_no"] <= $i1 && $i1 < $Form['pre_no'] + $Ekreg) {
 			$kt = explode("&", $Slog[10]);
 			list($sougo_fl, $add_kt, $to_admin) = explode("<1>", $Slog[7]);
 			$Slog[6] = str_replace("<br>", "\n", $Slog[6]);
@@ -221,7 +221,7 @@ for ($i=1; $i <= $cfg_reg['kt_max']; $i++) {
 			$link_back=$linkn;
 			$linkn++;
 			$link_next++;
-		} elseif($i1 >= $_POST['pre_no'] + $Ekreg) {
+		} elseif($i1 >= $Form['pre_no'] + $Ekreg) {
 			break;
 		}
 		$i1++;

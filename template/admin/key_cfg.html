@@ -11,9 +11,9 @@ if($cfg["keyrank"]) {
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $system_set['charset']; ?>" />
 <title>管理室 &gt;&gt; キーワードランキングの設定</title>
-<link href="css/admin.css" rel="stylesheet" type="text/css">
+<link href="<?php echo $css['pc']['admin']; ?>" rel="stylesheet" type="text/css">
 </head>
 <body bgcolor="#2F5376" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0">
 <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
@@ -99,7 +99,7 @@ if($cfg["keyrank"]) {
                   <tr>
                     <td class="table_in_leftcell">&nbsp;</td>
                     <td class="table_in_rightcell"><input name="submit" type="submit" class="form" value="送信">
-                        <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                        <input name="pass" type="hidden" value="<?php echo $Form['pass']; ?>">
                         <input name="mode" type="hidden" value="cfg_make"></td>
                   </tr>
               </table></td>
@@ -124,7 +124,7 @@ if($cfg["keyrank"]) {
                   <tr>
                     <td class="table_in_leftcell">&nbsp;</td>
                     <td class="table_in_rightcell"><input name="submit2" type="submit" class="form" value="送信">
-                        <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                        <input name="pass" type="hidden" value="<?php echo $Form['pass']; ?>">
                     <input name="mode" type="hidden" value="key_cfg_del_word_act"></td>
                   </tr>
               </table></td>
@@ -147,7 +147,7 @@ if($cfg["keyrank"]) {
                   <tr>
                     <td class="table_in_leftcell">&nbsp;</td>
                     <td class="table_in_rightcell"><input name="submit23" type="submit" class="form" value="送信">
-                        <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                        <input name="pass" type="hidden" value="<?php echo $Form['pass']; ?>">
                     <input name="mode" type="hidden" value="key_del_act"></td>
                   </tr>
               </table></td>
@@ -199,7 +199,7 @@ foreach($rowset as $row) {
                 <td colspan="6" align="center" class="table_in_leftcell">
                   <input name="submit" type="submit" class="form" id="submit" value="変更反映">&nbsp;
                   <input name="submit" type="reset" class="form" id="submit" value="リセット">
-                  <input name="pass" type="hidden" value="<?php echo $_POST['pass']; ?>">
+                  <input name="pass" type="hidden" value="<?php echo $Form['pass']; ?>">
                   <input name="mode" type="hidden" value="key_cfg_act">                </td>
                 </tr>
           </table></td>
@@ -250,7 +250,7 @@ foreach($rowset as $row) {
                 <td colspan="6" align="center" class="table_in_leftcell"><input name="submit" type="submit" class="form" id="submit2" value="変更反映">
                   &nbsp;
                   <input name="submit" type="reset" class="form" id="submit" value="リセット">
-                  <input name="pass" type="hidden" id="pass" value="<?php echo $_POST['pass']; ?>">
+                  <input name="pass" type="hidden" id="pass" value="<?php echo $Form['pass']; ?>">
                   <input name="mode" type="hidden" id="mode" value="key_cfg_act">
                 </td>
               </tr>
@@ -291,7 +291,7 @@ foreach($rowset as $row) {
                 <td align="center" class="table_in_rightcell"><input name="submit" type="submit" class="form" value="変更反映">
                   &nbsp;
                   <input name="submit" type="reset" class="form" value="リセット">
-                  <input name="pass" type="hidden" id="pass" value="<?php echo $_POST['pass']; ?>">
+                  <input name="pass" type="hidden" id="pass" value="<?php echo $Form['pass']; ?>">
                   <input name="mode" type="hidden" id="mode" value="key_cfg_act"></td>
               </tr>
           </table></td>

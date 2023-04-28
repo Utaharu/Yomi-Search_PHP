@@ -12,9 +12,9 @@ if(isset($cfg["cfg_kanri"]) and $cfg["cfg_kanri"]) {
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $system_set['charset']; ?>" />
 <title>管理室 &gt;&gt; 管理者パスワード変更</title>
-<link href="css/admin.css" rel="stylesheet" type="text/css">
+<link href="<?php echo $css['pc']['admin']; ?>" rel="stylesheet" type="text/css">
 </head>
 <body bgcolor="#2F5376" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0">
 <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#2F5376">
@@ -87,7 +87,7 @@ if(isset($cfg["cfg_kanri"]) and $cfg["cfg_kanri"]) {
               <tr>
                 <td class="table_in_leftcell">&nbsp;</td>
                 <td class="table_in_rightcell"><input type="submit" class="form" value="送信">
-                  <input type="hidden" name="pass" value="<?php echo $_POST['pass']; ?>">
+                  <input type="hidden" name="pass" value="<?php echo $Form['pass']; ?>">
                   <input type="hidden" name="mode" value="new_pass"></td>
               </tr>
 			  </form>

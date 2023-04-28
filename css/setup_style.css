@@ -1,0 +1,115 @@
+body
+	{
+		max-width: 80%;
+		width: 100%;		
+		margin: 0 auto;
+		padding: 10px;
+	}
+article h1
+	{
+		padding-bottom: 5px;
+		border-bottom: 1px solid black;
+		margin: 0px;
+	}
+section
+	{
+
+		margin: 0px 10px;
+		padding: 10px 10px;
+		border-bottom: 1px dashed black;
+	}
+section h2
+	{
+		padding-bottom: 5px;
+		border-bottom: 3px dotted black;
+		margin: 0px;
+	}
+section .input li
+	{
+		line-height: 20px;
+	}
+section .input h3
+	{
+		padding: 5px 0px 5px 10px;
+		background-color: silver;
+		color: black;
+		font-weight: bold;
+		border: 2px dashed black;
+		border-left: 8px solid black;
+	}
+section .input
+	{
+		border-bottom: none;
+	}
+
+section .input input,
+section .input select
+	{
+		max-width: 80%;
+		min-width: 80%;
+		width: 100%;
+		margin: 5px 20px;
+	}
+	
+li h3
+	{
+		font-size: 17px;
+		font-weight: bold;
+		margin: 10px 0;
+	}
+form
+	{
+		padding: 0 10px;
+	}
+button
+	{
+		color: black;
+		background-color: #CCCCFF;
+		border-top-color: #666666;
+		border-right-color: #666666;
+		border-bottom-color: #666666;
+		border-left-color: #666666;
+		border-top-width: 1px;
+		border-right-width: 1px;
+		border-bottom-width: 1px;
+		border-left-width: 1px;
+		font-size: 16px;
+		font-weight: bold;
+		padding: 10px;
+		margin: 20px;
+		max-width: 95%;
+		width: 100%;
+	}
+.description
+	{
+		margin: 5px;
+	}
+.description li
+	{
+		margin: 10px 0;
+	}
+.flexbox
+	{
+		display: flex;
+		flex-direction: row;
+	}
+.flexbox .caption
+	{
+		text-align: right;
+		flex-basis: 100px;
+	}
+.flexbox .input_box
+	{
+		flex-grow: 2;
+		max-width:80%;
+		width:100%;
+		flex-basis:content;
+	}
+#fotter
+	{
+		margin-top: 20px;
+		padding-top:10px;
+		text-align: center;
+		font-weight: bold;
+		border-top:1px solid black;
+	}
