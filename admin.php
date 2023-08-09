@@ -658,23 +658,15 @@ if($_POST["mode"] == "kanri") {
 } elseif($_POST["mode"] == "dl_check") {
 	// (14)デッドリンクチェック画面(&dl_check)
 	pass_check();
-	$query = "SELECT id,count(*) total FROM {$db->db_pre}report GROUP BY id";
+	$query = "SELECT {$db->db_pre}report.id, count(*) AS total,{$db->db_pre}log.title,{$db->db_pre}log.url,{$db->db_pre}log.banner,sum(no_url) AS no_url,sum(move) AS move,sum(no_banner) AS no_banner,sum(violation) AS violation,sum(other) as other FROM {$db->db_pre}report INNER JOIN {$db->db_pre}log ON {$db->db_pre}report.id = {$db->db_pre}log.id GROUP BY id";
 	$report = $db->rowset_assoc($query);
-	foreach($report as $key=>$id) {
-		$query = "SELECT sum(no_url),sum(move),sum(no_banner),sum(violation),sum(other) FROM {$db->db_pre}report WHERE id={$id["id"]}";
-		$count = $db->single_num($query);
-		$report[$key]["count"] = $count;
-		$query = "SELECT ip,name,email,comment FROM {$db->db_pre}report WHERE id={$id["id"]}";
-		$rowset = $db->rowset_assoc($query);
-		if(!isset($report[$key]["comment"])){$report[$key]["comment"] = "";}				
-		foreach($rowset as $row) {		
-			$report[$key]["comment"] .= "報告者:{$row["name"]}\nメールアドレス:{$row["email"]}\nIP:{$row["ip"]}:\n{$row["comment"]}\n+--------+\n";			
+	if(is_array($report)){
+		foreach($report as $key=>$id) {
+			$query = "SELECT * FROM {$db->db_pre}report WHERE id={$id["id"]}";
+			$report_data = $db->rowset_assoc($query);
+			if(!isset($report[$key]["data"])){$report[$key]["data"] = array();}		
+			if(is_array($report_data)){$report[$key]["data"] = $report_data;}
 		}
-		$query = "SELECT title,url,banner FROM {$db->db_pre}log WHERE id={$id["id"]}";
-		$res = $db->single_num($query);
-		$report[$key]["title"] = $res[0];
-		$report[$key]["url"] = $res[1];
-		$report[$key]["banner"] = $res[2];
 	}
 	require $cfg["temp_path"] . "admin/dl_check.html";
 	exit;

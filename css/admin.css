@@ -52,14 +52,90 @@
 }
 a:link {
 	font-family: "ＭＳ ゴシック", "Osaka－等幅";
+	color: black;
 	font-size: 10px;
-	color: #CCCCCC;
 }
 a:hover {
 	font-family: "ＭＳ ゴシック", "Osaka－等幅";
+	color: red;
 	font-size: 10px;
-	color: #FFFFFF;
 }
 .attention_red {
 	color: #FF0000;
+}
+
+.flex_box
+{
+	font-size:10px;
+	display:flex;							
+}
+.flex_box > div
+{
+	padding:5px;
+}
+.site_name
+{
+	flex-grow: 2;
+	line-height:40px;
+}
+.site_name > a
+{
+	font-size:16px;
+	font-weight:bold;
+}
+.site_banner
+{
+	flex-grow: 2;
+	line-height:40px;
+}
+.site_banner img
+{
+	max-height:100%;
+	min-height:100%;
+}
+.site_status
+{
+	flex-basis:100px;
+}
+.site_status > select
+{
+	font-weight:bold;
+	padding:5px;
+	min-width:100%;
+	border:2px solid black;
+}
+.table{
+	display:table;
+	border:1px solid black;
+	box-sizing:border-box;
+	max-width:100%;
+	min-width:100%;
+	font-size:10px;
+}
+.table_header
+{
+	display:table-header-group;
+	text-align:center;
+	background-color:black;
+	color:white;
+	font-weight:bold;
+}
+.table_row
+{
+	display:table-row;
+}
+.table_row li
+{
+	margin:0px;
+	padding:0;
+}
+.table_cell
+{
+	display:table-cell;
+	border:1px solid black;
+	padding:5px;
+}
+.table_row > table_cell
+{
+	background-color:white;
 }

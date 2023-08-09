@@ -52,6 +52,12 @@ if($_POST['mode'] == 'act_del') {
 			mes('変更者指定が不正です', 'エラー', 'java');
 		}
 		pass_check();
+		if(!isset($_POST['no_link'])) {
+			$_POST['no_link'] = '';
+		}
+		if(!isset($_POST['dl_check'])) {
+			$_POST['dl_check'] = '';
+		}
 		// リンク切れリストからの削除の場合
 		if($_POST['no_link'] == 'on' && $_POST['id']) {
 			foreach($_POST['id'] as $id=>$val) {
@@ -129,12 +135,6 @@ if($_POST['mode'] == 'act_del') {
 				}
 			}
 		}
-	}
-	if(!isset($_POST['no_link'])) {
-		$_POST['no_link'] = '';
-	}
-	if(!isset($_POST['dl_check'])) {
-		$_POST['dl_check'] = '';
 	}
 	if($_POST['changer'] == 'admin' && ($_POST['no_link'] == 'on' || $_POST['dl_check'] == 'on')) {
 		mes('削除処理が完了しました', '削除完了', 'kanri');
