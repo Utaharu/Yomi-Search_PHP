@@ -665,7 +665,10 @@ if($_POST["mode"] == "kanri") {
 			$query = "SELECT * FROM {$db->db_pre}report WHERE id={$id["id"]}";
 			$report_data = $db->rowset_assoc($query);
 			if(!isset($report[$key]["data"])){$report[$key]["data"] = array();}		
-			if(is_array($report_data)){$report[$key]["data"] = $report_data;}
+			if(is_array($report_data)){
+				$report_data = Convert($report_data);
+				$report[$key]["data"] = $report_data;
+			}
 		}
 	}
 	require $cfg["temp_path"] . "admin/dl_check.html";
@@ -1014,5 +1017,20 @@ function mes($mes, $title="", $arg3="") {
 	}
 	require $cfg['temp_path'] . 'mes.html';
 	exit;
+}
+
+function Convert($array = array()) {
+	$return = array();
+	foreach ($array as $key => $value) {
+		if (is_array($value)) {
+			$value = Convert($value);
+		} else {
+			$value = mb_convert_encoding($value,"UTF-8",array("UTF-8","EUC-JP","JIS","Shift_JIS"));
+			$value = htmlspecialchars($value,ENT_HTML5 and ENT_QUOTES,"UTF-8");
+		}
+		$return[$key] = $value;
+	}
+	
+	return $return;
 }
 ?>
