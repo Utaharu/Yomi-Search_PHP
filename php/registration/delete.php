@@ -51,30 +51,36 @@ if($Form['mode'] == 'act_del') {
 			mes('変更者指定が不正です', 'エラー', 'java');
 		}
 		pass_check();
+		if(!isset($Form['no_link'])) {
+			$Form['no_link'] = '';
+		}
+		if(!isset($Form['dl_check'])) {
+			$Form['dl_check'] = '';
+		}		
 		// リンク切れリストからの削除の場合
 		if($Form['no_link'] == 'on' && $Form['id']) {
 			foreach($Form['id'] as $id=>$val) {
 				if(!$val) {
 					continue;
 				} elseif($val == 'on') {
+					if(preg_match('/\D/', $id)) {
+						mes('IDが正しくありません＞'.$id, 'エラー', 'java');
+					}
 
-                                        if(preg_match('/\D/', $id)) {
-                                            mes('IDが正しくありません＞'.$id, 'エラー', 'java');
-                                        }
-                                        
-                			$query = 'DELETE FROM {prefix}log WHERE id=\''.$id.'\'';
-					$db->query($query);
-                                        
-                			$query = 'DELETE FROM {prefix}rank WHERE id=\''.$id.'\'';
-					$db->query($query);
-                                        
-                			$query = 'DELETE FROM {prefix}rev WHERE id=\''.$id.'\'';
+                	$query = 'DELETE FROM {prefix}log WHERE id=\''.$id.'\'';
 					$db->query($query);
 
-                			$query = 'DELETE FROM {prefix}rank_counter WHERE id=\''.$id.'\'';
+                	$query = 'DELETE FROM {prefix}rank WHERE id=\''.$id.'\'';
+					$db->query($query);
+                    
+                	$query = 'DELETE FROM {prefix}rev WHERE id=\''.$id.'\'';
+					$db->query($query);
+
+                	$query = 'DELETE FROM {prefix}rank_counter WHERE id=\''.$id.'\'';
 					$db->query($query);
 				}
-              			$query = 'DELETE FROM {prefix}report WHERE id=\''.$id.'\'';
+              	
+				$query = 'DELETE FROM {prefix}report WHERE id=\''.$id.'\'';
 				$db->query($query);
 			}
 		}
@@ -107,34 +113,29 @@ if($Form['mode'] == 'act_del') {
 			if($Form['del']) {
 				foreach($Form["del"] as $del) {
 
-                                        if(preg_match('/\D/', $del)) {
-                                            mes('削除IDが正しくありません＞'.$del, 'エラー', 'java');
-                                        }
+					if(preg_match('/\D/', $del)) {
+						mes('削除IDが正しくありません＞'.$del, 'エラー', 'java');
+					}
 
-                			$query = 'DELETE FROM {prefix}log WHERE id=\''.$del.'\'';
+                	$query = 'DELETE FROM {prefix}log WHERE id=\''.$del.'\'';
 					$db->query($query);
 
-                			$query = 'DELETE FROM {prefix}rank WHERE id=\''.$del.'\'';
+                	$query = 'DELETE FROM {prefix}rank WHERE id=\''.$del.'\'';
 					$db->query($query);
                                         
-                			$query = 'DELETE FROM {prefix}rev WHERE id=\''.$del.'\'';
+                	$query = 'DELETE FROM {prefix}rev WHERE id=\''.$del.'\'';
 					$db->query($query);
 
-                			$query = 'DELETE FROM {prefix}rank_counter WHERE id=\''.$del.'\'';
+                	$query = 'DELETE FROM {prefix}rank_counter WHERE id=\''.$del.'\'';
 					$db->query($query);
 
-                			$query = 'DELETE FROM {prefix}report WHERE id=\''.$del.'\'';
+                	$query = 'DELETE FROM {prefix}report WHERE id=\''.$del.'\'';
 					$db->query($query);
 				}
 			}
 		}
 	}
-	if(!isset($Form['no_link'])) {
-		$Form['no_link'] = '';
-	}
-	if(!isset($Form['dl_check'])) {
-		$Form['dl_check'] = '';
-	}
+
 	if($Form['changer'] == 'admin' && ($Form['no_link'] == 'on' || $Form['dl_check'] == 'on')) {
 		mes('削除処理が完了しました', '削除完了', 'kanri');
 	} else {

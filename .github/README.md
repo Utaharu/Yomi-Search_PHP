@@ -35,7 +35,7 @@
 - - [x] 新規設置(setup)
 - - [x] 既存設置からipカラムを拡張用(管理者ページ->環境設定)
 
-- [x] [登録カテゴリー・セレクトボックスのmultiple化(nkbt-37@1811202326)](https://github.com/Utaharu/Yomi-Search_PHP/issues/3)
+- [ ] [登録カテゴリー・セレクトボックスのmultiple化(nkbt-37@1811202326)](https://github.com/Utaharu/Yomi-Search_PHP/issues/3)
 - - [x] pc
 - - [x] smartphone (/s/)
 
@@ -49,11 +49,14 @@
 - [x] [登録データのバックアップ・復元のバックアップデータの作成が行われない。(nkbt-31_2@1704100057)](https://github.com/Utaharu/Yomi-Search_PHP/issues/6)
 - [x] キーワードランキングの集計対象外のキーワードを一括登録が機能してない。
 
->> ### 削除
+>> ### [削除]
 - [x] ガラケー向けページの廃止・削除。
 
 <br/>
 
 > ## [更新履歴](History.md)
- -2023/04/21-
-* ガラケー向けページの廃止・削除。
+-2023/08/10- (beta_8.0.5)
+* デッドリンク報告の機能修正。
+  - 多重報告制限の追加
+  - ID確認の追加
+  - 管理画面での出力調整
