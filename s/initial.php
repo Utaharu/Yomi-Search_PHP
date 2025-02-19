@@ -118,7 +118,7 @@ if(isset($_REQUEST['mode'])) {
 
     // 新規登録実行(act_regist)
     if($_REQUEST['mode'] == 'act_regist') {
-            
+            require $cfg['sp_sub_path'] . 'functions_reg.php';
             require $cfg['sp_sub_path'] . 'act_regist.php';
             exit;
     }
