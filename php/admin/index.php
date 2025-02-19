@@ -915,7 +915,7 @@ if($Form["mode"] == "kanri") {
 				$sql = "SELECT id FROM {prefix}category WHERE path='{$dir}/'";
 				$row = $db->single_assoc($sql);
 				if($row["id"]) {
-					$up_id = $row[id];
+					$up_id = $row['id'];
 				} else {
 					mes("カテゴリの上位階層がありません({$dir}/)", "カテゴリ設定エラー", "kanri");
 					exit;
