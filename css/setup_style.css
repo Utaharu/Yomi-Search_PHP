@@ -50,7 +50,14 @@ section .input select
 		width: 100%;
 		margin: 5px 20px;
 	}
-	
+
+section .input .checkbox
+	{
+		max-width: none;
+		min-width: 0;
+		width: auto;
+	}
+
 li h3
 	{
 		font-size: 17px;

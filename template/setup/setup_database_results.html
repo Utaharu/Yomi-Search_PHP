@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="$charset" />
+		<meta http-equiv="Content-Type" content="text/html; charset=$charset" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<title>Yomi-Search PHP - インストール結果</title>
+		<link href="$css" rel="stylesheet" media="all" />
+	</head>
+	<body>
+		<div id="body">
+			<article>
+				<h1>Yomi-Search PHP - インストール結果</h1>
+				<section>
+					<h2>実行結果</h2>
+					<div>
+						<ul>
+							<!-- Result_Message tag:<li>$message</li> -->
+						</ul>
+					</div>
+				</section>
+				<section>
+				    <div>
+						エラーが表示されている場合にはブラウザのバックボタンで戻って、データベースの設定などを見直してください。
+					</div>
+					<div>
+						何もエラーが出ていなければ正常にインストールが完了しています。
+					</div>
+				</section>
+				<div>
+					<p>エラーが無ければ、続けて初期設定を行いますので「初期設定開始」ボタンをクリックしてください。</p>
+				</div>
+			</article>
+			<div>
+				<form method="post" action=".">
+					<button name="mode" type="submit" value="setup-search_engine_setting" />初期設定開始</button>
+				</form>
+			</div>
+		</div>
+		<div id="fotter">
+			Yomi-Search PHP
+		</div>
+	</body>
+</html>

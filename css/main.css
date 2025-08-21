@@ -157,3 +157,128 @@ img{ border:0; }
 	padding: 0px;
 	font-size: 11px;
 }
+
+
+ body
+        {
+            max-width:90%;
+            margin:10px auto;
+            border:1px solid red;
+        }
+        header
+        {
+            top:0;
+            position:sticky;
+			background-color:white;
+            width:100%;
+            height:80px;
+            border:1px dashed blue;
+        }
+        main
+        {
+            top:15px;
+            bottom:15px;
+            width:100%;
+            height:1900px;
+            border:1px dashed orange;
+        }
+
+		#menu
+		{
+			list-style-type: none;
+		}
+		#menu > li
+		{
+			width:100px;
+		}
+
+        footer
+        {
+            width:100%;
+            height:20px;
+            border:1px dashed green;
+        }
+
+        .flex_box
+        {
+            display:flex;
+        }
+        .flex_box #title
+        {
+            flex:2;
+            padding:5px;
+           	font-family : "ヒラギノ角ゴ Pro W3", "Hiragino Kaku GothicPro", "Osaka", "Helvetica", "Arial", "Verdana";
+            color:#7D80D7;
+            font-size: 30px;
+            font-weight:bold;
+        }
+        .flex_box #login
+        {
+            flex:1;
+            padding:5px;
+        }
+        #login > .dialog_title
+        {
+            padding:5px;
+            background-color: black;
+            color:white;
+            text-align:center;
+        }
+		.link_box
+		{
+			display:grid;
+			grid:100px 200px / 50px 50px 50px;
+			grid-auto-flow: column;
+		}
+        .table
+        {  
+            display:table;
+        }
+        .table > li
+        {
+            display:table-row;
+        }
+        .table > li > div
+        {
+            display:table-cell;
+        }
+        #copyright 
+        {
+            position:absolute;
+            right:150px;
+            padding:5px;
+            border:1px solid black;
+            background-color:silver;
+            color:black;
+            text-wrap: nowrap;
+        }
+        #copyright > #version_name
+        {
+            text-decoration:underline;
+        }
+        #copyright a
+        {
+            color:black;
+        }
+        #copyright_version
+        {
+            display:none;
+            padding:5px 5px 5px 15px;
+            margin:5px 0 0 0;
+            background-color:silver;
+            border:1px solid black;
+        }
+        #copyright_version li
+        {
+            text-align:left;
+			padding:2px 0px;
+        }
+        #copyright:hover > #copyright_version,
+        #copyright:focus > #copyright_version,
+        #copyright:active > #copyright_version
+        {
+            display:block;
+            position:absolute;
+            top:-90px;
+           
+        }

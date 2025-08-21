@@ -1,0 +1,14 @@
+// (14)デッドリンクチェック画面(&dl_check)
+	pass_check();
+	$query = "SELECT {prefix}report.id, count(*) AS total,{prefix}log.title,{prefix}log.url,{prefix}log.banner,sum(no_url) AS no_url,sum(move) AS move,sum(no_banner) AS no_banner,sum(violation) AS violation,sum(other) as other FROM {prefix}report INNER JOIN {prefix}log ON {prefix}report.id = {prefix}log.id GROUP BY id";
+	$report = $db->rowset_assoc($query);
+	if(is_array($report)){
+		foreach($report as $key=>$id) {
+			$query = "SELECT * FROM {prefix}report WHERE id={$id["id"]}";
+			$report_data = $db->rowset_assoc($query);
+			if(!isset($report[$key]["data"])){$report[$key]["data"] = array();}		
+			if(is_array($report_data)){$report[$key]["data"] = $report_data;}
+		}
+	}
+	require $cfg["temp_path"] . "admin/dl_check.html";
+	exit;

@@ -1,0 +1,12 @@
+	// HTMLの設定
+	pass_check();
+	$PR_search_form = rtrim($text["search_form"]);
+	$PR_search_form = str_replace(array("<",">"), array("&lt;","&gt;"), $PR_search_form);
+	$PR_menu_bar = rtrim($PR_menu_bar);
+	$PR_menu_bar = str_replace(array("<",">"), array("&lt;","&gt;"), $PR_menu_bar);
+	$PR_head_sp = rtrim($text["head_sp"]);
+	$PR_head_sp = str_replace(array("<",">"), array("&lt;","&gt;"), $PR_head_sp);
+	$PR_foot_sp = rtrim($text["foot_sp"]);
+	$PR_foot_sp = str_replace(array("<",">"), array("&lt;","&gt;"), $PR_foot_sp);
+	require $cfg["temp_path"] . "admin/cfg_html.html";
+	exit;

@@ -1,0 +1,130 @@
+
+	// (7.3)カテゴリ・ソート変換実行(&log_conv_kt_sort)
+	function sort_category($id, $path) {
+		global $cfg, $db;
+		$change_path = array();
+		$sql = "SELECT id, path, sort_name"
+		           . " FROM {prefix}category"
+			       . " WHERE up_id='{$id}'"
+			       . " ORDER BY sort_name, path";
+		$rowset = $db->rowset_assoc($sql) or $db->error("Query failed {$sql}".__FILE__.__LINE__);
+		$i = 1;
+		foreach ($rowset as $row) {
+			if ($row['id']) {
+				$len = strlen(basename($row['path']));
+				$new_path = $path . sprintf("%0{$len}d" , $i) . '/';
+				$i++;
+				if ($row['path'] != $new_path) {
+					$sql = "UPDATE {prefix}category"
+					           . " SET path = '{$new_path}'"
+							   . " WHERE id = '{$row['id']}'";
+					$db->query($sql) or $db->error("Query failed {$sql}".__FILE__.__LINE__);
+					$change_path[$new_path] = $row['path'];
+				}
+				$change_path = array_merge($change_path, sort_category($row['id'], $new_path));
+			}
+		}
+		return $change_path;
+	}
+	pass_check();
+	$del_list = array();
+	$change_path = array();
+	if($Form['check'] != 'on') {
+		mes('確認チェックにチェックしてから変換ボタンを押してください', 'チェックミス', 'java');
+	}
+	if($Form['all'] == 'on') {
+		// $Form['all']の処理
+		$change_path = sort_category(0, '');
+	} elseif ($Form['kt_str']) {
+		// $Form[kt_str]を解析
+		if(preg_match("/[^\w\-\,]/", $Form['kt_str'])) {
+			mes('カテゴリ指定文に全角文字が含まれています', 'エラー', 'java');
+		}
+		$kt_str = explode(',', $Form['kt_str']);
+		foreach($kt_str as $tmp) {
+			if(preg_match("/^(\d+)(n*)\-(\d+)(n*)$/", $tmp, $match)) {
+				$kt1 = $match[1];
+				$kt2 = $match[3];
+				$n_fl = 0;
+				if($match[4] == 'n') {
+					$n_fl = 1;
+				}
+				$keta1 = strlen($kt1);
+				$keta2 = strlen($kt2);
+				if($keta1 != $keta2) {
+					mes('カテゴリ指定文が間違っています：<b>'.$tmp.'</b>', 'エラー', 'java');
+				}
+				$i = 1;
+				while($kt1 != $kt2) {
+					$kt1_j = sprintf("%d", $kt1);
+					if(!$n_fl) {
+						$change[] = $kt1 . '/';
+					} else {
+						$del_list[] = $kt1 . '/';
+					}
+					$kt1_j++;
+					$kt1 = sprintf("%0{$keta1}d", $kt1_j);
+					$i++;
+					if($i > 5000) {
+						mes('<b>-</b> で 5000以上の連続するカテゴリを指定することはできません', 'エラー', 'java');
+					}
+				}
+				if(!$n_fl) {
+					$change[] = $kt2 . '/';
+				} else {
+					$del_list[] = $kt2 . '/';
+				}
+			} elseif(preg_match("/(\d+)(n*)/", $tmp, $match)) {
+				if($match[2] == 'n') {
+					$del_list = $match[1] . '/';
+				} else {
+					$change[] = $match[1] . '/';
+				}
+			} else {
+				mes('カテゴリ指定文が間違っています', 'エラー', 'java');
+			}
+		}
+		$change = array_diff($change, $del_list);
+		$change = array_unique($change);
+		sort($change);
+		reset($change);
+		// カテゴリを更新
+		foreach($change as $path) {
+			$sql = "SELECT id"
+			           . " FROM {prefix}category"
+					   . " WHERE path='{$path}'"
+					   . " LIMIT 1";
+			$id = $db->single_num($sql);
+			$change_path = array_merge($change_path, sort_category($id[0], $path));
+		}
+	}
+	// 本体ログを更新
+	if (!empty($change_path)) {
+		$change_path_where = array();
+		foreach ($change_path as $val) {
+			$change_path_where[] = "(category LIKE '%&{$val}&%')";
+		}
+		$sql = "SELECT id, category"
+		           . " FROM {prefix}log"
+				   . " WHERE " . implode(' or ' , $change_path_where);
+		$rowset = $db->rowset_assoc($sql) or $db->error("Query failed {$sql}".__FILE__.__LINE__);
+		foreach($rowset as $row) {
+			$kt_list = explode('&', $row['category']);
+			foreach ($kt_list as $key => $val) {
+				if (!empty($val)) {
+					$new_path = array_search($val, $change_path);
+					if (!empty($new_path)) {
+						$val = $new_path;
+					}
+					$kt_list[$key] = $val;
+				}
+			}
+			$row['category'] = implode('&', $kt_list);
+			$sql = "UPDATE {prefix}log"
+			           . " SET category='{$row['category']}'"
+					   . " WHERE id='{$row['id']}'";
+			$db->query($sql);
+		}
+	}
+	mes('カテゴリ・ソート変換が完了しました', 'カテゴリ・ソート変換完了', 'kanri');
+}

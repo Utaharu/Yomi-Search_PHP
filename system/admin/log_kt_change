@@ -1,0 +1,10 @@
+// (8)ログデータの交換・移動・削除(&log_kt_change)
+	pass_check();
+	$PR_kt_list = "";
+	$sql = "SELECT path FROM {prefix}category ORDER BY path";
+	$rowset = $db->rowset_assoc($sql);
+	foreach($rowset as $tmp) {
+		$PR_kt_list .= "<option value=\"{$tmp["path"]}\">" . full_category($tmp["path"]) . "\n";
+	}
+	require $cfg["temp_path"] . "admin/log_kt_change.html";
+	exit;

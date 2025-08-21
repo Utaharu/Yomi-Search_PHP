@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="$charset" />
+		<meta http-equiv="Content-Type" content="text/html; charset=$charset" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<title>Yomi-Search PHP - インストール</title>
+		<link href="$css" rel="stylesheet" media="all" />
+	</head>
+	<body>
+		<div id="body">
+			<article>
+				<h1>Yomi-Search PHP - インストール</h1>
+				<section>
+					<h2>インストール前の準備</h2>
+					<ol>
+						<li>
+							<h3>データベース情報の準備</h3>
+							<div>
+								<ul>
+									<li>データベースのホストアドレス</li>
+									<li>データベースへログインユーザ名</li>
+								ログインする為のパスワード
+							</div>
+						</li>
+						<li>
+							<h3>class/db.phpの編集</h3>
+							<div>
+								使用するMySQLデータベースに接続するための設定を行います。
+							</div>
+							<div class="description">
+								<ul>
+									<li>
+										[class]ディレクトリ内のdb.phpをUTF-8対応エディタで開いて「データベース設定」部分を環境に合わせて変更してください。
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<h3>ファイルのアップロード</h3>
+							<div>
+								設定ファイルの編集が完了したら全てのファイルを<a href="http://www2.biglobe.ne.jp/~sota/ffftp.html" title="FFFTP" target="_blank">FFFTP</a>や<a href="http://www.toxsoft.com/nextftp/" title="NextFTP" target="_blank">NextFTP</a>を使ってサーバにアップロードしてください。
+							</div>
+						</li>
+						<li>
+							<h3>アクセス権設定</h3>
+							<div>
+								サーバ上にある[log]ディレクトリのパーミッションを755に設定。
+							</div>
+							<div class="description">
+								<ul>
+									<li>
+										<div>
+											但し、PHPプログラムがWEBサーバの権限で実行されるサーバでは757または777に設定する必要があります。
+										</div>
+										<div>
+											詳しくはサーバ管理者へお問い合わせください。
+										</div>
+									</li>
+									<li>
+										<div>
+											なお、この設定は管理画面からログデータのバックアップを行う場合のみ必須となります。
+										</div>
+										<div>
+											バックアップ機能を使用しない場合にはアクセス権の設定を変更する必要はありません。
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+					</ol>
+				</section>
+				<section>
+					<p>上記の確認と設定が完了したら「インストール開始」ボタンをクリックしてください。</p>
+				</section>
+			</article>
+			<div>
+				<form method="post" action="?">
+					<button type="submit" name="mode" value="setup-database_setting">インストール開始</button>
+				</form>
+			</div>			
+		</div>
+		<div id="fotter">
+			Yomi-Search PHP
+		</div>
+	</body>
+</html>

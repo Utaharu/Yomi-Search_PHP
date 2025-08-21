@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="$charset" />
+		<meta http-equiv="Content-Type" content="text/html; charset=$charset" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<title>Yomi-Search PHP - 設定</title>
+		<link href="$css" rel="stylesheet" media="all" />
+	</head>
+	<body>
+		<div id="body">
+			<article>
+				<h1>Yomi-Search PHP - 設定</h1>
+				<section>
+					<h2>初期設定</h2>
+					<div class="description">
+						<ul>
+							<li>
+								ここでは最低限必要な設定のみを行います。
+							</li>
+							<li>
+								詳細な設定はインストール完了後に管理画面から行ってください。
+							</li>
+							<li>
+								ここで設定した内容は後から管理画面で変更することもできます。
+							</li>
+						</ul>
+					</div>
+					<div>
+						<form id="setting_form" method="post" action="">
+							<section class="input">
+								<h3>ロケール</h3>
+								<div>
+									<select name="language">
+										<!-- language_list tag:<option value="$value" $selected>$caption</option> -->
+									</select>
+								</div>
+							</section>
+							<section class="input">
+								<h3>タイムゾーン</h3>
+								<div>
+									<select name="time_zone">
+										<!-- time_zone_list tag:<option value="$value" $selected>$caption</option> -->
+									</select>
+								</div>
+							</section>
+							<section class="input">
+								<h3>文字エンコード</h3>
+								<div>
+									<select name="character_encoding">
+										<!-- character_list tag:<option value="$value" $selected>$caption</option> -->
+									</select>
+								</div>
+							</section>
+							<section class="input">
+								<h3>管理者パスワード</h3>
+								<div class="descriptrion">
+									<ul>
+										<li>
+											5-32文字で入力してください。
+										</li>
+										<li>
+											半角英数と_が利用できます。
+										</lii>
+									</ul>
+								</div>
+								<div class="flexbox">
+									<div class="caption">
+										パスワード:
+									</div>
+									<div class="input_box">
+										<input name="administrator_password" type="password" minlength="5" maxlength="32" />
+									</div>
+								</div>
+									<div class="flexbox">
+										<div class="caption">
+											再入力:
+										</div>
+										<div class="input_box">
+											<input name="admministrator_password_confirm" type="password" minlength="5" maxlength="32" />
+										</div>
+									</div>
+							</section>
+							<section class="input">
+								<h3>管理者名</h3>
+								<div>
+									<input name="administrator_name" type="text" id="administrator_name" value="" maxlength="50" />
+								</div>
+							</section>
+							<section class="input">
+								<h3>検索エンジンの名称</h3>
+								<div>
+									<input name="search_engine_title" type="text" id="search_engine_title" value="" size="40" />
+								</div>
+							</section>
+							<section class="input">
+								<h3>メールアドレス</h3>
+								<div>
+									<input name="administrator_mail_address" type="mail" id="administrator_mail_address" size="40" value="" />
+								</div>
+							</section>
+							<section class="input">
+								<h3>ホームページのURL</h3>
+								<div>
+									<ul>
+										<li>
+											あなたが運営するホームページのURL ( 例：http://localhost/index.html )
+										</li>
+									</ul>
+								</div>
+								<div>
+									<input name="administrator_homepage_url" type="url" id="administrator_homepage_url" value="" size="60" />
+								</div>
+							</section>
+							<section class="input">
+								<h3>OUTアクセスランキングを実施しますか？</h3>
+								<div>
+									<select name="out_access_ranking_is_enabled" id="out_access_ranking_is_enabled">
+										<option value="1" selected="selected">実施する</option>
+										<option value="0">実施しない</option>
+									</select>
+								</div>
+							</section>
+							<section class="input">
+								<h3>INアクセスランキングを実施しますか？</h3>
+								<div>
+									<select name="in_access_ranking_is_enabled" id="in_access_ranking_is_enabled">
+										<option value="1" selected="selected">実施する</option>
+										<option value="0">実施しない</option>
+									</select>
+								</div>
+							</section>
+							<section class="input">
+								<h3>INアクセスランキングの転送先URL</h3>
+								<div>
+									<ul>
+										<li>
+											リンク用URLからのアクセス転送先。
+										</li>
+										<li>
+											検索エンジンのtopページや、ホームページのトップページのURLなどを設定。
+										</li>
+									</ul>
+								</div>
+								<div>
+									<input name="transfer_destination_url" type="url" id="transfer_destination_url" value="" size="60" />
+								</div>
+							</section>
+							<section class="input">
+								<h3>マイリンク機能を使用にしますか？</h3>
+								<div>
+									<ul>
+										<li>
+											訪問者が検索エンジン内に自分専用のお気に入り(ブックマーク)を作成可能にする機能です。
+										</li>
+									</ul>
+								</div>
+								<div>
+									<select name="mylink_is_enabled" id="mylink_is_enabled">
+										<option value="1" selected="selected">使用する</option>
+										<option value="0">使用しない</option>
+									</select>
+								</div>
+							</section>
+						</form>
+					</div>
+				</section>
+			</article>
+			<div>
+				<button form="setting_form" type="submit" name="mode" value="setup-complete">設定反映</button>
+			</div>
+		</div>
+		<div id="fotter">
+			Yomi-Search PHP
+		</div>
+	</body>
+</html>

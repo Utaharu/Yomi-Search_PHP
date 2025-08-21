@@ -1,141 +1,232 @@
-.form {
-	background-color: #FFFFFF;
-	font-size: 11px;
-	border: 1px solid #000000;
-	color: #333333;
-	font-family: "ＭＳ ゴシック", "Osaka－等幅";
-	padding: 1px;
+article h1
+	{
+		padding-bottom: 5px;
+		border-bottom: 1px solid black;
+		margin: 0px;
+	}
+section
+	{
+		margin-left: 10px;
+		padding: 10px 0px;
+		border-bottom: 1px dashed black;
+	}
+section h2
+	{
+		padding-bottom: 5px;
+		border-bottom: 3px dotted black;
+		margin: 0px;
+		margin-left:10px
+	}
+section .input li
+	{
+		line-height: 20px;
+	}
+section .input h3
+	{
+		padding: 5px 0px 5px 10px;
+		background-color: silver;
+		color: black;
+		font-weight: bold;
+		border: 2px dashed black;
+		border-left: 8px solid black;
+	}
+section .input
+	{
+		border-bottom: none;
+	}
+
+section .input input,
+section .input select
+	{
+		max-width: 80%;
+		min-width: 80%;
+		width: 100%;
+		margin: 5px 20px;
+	}
+
+section .input .checkbox
+	{
+		max-width: none;
+		min-width: 0;
+		width: auto;
+	}
+
+li h3
+	{
+		font-size: 17px;
+		font-weight: bold;
+		margin: 10px 0;
+	}
+form
+	{
+		padding: 0 10px;
+	}
+button
+	{
+		color: black;
+		background-color: #CCCCFF;
+		border-top-color: #666666;
+		border-right-color: #666666;
+		border-bottom-color: #666666;
+		border-left-color: #666666;
+		border-top-width: 1px;
+		border-right-width: 1px;
+		border-bottom-width: 1px;
+		border-left-width: 1px;
+		font-size: 16px;
+		font-weight: bold;
+		padding: 10px;
+		margin: 20px;
+		max-width: 95%;
+		width: 100%;
+	}
+.description
+	{
+		margin: 5px;
+	}
+.description li
+	{
+		margin: 10px 0;
+	}
+.flexbox
+	{
+		display: flex;
+		flex-direction: row;
+	}
+.flexbox .caption
+	{
+		text-align: right;
+		flex-basis: 150px;
+	}
+.flexbox input
+	{
+		flex-grow: 2;
+		max-width:80%;
+		width:100%;
+		flex-basis:content;
+	}
+
+menu
+{
+	position:relative;
+	border:1px solid blue;
 }
-.title {
-	font-family: "ＭＳ ゴシック", "Osaka－等幅";
-	font-size: 11px;
-	font-weight: bold;
-	color: #CCCCCC;
-	letter-spacing: 2px;
-}
-.table_in_leftcell {
-	font-family: "ＭＳ ゴシック", "Osaka－等幅";
-	color: #333333;
-	background-color: #C2CDD6;
-	border: 1px none #CCCCCC;
-	padding: 8px;
-	font-size: 11px;
-	margin: 0px;
-	vertical-align: top;
-}
-.table_out {
-	background-color: #FFFFFF;
-	border: 1px solid #000000;
-	padding: 0px;
-}
-.table_in_rightcell {
-	font-family: "ＭＳ ゴシック", "Osaka－等幅";
-	color: #333333;
-	background-color: #DEE3E7;
-	border: 1px none #CCCCCC;
-	padding: 8px;
-	font-size: 11px;
-	margin: 0px;
-	vertical-align: top;
-}
-.table_in_header {
-	font-family: "ＭＳ ゴシック", "Osaka－等幅";
-	color: #FFFFFF;
-	background-color: #000066;
-	border: 1px none #CCCCCC;
-	padding: 8px;
-	font-size: 12px;
-	margin: 0px;
-	vertical-align: middle;
-	font-weight: bold;
-	letter-spacing: 2px;
-}
-a:link {
-	font-family: "ＭＳ ゴシック", "Osaka－等幅";
+menu ul
+	{
+		left:0;
+		border:1px solid green;
+		margin:0;
+		padding:0;
+		display:flex;
+		list-style-type: none;
+	}
+
+menu ul li
+	{
+		flex-basis:150px;
+		margin:0 20px 0 0;
+		border:1px solid black;
+	}
+menu ul li input
+	{
+		position:absolute;
+		height:0px;
+		width:0px;
+		margin:0;
+		padding:0;
+	}
+	body
+	{
+		max-width: 80%;
+		width: 100%;		
+		margin:0 auto;
+		padding: 10px;	
+		position:relative;
+	}
+
+        header
+        {
+            top:0;
+			left:0;
+            position:fixed;
+			background-color:black;
+            height:70px;
+			padding-left:20px;
+			z-index:1;
+			width:100%;
+			margin:0;
+			border-bottom:2px dashed white;
+
+		}
+		header #title
+		{
+			color:white;
+		}
+		main
+        {
+            top:80px;
+			left:0;
+            bottom:10px;
+            max-width:100%;
+			width:100%;
+			position:relative;
+        }
+		footer
+		{
+			z-index:1;
+			bottom:0;
+			left:0;
+			position:fixed;
+			width:100%;
+			background-color: black;
+			margin:0;
+			border-top:2px dashed white;
+		}
+
+.TabPage
+	{
+		position:absolute;
+		overflow:hidden;
+		visibility: hidden;
+		margin:auto;
+		min-width:100%;
+		max-width:100%;
+		left:0;
+	}
+
+
+.Tab_Label label
+{
 	color: black;
-	font-size: 10px;
-}
-a:hover {
-	font-family: "ＭＳ ゴシック", "Osaka－等幅";
-	color: red;
-	font-size: 10px;
-}
-.attention_red {
-	color: #FF0000;
+	background-color:silver;
+	border:1px solid black;
+	font-size: 16px;
+	font-weight:bold;
+	padding: 10px;
+	margin: 20px;
+
 }
 
-.flex_box
+.Tab_Box > .Tab_Label:has(:checked) + .TabPage
 {
-	font-size:10px;
-	display:flex;							
-}
-.flex_box > div
-{
-	padding:5px;
-}
-.site_name
-{
-	flex-grow: 2;
-	line-height:40px;
-}
-.site_name > a
-{
-	font-size:16px;
-	font-weight:bold;
-}
-.site_banner
-{
-	flex-grow: 2;
-	line-height:40px;
-}
-.site_banner img
-{
-	max-height:100%;
-	min-height:100%;
-}
-.site_status
-{
-	flex-basis:100px;
-}
-.site_status > select
-{
-	font-weight:bold;
-	padding:5px;
-	min-width:100%;
-	border:2px solid black;
-}
-.table{
-	display:table;
+    visibility: visible;
+	overflow: auto;
+	position: absolute;
+	margin-top:10px;
+	left:0;
+	width:100%;
 	border:1px solid black;
-	box-sizing:border-box;
-	max-width:100%;
-	min-width:100%;
-	font-size:10px;
 }
-.table_header
+
+.Tab_Label input[name="Tab_Button"]
 {
-	display:table-header-group;
-	text-align:center;
-	background-color:black;
-	color:white;
+	position:absolute;
+	overflow:hidden;
+	visibility:hidden;
+}
+
+.Tab_Label label:has(:checked,:focus)
+{
+	background-color: #CCCCFF;
 	font-weight:bold;
-}
-.table_row
-{
-	display:table-row;
-}
-.table_row li
-{
-	margin:0px;
-	padding:0;
-}
-.table_cell
-{
-	display:table-cell;
-	border:1px solid black;
-	padding:5px;
-}
-.table_row > table_cell
-{
-	background-color:white;
 }

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="$charset" />
+		<meta http-equiv="Content-Type" content="text/html; charset=$charset" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<title>Yomi-Search PHP - 基本設定</title>
+		<link href="../../../css/admin.css" rel="stylesheet" media="all" />
+	</head>
+	<body>
+		<div>
+            <header class="flex_box" id="header">
+                <div id="title">
+                    <h1>Yomi-Search PHP - 基本設定</h1>
+                </div>
+            </header>
+			<main>
+				<article style="position:relative; display:flex;">
+					<div class="Tab_Box">
+						<div class="Tab_Label">
+							<label class="Tab_Label" for="Tab1">
+								<input id="Tab1" class="Tab_Button" type="radio" name="Tab_Button" checked>
+								PCページの設定
+							</label>
+						</div>
+						<section id="in_access_ranking_option" class="TabPage">
+							<h2>PCページの設定</h2>
+							<div class="description">
+								<ul>
+									<li>
+										<div>ここでは、IN Access Rankingに関する設定を行います。</div>
+										<div>ユーザのサイトから当エンジンへのアクセスに対するランキングです。</div>
+									</li>
+								</ul>
+							</div>
+							<div>
+								<form id="in_access_ranking_form" method="post" action="?">
+									<section class="input">
+										<h3>サーチエンジンの名称</h3>
+										<div>
+                                            <input type="text" name="search_engine_title" />
+										</div>										
+									</section>
+									<section class="input">
+										<h3>サーチエンジンのトップのURL</h3>
+										<div>
+                                            <input type="url" name="search_engine_url" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>1ページに出力するサイト件数</h3>
+										<div>
+                                            <input type="number" name="banner_height" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>出力時のリンクバナーの高さ</h3>
+										<div>
+                                            <input type="number" name="banner_height" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>出力時のリンクバナーの幅</h3>
+										<div>
+                                            <input type="number" name="banner_width" />
+										</div>
+									</section>				
+								</form>
+							</div>
+							<div>
+								<input type="hidden" name="mode" value="administration" />
+								<button form="in_access_ranking_form" type="submit" name="method" value="update_in_access_ranking">PCページの設定を反映</button>
+							</div>
+						</section>
+					</div>													
+					<div class="Tab_Box">
+						<div class="Tab_Label">
+							<label class="Tab_Label" for="Tab2">
+								<input id="Tab2" class="Tab_Button" type="radio" name="Tab_Button" checked>
+								SmartPhoneページの設定
+							</label>
+						</div>
+						<section id="in_access_ranking_option" class="TabPage">
+							<h2>SmartPhoneページの設定</h2>
+							<div class="description">
+								<ul>
+									<li>
+										<div>ここでは、IN Access Rankingに関する設定を行います。</div>
+										<div>ユーザのサイトから当エンジンへのアクセスに対するランキングです。</div>
+									</li>
+								</ul>
+							</div>
+							<div>
+								<form id="in_access_ranking_form" method="post" action="?">
+									<section class="input">
+										<h3>サーチエンジンの名称</h3>
+										<div>
+                                            <input type="text" name="search_engine_title" />
+										</div>										
+									</section>
+									<section class="input">
+										<h3>サーチエンジンのトップのURL</h3>
+										<div>
+                                            <input type="url" name="search_engine_url" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>1ページに出力するサイト件数</h3>
+										<div>
+                                            <input type="number" name="banner_height" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>出力時のリンクバナーの高さ</h3>
+										<div>
+                                            <input type="number" name="banner_height" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>出力時のリンクバナーの幅</h3>
+										<div>
+                                            <input type="number" name="banner_width" />
+										</div>
+									</section>						
+								</form>
+							</div>
+							<div>
+								<input type="hidden" name="mode" value="administration" />
+								<button form="in_access_ranking_form" type="submit" name="method" value="update_in_access_ranking">SmartPhoneページ設定の反映</button>
+							</div>					
+						</section>
+					</div>
+					<div class="Tab_Box">
+						<div class="Tab_Label">
+							<label for="Tab3">
+								<input class="Tab_Button" id="Tab3" type="radio" name="Tab_Button" checked>
+								新着一覧ページの設定
+							</label>
+						</div>
+						<section id="out_access_ranking_option" class="TabPage">
+							<h2>新着一覧ページの設定</h2>
+							<div class="description">
+								<ul>
+									<li>
+										<div>ここでは、OUT Access Rankingに関する設定を行います。</div>
+										<div>当エンジンから、ユーザのサイトへのアクセスに対するランキングです。</div>
+									</li>
+								</ul>
+							</div>
+							<div>
+								<form id="out_access_ranking_form" method="post" action="?">
+									<section class="input">
+										<h3>タイトル</h3>
+										<div>
+											<input type="text" name="title" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>説明</h3>
+										<div>
+											<input type="text" name="description" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>期間</h3>
+										<div>
+											<input type="number" name="period" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>1ページの表示件数</h3>
+										<div>
+											<input type="number" name="display_quantity" />
+										</div>
+									</section>
+								</form>
+							</div>
+							<div>
+								<input type="hidden" name="mode" value="administration" />
+								<button form="out_access_ranking_form" type="submit" name="method" value="update_out_access_ranking">管理者の設定の反映</button>
+							</div>
+						</section>
+					</div>
+                    <div class="Tab_Box">
+						<div class="Tab_Label">
+							<label for="Tab4">
+								<input class="Tab_Button" id="Tab4" type="radio" name="Tab_Button" checked>
+								更新一覧のページ設定
+							</label>
+						</div>
+						<section id="out_access_ranking_option" class="TabPage">
+							<h2>更新一覧のページ設定</h2>
+							<div class="description">
+								<ul>
+									<li>
+										<div>ここでは、OUT Access Rankingに関する設定を行います。</div>
+										<div>当エンジンから、ユーザのサイトへのアクセスに対するランキングです。</div>
+									</li>
+								</ul>
+							</div>
+							<div>
+								<form id="out_access_ranking_form" method="post" action="?">
+									<section class="input">
+										<h3>タイトル</h3>
+										<div>
+											<input type="text" name="title" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>説明</h3>
+										<div>
+											<input type="text" name="description" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>期間</h3>
+										<div>
+											<input type="number" name="period" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>1ページの表示件数</h3>
+										<div>
+											<input type="number" name="display_quantity" />
+										</div>
+									</section>
+								</form>							</div>
+							<div>
+								<input type="hidden" name="mode" value="administration" />
+								<button form="out_access_ranking_form" type="submit" name="method" value="update_out_access_ranking">ロケール設定の反映</button>
+							</div>
+						</section>
+					</div>					
+				</article>
+			</main>
+			<footer id="fotter">
+				Yomi-Search PHP
+			</footer>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,116 @@
+// (cfg5)カテゴリ設定を更新 (&cfg_make_kt)
+	pass_check();
+	if($Form["mente_mode"] == "mente") {
+        // 削除指定されたカテゴリにログが残っていないか確認
+        foreach($Form['kt'] as $key => $val) {
+            if (isset($Form['d'][$key])) {
+                $sql = "SELECT "
+                       .     "COUNT(*) "
+                       . "FROM "
+                       . "{prefix}log "
+                       . "WHERE "
+                       .     "category LIKE '%&" . $key . "%&%'";
+                $res = $db->query($sql);
+                $tmp = mysql_fetch_row($res);
+                $leftRecordNum = (int)$tmp[0];
+                if ($leftRecordNum > 0) {
+                    $categoryName = full_category($key);
+                    $msg = "カテゴリ「<b>" . $categoryName . "</b>」には <b>" . $leftRecordNum . "</b> 件のレコードが残っています。"
+                              . "カテゴリの削除を行う前に、残っているレコードを別カテゴリへ移動もしくは削除してください。";
+                    mes($msg, "カテゴリ削除エラー", "kanri");
+                    exit;
+                }
+            }
+        }
+        // カテゴリ設定を更新
+        foreach ($Form['kt'] as $key => $val) {
+            // 削除でなければ
+			if (!isset($Form['d'][$key])) {
+				if($Form["ref"][$key]) {
+					$reflist = explode("&", $Form["ref"][$key]);
+					foreach($reflist as $num=>$refpath) {
+						if($refpath) {
+							$sql = "SELECT id FROM {prefix}category WHERE path='{$refpath}' LIMIT 1";
+							$row = $db->single_assoc($sql);
+							$reflist[$num] = $row["id"];
+						}
+					}
+					$Form["ref"][$key] = implode("&", $reflist);
+				}
+				$t = $Form["t"][$key];
+				$o = $Form["o"][$key];
+				$no = $Form["no"][$key];
+				$ref = $Form["ref"][$key];
+				$furi = $Form["furi"][$key];
+				$cmt = $Form["cmt"][$key];
+				$sql = "SELECT "
+                       .     "id "
+                       . "FROM "
+                       .     "{prefix}category "
+                       . "WHERE "
+                       .     "title = '" . $val . "' "
+                       .     "AND path = '" . $key . "' "
+                       .     "AND top_list = '" . $t . "' "
+                       .     "AND etc_list = '" . $o . "' "
+                       .     "AND regist = '" . $no . "' "
+                       .     "AND reffer = '" . $ref . "' "
+                       .     "AND sort_name = '" . $furi . "' "
+                       .     "AND comment = '" . $cmt . "' "
+                       . "LIMIT "
+                       .     "1";
+				$row = $db->single_assoc($sql);
+				if($row["id"]) {
+					continue;
+				} else {
+					$val = $db->escape_string($val);
+					$furi = $db->escape_string($furi);
+					$cmt = $db->escape_string($cmt);
+					$sql = "UPDATE {prefix}category SET title='{$val}', top_list='{$t}', etc_list='{$o}', regist='{$no}', reffer='{$ref}', sort_name='{$furi}', comment='{$cmt}' WHERE path='{$key}'";
+					$db->query($sql);
+				}
+			} else {
+				$sql = "DELETE FROM {prefix}category WHERE path='{$key}'";
+				$db->query($sql);
+			}
+		}
+	}
+	if($Form["mente_mode"] == "new" && $Form["kt_new"]) {
+		// 新規追加分を定義
+		$Form["kt_new"] = str_replace(array("&gt;", "&lt;"), array(">", "<"), $Form["kt_new"]);
+		$Form["kt_new"] = trim($Form["kt_new"]);
+		$new = explode("\n", $Form["kt_new"]);
+		foreach($new as $tmp) {
+			$tmp = trim($tmp);
+			$kt = explode("<>", $tmp);
+			$check = explode("/", $kt[0]);
+			array_pop($check);
+			foreach($check as $val) {
+				if(!preg_match("/^\d+$/", $val)) {
+					mes("カテゴリの設定に半角数字以外があります($val)", "カテゴリ設定エラー", "kanri");
+					exit;
+				}
+			}
+			if (substr($kt[0], -1) != "/") {
+				mes("カテゴリはスラッシュ「/」で終わってください({$kt[0]}<b><font color=\"#FF0000\">/</font></b>)", "カテゴリ設定エラー", "kanri");
+				exit;
+			}
+			$dir = dirname($kt[0]);
+			$up_id = 0;
+			if($dir != ".") {
+				$sql = "SELECT id FROM {prefix}category WHERE path='{$dir}/'";
+				$row = $db->single_assoc($sql);
+				if($row["id"]) {
+					$up_id = $row['id'];
+				} else {
+					mes("カテゴリの上位階層がありません({$dir}/)", "カテゴリ設定エラー", "kanri");
+					exit;
+				}
+			}
+			$sql = "DELETE FROM {prefix}category WHERE path='{$kt[0]}'";
+			$db->query($sql);
+			$sql = "INSERT INTO {prefix}category VALUES(NULL, '{$kt[1]}', '{$up_id}', '{$kt[0]}', '', '', '', '', '', '')";
+			$db->query($sql);
+		}
+	}
+	mes("カテゴリの設定が完了しました", "カテゴリ設定完了", "kanri");
+	exit;

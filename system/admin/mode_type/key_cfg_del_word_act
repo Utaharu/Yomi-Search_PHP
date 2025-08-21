@@ -1,0 +1,31 @@
+	// (6.2)キーワードランキングの集計対象外のキーワードを一括登録実行(&key_cfg_del_word_act)
+	pass_check();
+	$del_key_list = explode(",", $Form['del_key_list']);
+	if(is_array($del_key_list)){
+		foreach($del_key_list as $key){
+				$key = str_replace("\n","",$key);
+				if($key){
+					$key = $db->escape_string($key);
+					//key_rank table check
+					$sql = "SELECT * FROM {prefix}key_rank WHERE word='{$key}'";
+					$rowset = $db->single_assoc($sql);
+					if($rowset){//update
+					$sql = "UPDATE {prefix}key_rank SET open_key='',bad_key='1' WHERE word='{$key}'";
+					$db->query($sql);
+				}else{//add
+					$sql = "INSERT INTO {prefix}key_rank VALUES ('{$key}','','1','')";
+					$db->query($sql);
+				}
+				//key table Check
+				$sql = "SELECT word FROM {prefix}key WHERE word='{$key}'";
+				$tmp = $db->single_num($sql);
+				if(!$tmp){
+					$time = time();
+					$sql = "INSERT INTO {prefix}key (word, time, ip) VALUES ('{$key}','{$time}','{$_SERVER['REMOTE_ADDR']}')";
+					$db->query($sql);
+				}
+			}
+		}
+	}
+	mes("集計対象外のキーワードの一括登録が完了しました", "登録完了", "kanri");
+	exit;

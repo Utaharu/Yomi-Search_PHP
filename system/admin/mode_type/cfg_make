@@ -1,0 +1,28 @@
+	// (cfg1)環境設定($cfg)を更新(cfg_make)
+	pass_check();
+	$new_cfg_list = array(
+		'sp_search_name'=>$cfg['search_name'],
+		'sp_path_url'=>"./",
+		'sp_home'=>$cfg['sp_path_url'],
+		'sp_temp_path'=>$path_set['template']['root'],
+		'sp_sub_path'=>"../" . $cfg['sub_path'],
+		'sp_img_path'=>"../" . $cfg['img_path_url']
+	);
+
+	foreach ($new_cfg_list as $new_cfg_key=>$new_cfg_value){
+		if(!isset($cfg[$new_cfg_key])){
+			$sql = "INSERT INTO {prefix}cfg VALUES('{$new_cfg_key}','{$new_cfg_value}')";
+			$result = $db->query($sql);
+			$cfg[$new_cfg_key] = $new_cfg_value;
+		}
+	}
+
+	foreach($cfg as $key=>$val) {
+		if(isset($Form[$key]) && $Form[$key] != $cfg[$key] && $key != "pass") {
+			$Form[$key] = $db->escape_string($Form[$key]);
+			$sql = "UPDATE {prefix}cfg SET value='{$Form[$key]}' WHERE name='{$key}'";
+			$result = $db->query($sql);
+		}
+	}
+	mes("環境設定の変更設定が完了しました", "環境設定設定完了", "kanri");
+	exit;

@@ -1,0 +1,20 @@
+	// (12)カテゴリ設定 (&config_kt)
+	pass_check();
+	$sql = "SELECT * FROM {prefix}category ORDER BY path";
+	$rowset = $db->rowset_assoc($sql);
+	foreach($rowset as $row) {
+		$ref[$row["id"]] = $row["path"];
+	}
+	foreach($rowset as $num=>$row) {
+		if($row["reffer"]) {
+			$reflist = explode("&", $row["reffer"]);
+			foreach($reflist as $key=>$refid) {
+				if($refid) {
+					$reflist[$key] = $ref[$refid];
+				}
+			}
+			$rowset[$num]["reffer"] = implode("&", $reflist);
+		}
+	}
+	require $cfg["temp_path"] . "admin/config_kt.html";
+	exit;

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="$charset" />
+		<meta http-equiv="Content-Type" content="text/html; charset=$charset" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<title>Yomi-Search PHP - キーワードランキングの設定</title>
+		<link href="../../../css/admin.css" rel="stylesheet" media="all" />
+	</head>
+	<body>
+		<div>
+            <header class="flex_box" id="header">
+                <div id="title">
+                    <h1>Yomi-Search PHP - キーワードランキング設定</h1>
+                </div>
+            </header>
+			<main>
+				<article style="position:relative; display:flex;">
+					<div class="Tab_Box">
+						<div class="Tab_Label">
+							<label class="Tab_Label" for="Tab1">
+								<input id="Tab1" class="Tab_Button" type="radio" name="Tab_Button" checked>
+								機能設定
+							</label>
+						</div>
+						<section id="in_access_ranking_option" class="TabPage">
+							<h2>キーワードランキングの機能設定</h2>
+							<div class="description">
+								<ul>
+									<li>
+										<div>ここでは、キーワードランキングに関する機能設定を行います。</div>
+									</li>
+								</ul>
+							</div>
+							<div>
+								<form id="in_access_ranking_form" method="post" action="?">
+									<section class="input">
+										<h3>キーワードランキング機能のON/OFF</h3>
+										<div>
+											<select name="is_enabled">
+												<option value="true">実施する</option>
+												<option value="false">実施しない</option>
+											</select>
+										</div>
+									</section>
+									<section class="input">
+										<h3>最低アクセス数</h3>
+										<div class="description">
+											指定したアクセス数以上がないと、ランキングカウントの対象外になります。
+										</div>
+										<div>
+											<input id="minimum_score" name="minimum_score" type="number" value="" />
+										</div>
+									</section>									
+									<section class="input">
+										<h3>集計期間</h3>
+										<div class="description">
+											<div>日数を設定してください。</div>
+											<div>1シーズンをこの期間で区切って集計します。</div>
+										</div>
+										<div>
+											<input id="aggregation_period" name="aggregation_period" type="number" value="" min="1" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>表示数</h3>
+										<div class="description">何位まで集計するか指定してください。</div>
+										<div>
+											<input id="rank_count_to_display" name="rank_count_to_display" type="number" value="" min="1" />
+										</div>
+									</section>
+								</form>
+							</div>
+							<div>
+								<input type="hidden" name="mode" value="administration" />
+								<button form="in_access_ranking_form" type="submit" name="method" value="update_in_access_ranking">機能設定を反映</button>
+							</div>					
+						</section>
+					</div>
+					<div class="Tab_Box">
+						<div class="Tab_Label">
+							<label for="Tab2">
+								<input class="Tab_Button" id="Tab2" type="radio" name="Tab_Button" checked>
+								公開中のキーワード
+							</label>
+						</div>
+						<section id="out_access_ranking_option" class="TabPage">
+							<h2>公開中のキーワード</h2>
+							<div class="description">
+								<ul>
+									<li>
+										<div>ここでは、OUT Access Rankingに関する設定を行います。</div>
+										<div>当エンジンから、ユーザのサイトへのアクセスに対するランキングです。</div>
+									</li>
+								</ul>
+							</div>
+							<div>
+								<form id="out_access_ranking_form" method="post" action="?">
+									<section class="input">
+										<h3>Out ランキング機能のON/OFF</h3>
+										<div>
+											<select name="is_enabled">
+												<option value="true">実施する</option>
+												<option value="false">実施しない</option>
+											</select>
+										</div>
+									</section>
+									
+								</form>
+							</div>
+							<div>
+								<input type="hidden" name="mode" value="administration" />
+								<button form="out_access_ranking_form" type="submit" name="method" value="update_out_access_ranking">設定反映</button>
+							</div>
+						</section>
+					</div>
+
+					<div class="Tab_Box">
+						<div class="Tab_Label">
+							<label for="Tab3">
+								<input class="Tab_Button" id="Tab3" type="radio" name="Tab_Button" checked>
+								保留中のキーワード
+							</label>
+						</div>
+						<section id="out_access_ranking_option" class="TabPage">
+							<h2>保留中のキーワード</h2>
+							<div class="description">
+								<ul>
+									<li>
+										<div>ここでは、OUT Access Rankingに関する設定を行います。</div>
+										<div>当エンジンから、ユーザのサイトへのアクセスに対するランキングです。</div>
+									</li>
+								</ul>
+							</div>
+							<div>
+								<form id="out_access_ranking_form" method="post" action="?">
+									<section class="input">
+										<h3>Out ランキング機能のON/OFF</h3>
+										<div>
+											<select name="is_enabled">
+												<option value="true">実施する</option>
+												<option value="false">実施しない</option>
+											</select>
+										</div>
+									</section>
+									
+								</form>
+							</div>
+							<div>
+								<input type="hidden" name="mode" value="administration" />
+								<button form="out_access_ranking_form" type="submit" name="method" value="update_out_access_ranking">設定反映</button>
+							</div>
+						</section>
+					</div>
+
+					<div class="Tab_Box">
+						<div class="Tab_Label">
+							<label for="Tab4">
+								<input class="Tab_Button" id="Tab4" type="radio" name="Tab_Button" checked>
+								集計対象外のキーワード
+							</label>
+						</div>
+						<section id="out_access_ranking_option" class="TabPage">
+							<h2>集計対象外のキーワード</h2>
+							<div class="description">
+								<ul>
+									<li>
+										<div>ここでは、OUT Access Rankingに関する設定を行います。</div>
+									</li>
+								</ul>
+							</div>
+							<div>
+								<form id="out_access_ranking_form" method="post" action="?">
+									<section class="input">
+										<h3>集計対象外ワードの追加</h3>
+										<div>
+											<input id="transfar_destination_url" name="transfar_destination_url" type="text" value="" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>集計対象外ワードリスト</h3>
+									</section>
+								</form>
+							</div>
+							<div>
+								<input type="hidden" name="mode" value="administration" />
+								<button form="out_access_ranking_form" type="submit" name="method" value="update_out_access_ranking">設定反映</button>
+							</div>
+						</section>
+					</div>
+
+				</article>
+			</main>
+			<footer id="fotter">
+				Yomi-Search PHP
+			</footer>
+		</div>
+	</body>
+</html>

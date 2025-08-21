@@ -1,0 +1,12 @@
+	pass_check();
+	$sql = "SELECT k.word wd,count(*) pt FROM {prefix}key AS k LEFT JOIN {prefix}key_rank AS r ON k.word=r.word GROUP BY k.word HAVING pt<={$Form["del_max"]}";
+	$rowset = $db->rowset_assoc($sql);
+	foreach($rowset as $row) {
+        $row['wd'] = mysql_real_escape_string($row['wd']);
+        $sql = "DELETE FROM {prefix}key WHERE word='{$row["wd"]}'";
+		$db->query($sql);
+		$sql = "DELETE FROM {prefix}key_rank WHERE word='{$row["wd"]}'";
+		$db->query($sql);
+	}
+	mes("キーワード削除が完了しました", "キーワード削除完了", "kanri");
+	exit;

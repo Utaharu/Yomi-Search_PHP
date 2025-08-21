@@ -1,0 +1,41 @@
+	pass_check();
+	if($Form["act"] == "dump") {
+		if($Form["dump"] != "on") {
+			mes("修復確認のため、確認チェックを入れてからもう一度実行してください", "確認チェックをしてください", "java");
+		}
+		$sql = "SELECT * FROM {prefix}log ORDER BY id";
+		$result = $db->query($sql);
+		$fp = fopen($Form["file"], "w");
+		while($line = $db->fetch_num($result)) {
+			fputs($fp, implode("\t", $line)."\n");
+		}
+		fclose($fp);
+
+		header("Content-type: application/octet-stream");
+		header("Content-Disposition: attachment; filename=".basename($Form['file']));
+		
+		$dump_data = file_get_contents($Form['file']);
+		echo $dump_data;
+
+//		mes("データのバックアップが完了しました", "バックアップ完了", "kanri");
+	} elseif($Form["act"] == "restore") {
+		if($Form["restore"] != "on") {
+			mes("修復確認のため、確認チェックを入れてからもう一度実行してください", "確認チェックをしてください", "java");
+		}
+		//Remake Log Table
+		$query = "DROP TABLE {prefix}log";
+		$db->query($query);
+		require_once $script['lib']['db']['create'];
+		Create_Table::Log($db);
+		
+		$fp = fopen($Form["file"], "r");
+		while($line =  fgets($fp)) {
+			$line = rtrim(addslashes($line));
+			$Slog = explode("\t", $line);
+			$sql = "INSERT INTO {prefix}log VALUES ('{$Slog[0]}', '{$Slog[1]}', '{$Slog[2]}', '{$Slog[3]}', '{$Slog[4]}', '{$Slog[5]}', '{$Slog[6]}', '{$Slog[7]}', '{$Slog[8]}', '{$Slog[9]}', '{$Slog[10]}', '{$Slog[11]}', '{$Slog[12]}', '{$Slog[13]}', '{$Slog[14]}', '{$Slog[15]}')";
+			$db->query($sql);
+		}
+		fclose($fp);
+		mes("データの復元が完了しました", "復元完了", "kanri");
+	}
+	exit;

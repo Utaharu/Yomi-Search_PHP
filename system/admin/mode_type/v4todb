@@ -1,0 +1,25 @@
+			$fp = fopen($Form["bf_file"], "r");
+			while($line = fgets($fp)) {
+				$line = mb_convert_encoding($line, "UTF-8", "SJIS");
+				$line = $db->escape_string($line);
+				$Slog = explode("<>", $line);
+				$rank = explode("_", $Slog[13]);
+				$sql = "INSERT INTO {prefix}rank_counter VALUES ('{$Slog[0]}', '{$rank[1]}', '{$rank[3]}')";
+				$db->query($sql);
+				$Slog[10] = str_replace("_", "/", $Slog[10]);
+				$tmp = explode("&", $Slog[10]);
+				$Slog[10] = "";
+				foreach($tmp as $val) {
+					if($val) {
+						$Slog[10] .= "&{$val}/";
+					}
+				}
+				$Slog[10] = $Slog[10] . "&";
+				$Slog[13] = substr($Slog[11], -1);
+				$Slog[11] = substr($Slog[11], 0, -2);
+				$sql = "INSERT INTO {prefix}log"
+				           . " VALUES ('{$Slog[0]}', '{$Slog[1]}', '{$Slog[2]}', '{$Slog[3]}', '{$Slog[4]}', '{$Slog[5]}', '{$Slog[6]}', '{$Slog[7]}', '{$Slog[8]}', '{$Slog[9]}', '{$Slog[10]}', '{$Slog[11]}', '{$Slog[12]}', '{$Slog[13]}', '{$Slog[14]}', '{$Slog[15]}')";
+				$db->query($sql);
+			}
+			fclose($fp);
+			$PR_msg = "Ver4形式→データベースへの変換が完了しました";

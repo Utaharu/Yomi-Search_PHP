@@ -1,0 +1,23 @@
+	// (6.1)キーワードランキングの設定実行(&key_cfg_act)
+	pass_check();
+	if($Form["change"]) {
+		foreach($Form["change"] as $key=>$val) {
+			if($val or (isset($Form['view']) and isset($Form['view'][$key]) and $Form['view'][$key])) {
+				$view = "";
+				if((isset($Form['view']) and isset($Form['view'][$key]) and $Form['view'][$key])){$view = $db->escape_string($Form['view'][$key]);}
+				$key = $db->escape_string($key);
+				$opn = ($val == "open") ? "1" : NULL;
+				$bad = ($val == "bad") ? "1" : NULL;
+				$sql = "UPDATE {prefix}key_rank SET open_key='{$opn}',bad_key='{$bad}',view_word='{$view}' WHERE word='{$key}'";
+				$db->query($sql);
+				if($val == "del") {
+					$sql = "DELETE FROM {prefix}key WHERE word='{$key}'";
+					$db->query($sql);
+					$sql = "DELETE FROM {prefix}key_rank WHERE word='{$key}'";
+					$db->query($sql);
+				}
+			}
+		}
+	}
+	mes("キーワード表示設定の変更が完了しました", "キーワード表示設定の変更完了", "kanri");
+	exit;

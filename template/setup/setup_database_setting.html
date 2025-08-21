@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="$charset" />
+		<meta http-equiv="Content-Type" content="text/html; charset=$charset" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<title>Yomi-Search PHP - データベースの設定</title>
+		<link href="$css" rel="stylesheet" media="all" />
+	</head>
+	<body>
+		<div id="body">
+			<article>
+				<h1>Yomi-Search PHP - 設定</h1>
+				<section>
+					<h2>データベースの設定</h2>
+					<div class="description">
+						<ul>
+							<li>
+								ここでは、データベースの接続設定に関する設定を行います。
+							</li>
+						</ul>
+					</div>
+					<div>
+						<form id="setting_form" method="post" action="?">
+							<section class="input">
+								<h3>データベースの種類</h3>
+								<div>
+									<select name="database_data_source_name">
+										<option value="MYSQL_DSN">MySQL/MariaDB</option>
+									</select>
+								</div>
+							</section>
+							<section class="input">
+								<h3>ホストアドレス</h3>
+								<div class="description">データベース接続用のホストアドレスを入力してください。</div>
+								<div>
+									<input id="database_host_address" name="database_host_address" type="text" value="" />
+								</div>
+							</section>
+							<section class="input">
+								<h3>ポート番号</h3>
+								<div class="description">データベース接続用のポート番号を入力してください。</div>
+								<div>
+									<input id="database_port_number" name="database_port_number" type="number" value="3306" min="0" />
+								</div>
+							</section>							
+							<section class="input">
+								<h3>ユーザ名</h3>
+								<div class="description">データベースへログインする為のユーザ名を入力してください。</div>
+								<div>
+									<input id="database_user_name" name="database_user_name" type="text"  value="" size="40" />
+								</div>
+							</section>
+							<section class="input">
+								<h3>パスワード</h3>
+								<div class="description">データベースへログインする為のパスワードを入力してください。</div>
+								<div>
+									<input id="database_password" name="database_password" type="password"  size="40" value="" />
+								</div>
+								<div>
+									<label>
+										<input class="checkbox" name="no_database_password" type="checkbox" value="1">パスワード無しで接続
+									</label>
+								</div>
+							</section>
+							<section class="input">
+								<h3>データベース名</h3>
+								<div>
+									<div class="description">
+										<ul>
+											<li>データベース名を入力してください。</li>
+											<li>「データベースを新規作成する」にチェックを入れると指定したデータベース名でデータベースの生成を試みます。</li>
+										</ul>
+									</div>
+									<div>
+										<input id="database_name" name="database_name" type="text"  size="40" value="" />
+									</div>
+									<div>
+										<label>
+											<input class="checkbox" name="create_new_database" type="checkbox" value="1" />データベースを新規作成する
+										</label>
+									</div>									
+								</div>
+							</section>
+							<section class="input">
+								<h3>テーブルプレフィックス</h3>
+								<div class="description">
+									<ul>
+										<li>5文字までで、テーブルプレフィックスを入力してください。</li>
+										<li>英数と_が使えます。</li>
+									</ul>
+								</div>
+								<div>
+									<input id="database_table_prefix" name="database_table_prefix" type="text" maxlenght="5" size="40" value="zzz_" />
+								</div>
+							</section>
+							<section class="input">
+								<h3>文字コード</h3>
+								<div class="description">
+									データベースで利用する文字コードを入力してください。
+								</div>
+								<div>
+									<input id="database_charset" name="database_charset" type="text" size="40" value="utf8mb4" />
+								</div>
+							</section>
+						</form>
+					</div>
+				</section>
+			</article>
+			<div>
+				<button form="setting_form" type="submit" name="mode" value="setup-database">設定反映</button>
+			</div>
+		</div>
+		<div id="fotter">
+			Yomi-Search PHP
+		</div>
+	</body>
+</html>

@@ -1,0 +1,16 @@
+	// (cfg3)環境設定(登録処理関係)を更新 (&cfg_make_reg)
+	pass_check();
+	if(!isset($cfg_reg['kt_select_mode'])){
+		$sql = "INSERT INTO {prefix}cfg_reg VALUES('kt_select_mode','multiple')";
+		$result = $db->query($sql);
+		$cfg_reg['kt_select_mode'] = "multiple";
+	}
+	foreach($cfg_reg as $key=>$val) {
+		if(isset($Form[$key]) and $Form[$key] != $cfg_reg[$key]) {
+			$Form[$key] = $db->escape_string($Form[$key]);
+			$sql = "UPDATE {prefix}cfg_reg SET value='{$Form[$key]}' WHERE name='{$key}'";
+			$result = $db->query($sql);
+		}
+	}
+	mes("環境設定(登録処理関係)の変更が完了しました", "環境設定(登録処理関係)設定完了", "kanri");
+	exit;

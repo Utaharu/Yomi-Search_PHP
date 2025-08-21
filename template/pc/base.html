@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="$charset" />
+		<meta http-equiv="Content-Type" content="text/html; charset=$charset" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+        <meta name="Robots" content="noindex,nofollow,noarchive" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Cache-Control" content="no-cache" />
+		<title>$search_engine_name - $operation_form_title</title>
+		<link href="../../css/main.css" rel="stylesheet" media="all" />
+	</head>
+	<body>
+		<div id="body">
+            <header class="flex_box" id="header">
+                <div id="title">
+                    Yomi-Search
+                </div>
+                <div id="login">
+                    <div class="dialog_title">- ログイン -</div>
+                    <div class="flex_box">
+                        <div>
+                            ID:<input name="link_id" type="text" />
+                        </div>
+                        <div>
+                            Password:<input name="password" type="password" />
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main id="main">
+                <ul id="menu" class="flex_box">
+                    <li>
+                        <a href="$base_url?mode=registration_form">新規登録</a>
+                    </li>
+                    <li>
+                        <a href="$base_url?mode=operation_form">登録変更</a>
+                    </li>
+                    <li>
+                        <a href="$base_url?mode=search">検索</a>
+                    </li>
+                    <li>
+                        <a href="$base_url?mode=sitemap">サイトマップ</a>
+                    </li>
+                    <li>
+                        <a href="$base_url?mode=help">ヘルプ</a>
+                    </li>
+                </ul>
+                <div id="search_form">
+                        <form action="?" method="post">
+                        <tr>
+                            <td align="center">
+                            <input name="mode" type="hidden" value="search">
+                            <img src="<?php echo $cfg['img_path_url']; ?>search.gif" alt="検索" align="absbottom" title="検索"><input name="word" type="text" value="" size="20" class="form">&nbsp;<input type="submit" value=" 検 索 " class="form">&nbsp;
+                        <?php
+                        if($Form['mode'] == 'dir') {
+                        ?>
+                            <select name="search_kt" class="form">
+                                <option value="<?php echo $search_id; ?>-b_all" selected>このカテゴリ以下から検索</option>
+                                <option value="<?php echo $search_id; ?>">このカテゴリから検索</option>
+                                <option value="">全検索</option>
+                            </select>
+                        <?php
+                        }
+                        ?>
+                            <select name="search_method" class="form">
+                                <option value="0">OR</option>
+                                <option value="1" selected>AND</option>
+                            </select>
+                            </td>
+                        </tr>
+                        </form>                
+                </div>
+                <div class="link_box">
+                    <div class="">Link ID:1</div>
+                    <div>更新日：2025/05/21(Wed) 08:3</div>
+                    <div>管理者名:</div>
+                    <div>
+                        [<a href="regist_ys.php?mode=enter&id=1">修正・削除</a>]
+                        [<a href="regist_ys.php?mode=no_link&id=1&pre=on&title=yahoo">管理者に通知</a>]
+                        [<a href="index.php?mode=mylink&act=add&id=1">マイリンクに追加</a>]
+                    </div>
+                    <div>サイト名</div>
+                    <div>カテゴリ</div>
+                    <div>サイト説明</div>
+                    <div>G</div>
+                </div>
+                <table border="3" cellpadding="7" id="log">
+                <tr id="log-1">
+                    <td><a href="rank.php?mode=link&id=1&url=http%3A%2F%2Fwww.yahoo.co.jp%2F" target="_blank">yahoo</a>
+                <!-- アイコンを付加 -->
+                <br><br><font size="-1">2 [<a href="regist_ys.php?mode=enter&id=1">修正・削除</a>]
+                [<a href="regist_ys.php?mode=no_link&id=1&pre=on&title=yahoo">管理者に通知</a>]
+                [<a href="index.php?mode=mylink&act=add&id=1">マイリンクに追加</a>]</font>
+                </td>
+                </tr>
+                <tr id="log-3">
+                    <td>ヤッホー<br>&nbsp;</td>
+                </tr>
+                <tr id="log-4">
+                    <td><font id="kanri">testadmsg&nbsp;</font></td>
+                </tr>
+                </table><br>
+
+            </main>
+            <footer id="footer" style="position:relative;">
+                <!-- Copy Right Output -->
+                <div id="copyright">
+                    This program is : <span id="version_name">Yomi-Search PHP Ver:8.0β</span>
+                    <ul id="copyright_version">
+                        <li>
+                            Yomi-Search PHP Ver:8.0β
+                        </li>
+                        <li>
+                            <a href="http://www.nkbt.net/yomi/" target="_blank" title="Yomi-Search(PHP)modified ver1.5.8.n2">Yomi-Search(PHP)modified ver1.5.8.n2</a>
+                        </li>
+                        <li>
+                            <a href="http://yomiphp-mod.sweet82.com/" target="_blank" title="Yomi-Search(PHP)modified ver1.5.8">Yomi-Search(PHP)modified ver1.5.8</a>
+                        </li>
+                        <li>
+                            <a href="http://sql.s28.xrea.com/" target="_blank" title="Yomi-Search(PHP)">Yomi-Search(PHP)</a>
+                        </li>
+                        <li>
+                            <a href="http://yomi.pekori.to/" target="_blank" title="Yomi-Search">Yomi-Search</a>
+                        </li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

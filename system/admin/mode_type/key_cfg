@@ -1,0 +1,15 @@
+// (6)キーワードランキングの設定(key_cfg)
+	pass_check();
+	// ラジオボックスの設定
+	// キーワードランキング(実施しない=0/実施する=1)
+	$sql = "SELECT k.word wd,count(*) pt,r.word rwd,r.open_key opn,r.bad_key bad,r.view_word view FROM {prefix}key AS k LEFT JOIN {prefix}key_rank AS r ON k.word=r.word GROUP BY k.word ORDER BY pt DESC";
+	$rowset = $db->rowset_assoc($sql);
+	foreach($rowset as $row) {
+		if(!$row["rwd"]) {
+			$row['wd'] = $db->escape_string($row['wd']);
+			$sql = "INSERT INTO {prefix}key_rank VALUES('{$row['wd']}','','','')";
+			$db->query($sql);
+		}
+	}
+	require $cfg["temp_path"] . "admin/key_cfg.html";
+	exit;

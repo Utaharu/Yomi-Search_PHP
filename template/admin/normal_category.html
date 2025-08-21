@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="$charset" />
+		<meta http-equiv="Content-Type" content="text/html; charset=$charset" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<title>Yomi-Search PHP - カテゴリ設定</title>
+		<link href="../../../css/admin.css" rel="stylesheet" media="all" />
+	</head>
+	<body>
+		<div>
+            <header class="flex_box" id="header">
+                <div id="title">
+                    <h1>Yomi-Search PHP - カテゴリ設定</h1>
+                </div>
+            </header>
+			<main>
+				<article style="position:relative; display:flex;">
+					<div class="Tab_Box">
+						<div class="Tab_Label">
+							<label for="Tab1">
+								<input class="Tab_Button" id="Tab1" type="radio" name="Tab_Button" checked>
+								新規カテゴリの作成
+							</label>
+						</div>
+						<section id="out_access_ranking_option" class="TabPage">
+							<h2>新規カテゴリの作成</h2>
+							<div class="description">
+								<ul>
+									<li>
+										<div>ここでは、OUT Access Rankingに関する設定を行います。</div>
+										<div>当エンジンから、ユーザのサイトへのアクセスに対するランキングです。</div>
+									</li>
+								</ul>
+							</div>
+							<div>
+								<form id="out_access_ranking_form" method="post" action="?">
+									<section class="input">
+										<h3>管理者の名前</h3>
+										<div>
+											<input type="text" name="name" />
+										</div>
+									</section>
+									
+								</form>
+							</div>
+							<div>
+								<input type="hidden" name="mode" value="administration" />
+								<button form="out_access_ranking_form" type="submit" name="method" value="update_out_access_ranking">管理者の設定の反映</button>
+							</div>
+						</section>
+					</div>
+                    <div class="Tab_Box">
+						<div class="Tab_Label">
+							<label for="Tab4">
+								<input class="Tab_Button" id="Tab4" type="radio" name="Tab_Button" checked>
+								カテゴリの変更
+							</label>
+						</div>
+						<section id="out_access_ranking_option" class="TabPage">
+							<h2>カテゴリの変更</h2>
+							<div class="description">
+								<ul>
+									<li>
+										<div>ここでは、OUT Access Rankingに関する設定を行います。</div>
+										<div>当エンジンから、ユーザのサイトへのアクセスに対するランキングです。</div>
+									</li>
+								</ul>
+							</div>
+							<div>
+								<form id="out_access_ranking_form" method="post" action="?">
+									<section class="input">
+										<h3>言語</h3>
+										<div>
+											<select name="lnguage">
+												<option value="false">OFF</option>
+												<option value="true">ON</option>
+											</select>
+										</div>
+									</section>
+								</form>
+							</div>
+							<div>
+								<input type="hidden" name="mode" value="administration" />
+								<button form="out_access_ranking_form" type="submit" name="method" value="update_out_access_ranking">ロケール設定の反映</button>
+							</div>
+						</section>
+					</div>					
+				</article>
+			</main>
+			<footer id="fotter">
+				Yomi-Search PHP
+			</footer>
+		</div>
+	</body>
+</html>

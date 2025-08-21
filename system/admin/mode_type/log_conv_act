@@ -1,0 +1,14 @@
+	// (7.1)各種ログ変換実行(&log_conv_act)
+	pass_check();
+	if($Form["check"] != "on") {
+		mes("確認チェックがされていません。<br>戻ってチェックしてから実行してください。", "チェックエラー", "java");
+	}
+	if(!is_file($Form["bf_file"])) {
+		mes("エラー：{$bf_file} が見つかりません", "ファイルが見つかりません", "java");
+	} else 
+		if($Form["log_mode"] == "v4todb") {
+
+		}
+	}
+	mes("$PR_msg", "変換終了", "kanri");
+	exit;

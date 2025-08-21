@@ -1,72 +1,120 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $system_set['charset']; ?>" />
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Cache-Control" content="no-cache">
-<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
-<title>ヘルプ | <?php echo $cfg['search_name']; ?></title>
-<meta name="keywords" content="<?php echo $title; ?>,検索エンジンのヘルプ" />
-<meta name="description" content="<?php echo $title; ?>の検索エンジンのヘルプ表示です" />
-<link href="./favicon.ico" type="image/x-icon" rel="icon"/>
-
-<link media="screen" rel="stylesheet" href="<?php echo $css['pc']['main']; ?>" type="text/css">
-</head>
-<body>
-<a name="top"></a>
-<!-- メニューバー -->
-<div align="right"><font id="small"><?php echo $text['menu_bar']; ?></font></div>
-<hr align="center">
-<a href="<?php echo $cfg['home']; ?>">ホーム</a>&nbsp;&gt;&nbsp;
-<table width="100%" class="table_titlebar">
-  <tr>
-    <td><b>ヘルプ</b></td>
-  </tr>
-</table>
-<br>
-<!-- Header Space Output -->
-<?php echo $text['head_sp']; ?>
-<!-- /Header Space Output -->
-<blockquote>
-<strong><?php echo $cfg['search_name']; ?></strong>&nbsp;はディレクトリ型サーチエンジンです。
-<br>このサーチエンジンに登録されている様々な情報・ホームページを見つけることができます。
-</blockquote>
-<ol>
-<font size="+1"><b>&lt;&lt;ホームページを探す&gt;&gt;</b></font>
-<li>【<font color="#6666CC"><b>キーワードで探す</b></font>】
-<br>探したいホームページに関係するキーワードを入力して、自分の探しているホームページを見つけることができます。
-<br>キーワードは複数指定することも可能です。
-<br>複数指定する場合には、キーワードを半角スペースで区切って入力してください。
-<br>[例] スポーツ 野球
-<br>キーワード検索は&nbsp;<a href="<?php echo $cfg['home']; ?>">トップページ</a>&nbsp;や各カテゴリのページからすることができます。
-<br>より詳細な条件を指定して検索したい場合には&nbsp;[&nbsp;<a href="<?php echo $cfg['search']; ?>">詳細検索</a>&nbsp;]&nbsp;を使用してください。
-<br><br>
-<font size="+1"><b>&lt;&lt;ホームページを登録する&gt;&gt;</b></font>
-<li>【<font color="#6666CC"><b>新しく自分のホームページを登録する</b></font>】
-<br>自分のホームページをお持ちの方は宣伝のためにもぜひ登録してみてください。
-<br>登録の方法は、
-<ol>(1)自分のホームページのテーマ（ジャンル）にあったカテゴリを&nbsp;<a href="<?php echo $cfg['home']; ?>">トップページ</a>&nbsp;又は&nbsp;<a href="<?php print $script['sitemap']; ?>">サイトマップ</a>&nbsp;から探します。
-<br>(2)そのページの&nbsp;[&nbsp;<font color="#6666CC">このカテゴリに新規登録</font>&nbsp;]&nbsp;というリンクがある場合には、
-<br>登録することができますのでリンクをクリックして登録画面から登録してください。
-<br>登録する場合には登録画面の&nbsp;[&nbsp;<strong>登録上の注意</strong>&nbsp;]&nbsp;をよく読んでから登録してください。
-</ol>
-<br>
-<li>【<font color="#6666CC"><b>以前に登録したホームページの登録内容を変更する</b></font>】
-<br>[<a href="<?php print $script['regist']; ?>?mode=enter">修正・削除</a>] をクリックして
-自分のホームページの登録時のIDを入れて内容変更画面にログインするか、
-<br>サーチエンジンからタイトル・メールアドレス・URLなどから検索して、
-<br>自分のホームページデータの横にある「修正・削除」というリンクをクリックして、
-<br>『修正・削除画面』に行きパスワードを入力して、そこから登録内容の修正を行ってください。
-</ol>
-<div align="center"><form><input type="button" value="&nbsp;&nbsp;&nbsp;&nbsp;戻る&nbsp;&nbsp;&nbsp;&nbsp;" onClick="history.back()"></form></div>
-<hr align="center">
-
-<!-- Footer Space Output -->
-<?php if(isset($text['foot_sp'])) { echo $text['foot_sp']; } ?>
-<!-- /Footer Space Output -->
-
-<!-- Copy Right Output -->
-<div align="center"><?php cr(); ?></div>
-<!-- /Copy Right Output -->
-
-</body></html>
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="$charset" />
+		<meta http-equiv="Content-Type" content="text/html; charset=$charset" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+        <meta name="Robots" content="noindex,nofollow,noarchive" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Cache-Control" content="no-cache" />
+		<title>$search_engine_name - $operation_form_title</title>
+		<link href="../../css/main.css" rel="stylesheet" media="all" />
+	</head>
+	<body>
+		<div id="body">
+            <header class="flex_box" id="header">
+                <div id="title">
+                    Yomi-Search
+                </div>
+                <div id="login">
+                    <div class="dialog_title">- ログイン -</div>
+                    <div class="flex_box">
+                        <div>
+                            ID:<input name="link_id" type="text" />
+                        </div>
+                        <div>
+                            Password:<input name="password" type="password" />
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main id="main">
+                <ul id="menu" class="flex_box">
+                    <li>
+                        <a href="$base_url?mode=registration_form">新規登録</a>
+                    </li>
+                    <li>
+                        <a href="$base_url?mode=operation_form">登録変更</a>
+                    </li>
+                    <li>
+                        <a href="$base_url?mode=search">検索</a>
+                    </li>
+                    <li>
+                        <a href="$base_url?mode=sitemap">サイトマップ</a>
+                    </li>
+                    <li>
+                        <a href="$base_url?mode=help">ヘルプ</a>
+                    </li>
+                </ul>
+                <article>
+                    <section>
+                        <h2>概要</h2>
+                        <div class="description">
+                            <div><?php echo $cfg['search_name']; ?>はディレクトリ型サーチエンジンです。</div>
+                            <div>このサーチエンジンに登録されている様々な情報・ホームページを見つけることができます。</div>
+                        </div>
+                    </section>
+                    <section>
+                        <h2>ホームページを探す</h2>
+                        <div class="description">
+                            <div>キーワードで探す</div>
+                            <div>探したいホームページに関係するキーワードを入力して、自分の探しているホームページを見つけることができます。</div>
+                            <div>キーワードは複数指定することも可能です。</div>
+                            <div>複数指定する場合には、キーワードを半角スペースで区切って入力してください。</div>
+                            <div>[例] スポーツ 野球</div>
+                            <div>キーワード検索は<a href="<?php echo $cfg['home']; ?>">トップページ</a>や各カテゴリのページからすることができます。</div>
+                            <div>より詳細な条件を指定して検索したい場合には[<a href="<?php echo $cfg['search']; ?>">詳細検索</a>]を使用してください。</div>
+                        </div>
+                    </section>
+                    <section>
+                        <h2>ホームページを登録する</h2>
+                        <div class="description">
+                            <div>新しく自分のホームページを登録する</div>
+                            <div>自分のホームページをお持ちの方は宣伝のためにもぜひ登録してみてください。</div>
+                            <div>登録の方法は、</div>
+                            <ol>
+                                <li>自分のホームページのテーマ（ジャンル）にあったカテゴリを<a href="<?php echo $cfg['home']; ?>">トップページ</a>&nbsp;又は<a href="<?php print $script['sitemap']; ?>">サイトマップ</a>から探します。<\li>
+                                <li>そのページの[このカテゴリに新規登録]というリンクがある場合には、</li>
+                            </ol>
+                            <div>登録することができますのでリンクをクリックして登録画面から登録してください。</div>
+                            <div>登録する場合には登録画面の[登録上の注意]をよく読んでから登録してください。</div>                        
+                        </div>
+                    </section>
+                    <section>
+                        <h2>登録内容の変更</h2>
+                        <div class="desrtiption">
+                            <div>[<a href="<?php print $script['regist']; ?>?mode=enter">修正・削除</a>] をクリックして</div>
+                            <div>自分のホームページの登録時のIDを入れて内容変更画面にログインするか、</div>
+                            <div>サーチエンジンからタイトル・メールアドレス・URLなどから検索して、</div>
+                            <div>自分のホームページデータの横にある「修正・削除」というリンクをクリックして、</div>
+                            <div>『修正・削除画面』に行きパスワードを入力して、そこから登録内容の修正を行ってください。</div>
+                        </div>
+                    </section>
+                </article>
+            </main>
+            <footer id="footer" style="position:relative;">
+                <!-- Copy Right Output -->
+                <div id="copyright">
+                    This program is : <span id="version_name">Yomi-Search PHP Ver:8.0β</span>
+                    <ul id="copyright_version">
+                        <li>
+                            Yomi-Search PHP Ver:8.0β
+                        </li>
+                        <li>
+                            <a href="http://www.nkbt.net/yomi/" target="_blank" title="Yomi-Search(PHP)modified ver1.5.8.n2">Yomi-Search(PHP)modified ver1.5.8.n2</a>
+                        </li>
+                        <li>
+                            <a href="http://yomiphp-mod.sweet82.com/" target="_blank" title="Yomi-Search(PHP)modified ver1.5.8">Yomi-Search(PHP)modified ver1.5.8</a>
+                        </li>
+                        <li>
+                            <a href="http://sql.s28.xrea.com/" target="_blank" title="Yomi-Search(PHP)">Yomi-Search(PHP)</a>
+                        </li>
+                        <li>
+                            <a href="http://yomi.pekori.to/" target="_blank" title="Yomi-Search">Yomi-Search</a>
+                        </li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

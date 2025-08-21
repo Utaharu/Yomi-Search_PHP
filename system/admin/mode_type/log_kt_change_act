@@ -1,0 +1,104 @@
+	// (8.1)ログデータの交換・移動・削除実行(&log_kt_change_act)
+	pass_check();
+	if($Form["check"] != "on") {
+		mes("確認チェックがされていません。<br>戻ってチェックしてから実行してください。", "チェックエラー", "java");
+	}
+	// 記入漏れのチェック
+	if($Form["log_mode"] == "change") {
+		if(!$Form["change_kt1"] || !$Form["change_kt2"]) {
+			mes("交換対象のカテゴリを指定してください", "カテゴリ選択ミス", "java");
+		}
+	} elseif($Form["log_mode"] == "move") {
+		if(!$Form["bf_move_kt"] || !$Form["af_move_kt"]) {
+			mes("移動対象のカテゴリを指定してください", "カテゴリ選択ミス", "java");
+		}
+	} elseif($Form["log_mode"] == "del") {
+		if(!$Form["del_kt"]) {
+			mes("削除対象のカテゴリを選択してください", "カテゴリ選択ミス", "java");
+		}
+	} else {
+		mes("log_modeが選択されていません", "log_mode選択エラー", "java");
+	}
+	if($Form["log_mode"] == "change"){ // change
+		// ログデータの交換
+		$PR_mes = "ログデータの交換が完了しました<br>『" . full_category($Form["change_kt1"]) . "}』と『" . full_category($Form["change_kt2"]) . "』を交換しました";
+		$change_kt1 = $Form["change_kt1"];
+		$change_kt2 = $Form["change_kt2"];
+		$kousin_kt = array("&{$change_kt1}&"=>"&{$change_kt2}&", "&{$change_kt2}&"=>"&{$change_kt1}&");
+		$sql = "SELECT id,category FROM {prefix}log WHERE (category LIKE '%&{$change_kt1}&%') OR (category LIKE '%&{$change_kt2}&%')";
+		$rowset = $db->rowset_assoc($sql);
+		foreach($rowset as $line) {
+			$line["category"] = strtr($line["category"], $kousin_kt);
+			$sql ="UPDATE {prefix}log SET category='{$line["category"]}' WHERE id='{$line["id"]}'";
+			$result = $db->query($sql);
+		}
+	} elseif($Form['log_mode'] == 'move') { // move
+        // ログデータの移動
+        $bf_move_kt = $Form['bf_move_kt'];
+        $af_move_kt = $Form['af_move_kt'];
+        // 移動元カテゴリと移動先カテゴリの両方に登録されているレコードの処理
+        $sql = "SELECT "
+               .     "id, category "
+               . "FROM "
+               .     "{prefix}log "
+               . "WHERE "
+               .     "category LIKE '%&" . $bf_move_kt . "&%' AND category LIKE '%&" . $af_move_kt . "&%'";
+        $rowset = $db->rowset_assoc($sql);
+        foreach ($rowset as $lineBoth) {
+            $lineBoth['category'] = str_replace('&'.$bf_move_kt.'&', '&&', $lineBoth['category']);
+            $sql = "UPDATE "
+                   . "{prefix}log "
+                   . "SET "
+                   .     "category = '" . $lineBoth['category'] . "' "
+                   . "WHERE "
+                   .     "id = " . $lineBoth['id'];
+            $result = $db->query($sql);
+        }
+        // 移動元カテゴリに登録されているレコードの処理
+        $sql = "SELECT "
+               .     "id, category "
+               . "FROM "
+               . "{prefix}log "
+               . "WHERE "
+               .     "category LIKE '%&" . $bf_move_kt . "&%'";
+        $rowset = $db->rowset_assoc($sql);
+        foreach ($rowset as $line) {
+            $line['category'] = str_replace('&'.$bf_move_kt.'&', '&'.$af_move_kt.'&', $line['category']);
+            $sql = "UPDATE "
+                   . "{prefix}log "
+                   . "SET "
+                   .     "category = '" . $line['category'] . "' "
+                   . "WHERE "
+                   .     "id = " . $line['id'];
+            $result = $db->query($sql);
+        }
+        // 完了メッセージ
+        $categoryNameBefore = full_category($Form['bf_move_kt']);
+        $categoryNameAfter  = full_category($Form['af_move_kt']);
+        $PR_mes = "ログデータの移動が完了しました。<br />"
+                . "『" . $categoryNameBefore . "』を『" . $categoryNameAfter . "』に移動しました。";
+	} else { // del
+		// ログデータの削除
+		$PR_mes = "ログデータの削除が完了しました<br>『" . full_category($Form["del_kt"]) . "』を削除しました";
+		$del_kt = $Form["del_kt"];
+		$sql = "SELECT id,category FROM {prefix}log WHERE category LIKE '%&{$del_kt}&%'";
+		$rowset = $db->rowset_assoc($sql);
+		foreach($rowset as $line) {
+			$line["category"] = str_replace("&{$del_kt}&", "&", $line["category"]);
+			if(preg_match("/\d+/", $line["category"])) {
+				$sql = "UPDATE {prefix}log SET category='{$line["category"]}' WHERE id='{$line["id"]}'";
+				$result = $db->query($sql);
+			} else {
+				$sql="DELETE FROM {prefix}log WHERE id='{$line["id"]}'";
+				$result = $db->query($sql);
+				$sql="DELETE FROM {prefix}rank WHERE id='{$line["id"]}'";
+				$result = $db->query($sql);
+				$sql="DELETE FROM {prefix}rev WHERE id='{$line["id"]}'";
+				$result = $db->query($sql);
+				$sql="DELETE FROM ${prefix}rank_counter WHERE id='{$line["id"]}'";
+				$result = $db->query($sql);
+			}
+		}
+	}
+	mes($PR_mes, "ログデータの交換・移動・削除完了", "kanri");
+	exit;

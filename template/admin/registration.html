@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="$charset" />
+		<meta http-equiv="Content-Type" content="text/html; charset=$charset" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<title>Yomi-Search PHP - 登録に関する設定</title>
+		<link href="../../../css/admin.css" rel="stylesheet" media="all" />
+	</head>
+	<body>
+		<div>
+            <header class="flex_box" id="header">
+                <div id="title">
+                    <h1>Yomi-Search PHP - 登録に関する設定</h1>
+                </div>
+            </header>
+			<main>
+				<article style="position:relative; display:flex;">
+					<div class="Tab_Box">
+						<div class="Tab_Label">
+							<label class="Tab_Label" for="Tab1">
+								<input id="Tab1" class="Tab_Button" type="radio" name="Tab_Button" checked>
+								モードの設定
+							</label>
+						</div>
+						<section id="in_access_ranking_option" class="TabPage">
+							<h2>登録モードの設定</h2>
+							<div class="description">
+								<ul>
+									<li>
+										<div>ここでは、IN Access Rankingに関する設定を行います。</div>
+										<div>ユーザのサイトから当エンジンへのアクセスに対するランキングです。</div>
+									</li>
+								</ul>
+							</div>
+							<div>
+								<form id="in_access_ranking_form" method="post" action="?">
+									<section class="input">
+										<h3>管理人専用</h3>
+										<div>
+											<select name="administrator_only">
+												<option value="false">無効</option>
+												<option value="true">有効</option>
+												</option>
+											</select>
+										</div>										
+									</section>
+									<section class="input">
+										<h3>仮登録モード</h3>
+										<div>
+											<select name="temporary_registration">
+												<option value="false">無効</option>
+												<option value="true">有効</option>
+												</option>
+											</select>
+										</div>
+									</section>
+									<section class="input">
+										<h3>パスワード再発行</h3>
+										<div>
+											<select name="reissue_password_function">
+												<option value="false">無効</option>
+												<option value="true">有効</option>
+												</option>
+											</select>
+										</div>
+									</section>
+									<section class="input">
+										<h3>管理者のみが修正・削除</h3>
+										<div>
+											<select name="user_edit_operation">
+												<option value="false">無効</option>
+												<option value="true">有効</option>
+												</option>
+											</select>
+										</div>
+									</section>
+									<section class="input">
+										<h3>カテゴリの変更</h3>
+										<div>
+											<select name="user_edit_category">
+												<option value="false">無効</option>
+												<option value="true">有効</option>
+												</option>
+											</select>
+										</div>
+									</section>									
+								</form>
+							</div>
+							<div>
+								<input type="hidden" name="mode" value="administration" />
+								<button form="in_access_ranking_form" type="submit" name="method" value="update_in_access_ranking">モード設定を反映</button>
+							</div>
+						</section>
+					</div>													
+					<div class="Tab_Box">
+						<div class="Tab_Label">
+							<label class="Tab_Label" for="Tab2">
+								<input id="Tab2" class="Tab_Button" type="radio" name="Tab_Button" checked>
+								記入項目の設定
+							</label>
+						</div>
+						<section id="in_access_ranking_option" class="TabPage">
+							<h2>記入項目の設定</h2>
+							<div class="description">
+								<ul>
+									<li>
+										<div>ここでは、IN Access Rankingに関する設定を行います。</div>
+										<div>ユーザのサイトから当エンジンへのアクセスに対するランキングです。</div>
+									</li>
+								</ul>
+							</div>
+							<div>
+								<form id="in_access_ranking_form" method="post" action="?">
+									<section class="input">
+										<h3>バナーURL</h3>
+										<div class="flexbox">
+											<div class="caption">入力フィールド:</div>
+											<div>
+												<select name="banner_url_field">
+													<option value="0">無効</option>
+													<option value="1">有効</option>
+													<option value="2">入力必須</option>
+												</select>
+											</div>
+										</div>
+										<div class="flexbox">
+											<div class="caption">最大文字数:</div>
+											<div>
+												<input type="number" name="banner_url_maximum_length" />
+											</div>										
+										</div>
+									</section>
+									<section class="input">
+										<h3>メールアドレスL</h3>
+										<div class="flexbox">
+											<div class="caption">入力フィールド:</div>
+											<div>
+												<select name="mail_address_field">
+													<option value="0">無効</option>
+													<option value="1">有効</option>
+													<option value="2">入力必須</option>
+												</select>
+											</div>
+										</div>
+										<div class="flexbox">
+											<div class="caption">最大文字数:</div>
+											<div>
+												<input type="number" name="mail_address_maximum_length" />
+											</div>										
+										</div>
+									</section>					
+									<section class="input">
+										<h3>パスワード</h3>
+										<div class="flexbox">
+											<div class="caption">最低文字数:</div>
+											<div>
+												<input type="number" name="password_minimum_length" />
+											</div>
+										</div>
+										<div class="flexbox">
+											<div class="caption">最大文字数:</div>
+											<div>
+												<input type="number" name="passworkd_maximum_length" />
+											</div>										
+										</div>
+									</section>
+									<section class="input">
+										<h3>サイト名</h3>
+										<div class="flexbox">
+											<div class="caption">入力フィールド:</div>
+											<div>
+												<select name="site_name_field">
+													<option value="0">無効</option>
+													<option value="1">有効</option>
+													<option value="2">入力必須</option>
+												</select>
+											</div>
+										</div>
+										<div class="flexbox">
+											<div class="caption">最大文字数:</div>
+											<div>
+												<input type="number" name="site_name_maximum_length" />
+											</div>										
+										</div>
+									</section>	
+									<section class="input">
+										<h3>サイトURL</h3>
+										<div class="flexbox">
+											<div class="caption">入力フィールド:</div>
+											<div>
+												<select name="site_url_field">
+													<option value="0">無効</option>
+													<option value="1">有効</option>
+													<option value="2">入力必須</option>
+												</select>
+											</div>
+										</div>
+										<div class="flexbox">
+											<div class="caption">最大文字数:</div>
+											<div>
+												<input type="number" name="site_url_maximum_length" />
+											</div>										
+										</div>
+									</section>
+									<section class="input">
+										<h3>サイト説明</h3>
+										<div class="flexbox">
+											<div class="caption">入力フィールド:</div>
+											<div>
+												<select name="description_field">
+													<option value="0">無効</option>
+													<option value="1">有効</option>
+													<option value="2">入力必須</option>
+												</select>
+											</div>
+										</div>
+										<div class="flexbox">
+											<div class="caption">最大文字数:</div>
+											<div>
+												<input type="number" name="description_maximum_length" />
+											</div>										
+										</div>
+									</section>
+									<section class="input">
+										<h3>ユーザ名</h3>
+										<div class="flexbox">
+											<div class="caption">入力フィールド:</div>
+											<div>
+												<select name="user_name_field">
+													<option value="0">無効</option>
+													<option value="1">有効</option>
+													<option value="2">入力必須</option>
+												</select>
+											</div>
+										</div>
+										<div class="flexbox">
+											<div class="caption">最大文字数:</div>
+											<div>
+												<input type="number" name="user_name_maximum_length" />
+											</div>
+										</div>
+									</section>
+									<section class="input">
+										<h3>タグキーワードL</h3>
+										<div class="flexbox">
+											<div class="caption">入力フィールド:</div>
+											<div>
+												<select name="tag_keyword_field">
+													<option value="0">無効</option>
+													<option value="1">有効</option>
+													<option value="2">入力必須</option>
+												</select>
+											</div>
+										</div>
+										<div class="flexbox">
+											<div class="caption">最大個数:</div>
+											<div>
+												<input type="number" name="tag_keyword_maximum_pieces" />
+											</div>										
+										</div>
+									</section>
+									<section class="input">
+										<h3>カテゴリ</h3>
+										<div class="flexbox">
+											<div class="caption">入力フィールド:</div>
+											<div>
+												<select name="category_field_multiple_type">
+													<option value="false">シングルセレクトボックス</option>
+													<option value="true">マルチセレクトボックス</option>
+												</select>
+											</div>
+										</div>
+										<div class="flexbox">
+											<div class="caption">最小個数:</div>
+											<div>
+												<input type="number" name="category_minimum_pieces" min="1" />
+											</div>										
+										</div>										
+										<div class="flexbox">
+											<div class="caption">最大個数:</div>
+											<div>
+												<input type="number" name="category_maximum_pieces" />
+											</div>										
+										</div>
+									</section>										
+								</form>
+							</div>
+							<div>
+								<input type="hidden" name="mode" value="administration" />
+								<button form="in_access_ranking_form" type="submit" name="method" value="update_in_access_ranking">記入項目の設定を反映</button>
+							</div>					
+						</section>
+					</div>
+					<div class="Tab_Box">
+						<div class="Tab_Label">
+							<label for="Tab3">
+								<input class="Tab_Button" id="Tab3" type="radio" name="Tab_Button" checked>
+								ページタイトルの設定
+							</label>
+						</div>
+						<section id="out_access_ranking_option" class="TabPage">
+							<h2>ページタイトルの設定</h2>
+							<div class="description">
+								<ul>
+									<li>
+										<div>ここでは、OUT Access Rankingに関する設定を行います。</div>
+										<div>当エンジンから、ユーザのサイトへのアクセスに対するランキングです。</div>
+									</li>
+								</ul>
+							</div>
+							<div>
+								<form id="out_access_ranking_form" method="post" action="?">
+									<section class="input">
+										<h3>新規登録ページ</h3>
+										<div>
+											<input type="text" name="new_registration_title" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>新規登録プレビューページ</h3>
+										<div>
+											<input type="text" name="new_registration_preview_title" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>登録完了ページ</h3>
+										<div>
+											<input type="text" name="new_registration_completed_title" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>仮登録完了ページ</h3>
+										<div>
+											<input type="text" name="temporary_registration_completed_title" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>登録変更ページ</h3>
+										<div>
+											<input type="text" name="registration_editing_title" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>登録変更完了ページ</h3>
+										<div>
+											<input type="text" name="registration_editing_complete_title" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>登録削除ページ</h3>
+										<div>
+											<input type="text" name="registration_deletion_title" />
+										</div>
+									</section>
+									<section class="input">
+										<h3>登録削除完了</h3>
+										<div>
+											<input type="text" name="registration_deletion_completed_title" />
+										</div>
+									</section>
+								</form>
+							</div>
+							<div>
+								<input type="hidden" name="mode" value="administration" />
+								<button form="out_access_ranking_form" type="submit" name="method" value="update_out_access_ranking">ページタイトルの設定を反映</button>
+							</div>
+						</section>
+					</div>
+<div class="Tab_Box">
+						<div class="Tab_Label">
+							<label for="Tab4">
+								<input class="Tab_Button" id="Tab4" type="radio" name="Tab_Button" checked>
+								通知メールの設定
+							</label>
+						</div>
+						<section id="out_access_ranking_option" class="TabPage">
+							<h2>通知メールの設定</h2>
+							<div class="description">
+								<ul>
+									<li>
+										<div>ここでは、OUT Access Rankingに関する設定を行います。</div>
+										<div>当エンジンから、ユーザのサイトへのアクセスに対するランキングです。</div>
+									</li>
+								</ul>
+							</div>
+							<div>
+								<form id="out_access_ranking_form" method="post" action="?">
+									<section class="input">
+										<h3>管理人にメールを送信</h3>
+										<div>
+											<select name="send_to_administrator">
+												<option value="false">OFF</option>
+												<option value="true">ON</option>
+											</select>
+										</div>
+									</section>
+									<section class="input">
+										<h3>登録者にメールを送信</h3>
+										<div>
+											<select name="send_to_registrant">
+												<option value="false">OFF</option>
+												<option value="true">ON</option>
+											</select>
+										</div>
+									</section>
+									<section class="input">
+										<h3>新規登録完了メール</h3>
+										<div>
+											<select name="registration_completed">
+												<option value="false">OFF</option>
+												<option value="true">ON</option>
+											</select>
+										</div>
+									</section>
+									<section class="input">
+										<h3>登録変更完了メール</h3>
+										<div>
+											<select name="edit_completed"">
+												<option value="false">OFF</option>
+												<option value="true">ON</option>
+											</select>
+										</div>
+									</section>
+									<section class="input">
+										<h3>仮登録完了メール</h3>
+										<div>
+											<select name="temporary_registration_completed">
+												<option value="false">OFF</option>
+												<option value="true">ON</option>
+											</select>
+										</div>
+									</section>
+									<section class="input">
+										<h3>パスワード変更メール</h3>
+										<div>
+											<select name="password_reissue_completed">
+												<option value="false">OFF</option>
+												<option value="true">ON</option>
+											</select>
+										</div>
+									</section>
+								</form>
+							</div>
+							<div>
+								<input type="hidden" name="mode" value="administration" />
+								<button form="out_access_ranking_form" type="submit" name="method" value="update_out_access_ranking">通知メールの設定を反映</button>
+							</div>
+						</section>
+					</div>					
+				</article>
+			</main>
+			<footer id="fotter">
+				Yomi-Search PHP
+			</footer>
+		</div>
+	</body>
+</html>
